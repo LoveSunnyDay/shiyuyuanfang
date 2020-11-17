@@ -6,13 +6,21 @@
           <li>
             <router-link to="/about" target="_blank">About Hifire</router-link>
           </li>
-          <li>超火营销</li>
-          <li>帮助中心</li>
-           <li>
+          <li>
+            <router-link to="/LoadFail" target="_blank">超火营销</router-link>
+          </li>
+          <li>
+            <router-link to="/LoadFail" target="_blank">帮助中心</router-link>
+          </li>
+          <li>
             <router-link to="/about" target="_blank">关于超火</router-link>
           </li>
-          <li>使用前必读</li>
-          <li>意见反馈</li>
+          <li>
+            <router-link to="/LoadFail" target="_blank">使用前必读</router-link>
+          </li>
+          <li>
+            <router-link to="/LoadFail" target="_blank">意见反馈</router-link>
+          </li>
         </ul>
         <p>官方联系方式：</p>
         <div class="footer-main-bottom">
@@ -84,9 +92,12 @@ export default {}
         li {
           margin-right: 60px;
           cursor: pointer;
-          a{
+          a {
             color: #60606d;
           }
+        }
+        li:hover a {
+          color: #ffffffb3;
         }
       }
       .footer-main-bottom {
@@ -149,7 +160,6 @@ export default {}
       img {
         width: 125px;
         height: 125px;
-        // opacity: 0.73;
       }
       p {
         margin-top: 20px;

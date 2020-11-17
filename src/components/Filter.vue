@@ -113,11 +113,6 @@
       </li>
       <li><p>抖音购物车</p></li>
     </ul>
-    <!-- <el-breadcrumb separator="/">
-      <el-breadcrumb-item class="inner">抖音网红</el-breadcrumb-item>
-      <el-breadcrumb-item>上海</el-breadcrumb-item>
-      <el-breadcrumb-item>女</el-breadcrumb-item>
-    </el-breadcrumb> -->
     <ul class="filter-select">
       <li>抖音网红</li>
       <li>/</li>
@@ -170,10 +165,6 @@
         </div>
       </div>
       <div class="list-right">
-        <!-- <p class="list-right-title">
-          选择推广服务
-          <img src="../assets/image/show/shopping.png" alt="" />
-        </p> -->
         <ul>
           <li>
             <p>直播1小时</p>
@@ -264,15 +255,6 @@ export default {
       }
     }
   }
-  // .el-breadcrumb {
-  //   margin-top: 24px;
-  //   cursor: pointer;
-  //   .el-breadcrumb-item {
-  //     font-size: 14px;
-  //     font-weight: 400;
-  //     color: #3259ce !important;
-  //   }
-  // }
   .filter-select {
     display: flex;
     margin-top: 24px;
@@ -346,7 +328,6 @@ export default {
                 height: 24px;
                 line-height: 24px;
                 border-radius: 18px;
-                // background: chartreuse;
                 padding: 0 12px;
                 margin-left: 10px;
                 cursor: pointer;
@@ -421,18 +402,6 @@ export default {
     }
     .list-right {
       margin: 21px 40px 0 0;
-      // .list-right-title {
-      //   font-size: 16px;
-      //   font-weight: 800;
-      //   color: #484d54;
-      //   display: flex;
-      //   justify-content: flex-end;
-      //   img {
-      //     width: 16px;
-      //     height: 17px;
-      //     margin-left: 4px;
-      //   }
-      // }
       ul {
         width: 324px;
         display: flex;

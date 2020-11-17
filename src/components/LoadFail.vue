@@ -1,18 +1,18 @@
 <template>
   <div class="fail">
+    <Header></Header>
     <img src="../assets/image/fail.png" alt="" />
     <p>404警告！很不幸，您探索了一个未知领域！</p>
     <router-link to="/index" tag="button">返回首页</router-link>
-    <Shopping></Shopping>
   </div>
 </template>
 
 <script>
-import Shopping from './Shopping.vue'
+import Header from './Header.vue'
 export default {
   // 引入组件
   components: {
-    Shopping
+    Header
   },
   data() {
     // 这里存放数据
@@ -66,6 +66,12 @@ export default {
     outline: none;
     background-color: #ffffff;
     cursor: pointer;
+  }
+  button:hover {
+    transition: 0.5s;
+    background-color: #FF7519;
+    color: #FFFFFF;
+    border: 0;
   }
 }
 </style>

@@ -17,7 +17,7 @@
         <i class="el-icon-close" @click="drawer = false"></i>
       </p>
       <div class="drawer-have">
-        <ul class="drawer-item" v-for="item in 2" :key="item">
+        <ul class="drawer-item" v-for="item in 5" :key="item">
           <li class="drawer-details">
             <i class="el-icon-circle-close"></i>
             <div class="drawer-box">
@@ -44,21 +44,23 @@
             </div>
           </li>
         </ul>
-        <div class="drawer-all">
-          <p>共选<span>3</span>个网红</p>
-          <p>共计：<span>￥3600</span></p>
-        </div>
-        <div class="drawer-money">
-          <p class="drawer-money-title">费用明细：</p>
-          <div>
-            <p>网红费：<span>35000.00元</span></p>
-            <p>星图费：<span>35000.00元</span></p>
-            <p>超火平台：<span>35000.00元</span></p>
+        <div class="drawer-botton">
+          <div class="drawer-all">
+            <p>共选<span>3</span>个网红</p>
+            <p>共计：<span>￥3600</span></p>
           </div>
-        </div>
-        <div class="drawer-btn">
-          <button>联系客服</button>
-          <button>立即推广</button>
+          <div class="drawer-money">
+            <p class="drawer-money-title">费用明细：</p>
+            <div>
+              <p>超火平台：<span>35000.00元</span></p>
+              <p>星图费：<span>35000.00元</span></p>
+              <p>超火平台：<span>35000.00元</span></p>
+            </div>
+          </div>
+          <div class="drawer-btn">
+            <button>联系客服</button>
+            <button>立即推广</button>
+          </div>
         </div>
       </div>
       <!-- <div class="drawer-no">
@@ -81,7 +83,7 @@ export default {
     // 这里存放数据
     return {
       drawer: false,
-      size: '440px'
+      size: '354px'
     }
   },
   // 方法集合
@@ -124,7 +126,7 @@ export default {
     width: 40px;
     height: 203px;
     background: #34B299;
-    margin-top: 160px;
+    margin-top: 232px;
     cursor: pointer;
     img {
       width: 24px;
@@ -163,32 +165,33 @@ export default {
       height: 55px;
       line-height: 55px;
       span {
+        font-size: 16px;
         font-weight: bold;
+        color: #00A581;
       }
       i {
         font-weight: bold;
         cursor: pointer;
         line-height: 55px;
+        font-size: 14px;
       }
     }
     .drawer-have {
-      // .drawer-item:hover i {
-      //   opacity: 1;
-      // }
       .drawer-item {
-        height: 190px;
+        height: 158px;
         border-bottom: 1px solid rgba(112, 112, 112, 0.2);
-        padding-left: 21px;
+        .drawer-details:hover .el-icon-circle-close {
+          transition: 0.5s;
+          opacity: 1;
+        }
         .drawer-details {
+          cursor: pointer;
           i {
             color: #D91818;
             cursor: pointer;
-            margin: 18px 0 0 -21px;
-            // opacity: 0;
+            margin: 8px 0 10px 0;
+            opacity: 0;
           }
-          // i:hover {
-          //   color: #D91818;
-          // }
           .drawer-box {
             display: flex;
             img {
@@ -220,7 +223,9 @@ export default {
                 }
               }
               li:nth-child(4) {
-                margin: 39px 0 0 130px;
+                margin-top: 20px;
+                display: flex;
+                justify-content: flex-end;
                 span:nth-child(1) {
                   font-weight: 800;
                   color: #343434;
@@ -238,12 +243,20 @@ export default {
           }
         }
       }
+      .drawer-botton {
+        position: fixed;
+        bottom: 0;
+        right: 65px;
+        width: 304px;
+        height: 265px;
+        background-color: #FFFFFF;
+      }
       .drawer-all {
-        height: 90px;
+        height: 46px;
         border-bottom: 1px solid rgba(112, 112, 112, 0.2);
         display: flex;
         justify-content: space-between;
-        line-height: 90px;
+        line-height: 46px;
         font-size: 14px;
         p:nth-child(1) {
           font-weight: 800;
@@ -273,8 +286,8 @@ export default {
         div {
           display: flex;
           flex-wrap: wrap;
+          justify-content: space-between;
           p {
-            width: 190px;
             color: #AAAAAA;
             line-height: 32px;
             span {
@@ -285,10 +298,10 @@ export default {
         }
       }
       .drawer-btn {
-        margin: 30px 0;
+        margin: 20px 0;
         text-align: center;
         button:nth-child(1) {
-          width: 170px;
+          width: 144px;
           height: 44px;
           border: 1px #F79220 solid;
           border-radius: 4px;
@@ -301,7 +314,7 @@ export default {
           cursor: pointer;
         }
         button:nth-child(2) {
-          width: 170px;
+          width: 144px;
           height: 44px;
           border-radius: 4px;
           background-color: #F79220;
@@ -350,10 +363,11 @@ export default {
   outline: 0;
 }
 /deep/ .el-drawer__body {
-  padding: 15px 25px 0;
+  padding: 72px 25px 265px;
   overflow-y: auto;
 }
 /deep/.el-drawer {
   margin-right: 40px;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 </style>

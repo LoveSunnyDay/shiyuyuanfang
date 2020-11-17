@@ -6,8 +6,11 @@ import './plugins/element.js'
 import './assets/css/resrt.css' // 引入resrt.css
 import './assets/iconfont/iconfont.css' // 引入阿里字体图标
 
-// import Header from './components/Header'
-// Vue.use(Header)
+// 路由跳转后，移动到最上方
+router.afterEach((to, from, next) => {
+  document.body.scrollTop = 0
+  document.documentElement.scrollTop = 0
+})
 
 Vue.config.productionTip = false
 

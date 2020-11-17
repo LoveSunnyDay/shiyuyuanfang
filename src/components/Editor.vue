@@ -138,7 +138,7 @@
     <div class="notes">
       <p class="notes-title">
         5条注意事项：
-        <i class="el-icon-question" title="推广内容描述提示"></i>
+        <i class="el-icon-question" title="注意事项提示"></i>
       </p>
       <p class="notes-text">需求筛选说明</p>
       <ul>
@@ -155,8 +155,7 @@
         </li>
         <li>
           4.
-          未经过该视频媒体编辑确定之前没法具体报价,需要先选文本平台营销顾问预估报价。只有编辑确定视频网站和频道
-          具体位置后,才能给您具体报价。
+          未经过该视频媒体编辑确定之前没法具体报价,需要先选文本平台营销顾问预估报价。只有编辑确定视频网站和频道具体位置后,才能给您具体报价。
         </li>
         <li>
           5. 工作时间:周一至周六
@@ -308,14 +307,13 @@ export default {
     background-image: url(../assets/image/editor-notes.png);
     margin: 80px auto 30px;
     .notes-title {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: bold;
-      line-height: 22px;
       color: #656565;
       text-align: center;
     }
     .notes-text {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: bold;
       color: #343434;
       text-align: center;
@@ -323,11 +321,15 @@ export default {
     }
     ul {
       margin: 50px 0 0 88px;
-      font-size: 14px;
-      line-height: 35px;
+      font-size: 18px;
+      line-height: 30px;
       color: #656565;
       li {
-        font-weight: bold;
+        font-weight: 500;
+        width: 930px;
+      }
+      li:nth-child(1) {
+        margin-bottom: 10px;
       }
       li:last-child {
         color: #B32A13;

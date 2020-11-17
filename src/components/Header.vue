@@ -33,6 +33,7 @@
           :visible.sync="dialogVisible"
           width="440px"
           :before-close="handleClose"
+          :modal-append-to-body="false"
         >
           <div class="login">
             <div class="wx-login" v-if="loginMode">
@@ -144,7 +145,7 @@ export default {
       height: 21px;
       margin-top: 25px;
     }
-    p:hover{
+    p:hover {
       color: #b9bab8;
     }
     p {
@@ -155,7 +156,7 @@ export default {
       cursor: pointer;
     }
     input {
-      width: 490px;
+      width: 360px;
       height: 40px;
       background: #FFFFFF;
       border-radius: 6px;
