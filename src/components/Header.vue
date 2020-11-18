@@ -129,13 +129,13 @@ export default {
 .header {
   width: 100%;
   height: 72px;
-  background: #232A34;
+  background: #232a34;
   display: flex;
   justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 20;
+  z-index: 100;
   .header-left {
     display: flex;
     line-height: 72px;
@@ -152,13 +152,13 @@ export default {
       margin-left: 30px;
       font-size: 18px;
       font-weight: 400;
-      color: #FFFFFF;
+      color: #ffffff;
       cursor: pointer;
     }
     input {
       width: 360px;
       height: 40px;
-      background: #FFFFFF;
+      background: #ffffff;
       border-radius: 6px;
       margin: 16px 0 0 30px;
       outline: none;
@@ -273,7 +273,7 @@ export default {
           font-weight: 600;
           border-radius: 19px;
           position: absolute;
-          top: 170px;
+          top: 172px;
           right: 67px;
           outline: none;
           cursor: pointer;

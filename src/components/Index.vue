@@ -2,6 +2,7 @@
   <div>
     <div class="header-index">
       <!-- <img src="../assets/image/banner.png" alt="" class="header-banner" /> -->
+      <Header v-show="headerShow"></Header>
       <div class="top-nav">
         <img src="../assets/image/logo.png" alt="" class="logo" />
         <ul class="nav-list">
@@ -125,13 +126,21 @@
 </template>
 
 <script>
+import Header from './Header.vue'
 export default {
+  components: {
+    Header
+  },
   data() {
     return {
       // input: ''
       dialogVisible: false,
-      loginMode: true
+      loginMode: true,
+      headerShow: false
     }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.handleScroll)
   },
   methods: {
     handleClose(done) {
@@ -143,6 +152,18 @@ export default {
     },
     loginModeButton() {
       return (this.loginMode = !this.loginMode)
+    },
+    // 滚动监听，当scroll大于300，header组件显示，小于300则隐藏
+    handleScroll() {
+      var scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop
+      if (scrollTop > 300) {
+        this.headerShow = true
+      } else if (scrollTop < 300) {
+        this.headerShow = false
+      }
     }
   }
 }
@@ -270,8 +291,8 @@ export default {
             font-weight: 600;
             border-radius: 19px;
             position: absolute;
-            top: 170px;
-            right: 88px;
+            top: 172px;
+            right: 87px;
             outline: none;
             cursor: pointer;
           }
