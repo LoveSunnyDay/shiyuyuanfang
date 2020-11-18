@@ -14,64 +14,39 @@
         <span>增值纸质发票</span>
       </li>
       <li>
-        <!-- <i class="iconfont icon-weixin1"> -->
-        <i class="iconfont icon-bixuan"></i>
         <span>公司全称：</span>
-        <input
-          type="text"
-          class="invoice-content-input"
-          placeholder="请填写公司名称"
-        />
+        <span>请填写公司全称</span>
       </li>
       <li>
-        <i class="iconfont icon-bixuan"></i>
         <span>税号：</span>
-        <input
-          type="text"
-          class="invoice-content-input"
-          placeholder="请在此填写纳税人识别号"
-        />
+        <span>请在此填写纳税人识别号</span>
       </li>
       <li>
         <span>开户银行：</span>
-        <input
-          type="text"
-          class="invoice-content-input"
-          placeholder="请填写企业开户银行"
-        />
+        <span>请填写企业开户银行</span>
       </li>
       <li>
         <span>银行账户：</span>
-        <input
-          type="text"
-          class="invoice-content-input"
-          placeholder="请填写企业银行账户"
-        />
+        <span>请填写企业银行账户</span>
       </li>
       <li>
         <span>注册地址：</span>
-        <input
-          type="text"
-          class="invoice-content-input"
-          placeholder="请填写注册地址"
-        />
+        <span>请填写注册地址</span>
       </li>
       <li>
         <span>注册电话：</span>
-        <input
-          type="text"
-          class="invoice-content-input"
-          placeholder="请填写注册电话"
-        />
+        <span>请填写注册电话</span>
       </li>
       <li>
-        <i class="iconfont icon-bixuan"></i>
         <span>快递地址：</span>
-        <input
-          type="text"
-          class="invoice-content-input"
-          placeholder="请填写快递收件地址"
-        />
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 4, maxRows: 4 }"
+          :placeholder="placeholder"
+          v-model="textarea"
+          resize="none"
+        >
+        </el-input>
       </li>
     </ul>
     <button>提交申请</button>
@@ -79,13 +54,20 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      textarea: '',
+      placeholder: '请输入收件人\n姓名：\n地址：\n电话：'
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>
 .invoice {
   width: 1040px;
-  height: 1060px;
+  height: 1089px;
   background-color: #ffffff;
   margin-left: 48px;
   .invoice-title {
@@ -95,7 +77,6 @@ export default {}
       line-height: 80px;
     }
     p:nth-child(1) {
-      // margin-left: 30px;
       padding-left: 30px;
       font-size: 20px;
       font-weight: bold;
@@ -113,6 +94,7 @@ export default {}
     margin-top: 51px;
     li {
       margin-bottom: 30px;
+      line-height: 38px;
       i {
         color: #dc5050;
       }
@@ -123,15 +105,9 @@ export default {}
         opacity: 0.54;
         margin-right: 20px;
       }
-      .invoice-content-input {
-        width: 483px;
-        height: 52px;
-        border: 1px solid rgba(112, 112, 112, 0.2);
-        border-radius: 2px;
-        padding-left: 24px;
-        outline: none;
-        font-size: 16px;
-        font-weight: 800;
+      span:nth-child(2) {
+        color: #363636;
+        opacity: 1;
       }
     }
     li:nth-child(1) {
@@ -150,10 +126,10 @@ export default {}
       }
     }
     li:nth-child(3) {
-      margin-left: 200px;
+      margin-left: 218px;
     }
     li:nth-child(4) {
-      margin-left: 228px;
+      margin-left: 246px;
     }
     li:nth-child(5) {
       margin-left: 218px;
@@ -168,7 +144,11 @@ export default {}
       margin-left: 218px;
     }
     li:nth-child(9) {
-      margin-left: 200px;
+      margin-left: 218px;
+      display: flex;
+      span {
+        width: 80px;
+      }
     }
   }
   button {
@@ -180,10 +160,17 @@ export default {}
     border: 0;
     cursor: pointer;
     display: block;
-    margin: 134px auto 0;
+    margin: 70px auto 0;
     color: #ffffff;
     font-size: 18px;
     font-weight: bold;
   }
+}
+
+/deep/.el-textarea__inner {
+  width: 510px;
+}
+/deep/.el-textarea__inner:focus {
+  border-color: #00a581;
 }
 </style>

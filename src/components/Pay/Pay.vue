@@ -1,44 +1,50 @@
 <template>
   <div class="pay">
-    <div class="pay-title">
-      <p>支付流程：</p>
-      <el-steps :active="2" align-center>
-        <el-step title="确认订单" icon="el-icon-s-claim"></el-step>
-        <el-step title="支付" icon="el-icon-coin"></el-step>
-        <el-step title="支付完成" icon="el-icon-circle-check"></el-step>
-      </el-steps>
-    </div>
+    <Header></Header>
     <div class="pay-order">
       <p class="pay-order-title">我的订单</p>
       <div class="pay-order-content">
-        <ul>
-          <li>
-            <p>网红名称</p>
-            <p>推广平台</p>
-            <p>服务类型</p>
-            <p>价格</p>
-            <p>操作</p>
+        <div class="content-title">
+          <p>推广网红</p>
+          <p>单价</p>
+          <p>服务类型</p>
+          <p>操作</p>
+        </div>
+        <ul class="content-item" v-for="item in 3" :key="item">
+          <li class="content-item-icon">
+            <img
+              src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=117012763,3643643580&fm=26&gp=0.jpg"
+            />
+            <ul class="content-main">
+              <li class="main-name">
+                <img src="@/assets/image/show/douyin.png" class="main-icon" />
+                <p>|</p>
+                <p>[一条小团团]</p>
+              </li>
+              <li>案例:奥迪/比亚迪/哈佛/五菱</li>
+              <li>
+                <p>剧情</p>
+                <p>搞笑</p>
+                <p>颜值</p>
+                <p>音乐</p>
+              </li>
+              <li>粉丝：45万</li>
+            </ul>
           </li>
-          <li v-for="item in 5" :key="item">
-            <p>一条小团团</p>
-            <p>抖音</p>
-            <p>直播一小时</p>
-            <p>￥<span>18000.22</span></p>
-            <p>
-              <span>查看</span>
-              <i class="el-icon-delete"></i>
-            </p>
-          </li>
+          <li class="content-item-price">￥3600.00元</li>
+          <li class="content-item-type">直播2小时</li>
+          <li class="content-item-del"><span>删除</span></li>
         </ul>
-        <p class="pay-order-text">
-          商品总量：
-          <span>2</span>
-          件
-        </p>
-        <p class="pay-order-text">
-          商品总价：
-          <span>￥1999元</span>
-        </p>
+        <div class="pay-order-price">
+          <ul>
+            <li>
+              商品总量：
+              <span>2</span>
+              件
+            </li>
+            <li>商品总价： <span>￥1999元</span></li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="pay-qr">
@@ -52,7 +58,6 @@
         <li>
           <img
             src="../../assets/image/footer/erweima.jpg"
-            alt=""
             class="pay-qr-sm-wx"
           />
           <p>
@@ -78,104 +83,155 @@
 </template>
 
 <script>
-export default {}
+import Header from '@/components/Header.vue'
+export default {
+  components: {
+    Header
+  }
+}
 </script>
 
 <style lang="less" scoped>
 .pay {
   width: 1000px;
-  margin: 40px auto 100px;
-  .pay-title {
-    p {
-      font-size: 18px;
-      font-weight: bold;
-      color: #191919;
-      margin-bottom: 25px;
-    }
-    /deep/.el-step__head.is-finish {
-      color: #FD9134;
-      border-color: #FFD8B7;
-    }
-    /deep/.el-step__title.is-finish {
-      font-size: 14px;
-      font-weight: bold;
-      color: #191919;
-      opacity: 0.55;
-    }
-    /deep/.el-step__title.is-process {
-      font-size: 14px;
-      font-weight: bold;
-      color: #191919;
-      opacity: 0.55;
-    }
-  }
+  margin: 116px auto 26px;
   .pay-order {
     margin-top: 80px;
     .pay-order-title {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: bold;
-      color: #191919;
+      line-height: 28px;
+      color: #00a581;
     }
     .pay-order-content {
       width: 998px;
       border: 1px solid rgba(112, 112, 112, 0.2);
       border-radius: 2px;
-      margin-top: 40px;
-      ul {
-        margin-bottom: 26px;
-        li:nth-child(odd) {
-          background-color: #F5F6FA;
-        }
-        li:first-child {
-          p {
-            font-weight: bold;
-            color: #505050;
-          }
-        }
-        li {
-          height: 40px;
-          display: flex;
+      margin-top: 12px;
+      .content-title {
+        display: flex;
+        padding-left: 30px;
+        height: 40px;
+        background: #f9f9f9;
+        line-height: 40px;
+        margin-bottom: 28px;
+        p {
           font-size: 14px;
-          line-height: 40px;
-          color: #969696;
-          padding-left: 24px;
-          p:nth-child(1) {
-            width: 314px;
+          font-weight: 800;
+          color: #343434;
+          opacity: 0.81;
+        }
+        p:nth-child(1) {
+          width: 420px;
+        }
+        p:nth-child(2) {
+          width: 220px;
+        }
+        p:nth-child(3) {
+          width: 228px;
+        }
+      }
+      .content-item {
+        display: flex;
+        padding: 0 0 28px 30px;
+        .content-item-icon {
+          width: 420px;
+          height: 94px;
+          display: flex;
+          img {
+            width: 68px;
+            height: 94px;
           }
-          p:nth-child(2) {
-            width: 196px;
-          }
-          p:nth-child(3) {
-            width: 196px;
-          }
-          p:nth-child(4) {
-            width: 154px;
-            span {
-              color: #EE943A;
+          .content-main {
+            margin-left: 8px;
+            li:nth-child(1) {
+              height: 20px;
+              line-height: 20px;
+              display: flex;
+              .main-icon {
+                width: 20px;
+                height: 20px;
+              }
+              p {
+                font-size: 14px;
+                font-weight: bold;
+                color: #232a34;
+              }
+              p:nth-child(2) {
+                font-weight: 400;
+                margin: 0 8px;
+              }
+            }
+            li:nth-child(2) {
+              font-size: 14px;
+              color: #9f9f9f;
+              line-height: 22px;
+            }
+            li:nth-child(3) {
+              display: flex;
+              p {
+                width: 52px;
+                height: 24px;
+                background: #f4f4f4;
+                border-radius: 18px;
+                text-align: center;
+                line-height: 24px;
+                margin-right: 2px;
+                font-size: 14px;
+                color: #828282;
+              }
+            }
+            li:nth-child(4) {
+              font-size: 14px;
+              font-weight: bold;
+              line-height: 40px;
+              color: #232a34;
+              opacity: 0.86;
             }
           }
-          p:nth-child(5) {
+        }
+        .content-item-price {
+          width: 220px;
+          line-height: 94px;
+          font-size: 14px;
+          font-weight: 800;
+          color: #343434;
+          opacity: 0.81;
+        }
+        .content-item-type {
+          width: 228px;
+          line-height: 94px;
+          font-size: 14px;
+          font-weight: 800;
+          color: #343434;
+          opacity: 0.81;
+        }
+        .content-item-del {
+          line-height: 94px;
+          font-size: 14px;
+          color: #343434;
+          opacity: 0.81;
+          span {
             cursor: pointer;
-            span {
-              color: #376FE5;
-            }
-            i {
-              margin-left: 34px;
-            }
-            i:hover {
-              color: red;
-            }
+            font-weight: 800;
           }
         }
       }
-      .pay-order-text {
-        margin: 0 0 8px 804px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #434343;
-        span {
-          font-weight: bold;
-          color: #EE943A;
+      .pay-order-price {
+        height: 108px;
+        border-top: 1px solid rgba(112, 112, 112, 0.2);
+        ul {
+          margin: 28px 0 0 830px;
+          li {
+            font-size: 14px;
+            font-weight: bold;
+            color: #434343;
+            line-height: 26px;
+            span {
+              font-weight: bold;
+              color: #ee943a;
+            }
+          }
         }
       }
     }
@@ -184,7 +240,7 @@ export default {}
     width: 998px;
     height: 690px;
     border: 1px dashed rgba(112, 112, 112, 0.30196078431372547);
-    margin-top: 72px;
+    margin-top: 41px;
     position: relative;
     .pay-qr-money {
       width: 250px;
@@ -202,7 +258,7 @@ export default {}
         margin-bottom: 20px;
         span {
           font-size: 30px;
-          color: #FF5118;
+          color: #ff5118;
         }
       }
     }
@@ -215,20 +271,19 @@ export default {}
         .pay-qr-sm-wx {
           width: 200px;
           height: 200px;
-          border: 1px solid #4CBF00;
+          border: 1px solid #4cbf00;
           border-radius: 4px;
         }
         .pay-qr-sm-zfb {
           width: 200px;
           height: 200px;
-          border: 1px solid #02A9F1;
+          border: 1px solid #02a9f1;
           border-radius: 4px;
         }
         p {
           font-size: 16px;
           font-weight: 500;
           color: #191919;
-          // height: 40px;
           line-height: 60px;
           text-align: center;
           img {

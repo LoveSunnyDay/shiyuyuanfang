@@ -13,10 +13,6 @@
           <img src="../assets/image/myCenter/order.png" />
           订单中心
         </li>
-        <!-- <li class="nav-list-item">
-          <i class="iconfont icon-wodedingdan"></i>
-          我的订单
-        </li> -->
         <router-link
           to="/MyCenter/MyOrder"
           tag="li"
@@ -30,10 +26,6 @@
           <img src="../assets/image/myCenter/finance.png" />
           财务中心
         </li>
-        <!-- <li class="nav-list-item">
-          <i class="iconfont icon-zuomingxi"></i>
-          支出明细
-        </li> -->
         <router-link
           to="/MyCenter/Expenditure"
           tag="li"
@@ -43,10 +35,6 @@
           <i class="iconfont icon-zuomingxi"></i>
           支出明细
         </router-link>
-        <!-- <li class="nav-list-item">
-          <i class="iconfont icon-fapiao"></i>
-          开具发票
-        </li> -->
         <router-link
           to="/MyCenter/Invoice"
           tag="li"
@@ -60,10 +48,6 @@
           <img src="../assets/image/myCenter/data.png" />
           资料设置
         </li>
-        <!-- <li class="nav-list-item">
-          <i class="iconfont icon-gerenxinxi"></i>
-          资料修改
-        </li> -->
         <router-link
           to="/MyCenter/MyProfile"
           tag="li"
@@ -73,10 +57,6 @@
           <i class="iconfont icon-gerenxinxi"></i>
           我的资料
         </router-link>
-        <!-- <li class="nav-list-item">
-          <i class="iconfont icon-xiaoxi"></i>
-          站内消息
-        </li> -->
         <router-link
           to="/MyCenter/News"
           tag="li"
@@ -86,10 +66,6 @@
           <i class="iconfont icon-xiaoxi"></i>
           站内消息
         </router-link>
-        <!-- <li class="nav-list-item">
-          <i class="iconfont icon-kefujingli-"></i>
-          公司资料
-        </li> -->
         <router-link
           to="/MyCenter/CompanyInformation"
           tag="li"
@@ -127,7 +103,6 @@ export default {
   width: 1500px;
   margin: 100px auto 80px;
   display: flex;
-  // justify-content: space-between;
   .myCenter-nav {
     width: 252px;
     height: 778px;

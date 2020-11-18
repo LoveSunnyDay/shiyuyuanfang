@@ -274,7 +274,7 @@ export default {
           border-radius: 19px;
           position: absolute;
           top: 170px;
-          right: 88px;
+          right: 67px;
           outline: none;
           cursor: pointer;
         }
