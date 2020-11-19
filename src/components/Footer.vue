@@ -4,7 +4,7 @@
       <div class="footer-main-left">
         <ul class="footer-main-top">
           <li>
-            <router-link to="/about" target="_blank">About Hifire</router-link>
+            <router-link to="/about" target="_blank">About Hiifire</router-link>
           </li>
           <li>
             <router-link to="/LoadFail" target="_blank">超火营销</router-link>
