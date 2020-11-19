@@ -1,44 +1,82 @@
 <template>
-  <div class="header">
-    <div class="header-left">
-      <router-link to="/Index">
-        <img src="../assets/image/logo.png" alt="" class="header-logo" />
-      </router-link>
-      <router-link to="/Index/Look" tag="p">网红达人</router-link>
-      <router-link to="/Index/Show" tag="p">网红T台</router-link>
-      <router-link to="/Index/Video" tag="p">视频素材</router-link>
-      <input
-        type="text"
-        placeholder="请输入您想推广的产品或相关网红，精确匹配"
-      />
-      <i class="el-icon-search"></i>
+    <div>
+      <li>
+        <el-button
+          type="success"
+          class="nav-login"
+          @click="dialogVisible = true"
+          >登录</el-button
+        >
+        <el-dialog
+          :visible.sync="dialogVisible"
+          width="440px"
+          :before-close="handleClose"
+          :modal-append-to-body="false"
+        >
+          <div class="login">
+            <div class="wx-login" v-if="loginMode">
+              <div class="phone-login-tab" @click="loginModeButton">
+                <img src="../../assets/image/shouji-login.png" />
+                <span></span>
+              </div>
+              <p><i class="iconfont icon-weixin1"></i>微信登录</p>
+              <div class="wx-login-erweima">
+                <img src="../../assets/image/footer/erweima.jpg" />
+              </div>
+              <p class="wx-login-text">扫描二维码登录</p>
+              <img src="../../assets/image/welcome.png" class="wx-login-welcom" />
+            </div>
+            <div class="phone-login" v-else>
+              <div class="phone-login-tab" @click="loginModeButton">
+                <img src="../../assets/image/weixin-login.png" />
+                <span></span>
+              </div>
+              <p><i class="el-icon-mobile"></i>手机验证码登录</p>
+              <input
+                type="text"
+                placeholder="请输入手机号"
+                class="login-input-phone"
+              />
+              <input
+                type="text"
+                placeholder="短信验证码"
+                class="login-input-code"
+              />
+              <button class="code-button">发送验证码</button>
+              <button class="login-button">立即登录</button>
+              <p class="phone-login-list">专业网红推广服务平台</p>
+              <p class="phone-login-item">欢迎使用超火引擎</p>
+            </div>
+          </div>
+        </el-dialog>
+      </li>
     </div>
-    <ul class="nav-list">
-      <li class="nav-text">网红通道</li>
-      <li class="nav-text">MCN通道</li>
-      <li>
-        <img src="../assets/image/gengduo.png" alt="" class="nav-gengduo" />
-      </li>
-      <li>
-        <i class="el-icon-message-solid nav-xiaoxi"></i>
-      </li>
-      <Login></Login>
-    </ul>
-  </div>
 </template>
 
 <script>
-import Login from './Header/Login'
 export default {
   // 引入组件
-  components: {
-    Login
-  },
+  components: {},
   data() {
     // 这里存放数据
+    return {
+      dialogVisible: false,
+      loginMode: true
+    }
   },
   // 方法集合
-  methods: {},
+  methods: {
+    handleClose(done) {
+      this.$confirm('确认退出登录吗？')
+        .then((_) => {
+          done()
+        })
+        .catch((_) => {})
+    },
+    loginModeButton() {
+      return (this.loginMode = !this.loginMode)
+    }
+  },
   // 监听属性 类似于data概念
   computed: {},
   // 监控data中的数据变化
@@ -64,81 +102,8 @@ export default {
 }
 </script>
 
-<style lang='less' scoped>
-.header {
-  width: 100%;
-  height: 72px;
-  background: #232a34;
-  display: flex;
-  justify-content: space-between;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 100;
-  .header-left {
-    display: flex;
-    line-height: 72px;
-    margin-left: 32px;
-    img {
-      width: 110px;
-      height: 21px;
-      margin-top: 25px;
-    }
-    p:hover {
-      color: #b9bab8;
-    }
-    p {
-      margin-left: 30px;
-      font-size: 18px;
-      font-weight: 400;
-      color: #ffffff;
-      cursor: pointer;
-    }
-    input {
-      width: 360px;
-      height: 40px;
-      background: #ffffff;
-      border-radius: 6px;
-      margin: 16px 0 0 30px;
-      outline: none;
-      padding: 0 13px 0 22px;
-    }
-    i {
-      line-height: 72px;
-      font-size: 20px;
-      font-weight: 900;
-      margin-left: -35px;
-    }
-  }
-  .nav-list {
-    display: flex;
-    li {
-      margin-right: 30px;
-      cursor: pointer;
-    }
-    .nav-text {
-      font-size: 18px;
-      font-weight: 400;
-      color: #ffffff;
-      line-height: 72px;
-    }
-    .nav-text:hover {
-      color: #b9bab8;
-    }
-    .nav-gengduo {
-      width: 14px;
-      height: 4px;
-      margin-top: 36px;
-    }
-    .nav-xiaoxi {
-      font-size: 14px;
-      margin-top: 30px;
-      color: #f9f9f9;
-    }
-    .nav-xiaoxi:hover {
-      color: #b9bab8;
-    }
-    .nav-login {
+<style lang="less" scoped>
+        .nav-login {
       width: 80px;
       height: 40px;
       margin-top: 16px;
@@ -147,6 +112,7 @@ export default {
     }
     .nav-login:hover {
       opacity: 0.8;
+      background-color: #2fb598;
     }
     .login {
       text-align: center;
@@ -163,10 +129,10 @@ export default {
           span {
             width: 56px;
             height: 54px;
-            background: url(../assets/image/wxLogin.png);
+            background: url(../../assets/image/wxLogin.png);
           }
           span:hover {
-            background: url(../assets/image/wxLogin2.png);
+            background: url(../../assets/image/wxLogin2.png);
           }
         }
         p:nth-child(2) {
@@ -254,10 +220,10 @@ export default {
           span {
             width: 56px;
             height: 54px;
-            background: url(../assets/image/phoneLogin.png);
+            background: url(../../assets/image/phoneLogin.png);
           }
           span:hover {
-            background: url(../assets/image/phoneLogin2.png);
+            background: url(../../assets/image/phoneLogin2.png);
           }
         }
         p:nth-child(2) {
@@ -295,6 +261,4 @@ export default {
         }
       }
     }
-  }
-}
 </style>

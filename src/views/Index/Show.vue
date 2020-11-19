@@ -3,133 +3,36 @@
     <div class="header">
        <img src="../../assets/image/show.png" alt="" class="header-img" />
     </div>
-    <ul class="show-title">
-      <li>全部网红</li>
-      <li>
-        <img src="../../assets/image/show/douyin.png" alt="" />
+    <el-row>
+         <el-button round>
+        <p>全部网红</p>
+      </el-button>
+      <el-button round>
+        <img src="../../assets/image/show/douyin.png" alt=""/>
         <p>抖音网红</p>
-      </li>
-      <li>
+      </el-button>
+      <el-button round>
         <img src="../../assets/image/show/xiaohongshu.png" alt="" />
         <p>小红书网红</p>
-      </li>
-      <li>
+      </el-button>
+      <el-button round>
         <img src="../../assets/image/show/kuaishou.png" alt="" />
         <p>快手网红</p>
-      </li>
-      <li>
-        <img src="../../assets/image/show/bilibili.png" alt="" />
+      </el-button>
+      <el-button round>
+         <img src="../../assets/image/show/bilibili.png" alt="" />
         <p>B站网红</p>
-      </li>
-    </ul>
-    <ul class="masonry">
-      <li class="masonry-item" @mouseover="mouseOver" @mouseleave="mouseLeave">
-        <img src="https://picsum.photos/432/580?random=1" alt="" />
-        <p class="masonry-item-name">我是你的cc啊</p>
-        <transition name="el-zoom-in-bottom">
-          <div class="item-text" v-show="seen">
-            <div class="item-text-left">
-              <img src="../../assets/image/show/bilibili.png" alt="" />
-              <p>我是你的cc啊</p>
-              <p>段子手/搞笑</p>
-            </div>
-            <span class="item-text-border"></span>
-            <div class="item-text-right">
-              <div class="item-text-right-one">
-                <p>3766W</p>
-                <p>88</p>
-              </div>
-              <div class="item-text-right-two">
-                <p>粉丝量</p>
-                <p>种草能力得分</p>
-              </div>
-              <div class="item-text-right-one">
-                <p>51W</p>
-                <p>51W</p>
-              </div>
-              <div class="item-text-right-two">
-                <p>预计播放量</p>
-                <p>预计互动量</p>
-              </div>
-            </div>
-          </div>
-        </transition>
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/420?random=2" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/530?random=3" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/470?random=4" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/390?random=5" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/410?random=6" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/460?random=7" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/430?random=8" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/500?random=9" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/480?random=10" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/520?random=11" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/460?random=12" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/490?random=13" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/560?random=14" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/510?random=15" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/420?random=16" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/500?random=17" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/420?random=18" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/510?random=19" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/432/450?random=20" alt="" />
-      </li>
-    </ul>
+      </el-button>
+    </el-row>
+    <Masonry></Masonry>
   </div>
 </template>
 
 <script>
+import Masonry from '@/components/Show/Masonry.vue'
 export default {
-  data() {
-    return {
-      seen: false
-    }
-  },
-  methods: {
-    mouseOver() {
-      this.seen = true
-    },
-    mouseLeave() {
-      this.seen = false
-    }
+  components: {
+    Masonry
   }
 }
 </script>
@@ -147,137 +50,39 @@ export default {
   top:0px;
   z-index: -100;
 }
-  .show-title {
-    margin-left: 10px;
+  .el-row{
     display: flex;
-    margin-top: 20px;
-    li {
-      width: 120px;
-      height: 40px;
-      border-radius: 30px;
-      line-height: 40px;
-      margin-right: 24px;
-      box-shadow: 1px 1px 5px #d0d0d0;
-      font-size: 14px;
-      font-weight: bold;
-      color: #5e5e5e;
+    margin-left: 10px;
+    margin-top:20px;
+    /deep/ .el-button{
+      border:none;
+      background: #ffffff;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
+      border-radius: 20px;
       display: flex;
+      margin-right: 20px;
       cursor: pointer;
-      p {
-        font-weight: bold;
-      }
-      img {
-        width: 30px;
-        height: 30px;
-        margin: 5px 8px;
-      }
-    }
-    li:first-child {
-      // background-color: #e8e8e8;
-      display: block;
       text-align: center;
-    }
-    li:hover {
-      background-color: #e8e8e8;
-    }
-  }
-  .masonry {
-    column-count: 4;
-    column-gap: 0;
-    // margin-top: 12px;
-    margin: 12px 0 0 10px;
-    width: 1806px;
-    // margin: 0 auto;
-    // background-color: blanchedalmond;
-    .masonry-item {
-      // padding-bottom: 20px;
-      padding-top: 20px;
-      cursor: pointer;
-      position: relative;
+      /deep/ .is-round{
+        padding: 0;
+      }
       img {
-        display: block;
-        height: auto;
-        width: 432px;
+        float:left;
+        width: 20px;
+        height: 20px;
+        margin-left: -13px;
+        margin-top: -3px;
+        margin-right: 4px;
       }
-      .masonry-item-name {
+      p {
         font-size: 14px;
-        font-weight: 400;
-        color: #ffffff;
-        position: absolute;
-        bottom: 24px;
-        left: 24px;
+        font-weight: bold;
+        color: #5e5e5e;
+        // line-height: 40px;
       }
-      .item-text {
-        width: 432px;
-        height: 120px;
-        background: #e5e6e5;
-        opacity: 0.86;
-        padding-top: 24px;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        // padding: 24px 42px 0 0;
-        display: flex;
-        .item-text-left {
-          width: 152px;
-          text-align: center;
-          img {
-            width: 30px;
-            height: 30px;
-            margin: 0 auto;
-          }
-          p:nth-child(2) {
-            font-size: 14px;
-            font-weight: 800;
-            color: #1a1a1a;
-            margin-top: 10px;
-          }
-          p:nth-child(3) {
-            width: 66px;
-            height: 16px;
-            background: rgba(185, 185, 185, 0.4);
-            border-radius: 14px;
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 16px;
-            color: #5e5e5e;
-            margin: 0 auto;
-            padding: 6px 11px;
-            margin-top: 10px;
-          }
-        }
-        .item-text-border {
-          width: 1px;
-          height: 84px;
-          background-color: rgba(112, 112, 112, 0.10196078431372549);
-          margin-top: 7px;
-        }
-        .item-text-right {
-          padding: 0 42px 0 27px;
-          width: 210px;
-          div {
-            display: flex;
-            justify-content: space-between;
-          }
-          .item-text-right-one {
-            font-size: 16px;
-            font-family: Arial;
-            color: #1a1a1a;
-            margin-bottom: 4px;
-            p {
-              font-weight: bold;
-            }
-          }
-          .item-text-right-two {
-            font-size: 14px;
-            color: #5e5e5e;
-            margin-bottom: 24px;
-            p {
-              font-weight: 400;
-            }
-          }
-        }
-      }
+    }
+    /deep/ .el-button:hover{
+      background: #f1eeee;
     }
   }
 }
