@@ -61,14 +61,6 @@
               class="company-content-input"
             />
           </li>
-          <li>
-            <span>发票快递地址：</span>
-            <input
-              type="text"
-              placeholder="请填写快递收件地址"
-              class="company-content-input"
-            />
-          </li>
         </ul>
         <button>提交审核</button>
       </div>
@@ -125,9 +117,8 @@ export default {
           margin-bottom: 30px;
           span {
             font-size: 14px;
-            font-weight: 800;
-            color: #171717;
-            opacity: 0.54;
+            font-weight: 600;
+            color: #818181;
             margin-right: 20px;
           }
           .company-content-input {
@@ -138,7 +129,8 @@ export default {
             padding-left: 24px;
             outline: none;
             font-size: 16px;
-            font-weight: 800;
+            font-weight: 600;
+            color: #818181;
           }
         }
         li:nth-child(1) {
@@ -158,9 +150,6 @@ export default {
         }
         li:nth-child(6) {
           margin-left: 219px;
-        }
-        li:nth-child(7) {
-          margin-left: 191px;
         }
       }
       button {

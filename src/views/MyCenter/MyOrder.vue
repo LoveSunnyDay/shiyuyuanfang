@@ -2,80 +2,60 @@
   <div class="myOrder">
     <p class="order-title">我的订单</p>
     <ul class="order-type">
-      <li>全部订单</li>
-      <li>待付款</li>
-      <li>进行中</li>
-      <li>已完成</li>
+      <li @click="cur = 0" :class="{ 'order-type-active': cur == 0 }">
+        全部订单
+      </li>
+      <li @click="cur = 1" :class="{ 'order-type-active': cur == 1 }">
+        待付款
+      </li>
+      <li @click="cur = 2" :class="{ 'order-type-active': cur == 2 }">
+        进行中
+      </li>
+      <li @click="cur = 3" :class="{ 'order-type-active': cur == 3 }">
+        已完成
+      </li>
     </ul>
-    <div class="order-content">
-      <ul class="order-content-title">
-        <li>名称</li>
-        <li>数量</li>
-        <li>服务类型</li>
-        <li>订单状态</li>
-        <li>价格</li>
-        <li>操作</li>
-      </ul>
-      <div class="order-item" v-for="item in 4" :key="item">
-        <p class="order-item-title">
-          <span>订单号：124566777645313212</span>
-          <span>时间：2020年10月31日</span>
-          <span>16:31</span>
-        </p>
-        <ul>
-          <li>
-            <p>一条小团团</p>
-            <p>平台：抖音</p>
-          </li>
-          <li>X1</li>
-          <li>直播2小时</li>
-          <li>
-            <p>待付款</p>
-            <p>查看订单</p>
-          </li>
-          <li>￥36800.00</li>
-          <li>
-            <button>立即支付</button>
-            <button>取消订单</button>
-          </li>
-        </ul>
+    <div>
+      <div v-show="cur == 0">
+        <AllOrders></AllOrders>
       </div>
-      <el-pagination
-        class="order-page"
-        @size-change="handleSizeChange"
-        @current-change="handleCurrentChange"
-        :current-page="currentPage"
-        :page-size="100"
-        :total="400"
-      >
-      </el-pagination>
+      <div v-show="cur == 1">
+        <NoOrders></NoOrders>
+      </div>
+      <div v-show="cur == 2">
+        <ProceedOrders></ProceedOrders>
+      </div>
+      <div v-show="cur == 3">
+        <OverOrders></OverOrders>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import AllOrders from '@/components/MyCenter/MyOrder/AllOrders.vue'
+import NoOrders from '@/components/MyCenter/MyOrder/NoOrders.vue'
+import ProceedOrders from '@/components/MyCenter/MyOrder/ProceedOrders.vue'
+import OverOrders from '@/components/MyCenter/MyOrder/OverOrders.vue'
 export default {
+  components: {
+    AllOrders,
+    NoOrders,
+    ProceedOrders,
+    OverOrders
+  },
   data() {
     return {
-      currentPage: 1
-    }
-  },
-  methods: {
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`)
-    },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`)
+      cur: 0 // Tab切换默认显示第一个全部订单
     }
   }
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .myOrder {
   width: 1200px;
   margin-left: 48px;
-  // background-color: #fff;
   .order-title {
     margin: 20px 0 23px 0;
     font-size: 20px;
@@ -96,6 +76,10 @@ export default {
       line-height: 22px;
       margin-right: 4px;
       cursor: pointer;
+    }
+    .order-type-active {
+      background-color: #49bea6;
+      color: #ffffff;
     }
   }
   .order-content {
