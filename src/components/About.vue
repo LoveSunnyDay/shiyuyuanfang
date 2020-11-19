@@ -463,7 +463,7 @@ export default {
         width: 80px;
         height: 40px;
         margin-top: 16px;
-        background-color: #2fb598;
+        background:#2fb598;
         border: 0;
       }
       .nav-login:hover {

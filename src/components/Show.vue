@@ -1,5 +1,8 @@
 <template>
   <div class="show">
+    <div class="header">
+       <img src="../assets/image/show.png" alt="" class="header-img" />
+    </div>
     <ul class="show-title">
       <li>全部网红</li>
       <li>
@@ -136,6 +139,14 @@ export default {
   width: 1806px;
   margin: 0 auto;
   // padding: 0 57px;
+   .header-img{
+    width: 100%;
+   height: 504px;
+  position:absolute;
+  left:0;
+  top:0px;
+  z-index: -100;
+}
   .show-title {
     margin-left: 10px;
     display: flex;

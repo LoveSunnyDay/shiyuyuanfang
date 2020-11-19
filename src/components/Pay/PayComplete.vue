@@ -1,13 +1,6 @@
 <template>
   <div class="complete">
-    <div class="complete-title">
-      <p>支付流程：</p>
-      <el-steps :active="3" align-center>
-        <el-step title="确认订单" icon="el-icon-s-claim"></el-step>
-        <el-step title="支付" icon="el-icon-coin"></el-step>
-        <el-step title="支付完成" icon="el-icon-circle-check"></el-step>
-      </el-steps>
-    </div>
+    <!-- <Header></Header> -->
     <div class="complete-content">
       <img src="../../assets/image/pay-complete.png" alt="" />
       <p class="complete-content-cg">支付成功</p>
@@ -35,6 +28,7 @@
 </template>
 
 <script>
+// import Header from '../Header.vue'
 export default {}
 </script>
 
@@ -42,30 +36,6 @@ export default {}
 .complete {
   width: 1000px;
   margin: 40px auto 280px;
-  .complete-title {
-    p {
-      font-size: 18px;
-      font-weight: bold;
-      color: #191919;
-      margin-bottom: 25px;
-    }
-    /deep/.el-step__head.is-finish {
-      color: #FD9134;
-      border-color: #FFD8B7;
-    }
-    /deep/.el-step__title.is-finish {
-      font-size: 14px;
-      font-weight: bold;
-      color: #191919;
-      opacity: 0.55;
-    }
-    /deep/.el-step__title.is-process {
-      font-size: 14px;
-      font-weight: bold;
-      color: #191919;
-      opacity: 0.55;
-    }
-  }
   .complete-content {
     text-align: center;
     img {
@@ -116,6 +86,9 @@ export default {}
         cursor: pointer;
         margin-right: 20px;
       }
+      button:nth-child(1):hover{
+        background: #E36713;
+      }
       button:nth-child(2) {
         width: 136px;
         height: 44px;
@@ -128,6 +101,9 @@ export default {}
         color: #FF7519;
         cursor: pointer;
         border: 1px #FF7519 solid;
+      }
+      button:nth-child(2):hover{
+        border: 1px solid #E36713;
       }
     }
   }

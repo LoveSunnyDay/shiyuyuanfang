@@ -1,36 +1,44 @@
 <template>
   <div class="pay">
-    <div class="pay-title">
-      <p>支付流程：</p>
-      <el-steps :active="2" align-center>
-        <el-step title="确认订单" icon="el-icon-s-claim"></el-step>
-        <el-step title="支付" icon="el-icon-coin"></el-step>
-        <el-step title="支付完成" icon="el-icon-circle-check"></el-step>
-      </el-steps>
-    </div>
     <div class="pay-order">
       <p class="pay-order-title">我的订单</p>
       <div class="pay-order-content">
-        <ul>
-          <li>
-            <p>网红名称</p>
-            <p>推广平台</p>
-            <p>服务类型</p>
-            <p>价格</p>
-            <p>操作</p>
-          </li>
-          <li v-for="item in 5" :key="item">
-            <p>一条小团团</p>
-            <p>抖音</p>
-            <p>直播一小时</p>
-            <p>￥<span>18000.22</span></p>
-            <p>
-              <span>查看</span>
-              <i class="el-icon-delete"></i>
-            </p>
-          </li>
-        </ul>
-        <p class="pay-order-text">
+           <tr class="content-header">
+             <td>推广网红</td>
+             <td>服务类型</td>
+             <td>单价</td>
+             <td>操作</td>
+           </tr>
+           <tr class="content-con" v-for="i in 5" :key="i">
+             <td>
+               <div>
+                 <img src="../../assets/image/pay.png" alt="">
+               </div>
+               <div>
+                  <h4>
+                    <img src="../../assets/image/dou.png" alt="">
+                    <span>   |</span>
+                    【一条小团团】
+                  </h4>
+                  <p>案例:奥迪 / 比亚迪 / 哈佛 / 五菱</p>
+                  <p>
+                    <span>剧情</span>
+                    <span>搞笑</span>
+                    <span>颜值</span>
+                    <span>音乐</span>
+                  </p>
+                  <span>粉丝：45万</span>
+               </div>
+             </td>
+             <td><span>直播2小时</span></td>
+             <td><span>￥3600</span></td>
+             <td>
+               <span>删除</span>
+             </td>
+           </tr>
+           <tr class="content-foot">
+             <td>
+                <p class="pay-order-text">
           商品总量：
           <span>2</span>
           件
@@ -39,6 +47,8 @@
           商品总价：
           <span>￥1999元</span>
         </p>
+             </td>
+           </tr>
       </div>
     </div>
     <div class="pay-qr">
@@ -85,99 +95,126 @@ export default {}
 .pay {
   width: 1000px;
   margin: 40px auto 100px;
-  .pay-title {
-    p {
-      font-size: 18px;
-      font-weight: bold;
-      color: #191919;
-      margin-bottom: 25px;
-    }
-    /deep/.el-step__head.is-finish {
-      color: #FD9134;
-      border-color: #FFD8B7;
-    }
-    /deep/.el-step__title.is-finish {
-      font-size: 14px;
-      font-weight: bold;
-      color: #191919;
-      opacity: 0.55;
-    }
-    /deep/.el-step__title.is-process {
-      font-size: 14px;
-      font-weight: bold;
-      color: #191919;
-      opacity: 0.55;
-    }
-  }
   .pay-order {
     margin-top: 80px;
     .pay-order-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #191919;
+     width: 80px;
+     height: 28px;
+     font-size: 20px;
+     font-family: PingFang SC;
+     font-weight: bold;
+     line-height: 28px;
+     color: #00A581;
+     opacity: 1;
     }
     .pay-order-content {
       width: 998px;
       border: 1px solid rgba(112, 112, 112, 0.2);
       border-radius: 2px;
       margin-top: 40px;
-      ul {
-        margin-bottom: 26px;
-        li:nth-child(odd) {
-          background-color: #F5F6FA;
+    .content-header{
+      height: 40px;
+      background: #F9F9F9;
+      font-size: 14px;
+      font-family: PingFang SC;
+      font-weight: 800;
+      color: #343434;
+      opacity: 0.81;
+      td:nth-child(1){
+        width: 340px;
+        line-height: 40px;
+        padding-left:30px;
+      }
+      td:nth-child(2){
+        width: 220px;
+        line-height: 40px;
+        padding-left:30px;
+      }
+      td:nth-child(3){
+        width: 220px;
+        line-height: 40px;
+        padding-left:30px;
+      }
+      td:nth-child(4){
+        width: 98px;
+        line-height: 40px;
+        padding-left:30px;
+      }
+    }
+    .content-con{
+      height: 144px;
+      td:nth-child(1){
+        padding: 25px 0px 25px 25px;
+        div:nth-child(1){
+        float: left;
+        img{
+          margin-right: 5px;
         }
-        li:first-child {
-          p {
+      }
+        div:nth-child(2){
+          h4{
+            font-size: 14px;
+            font-family: PingFang SC;
             font-weight: bold;
-            color: #505050;
-          }
-        }
-        li {
-          height: 40px;
-          display: flex;
-          font-size: 14px;
-          line-height: 40px;
-          color: #969696;
-          padding-left: 24px;
-          p:nth-child(1) {
-            width: 314px;
-          }
-          p:nth-child(2) {
-            width: 196px;
-          }
-          p:nth-child(3) {
-            width: 196px;
-          }
-          p:nth-child(4) {
-            width: 154px;
-            span {
-              color: #EE943A;
+            line-height: 26px;
+            color: #232A34;
+            opacity: 1;
+            img{
+              padding-top: 5px;
             }
           }
-          p:nth-child(5) {
-            cursor: pointer;
-            span {
-              color: #376FE5;
-            }
-            i {
-              margin-left: 34px;
-            }
-            i:hover {
-              color: red;
+          p:nth-chlid(1){
+            height:20px ;
+           font-size: 14px;
+           font-family: PingFang SC;
+            font-weight: 400;
+            line-height: 20px;
+            color: #6D6D6D;
+            opacity: 0.6;
+          }
+          p:nth-chlid(2){
+            line-height: 20px;
+            span{
+              color: #616161;
+              display: block;
+              width: 52px;
+              height: 24px;
+              background: rgba(84, 84, 84, 0.5);
+              opacity: 0.16;
+              border-radius: 18px;
             }
           }
         }
       }
-      .pay-order-text {
-        margin: 0 0 8px 804px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #434343;
-        span {
-          font-weight: bold;
-          color: #EE943A;
+      td:nth-child(2){
+         padding-left:30px;
+        span{
+          line-height: 144px;
         }
       }
+       td:nth-child(3){
+         padding-left:30px;
+        span{
+          line-height: 144px;
+        }
+      }
+       td:nth-child(4){
+         padding-left:30px;
+        span{
+          line-height: 144px;
+        }
+      }
+    }
+      // .pay-order-text {
+      //   margin: 0 0 8px 804px;
+      //   font-size: 14px;
+      //   font-weight: bold;
+      //   color: #434343;
+      //   span {
+      //     font-weight: bold;
+      //     color: #EE943A;
+      //   }
+      // }
     }
   }
   .pay-qr {

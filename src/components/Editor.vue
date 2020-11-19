@@ -2,6 +2,16 @@
   <div class="editor">
     <Header></Header>
     <div class="editor-main">
+          <div class="filter-crumbs">
+      <button size="mini" class="button_mini">
+         <span class="el-icon-arrow-left"></span>
+         <span class="mini_i">返回</span>
+       </button>
+    <el-breadcrumb separator-class="el-icon-arrow-right" class="crumbs-nav">
+      <el-breadcrumb-item>首页</el-breadcrumb-item>
+      <el-breadcrumb-item>按需求筛选</el-breadcrumb-item>
+    </el-breadcrumb>
+    </div>
       <p class="editor-title">
         推广内容描述：
         <i class="el-icon-question" title="推广内容描述提示"></i>
@@ -228,6 +238,23 @@ export default {
   .editor-main {
     width: 944px;
     margin: 66px auto 0;
+      .filter-crumbs{
+    margin-bottom: 40px;
+    .button_mini{
+      width: 70px;
+    height: 26px;
+    border-radius: 13px;
+      float: left;
+      color:#3D3A3A;
+      background: #EFEFEF;
+      margin-right: 20px;
+      border: none;
+    }
+    .crumbs-nav{
+      padding-top:8px;
+      color: #888888;
+    }
+  }
     .editor-title {
       font-size: 18px;
       font-weight: bold;

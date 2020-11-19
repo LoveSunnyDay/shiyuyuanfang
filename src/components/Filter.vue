@@ -1,125 +1,94 @@
 <template>
   <div class="filter">
     <Header></Header>
-    <ul class="filter-nav">
-      <li>
-        <img src="../assets/image/show/douyin.png" alt="" />
+    <div class="filter-crumbs">
+      <button size="mini" class="button_mini">
+         <span class="el-icon-arrow-left"></span>
+         <span class="mini_i">返回</span>
+       </button>
+    <el-breadcrumb separator-class="el-icon-arrow-right" class="crumbs-nav">
+      <el-breadcrumb-item>首页</el-breadcrumb-item>
+      <el-breadcrumb-item>按需求筛选</el-breadcrumb-item>
+      <el-breadcrumb-item>网红筛选</el-breadcrumb-item>
+    </el-breadcrumb>
+    </div>
+    <el-row>
+      <el-button round>
+        <img src="../assets/image/show/douyin.png" alt=""/>
         <p>抖音网红</p>
-      </li>
-      <li>
+      </el-button>
+      <el-button round>
         <img src="../assets/image/show/xiaohongshu.png" alt="" />
         <p>小红书网红</p>
-      </li>
-      <li>
-        <img src="../assets/image/show/bilibili.png" alt="" />
+      </el-button>
+      <el-button round>
+         <img src="../assets/image/show/bilibili.png" alt="" />
         <p>B站网红</p>
-      </li>
-      <li>
+      </el-button>
+      <el-button round>
         <img src="../assets/image/show/kuaishou.png" alt="" />
         <p>快手网红</p>
-      </li>
-      <li>
+      </el-button>
+      <el-button round>
         <img src="../assets/image/show/taobao.png" alt="" />
         <p>淘宝直播</p>
-      </li>
-      <li>
-        <img src="../assets/image/show/tongyi.png" alt="" />
+      </el-button>
+      <el-button round>
+       <img src="../assets/image/show/tongyi.png" alt="" />
         <p>同一经济公司</p>
-      </li>
-    </ul>
-    <ul class="filter-nav">
-      <li>
-        <el-dropdown>
-          <span class="el-dropdown-link">
-            全部分类<i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>美妆达人</el-dropdown-item>
-            <el-dropdown-item>电商带货</el-dropdown-item>
-            <el-dropdown-item>汽车达人</el-dropdown-item>
-            <el-dropdown-item>网红打卡</el-dropdown-item>
-            <el-dropdown-item>美食餐饮</el-dropdown-item>
-            <el-dropdown-item>大快销品</el-dropdown-item>
-            <el-dropdown-item>服饰箱包</el-dropdown-item>
-            <el-dropdown-item>母婴亲子</el-dropdown-item>
-            <el-dropdown-item>游戏网络</el-dropdown-item>
-            <el-dropdown-item>食品达人</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </li>
-      <li>
-        <el-dropdown>
-          <span class="el-dropdown-link">
-            选择地区<i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>黄金糕</el-dropdown-item>
-            <el-dropdown-item>狮子头</el-dropdown-item>
-            <el-dropdown-item>螺蛳粉</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </li>
-      <li>
-        <el-dropdown>
-          <span class="el-dropdown-link">
-            选择性别<i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>男性多</el-dropdown-item>
-            <el-dropdown-item>女性多</el-dropdown-item>
-            <el-dropdown-item>CP多</el-dropdown-item>
-            <el-dropdown-item>不限</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </li>
-      <li>
-        <el-dropdown>
-          <span class="el-dropdown-link">
-            好评排序<i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>好评升序</el-dropdown-item>
-            <el-dropdown-item>好评降序</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </li>
-      <li>
-        <el-dropdown>
-          <span class="el-dropdown-link">
-            价格排序<i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>10万以上</el-dropdown-item>
-            <el-dropdown-item>5万-10万</el-dropdown-item>
-            <el-dropdown-item>1万-5万</el-dropdown-item>
-            <el-dropdown-item>1万以下</el-dropdown-item>
-            <el-dropdown-item>最低</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </li>
-      <li>
-        <el-dropdown>
-          <span class="el-dropdown-link">
-            粉丝排序<i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item>100万以上</el-dropdown-item>
-            <el-dropdown-item>10万-100万</el-dropdown-item>
-            <el-dropdown-item>1万-10万</el-dropdown-item>
-            <el-dropdown-item>1万以下</el-dropdown-item>
-            <el-dropdown-item>最低</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </li>
-      <li><p>抖音购物车</p></li>
-    </ul>
-    <ul class="filter-select">
-      <li>抖音网红</li>
-      <li>/</li>
-      <li>上海</li>
-      <li>/</li>
-      <li>女</li>
-    </ul>
+      </el-button>
+    </el-row>
+    <el-select v-model="value" clearable placeholder="全部分类" class="filter-select">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
+   <el-select v-model="value" clearable placeholder="选择地区" class="filter-select">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
+   <el-select v-model="value" clearable placeholder="选择性别" class="filter-select">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
+   <el-select v-model="value" clearable placeholder="好评排序" class="filter-select">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
+   <el-select v-model="value" clearable placeholder="价格排序" class="filter-select">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
+   <el-select v-model="value" clearable placeholder="粉丝排序" class="filter-select">
+    <el-option
+      v-for="item in options"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value">
+    </el-option>
+  </el-select>
+   <el-button round>
+     <span  class="select-btn">抖音购物车</span>
+   </el-button>
     <p class="filter-warn">提醒：为了减少沟通成本，最好选择5家经济公司</p>
     <div class="filter-list" v-for="list in 5" :key="list">
       <div class="list-left">
@@ -202,6 +171,43 @@
 import Shopping from './Shopping.vue'
 import Header from './Header.vue'
 export default {
+  data() {
+    return {
+      options: [{
+        value: '选项一',
+        label: '美妆'
+      }, {
+        value: '选项二',
+        label: '电商带货'
+      }, {
+        value: '选项三',
+        label: '汽车达人'
+      }, {
+        value: '选项四',
+        label: '网红打卡'
+      }, {
+        value: '选项五',
+        label: '美食餐饮'
+      }, {
+        value: '选项六',
+        label: '大快销品'
+      }, {
+        value: '选项七',
+        label: '服饰箱包'
+      }, {
+        value: '选项八',
+        label: '母婴亲子'
+      }, {
+        value: '选项九',
+        label: '游戏网络'
+      }, {
+        value: '选项十',
+        label: '食品达人'
+      }
+      ],
+      value: ''
+    }
+  },
   components: {
     Shopping,
     Header
@@ -213,70 +219,104 @@ export default {
 .filter {
   width: 1100px;
   margin: 100px auto 0;
-  .filter-nav:first-child {
+  .filter-crumbs{
     margin-bottom: 40px;
+    .button_mini{
+      width: 70px;
+    height: 26px;
+    border-radius: 13px;
+      float: left;
+      color:#3D3A3A;
+      background: #EFEFEF;
+      margin-right: 20px;
+      border: none;
+    }
+    .crumbs-nav{
+      padding-top:8px;
+      color: #888888;
+    }
   }
-  .filter-nav {
+  .el-row{
     display: flex;
     margin-bottom: 30px;
-    li:hover {
-      background: #efefef;
-    }
-    li {
+    /deep/ .el-button{
+
       background: #ffffff;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
       border-radius: 20px;
-      height: 40px;
-      padding: 0 10px;
       display: flex;
       margin-right: 20px;
       cursor: pointer;
       text-align: center;
+      /deep/ .is-round{
+        padding: 0;
+      }
       img {
+        float:left;
         width: 20px;
         height: 20px;
-        margin: 10px 4px 0 0;
+        margin-left: -13px;
+        margin-top: -3px;
+        margin-right: 4px;
       }
       p {
-        display: block;
         font-size: 14px;
         font-weight: bold;
         color: #5e5e5e;
-        line-height: 40px;
-      }
-      .el-dropdown-link {
-        line-height: 40px;
-        font-size: 14px;
-        font-weight: bold;
-        color: #5e5e5e;
-        i {
-          font-weight: bold;
-        }
+        // line-height: 40px;
       }
     }
   }
-  .filter-select {
-    display: flex;
-    margin-top: 24px;
-    font-size: 14px;
-    font-weight: 400;
-    color: #3259ce;
-    li:nth-child(odd) {
+  /deep/ .el-button{
+      background: #FFFFFF;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
+      border-radius: 20px;
+      font-size:14px;
+      font-weight: 500;
+      height: 40px;
+      margin-right: 20px;
       cursor: pointer;
+      text-align: center;
+      border:none;
+      .select-btn{
+        color:#757070;
+        font-size: 14px;
+        font-weight: bold;
+      }
     }
-    li:nth-child(even) {
-      //even表示偶数
-      margin: 0 10px;
+    /deep/ .el-button:hover{
+      background: #f1eeee;
+      color: #2d2d2d ;
     }
-    li:last-child {
-      color: #5e5e5e;
+  /deep/ .filter-select{
+    width: 98px;
+    height: 40px;
+    margin-right: 20px;
+    opacity: 0.84;
+    border-radius: 25px;
+    /deep/ .el-input__inner{
+      color: #5E5E5E;
+      font-size: 6px;
+        text-align: center;
+        font-weight: bold;
+        border-radius: 25px;
+        background: #FFFFFF;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.10);
+        border:none;
     }
+    /deep/ .el-input__inner::placeholder{
+          color: #5E5E5E;
+          font-size:8px
+        }
   }
+    /deep/ .el-input__inner:hover{
+        background: #EFEFEF;
+    }
   .filter-warn {
     font-size: 12px;
     font-weight: 400;
     color: #2d2d2d;
-    margin: 24px 0 10px 0;
+    margin: 45px 0 10px 0;
   }
   .filter-list {
     width: 1100px;
