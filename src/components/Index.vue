@@ -69,7 +69,7 @@
         </ul>
       </div>
       <div class="header-main">
-        <div class="header-text">两分钟 找到对的网红！</div>
+        <div class="header-text">超火引擎，两分钟 找到对的网红！</div>
         <div class="main-search">
           <input
             type="text"
@@ -173,7 +173,7 @@ export default {
 .header-index {
   width: 100%;
   height: 504px;
-  background: url(../assets/image/banner.png);
+  // background: url(../assets/image/banner.png);
   // .header-banner {
   //   width: 100%;
   //   height: 100%;

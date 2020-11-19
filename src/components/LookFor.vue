@@ -1,5 +1,8 @@
 <template>
   <div class="lookfor">
+     <div class="header">
+       <img src="../assets/image/banner.png" alt="" class="header-img" />
+    </div>
     <div class="lookfor-nav">
       <ul>
         <li>
@@ -120,6 +123,14 @@ export default {
 .lookfor {
   width: 1059px;
   margin: 30px auto 0;
+   .header-img{
+  width: 100%;
+  height: 504px;
+  position:absolute;
+  top:0px;
+  left: 0;
+  z-index: -100;
+}
   .lookfor-nav {
     ul {
       display: flex;
