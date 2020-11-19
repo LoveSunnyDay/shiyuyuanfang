@@ -1,54 +1,50 @@
 <template>
   <div class="pay">
+    <Header></Header>
     <div class="pay-order">
       <p class="pay-order-title">我的订单</p>
       <div class="pay-order-content">
-           <tr class="content-header">
-             <td>推广网红</td>
-             <td>服务类型</td>
-             <td>单价</td>
-             <td>操作</td>
-           </tr>
-           <tr class="content-con" v-for="i in 5" :key="i">
-             <td>
-               <div>
-                 <img src="../../assets/image/pay.png" alt="">
-               </div>
-               <div>
-                  <h4>
-                    <img src="../../assets/image/dou.png" alt="">
-                    <span>   |</span>
-                    【一条小团团】
-                  </h4>
-                  <p>案例:奥迪 / 比亚迪 / 哈佛 / 五菱</p>
-                  <p>
-                    <span>剧情</span>
-                    <span>搞笑</span>
-                    <span>颜值</span>
-                    <span>音乐</span>
-                  </p>
-                  <span>粉丝：45万</span>
-               </div>
-             </td>
-             <td><span>直播2小时</span></td>
-             <td><span>￥3600</span></td>
-             <td>
-               <span>删除</span>
-             </td>
-           </tr>
-           <tr class="content-foot">
-             <td>
-                <p class="pay-order-text">
-          商品总量：
-          <span>2</span>
-          件
-        </p>
-        <p class="pay-order-text">
-          商品总价：
-          <span>￥1999元</span>
-        </p>
-             </td>
-           </tr>
+        <div class="content-title">
+          <p>推广网红</p>
+          <p>单价</p>
+          <p>服务类型</p>
+          <p>操作</p>
+        </div>
+        <ul class="content-item" v-for="item in 3" :key="item">
+          <li class="content-item-icon">
+            <img
+              src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=117012763,3643643580&fm=26&gp=0.jpg"
+            />
+            <ul class="content-main">
+              <li class="main-name">
+                <img src="@/assets/image/show/douyin.png" class="main-icon" />
+                <p>|</p>
+                <p>[一条小团团]</p>
+              </li>
+              <li>案例:奥迪/比亚迪/哈佛/五菱</li>
+              <li>
+                <p>剧情</p>
+                <p>搞笑</p>
+                <p>颜值</p>
+                <p>音乐</p>
+              </li>
+              <li>粉丝：45万</li>
+            </ul>
+          </li>
+          <li class="content-item-price">￥3600.00元</li>
+          <li class="content-item-type">直播2小时</li>
+          <li class="content-item-del"><span>删除</span></li>
+        </ul>
+        <div class="pay-order-price">
+          <ul>
+            <li>
+              商品总量：
+              <span>2</span>
+              件
+            </li>
+            <li>商品总价： <span>￥1999元</span></li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="pay-qr">
@@ -62,7 +58,6 @@
         <li>
           <img
             src="../../assets/image/footer/erweima.jpg"
-            alt=""
             class="pay-qr-sm-wx"
           />
           <p>
@@ -88,140 +83,164 @@
 </template>
 
 <script>
-export default {}
+import Header from '@/components/Header.vue'
+export default {
+  components: {
+    Header
+  }
+}
 </script>
 
 <style lang="less" scoped>
 .pay {
   width: 1000px;
-  margin: 40px auto 100px;
+  margin: 116px auto 26px;
   .pay-order {
     margin-top: 80px;
     .pay-order-title {
-     width: 80px;
-     height: 28px;
-     font-size: 20px;
-     font-family: PingFang SC;
-     font-weight: bold;
-     line-height: 28px;
-     color: #00A581;
-     opacity: 1;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 28px;
+      color: #00a581;
     }
     .pay-order-content {
       width: 998px;
       border: 1px solid rgba(112, 112, 112, 0.2);
       border-radius: 2px;
-      margin-top: 40px;
-    .content-header{
-      height: 40px;
-      background: #F9F9F9;
-      font-size: 14px;
-      font-family: PingFang SC;
-      font-weight: 800;
-      color: #343434;
-      opacity: 0.81;
-      td:nth-child(1){
-        width: 340px;
+      margin-top: 12px;
+      .content-title {
+        display: flex;
+        padding-left: 30px;
+        height: 40px;
+        background: #f9f9f9;
         line-height: 40px;
-        padding-left:30px;
-      }
-      td:nth-child(2){
-        width: 220px;
-        line-height: 40px;
-        padding-left:30px;
-      }
-      td:nth-child(3){
-        width: 220px;
-        line-height: 40px;
-        padding-left:30px;
-      }
-      td:nth-child(4){
-        width: 98px;
-        line-height: 40px;
-        padding-left:30px;
-      }
-    }
-    .content-con{
-      height: 144px;
-      td:nth-child(1){
-        padding: 25px 0px 25px 25px;
-        div:nth-child(1){
-        float: left;
-        img{
-          margin-right: 5px;
+        margin-bottom: 28px;
+        p {
+          font-size: 14px;
+          font-weight: 800;
+          color: #343434;
+          opacity: 0.81;
+        }
+        p:nth-child(1) {
+          width: 420px;
+        }
+        p:nth-child(2) {
+          width: 220px;
+        }
+        p:nth-child(3) {
+          width: 228px;
         }
       }
-        div:nth-child(2){
-          h4{
+      .content-item {
+        display: flex;
+        padding: 0 0 28px 30px;
+        .content-item-icon {
+          width: 420px;
+          height: 94px;
+          display: flex;
+          img {
+            width: 68px;
+            height: 94px;
+          }
+          .content-main {
+            margin-left: 8px;
+            li:nth-child(1) {
+              height: 20px;
+              line-height: 20px;
+              display: flex;
+              .main-icon {
+                width: 20px;
+                height: 20px;
+              }
+              p {
+                font-size: 14px;
+                font-weight: bold;
+                color: #232a34;
+              }
+              p:nth-child(2) {
+                font-weight: 400;
+                margin: 0 8px;
+              }
+            }
+            li:nth-child(2) {
+              font-size: 14px;
+              color: #9f9f9f;
+              line-height: 22px;
+            }
+            li:nth-child(3) {
+              display: flex;
+              p {
+                width: 52px;
+                height: 24px;
+                background: #f4f4f4;
+                border-radius: 18px;
+                text-align: center;
+                line-height: 24px;
+                margin-right: 2px;
+                font-size: 14px;
+                color: #828282;
+              }
+            }
+            li:nth-child(4) {
+              font-size: 14px;
+              font-weight: bold;
+              line-height: 40px;
+              color: #232a34;
+              opacity: 0.86;
+            }
+          }
+        }
+        .content-item-price {
+          width: 220px;
+          line-height: 94px;
+          font-size: 14px;
+          font-weight: 800;
+          color: #343434;
+          opacity: 0.81;
+        }
+        .content-item-type {
+          width: 228px;
+          line-height: 94px;
+          font-size: 14px;
+          font-weight: 800;
+          color: #343434;
+          opacity: 0.81;
+        }
+        .content-item-del {
+          line-height: 94px;
+          font-size: 14px;
+          color: #343434;
+          opacity: 0.81;
+          span {
+            cursor: pointer;
+            font-weight: 800;
+          }
+        }
+      }
+      .pay-order-price {
+        height: 108px;
+        border-top: 1px solid rgba(112, 112, 112, 0.2);
+        ul {
+          margin: 28px 0 0 830px;
+          li {
             font-size: 14px;
-            font-family: PingFang SC;
             font-weight: bold;
+            color: #434343;
             line-height: 26px;
-            color: #232A34;
-            opacity: 1;
-            img{
-              padding-top: 5px;
-            }
-          }
-          p:nth-chlid(1){
-            height:20px ;
-           font-size: 14px;
-           font-family: PingFang SC;
-            font-weight: 400;
-            line-height: 20px;
-            color: #6D6D6D;
-            opacity: 0.6;
-          }
-          p:nth-chlid(2){
-            line-height: 20px;
-            span{
-              color: #616161;
-              display: block;
-              width: 52px;
-              height: 24px;
-              background: rgba(84, 84, 84, 0.5);
-              opacity: 0.16;
-              border-radius: 18px;
+            span {
+              font-weight: bold;
+              color: #ee943a;
             }
           }
         }
       }
-      td:nth-child(2){
-         padding-left:30px;
-        span{
-          line-height: 144px;
-        }
-      }
-       td:nth-child(3){
-         padding-left:30px;
-        span{
-          line-height: 144px;
-        }
-      }
-       td:nth-child(4){
-         padding-left:30px;
-        span{
-          line-height: 144px;
-        }
-      }
-    }
-      // .pay-order-text {
-      //   margin: 0 0 8px 804px;
-      //   font-size: 14px;
-      //   font-weight: bold;
-      //   color: #434343;
-      //   span {
-      //     font-weight: bold;
-      //     color: #EE943A;
-      //   }
-      // }
     }
   }
   .pay-qr {
     width: 998px;
     height: 690px;
     border: 1px dashed rgba(112, 112, 112, 0.30196078431372547);
-    margin-top: 72px;
+    margin-top: 41px;
     position: relative;
     .pay-qr-money {
       width: 250px;
@@ -239,7 +258,7 @@ export default {}
         margin-bottom: 20px;
         span {
           font-size: 30px;
-          color: #FF5118;
+          color: #ff5118;
         }
       }
     }
@@ -252,20 +271,19 @@ export default {}
         .pay-qr-sm-wx {
           width: 200px;
           height: 200px;
-          border: 1px solid #4CBF00;
+          border: 1px solid #4cbf00;
           border-radius: 4px;
         }
         .pay-qr-sm-zfb {
           width: 200px;
           height: 200px;
-          border: 1px solid #02A9F1;
+          border: 1px solid #02a9f1;
           border-radius: 4px;
         }
         p {
           font-size: 16px;
           font-weight: 500;
           color: #191919;
-          // height: 40px;
           line-height: 60px;
           text-align: center;
           img {
