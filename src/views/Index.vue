@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="header-index">
-      <!-- <img src="../assets/image/banner.png" alt="" class="header-banner" /> -->
       <Header v-show="headerShow"></Header>
       <div class="top-nav">
         <img src="../assets/image/logo.png" alt="" class="logo" />
@@ -77,7 +76,6 @@
             class="search-input"
           />
           <img src="../assets/image/sousuo.png" class="search-sousuo" />
-          <!-- <img src="../assets/image/shaixuan.png" class="search-shaixuan" /> -->
           <router-link to="/editor"
             ><div class="search-shaixuan"></div
           ></router-link>
@@ -126,7 +124,7 @@
 </template>
 
 <script>
-import Header from './Header.vue'
+import Header from '@/components/Header.vue'
 export default {
   components: {
     Header

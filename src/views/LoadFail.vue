@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Header from './Header.vue'
+import Header from '@/components/Header.vue'
 export default {
   // 引入组件
   components: {

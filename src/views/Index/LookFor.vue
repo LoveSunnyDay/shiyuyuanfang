@@ -1,12 +1,12 @@
 <template>
   <div class="lookfor">
      <div class="header">
-       <img src="../assets/image/banner.png" alt="" class="header-img" />
+       <img src="../../assets/image/banner.png" alt="" class="header-img" />
     </div>
     <div class="lookfor-nav">
       <ul>
         <li>
-          <img src="../assets/image/show/quanbu.png" alt="" />
+          <img src="../../assets/image/show/quanbu.png" alt="" />
           <el-dropdown>
             <span class="el-dropdown-link">
               全部分类
@@ -27,23 +27,23 @@
           </el-dropdown>
         </li>
         <li>
-          <img src="../assets/image/show/douyin.png" alt="" />
+          <img src="../../assets/image/show/douyin.png" alt="" />
           <p>抖音网红</p>
         </li>
         <li>
-          <img src="../assets/image/show/xiaohongshu.png" alt="" />
+          <img src="../../assets/image/show/xiaohongshu.png" alt="" />
           <p>小红书网红</p>
         </li>
         <li>
-          <img src="../assets/image/show/kuaishou.png" alt="" />
+          <img src="../../assets/image/show/kuaishou.png" alt="" />
           <p>B站网红</p>
         </li>
         <li>
-          <img src="../assets/image/show/bilibili.png" alt="" />
+          <img src="../../assets/image/show/bilibili.png" alt="" />
           <p>快手网红</p>
         </li>
         <li>
-          <img src="../assets/image/show/taobao.png" alt="" />
+          <img src="../../assets/image/show/taobao.png" alt="" />
           <p>淘宝网红</p>
         </li>
       </ul>
@@ -190,7 +190,7 @@ export default {
     .lookfor-item {
       width: 1059px;
       height: 290px;
-      background: url(../assets/image/show/meizhuang.png);
+      background: url(../../assets/image/show/meizhuang.png);
       margin-top: 19px;
       padding-top: 25px;
       display: flex;

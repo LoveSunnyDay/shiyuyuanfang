@@ -1,24 +1,24 @@
 <template>
   <div class="show">
     <div class="header">
-       <img src="../assets/image/show.png" alt="" class="header-img" />
+       <img src="../../assets/image/show.png" alt="" class="header-img" />
     </div>
     <ul class="show-title">
       <li>全部网红</li>
       <li>
-        <img src="../assets/image/show/douyin.png" alt="" />
+        <img src="../../assets/image/show/douyin.png" alt="" />
         <p>抖音网红</p>
       </li>
       <li>
-        <img src="../assets/image/show/xiaohongshu.png" alt="" />
+        <img src="../../assets/image/show/xiaohongshu.png" alt="" />
         <p>小红书网红</p>
       </li>
       <li>
-        <img src="../assets/image/show/kuaishou.png" alt="" />
+        <img src="../../assets/image/show/kuaishou.png" alt="" />
         <p>快手网红</p>
       </li>
       <li>
-        <img src="../assets/image/show/bilibili.png" alt="" />
+        <img src="../../assets/image/show/bilibili.png" alt="" />
         <p>B站网红</p>
       </li>
     </ul>
@@ -29,7 +29,7 @@
         <transition name="el-zoom-in-bottom">
           <div class="item-text" v-show="seen">
             <div class="item-text-left">
-              <img src="../assets/image/show/bilibili.png" alt="" />
+              <img src="../../assets/image/show/bilibili.png" alt="" />
               <p>我是你的cc啊</p>
               <p>段子手/搞笑</p>
             </div>

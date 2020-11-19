@@ -1,37 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import Index from '../components/Index'
-import Show from '../components/Show'
-import Video from '../components/Video'
-import Look from '../components/Look'
-import LookFor from '../components/LookFor'
-import About from '../components/About'
-import Footer from '../components/Footer'
-import Filter from '../components/Filter'
-import Editor from '../components/Editor'
-import MyCenter from '../components/MyCenter'
-import MyOrder from '../components/MyCenter/MyOrder'
-import Expenditure from '../components/MyCenter/Expenditure'
-import Invoice from '../components/MyCenter/Invoice'
-import AllInvoice from '../components/MyCenter/AllInvoice'
-import OpenInvoice from '../components/MyCenter/OpenInvoice'
-import MyProfile from '../components/MyCenter/MyProfile'
-import News from '../components/MyCenter/News'
-import CompanyInformation from '../components/MyCenter/CompanyInformation'
-import Pay from '../components/Pay/Pay'
-import PayComplete from '../components/Pay/PayComplete'
-import LoadFail from '../components/LoadFail'
-import Shopping from '../components/Shopping'
-import Header from '../components/Header'
+import Index from '@/views/Index'
+import Show from '@/views/Index/Show'
+import Video from '@/views/Index/Video'
+import Look from '@/views/Index/Look'
+import LookFor from '@/views/Index/LookFor'
+import About from '@/views/About'
+import Editor from '@/views/Editor'
+import Filter from '@/views/Filter'
+import LoadFail from '@/views/LoadFail'
+
+import Pay from '@/views/Pay/Pay'
+import PayComplete from '@/views/Pay/PayComplete'
+
+import MyCenter from '@/views/MyCenter'
+import MyOrder from '@/views/MyCenter/MyOrder'
+import Expenditure from '@/views/MyCenter/Expenditure'
+import Invoice from '@/views/MyCenter/Invoice'
+import AllInvoice from '@/views/MyCenter/AllInvoice'
+import OpenInvoice from '@/views/MyCenter/OpenInvoice'
+import MyProfile from '@/views/MyCenter/MyProfile'
+import News from '@/views/MyCenter/News'
+import CompanyInformation from '@/views/MyCenter/CompanyInformation'
 
 // const Index = () => import('../components/Index')
-// const LookFor = () => import('../components/LookFor')
-// const Show = () => import('../components/Show')
-// const Video = () => import('../components/Video')
-// const About = () => import('../components/About')
-// const Footer = () => import('../components/Footer')
-// const Filter = () => import('../components/Filter')
 Vue.use(VueRouter)
 
 const routes = [
@@ -68,10 +61,6 @@ const routes = [
   {
     path: '/About',
     component: About
-  },
-  {
-    path: '/Footer',
-    component: Footer
   },
   {
     path: '/Filter',
@@ -134,14 +123,6 @@ const routes = [
   {
     path: '/LoadFail',
     component: LoadFail
-  },
-  {
-    path: '/Shopping',
-    component: Shopping
-  },
-  {
-    path: '/Header',
-    component: Header
   }
 ]
 

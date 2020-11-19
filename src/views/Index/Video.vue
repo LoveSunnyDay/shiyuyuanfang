@@ -1,14 +1,14 @@
 <template>
   <div class="video">
     <div>
-      <img class="video-img" src="../assets/image/video.png" >
+      <img class="video-img" src="../../assets/image/video.png" />
       <!-- <video class="video-img" autoplay="" loop="" muted="" poster="https://www.pexels.com/assets/videos/free-videos-7daa2ef41a140f70c757ce91913a4ecb90570b7d7cd2b401bae868350e02c83a.jpg">
 <source src="https://static.pexels.com/lib/videos/free-videos.mp4" type="video/mp4">
 <source src="https://static.pexels.com/lib/videos/free-videos.webm" type="video/webm">
 </video> -->
     </div>
     <div class="video-nav">
-      <img src="../assets/image/video/navLogo.png" alt="" />
+      <img src="../../assets/image/video/navLogo.png" alt="" />
       <ul>
         <li>全部素材</li>
         <li>电商带货</li>
@@ -108,14 +108,14 @@ export default {
   width: 1224px;
   margin: 43px auto 0;
   display: flex;
-   .video-img{
-  width: 100%;
-  height: 504px;
-  position:absolute;
-  top:0;
-  left: 0;
-  z-index: -10;
-}
+  .video-img {
+    width: 100%;
+    height: 504px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -10;
+  }
   .video-nav {
     width: 120px;
     img {
@@ -256,17 +256,17 @@ export default {
     .right-list {
       .right-icon:nth-child(2) {
         .icon-top {
-          background: url(../assets/image/video/top1.png);
+          background: url(../../assets/image/video/top1.png);
         }
       }
       .right-icon:nth-child(3) {
         .icon-top {
-          background: url(../assets/image/video/top2.png);
+          background: url(../../assets/image/video/top2.png);
         }
       }
       .right-icon:nth-child(4) {
         .icon-top {
-          background: url(../assets/image/video/top3.png);
+          background: url(../../assets/image/video/top3.png);
         }
       }
       .list-title {

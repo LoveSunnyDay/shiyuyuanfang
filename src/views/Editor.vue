@@ -182,7 +182,7 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 import '@/assets/css/editor.css'
-import Header from './Header.vue'
+import Header from '@/components/Header.vue'
 
 // 自定义字体大小
 const Size = Quill.import('attributors/style/size')

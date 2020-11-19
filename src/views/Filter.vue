@@ -168,8 +168,8 @@
 </template>
 
 <script>
-import Shopping from './Shopping.vue'
-import Header from './Header.vue'
+import Shopping from '@/components/Shopping.vue'
+import Header from '@/components/Header.vue'
 export default {
   data() {
     return {

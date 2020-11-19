@@ -1,7 +1,7 @@
 <template>
   <div>
      <div class="header">
-       <img src="../assets/image/banner.png" alt="" class="header-img" />
+       <img src="../../assets/image/banner.png" alt="" class="header-img" />
     </div>
     <div class="content-look" v-for="item in 10" :key="item">
       <router-link to="/index/lookfor">
@@ -19,7 +19,7 @@
         </div>
         <div class="content-look-detail">
           <div class="detail-box" v-for="list in 6" :key="list">
-            <img src="../assets/image/icon.jpg" alt="" />
+            <img src="../../assets/image/icon.jpg" alt="" />
             <div class="detail-name">彩允Unee</div>
             <div class="detail-from">
               平台：
