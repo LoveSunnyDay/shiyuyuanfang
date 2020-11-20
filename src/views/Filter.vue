@@ -198,9 +198,9 @@ export default {
     }
   }
   /deep/ .el-button{
-      background: #FFFFFF;
+      // background: #FFFFFF;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
-      border-radius: 20px;
+      // border-radius: 20px;
       font-size:14px;
       font-weight: 500;
       height: 40px;

@@ -38,7 +38,7 @@
               只接受上海地区的，中国好声音学院，搞笑音乐人，鸡汤段子手，全网最迷人的猪猪宝藏女友对口型段子达人哦
             </p>
             <p class="main-item-url">
-              访问TA的抖音链接：https://v.douyin.com/JJj79Xu/
+              访问TA的抖音链接：<a href="https://v.douyin.com/JJj79Xu/">https://v.douyin.com/JJj79Xu/</a>
             </p>
           </div>
         </div>
@@ -198,9 +198,19 @@ export default {
             color: #4c525a;
             margin-top: 20px;
             cursor: pointer;
+            a{
+               font-size: 12px;
+            font-weight: 400;
+            color: #4c525a;
+            margin-top: 20px;
+            cursor: pointer;
+            }
           }
           .main-item-url:hover {
             color: #0064f9;
+          }
+          a:hover{
+             color: #0064f9;
           }
         }
       }

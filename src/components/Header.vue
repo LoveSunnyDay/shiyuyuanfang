@@ -22,7 +22,9 @@
       <li>
         <i class="el-icon-message-solid nav-xiaoxi"></i>
       </li>
-      <Login></Login>
+      <li>
+        <Login></Login>
+      </li>
     </ul>
   </div>
 </template>
@@ -36,6 +38,10 @@ export default {
   },
   data() {
     // 这里存放数据
+    return {
+      dialogVisible: false,
+      loginMode: true
+    }
   },
   // 方法集合
   methods: {},
