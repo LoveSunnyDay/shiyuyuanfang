@@ -1,11 +1,10 @@
 <template>
     <div>
-      <li>
-        <el-button
-          type="success"
+
+        <button
           class="nav-login"
           @click="dialogVisible = true"
-          >登录</el-button
+          >登录</button
         >
         <el-dialog
           :visible.sync="dialogVisible"
@@ -49,7 +48,7 @@
             </div>
           </div>
         </el-dialog>
-      </li>
+
     </div>
 </template>
 
@@ -107,6 +106,10 @@ export default {
       width: 80px;
       height: 40px;
       margin-top: 16px;
+      border-radius: 4px;
+      outline: none;
+      color:#ffffff;
+      // margin-right: 30px;
       background-color: #2fb598;
       border: 0;
     }
@@ -261,4 +264,24 @@ export default {
         }
       }
     }
+
+/deep/.el-dialog__headerbtn {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  i {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  // i:hover {
+  //   color: red !important;
+  // }
+}
+/deep/.el-dialog__body {
+  padding: 0 0 1px 0;
+}
+/deep/.el-dialog__header {
+  padding: 10px;
+}
 </style>

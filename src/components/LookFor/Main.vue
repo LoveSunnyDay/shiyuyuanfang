@@ -48,7 +48,7 @@
           </div>
           <div class="lookfor-item-content-bottom">
             <div class="item-content-bottom-left">
-              <span>抖音链接：https://v.douyin.com/JJj79Xu/</span>
+              <span>抖音链接：<a href="https://v.douyin.com/JJj79Xu/">https://v.douyin.com/JJj79Xu/</a></span>
               <p>
                 “美妆博主里最温柔的少女”温柔标专业知识，虏获800w+粉丝。有众多大牌合作背景,
                 有众多线下品牌活动经验。
@@ -58,6 +58,7 @@
           </div>
         </div>
       </div>
+
   </div>
 </template>
 <script>
@@ -204,8 +205,17 @@ export default {
               font-weight: 400;
               color: rgba(120, 120, 120, 0.6);
               cursor: pointer;
+              a{
+                font-weight: 400;
+              color: rgba(120, 120, 120, 0.6);
+              cursor: pointer;
+              }
             }
             span:hover {
+              color: #0064f9;
+
+            }
+            a:hover{
               color: #0064f9;
             }
             p {

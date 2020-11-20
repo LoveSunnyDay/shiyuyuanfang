@@ -14,91 +14,10 @@
             <i class="el-icon-message-solid nav-xiaoxi"></i>
           </li>
           <li>
-            <el-button
-              type="success"
-              class="nav-login"
-              @click="dialogVisible = true"
-              >登录</el-button
-            >
-            <el-dialog
-              :visible.sync="dialogVisible"
-              width="440px"
-              :before-close="handleClose"
-            >
-              <div class="login">
-                <div class="wx-login" v-if="loginMode">
-                  <div class="phone-login-tab" @click="loginModeButton">
-                    <img src="../assets/image/shouji-login.png" />
-                    <span></span>
-                  </div>
-                  <p><i class="iconfont icon-weixin1"></i>微信登录</p>
-                  <div class="wx-login-erweima">
-                    <img src="../assets/image/footer/erweima.jpg" />
-                  </div>
-                  <p class="wx-login-text">扫描二维码登录</p>
-                  <img
-                    src="../assets/image/welcome.png"
-                    class="wx-login-welcom"
-                  />
-                </div>
-                <div class="phone-login" v-else>
-                  <div class="phone-login-tab" @click="loginModeButton">
-                    <img src="../assets/image/weixin-login.png" />
-                    <span></span>
-                  </div>
-                  <p><i class="el-icon-mobile"></i>手机验证码登录</p>
-                  <input
-                    type="text"
-                    placeholder="请输入手机号"
-                    class="login-input-phone"
-                  />
-                  <input
-                    type="text"
-                    placeholder="短信验证码"
-                    class="login-input-code"
-                  />
-                  <button class="code-button">发送验证码</button>
-                  <button class="login-button">立即登录</button>
-                  <p class="phone-login-list">专业网红推广服务平台</p>
-                  <p class="phone-login-item">欢迎使用超火引擎</p>
-                </div>
-              </div>
-            </el-dialog>
+            <Login></Login>
           </li>
         </ul>
       </div>
-      <!-- <div class="header-main">
-        <div class="header-text">超火引擎，两分钟 找到对的网红！</div>
-        <div class="main-search">
-          <input
-            type="text"
-            placeholder="请输入您想推广的产品或相关网红，精确匹配"
-            class="search-input"
-          />
-          <img src="../assets/image/sousuo.png" class="search-sousuo" />
-          <router-link to="/editor"
-            ><div class="search-shaixuan"></div
-          ></router-link>
-        </div>
-        <div class="main-cont">
-          <span>热门：</span>
-          <ul>
-            <li>美妆达人</li>
-            <li>，</li>
-            <li>时尚达人</li>
-            <li>，</li>
-            <li>手表带货</li>
-            <li>，</li>
-            <li>抖音网红</li>
-            <li>，</li>
-            <li>一条小团团</li>
-            <li>，</li>
-            <li>小红书</li>
-            <li>，</li>
-            <li>快手</li>
-          </ul>
-        </div>
-      </div> -->
       <HeaderMain></HeaderMain>
     </div>
     <div class="content">
@@ -126,11 +45,13 @@
 
 <script>
 import Header from '@/components/Header.vue'
-import HeaderMain from '../components/Index/HeaderMain.vue'
+import HeaderMain from '@/components/Index/HeaderMain.vue'
+import Login from '@/components/Header/Login'
 export default {
   components: {
     Header,
-    HeaderMain
+    HeaderMain,
+    Login
   },
   data() {
     return {
@@ -408,24 +329,5 @@ export default {
 .content-nav-active {
   color: #0064f9;
   border-bottom: 3px solid #0064f9;
-}
-/deep/.el-dialog__headerbtn {
-  position: absolute;
-  top: -20px;
-  right: -20px;
-  i {
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
-  }
-  // i:hover {
-  //   color: red !important;
-  // }
-}
-/deep/.el-dialog__body {
-  padding: 0 0 1px 0;
-}
-/deep/.el-dialog__header {
-  padding: 10px;
 }
 </style>
