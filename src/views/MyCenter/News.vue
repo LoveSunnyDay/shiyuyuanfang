@@ -5,58 +5,50 @@
       <span><i class="el-icon-circle-close"></i> 删除全部信息</span>
     </div>
     <ul class="news-type">
-      <li>全部消息</li>
-      <li>系统消息</li>
-      <li>订单提醒</li>
-    </ul>
-    <ul class="news-content">
-      <li v-for="item in 6" :key="item">
-        <img src="../../assets/image/myCenter/news1.png" alt="" />
-        <div class="news-content-main">
-          <div class="content-main-tag">
-            <span>项目进度提醒</span>
-            <span>11/30 14:30</span>
-            <span>已读</span>
-          </div>
-          <p>订单号：125168761791970000</p>
-          <p>
-            您已经支付完订单的所有款项，目前项目进入策划期，如果在该项目中产生任何疑问，直接与负责该项目的MCN公司联系！
-          </p>
-        </div>
-        <i class="el-icon-delete"></i>
+      <li @click="newsBtn = 0" :class="{ 'news-type-active': newsBtn == 0 }">
+        全部消息
+      </li>
+      <li @click="newsBtn = 1" :class="{ 'news-type-active': newsBtn == 1 }">
+        系统消息
+      </li>
+      <li @click="newsBtn = 2" :class="{ 'news-type-active': newsBtn == 2 }">
+        订单提醒
       </li>
     </ul>
-    <el-pagination
-      class="news-page"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage"
-      :page-size="100"
-      :total="400"
-    >
-    </el-pagination>
+    <div>
+      <div v-show="newsBtn == 0">
+        <AllNews></AllNews>
+      </div>
+      <div v-show="newsBtn == 1">
+        <SystemNews></SystemNews>
+      </div>
+      <div v-show="newsBtn == 2">
+        <OrderNews></OrderNews>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import AllNews from '@/components/MyCenter/News/AllNews.vue'
+import SystemNews from '@/components/MyCenter/News/SystemNews.vue'
+import OrderNews from '@/components/MyCenter/News/OrderNews.vue'
 export default {
+  components: {
+    AllNews,
+    SystemNews,
+    OrderNews
+  },
   data() {
     return {
-      currentPage: 1
+      newsBtn: 0 // Tab切换默认显示第一个全部订单
     }
   },
-  methods: {
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`)
-    },
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`)
-    }
-  }
+  methods: {}
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .news {
   width: 1040px;
   height: 1060px;
@@ -76,6 +68,9 @@ export default {
       color: #545454;
       cursor: pointer;
     }
+    span:hover{
+      color: #E92E2E;
+    }
   }
   .news-type {
     margin: 0 0 37px 20px;
@@ -92,6 +87,10 @@ export default {
       color: #7b7b7b;
       margin-right: 15px;
       cursor: pointer;
+    }
+    .news-type-active {
+      background-color: #49bea6;
+      color: #ffffff;
     }
   }
   .news-content {
@@ -120,14 +119,6 @@ export default {
             color: #545454;
             opacity: 0.48;
             margin: 0 40px 0 24px;
-          }
-          span:nth-child(3) {
-            width: 50px;
-            height: 20px;
-            background: #f1f1f1;
-            border-radius: 10px;
-            padding: 0 11px;
-            color: #646261;
           }
         }
         p {

@@ -5,8 +5,11 @@
         <p>支出明细</p>
         <ul>
           <li>全部</li>
-          <li>时间</li>
           <li>平台</li>
+          <li>
+            <el-date-picker v-model="value" type="date" placeholder="选择日期">
+            </el-date-picker>
+          </li>
         </ul>
       </div>
       <p class="expenditure-title-right">支出总金额：<span>3678.00</span>元</p>
@@ -45,7 +48,8 @@
 export default {
   data() {
     return {
-      currentPage: 1
+      currentPage: 1, // 分页默认页码
+      value: '' // 时间选择
     }
   },
   methods: {
@@ -63,7 +67,6 @@ export default {
 .expenditure {
   width: 1200px;
   margin-left: 48px;
-  // background-color: chartreuse;
   .expenditure-title {
     display: flex;
     justify-content: space-between;
@@ -90,7 +93,15 @@ export default {
           line-height: 32px;
           text-align: center;
           margin-left: 22px;
+          cursor: pointer;
         }
+        // /deep/.el-input__inner {
+        //   height: 32px;
+        //   line-height: 32px;
+        // }
+        // /deep/.el-input__icon {
+        //   line-height: 32px;
+        // }
       }
     }
     .expenditure-title-right {
@@ -140,7 +151,6 @@ export default {
     }
     ul {
       display: flex;
-      // margin: 20px 0;
       height: 64px;
       border-radius: 0px;
       padding-left: 24px;

@@ -53,7 +53,8 @@
 export default {
   data() {
     return {
-      imageUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2334974629,3626811871&fm=26&gp=0.jpg'
+      imageUrl:
+        'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2334974629,3626811871&fm=26&gp=0.jpg'
     }
   },
   methods: {
@@ -108,9 +109,8 @@ export default {
       margin-bottom: 30px;
       span {
         font-size: 14px;
-        font-weight: 800;
-        color: #171717;
-        opacity: 0.54;
+        font-weight: 600;
+        color: #818181;
         margin-right: 20px;
       }
       .profile-content-input {
@@ -121,7 +121,8 @@ export default {
         padding-left: 24px;
         outline: none;
         font-size: 16px;
-        font-weight: 800;
+        font-weight: 600;
+        color: #818181;
       }
     }
     li:nth-child(1) {
@@ -155,7 +156,7 @@ export default {
         margin-left: 23px;
         font-size: 16px;
         font-weight: 800;
-        color: #4F4F4F;
+        color: #4f4f4f;
       }
     }
     li:nth-child(2) {
