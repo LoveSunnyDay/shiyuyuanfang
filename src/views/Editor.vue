@@ -5,10 +5,10 @@
           <div class="filter-crumbs">
       <button size="mini" class="button_mini">
          <span class="el-icon-arrow-left"></span>
-         <span class="mini_i">返回</span>
+         <span class="mini_i"  @click="$router.back(-1)">返回</span>
        </button>
     <el-breadcrumb separator-class="el-icon-arrow-right" class="crumbs-nav">
-      <el-breadcrumb-item>首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>按需求筛选</el-breadcrumb-item>
     </el-breadcrumb>
     </div>
@@ -243,6 +243,8 @@ export default {
     .button_mini{
       width: 70px;
     height: 26px;
+    cursor:pointer;
+    outline: none;
     border-radius: 13px;
       float: left;
       color:#3D3A3A;
@@ -253,6 +255,9 @@ export default {
     .crumbs-nav{
       padding-top:8px;
       color: #888888;
+       /deep/ .el-breadcrumb__inner:hover{
+        color: #888888;
+      }
     }
   }
     .editor-title {

@@ -4,11 +4,11 @@
     <div class="filter-crumbs">
       <button size="mini" class="button_mini">
          <span class="el-icon-arrow-left"></span>
-         <span class="mini_i">返回</span>
+         <span class="mini_i" @click="$router.back(-1)" >返回</span>
        </button>
     <el-breadcrumb separator-class="el-icon-arrow-right" class="crumbs-nav">
-      <el-breadcrumb-item>首页</el-breadcrumb-item>
-      <el-breadcrumb-item>按需求筛选</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/editor' }">按需求筛选</el-breadcrumb-item>
       <el-breadcrumb-item>网红筛选</el-breadcrumb-item>
     </el-breadcrumb>
     </div>
@@ -38,52 +38,52 @@
         <p>同一经济公司</p>
       </el-button>
     </el-row>
-    <el-select v-model="value" clearable placeholder="全部分类" class="filter-select">
+    <el-select v-model="id" clearable placeholder="全部分类" class="filter-select">
     <el-option
       v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value">
+      :key="item.id"
+      :label="item.title"
+      :value="item.id">
     </el-option>
   </el-select>
-   <el-select v-model="value" clearable placeholder="选择地区" class="filter-select">
+    <el-select v-model="id" clearable placeholder="选择地区" class="filter-select">
     <el-option
       v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value">
+      :key="item.id"
+      :label="item.title"
+      :value="item.id">
     </el-option>
   </el-select>
-   <el-select v-model="value" clearable placeholder="选择性别" class="filter-select">
+    <el-select v-model="id" clearable placeholder="选择性别" class="filter-select">
     <el-option
       v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value">
+      :key="item.id"
+      :label="item.title"
+      :value="item.id">
     </el-option>
   </el-select>
-   <el-select v-model="value" clearable placeholder="好评排序" class="filter-select">
+    <el-select v-model="id" clearable placeholder="好评排序" class="filter-select">
     <el-option
       v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value">
+      :key="item.id"
+      :label="item.title"
+      :value="item.id">
     </el-option>
   </el-select>
-   <el-select v-model="value" clearable placeholder="价格排序" class="filter-select">
+    <el-select v-model="id" clearable placeholder="价格排序" class="filter-select">
     <el-option
       v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value">
+      :key="item.id"
+      :label="item.title"
+      :value="item.id">
     </el-option>
   </el-select>
-   <el-select v-model="value" clearable placeholder="粉丝排序" class="filter-select">
+    <el-select v-model="id" clearable placeholder="粉丝排序" class="filter-select">
     <el-option
       v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value">
+      :key="item.id"
+      :label="item.title"
+      :value="item.id">
     </el-option>
   </el-select>
    <el-button round>
@@ -99,43 +99,20 @@
 import Shopping from '@/components/Shopping.vue'
 import Header from '@/components/Header.vue'
 import FilterList from '@/components/Filter/FilterList.vue'
+import axios from 'axios'
 export default {
   data() {
     return {
-      options: [{
-        value: '选项一',
-        label: '美妆'
-      }, {
-        value: '选项二',
-        label: '电商带货'
-      }, {
-        value: '选项三',
-        label: '汽车达人'
-      }, {
-        value: '选项四',
-        label: '网红打卡'
-      }, {
-        value: '选项五',
-        label: '美食餐饮'
-      }, {
-        value: '选项六',
-        label: '大快销品'
-      }, {
-        value: '选项七',
-        label: '服饰箱包'
-      }, {
-        value: '选项八',
-        label: '母婴亲子'
-      }, {
-        value: '选项九',
-        label: '游戏网络'
-      }, {
-        value: '选项十',
-        label: '食品达人'
-      }
-      ],
-      value: ''
+      options: [],
+      id: ''
     }
+  },
+  created() {
+    // 全部KOL分类列表
+    axios.get('http://api.dev.com/v1/kol-category').then(res => {
+      console.log(res.data.data)
+      this.options = res.data.data
+    })
   },
   components: {
     Shopping,
@@ -164,6 +141,9 @@ export default {
     .crumbs-nav{
       padding-top:8px;
       color: #888888;
+      /deep/ .el-breadcrumb__inner:hover{
+        color: #888888;
+      }
     }
   }
   .el-row{
