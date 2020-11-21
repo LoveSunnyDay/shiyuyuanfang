@@ -1,6 +1,6 @@
 <template>
     <div>
-          <div class="filter-list" v-for="list in 5" :key="list">
+          <div class="filter-list" v-for="list in list" :key="list.id">
       <div class="list-left">
         <div class="list-left-main">
           <div class="left-main-icon">
@@ -12,7 +12,7 @@
           </div>
           <div class="left-main-item">
             <div class="main-item-name">
-              <p>一条小团团</p>
+              <p>{{list.nickname}}</p>
               <ul>
                 <li>剧情</li>
                 <li>家庭</li>
@@ -38,7 +38,7 @@
               只接受上海地区的，中国好声音学院，搞笑音乐人，鸡汤段子手，全网最迷人的猪猪宝藏女友对口型段子达人哦
             </p>
             <p class="main-item-url">
-              访问TA的抖音链接：<a href="https://v.douyin.com/JJj79Xu/">https://v.douyin.com/JJj79Xu/</a>
+              访问TA的抖音链接：<a href="">{{list.home_url}}</a>
             </p>
           </div>
         </div>
@@ -77,8 +77,20 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-
+  data() {
+    return {
+      list: []
+    }
+  },
+  created() {
+    // 所有KOL列表
+    axios.get('http://api.dev.com/v1/kol').then(res => {
+      console.log(res.data.data.items)
+      this.list = res.data.data.items
+    })
+  }
 }
 </script>
 

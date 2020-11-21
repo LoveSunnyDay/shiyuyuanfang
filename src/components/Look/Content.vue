@@ -1,23 +1,22 @@
 <template>
 <div>
-        <div class="content-look" v-for="item in 10" :key="item">
+        <div class="content-look" v-for="list in list" :key="list.id">
       <router-link to="/index/lookfor">
         <div class="content-look-title">
-          <span class="list-title">美妆达人</span>
+          <span class="list-title">{{list.title}}</span>
           <div class="list-main">
-            <span>300+抖音、快手、B站、小红书.....的</span>
+            <span>{{list.subtitle}}</span>
             <span class="list-name">美妆博主</span>
             <span>再次等候，为您提供推广。</span>
           </div>
         </div>
         <div class="content-look-introduce">
-          与兰蔻、雅诗兰黛、迪奥、资生堂、倩碧、海蓝之谜、SK2、香奈儿......等10万品牌用户深度合作
-          超百亿流量覆盖，累计美妆产品完成亿万次曝光
+          {{list.body}}
         </div>
         <div class="content-look-detail">
-          <div class="detail-box" v-for="list in 6" :key="list">
+          <div class="detail-box" v-for="list in list" :key="list">
             <img src="../../assets/image/icon.jpg" alt="" />
-            <div class="detail-name">彩允Unee</div>
+            <div class="detail-name">{{list.kols.nickname}}</div>
             <div class="detail-from">
               平台：
               <span>抖音</span>
@@ -34,8 +33,20 @@
 </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
-
+  data() {
+    return {
+      list: []
+    }
+  },
+  created() {
+    // 全部KOL分类列表
+    axios.get('http://api.dev.com/v1/index_recommend').then(res => {
+      console.log(res.data.data)
+      this.list = res.data.data
+    })
+  }
 }
 </script>
 <style lang="less" scoped>

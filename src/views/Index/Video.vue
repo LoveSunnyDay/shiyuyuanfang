@@ -10,8 +10,8 @@
     <div class="video-nav">
       <img src="../../assets/image/video/navLogo.png" alt="" />
       <ul>
-        <li>全部素材</li>
-        <li>电商带货</li>
+        <li v-for="list in list" :key="list.id" >{{list.title}}</li>
+        <!-- <li>电商带货</li>
         <li>汽车达人</li>
         <li>网红打卡</li>
         <li>餐饮美食</li>
@@ -20,7 +20,7 @@
         <li>母婴亲子</li>
         <li>游戏网络</li>
         <li>食品达人</li>
-        <li>美妆达人</li>
+        <li>美妆达人</li> -->
       </ul>
     </div>
     <div class="video-main">
@@ -53,19 +53,37 @@
       <RightMaterial></RightMaterial>
     </div>
   </div>
+
 </template>
 
 <script>
 import VideoList from '@/components/Video/VideoList.vue'
 import RightMaterial from '@/components/Video/RightMaterial.vue'
+// import { Category } from '@/services/video'
+import axios from 'axios'
 export default {
   data() {
-    return {}
+    return {
+      list: []
+    }
+  },
+  // created() {
+  //   Category().then((res) => {
+  //     console.log(res)
+  //   })
+  // },
+  created() {
+    // 全部KOL分类列表
+    axios.get('http://api.dev.com/v1/kol-category').then(res => {
+      console.log(res.data.data)
+      this.list = res.data.data
+    })
   },
   components: {
     VideoList,
     RightMaterial
   }
+
 }
 </script>
 
