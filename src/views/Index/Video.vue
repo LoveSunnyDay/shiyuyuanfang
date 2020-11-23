@@ -10,7 +10,7 @@
     <div class="video-nav">
       <img src="../../assets/image/video/navLogo.png" alt="" />
       <ul>
-        <li v-for="list in list" :key="list.id" >{{list.title}}</li>
+        <li v-for="item in item" :key="item.id" >{{item.title}}</li>
         <!-- <li>电商带货</li>
         <li>汽车达人</li>
         <li>网红打卡</li>
@@ -64,7 +64,7 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      list: []
+      item: []
     }
   },
   // created() {
@@ -76,7 +76,7 @@ export default {
     // 全部KOL分类列表
     axios.get('http://api.dev.com/v1/kol-category').then(res => {
       console.log(res.data.data)
-      this.list = res.data.data
+      this.item = res.data.data
     })
   },
   components: {

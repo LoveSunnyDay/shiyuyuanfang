@@ -6,24 +6,24 @@
           <span class="list-title">{{list.title}}</span>
           <div class="list-main">
             <span>{{list.subtitle}}</span>
-            <span class="list-name">美妆博主</span>
-            <span>再次等候，为您提供推广。</span>
+            <!-- <span class="list-name">美妆博主</span>
+            <span>再次等候，为您提供推广。</span> -->
           </div>
         </div>
         <div class="content-look-introduce">
           {{list.body}}
         </div>
         <div class="content-look-detail">
-          <div class="detail-box" v-for="list in list" :key="list">
+          <div class="detail-box" v-for="list in list.kols" :key="list">
             <img src="../../assets/image/icon.jpg" alt="" />
-            <div class="detail-name">{{list.kols.nickname}}</div>
+            <div class="detail-name">{{list.nickname}}</div>
             <div class="detail-from">
               平台：
               <span>抖音</span>
             </div>
             <div class="detail-fans">
               粉丝数：
-              <span>51</span>
+              <span>{{list.fan_count}}</span>
               <span>W</span>
             </div>
           </div>
@@ -43,11 +43,13 @@ export default {
   created() {
     // 全部KOL分类列表
     axios.get('http://api.dev.com/v1/index_recommend').then(res => {
-      console.log(res.data.data)
+      // console.log(res.data.data)
       this.list = res.data.data
     })
   }
+
 }
+
 </script>
 <style lang="less" scoped>
     .content-look:hover {

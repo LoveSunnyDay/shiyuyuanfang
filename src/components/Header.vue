@@ -76,6 +76,7 @@ export default {
   height: 72px;
   background: #232a34;
   display: flex;
+  float:left;
   justify-content: space-between;
   position: fixed;
   top: 0;
@@ -83,6 +84,7 @@ export default {
   z-index: 100;
   .header-left {
     display: flex;
+    float:left;
     line-height: 72px;
     margin-left: 32px;
     img {
@@ -119,6 +121,7 @@ export default {
   .nav-list {
     display: flex;
     li {
+      float:left;
       margin-right: 30px;
       cursor: pointer;
     }

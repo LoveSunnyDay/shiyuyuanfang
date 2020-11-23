@@ -1,6 +1,6 @@
 <template>
     <div>
-          <div class="filter-list" v-for="list in list" :key="list.id">
+          <div class="filter-list" v-for="list in list" :key="list._id">
       <div class="list-left">
         <div class="list-left-main">
           <div class="left-main-icon">
@@ -8,7 +8,7 @@
               src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=179057337,2765188365&fm=26&gp=0.jpg"
               alt=""
             />
-            <p>粉丝数：51W</p>
+            <p>粉丝数:{{list.fan_count}}W</p>
           </div>
           <div class="left-main-item">
             <div class="main-item-name">
@@ -25,52 +25,32 @@
             <div class="main-item-case">
               <p>案例：</p>
               <ul>
-                <li>奥迪</li>
-                <li>/</li>
+                <li>{{list.cases}}</li>
+                <!-- <li>/</li>
                 <li>比亚迪</li>
                 <li>/</li>
                 <li>哈弗</li>
                 <li>/</li>
-                <li>五菱</li>
+                <li>五菱</li> -->
               </ul>
             </div>
             <p class="main-item-text">
               只接受上海地区的，中国好声音学院，搞笑音乐人，鸡汤段子手，全网最迷人的猪猪宝藏女友对口型段子达人哦
             </p>
             <p class="main-item-url">
-              访问TA的抖音链接：<a href="">{{list.home_url}}</a>
+              访问TA的抖音链接>>><a :href="list.home_url" target="_blank"></a>
             </p>
           </div>
         </div>
       </div>
       <div class="list-right">
         <ul>
-          <li>
-            <p>直播1小时</p>
-            <p>￥3600</p>
-          </li>
-          <li>
-            <p>直播2小时</p>
-            <p>￥3600</p>
-          </li>
-          <li>
-            <p>直播3小时</p>
-            <p>￥3600</p>
-          </li>
-          <li>
-            <p>直播4小时</p>
-            <p>￥3600</p>
-          </li>
-          <li>
-            <p>直播5小时</p>
-            <p>￥3600</p>
-          </li>
-          <li>
-            <p>直播6小时</p>
-            <p>￥3600</p>
+          <li v-for="list in list.products" :key="list.id">
+            <p>{{list.name}}</p>
+            <p>{{list.price}}</p>
           </li>
         </ul>
-        <button>找TA推广</button>
+          <button @click="del(list._id)">找TA推广</button>
       </div>
     </div>
     </div>
@@ -82,6 +62,11 @@ export default {
   data() {
     return {
       list: []
+    }
+  },
+  methods: {
+    del(list) {
+      console.log(list)
     }
   },
   created() {
@@ -187,13 +172,19 @@ export default {
             ul {
               display: flex;
               color: #777777;
-              li:nth-child(odd) {
-                cursor: pointer;
+              li{
+                width: 330px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
               }
-              li:nth-child(even) {
-                //even表示偶数
-                margin: 0 10px;
-              }
+              // li:nth-child(odd) {
+              //   cursor: pointer;
+              // }
+              // li:nth-child(even) {
+              //   //even表示偶数
+              //   margin: 0 10px;
+              // }
             }
           }
           .main-item-text {
