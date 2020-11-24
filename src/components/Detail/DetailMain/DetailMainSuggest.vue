@@ -73,6 +73,7 @@ export default {
     font-weight: bold;
     color: #5b5a5a;
     margin-bottom: 25px;
+    margin-left: 10px;
     span {
       background: #ececec;
       padding: 3px 12px;

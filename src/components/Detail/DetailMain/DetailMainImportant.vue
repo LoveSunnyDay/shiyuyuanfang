@@ -146,6 +146,18 @@ export default {
           line-height: 20px;
         }
       }
+      li:nth-child(5) {
+        margin-top: 10px;
+      }
+      li:nth-child(6) {
+        margin-top: 10px;
+      }
+      li:nth-child(7) {
+        margin-top: 10px;
+      }
+      li:nth-child(8) {
+        margin-top: 10px;
+      }
     }
   }
   /deep/.el-timeline-item__timestamp.is-top {

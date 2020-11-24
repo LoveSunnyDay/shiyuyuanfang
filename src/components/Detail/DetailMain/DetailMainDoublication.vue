@@ -89,6 +89,7 @@ export default {
     }
   }
   ul {
+    margin-left: 10px;
     li {
       display: flex;
       height: 52px;
