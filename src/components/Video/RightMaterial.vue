@@ -4,7 +4,7 @@
         <p class="material-title">精选热度素材</p>
         <div class="material-main" v-for="list in 5" :key="list">
           <img
-            src="https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3807427310,283445384&fm=26&gp=0.jpg"
+            src="https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1554886033,1575606621&fm=26&gp=0.jpg"
             alt=""
           />
           <div class="material-text">

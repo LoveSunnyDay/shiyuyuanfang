@@ -71,7 +71,7 @@ export default {
   },
   created() {
     // 所有KOL列表
-    axios.get('http://api.dev.com/v1/kol').then(res => {
+    axios.get('https://api.dev.hiifire.com/v1/kol').then(res => {
       console.log(res.data.data.items)
       this.list = res.data.data.items
     })

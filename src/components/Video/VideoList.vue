@@ -4,7 +4,7 @@
         <div class="list-content" v-for="list in 10" :key="list">
           <div class="list-icon">
             <img
-              src="https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1813774034,322794393&fm=26&gp=0.jpg"
+              src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606279578554&di=84cac7e1a3394091660af1670edcd15e&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201611%2F17%2F20161117225743_xruNU.gif"
               alt=""
             />
             <span>#美妆</span>

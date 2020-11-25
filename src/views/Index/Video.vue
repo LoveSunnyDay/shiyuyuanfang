@@ -28,6 +28,7 @@
         <el-carousel height="260px">
           <el-carousel-item v-for="item in 5" :key="item">
             <!-- <h3 class="small">{{ item }}</h3> -->
+            <img style="width:100%" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606282239700&di=c1b9477ce7a2d445ef52a489780e8102&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180912%2F6e295e5cc30f4dd89558d5572f08c072.gif" alt="">
           </el-carousel-item>
         </el-carousel>
         <span>商业策划</span>
@@ -42,7 +43,7 @@
         </div>
         <div class="right-icon" v-for="list in 3" :key="list">
           <img
-            src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2694204666,1804596294&fm=26&gp=0.jpg"
+            src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606282196602&di=66b3bb958738fc1ec8b3b7ec3501067b&imgtype=0&src=http%3A%2F%2Fimg.mp.itc.cn%2Fupload%2F20170329%2Fe5c7183e1696478ab9ff093474ae4d45_th.jpg"
             alt=""
             class="icon-content"
           />
@@ -74,7 +75,7 @@ export default {
   // },
   created() {
     // 全部KOL分类列表
-    axios.get('http://api.dev.com/v1/kol-category').then(res => {
+    axios.get('https://api.dev.hiifire.com/v1/kol-category').then(res => {
       console.log(res.data.data)
       this.item = res.data.data
     })
