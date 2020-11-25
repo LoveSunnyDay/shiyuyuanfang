@@ -5,7 +5,7 @@
         <div class="list-left-main">
           <div class="left-main-icon">
             <img
-              src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=179057337,2765188365&fm=26&gp=0.jpg"
+              src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3829054958,4035218998&fm=26&gp=0.jpg"
               alt=""
             />
             <p>粉丝数:{{list.fan_count}}W</p>
@@ -14,12 +14,12 @@
             <div class="main-item-name">
               <p>{{list.nickname}}</p>
               <ul>
-                <li>剧情</li>
-                <li>家庭</li>
+                <li>{{list.tags}}</li>
+                <!-- <li>家庭</li>
                 <li>搞笑</li>
                 <li>颜值</li>
                 <li>音乐</li>
-                <li>上海地区</li>
+                <li>上海地区</li> -->
               </ul>
             </div>
             <div class="main-item-case">
@@ -38,7 +38,7 @@
               只接受上海地区的，中国好声音学院，搞笑音乐人，鸡汤段子手，全网最迷人的猪猪宝藏女友对口型段子达人哦
             </p>
             <p class="main-item-url">
-              访问TA的抖音链接>>><a :href="list.home_url" target="_blank"></a>
+              访问TA的抖音链接>>><a href="" target="_blank"></a>
             </p>
           </div>
         </div>
@@ -57,24 +57,12 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   data() {
     return {
       list: []
     }
-  },
-  methods: {
-    del(list) {
-      console.log(list)
-    }
-  },
-  created() {
-    // 所有KOL列表
-    axios.get('https://api.dev.hiifire.com/v1/kol').then(res => {
-      console.log(res.data.data.items)
-      this.list = res.data.data.items
-    })
   }
 }
 </script>

@@ -1,7 +1,16 @@
-import { get } from '../utils/request'
+import axios from '../utils/request'
+// import router from "../router"
 
 // 全部KOL分类列表
-export function Category() {
-  console.log('http://api.dev.com/v1/kol-category')
-  return get('http://api.dev.com/v1/kol-category')
+export function ContentList() {
+  return axios.get(
+    'https://api.dev.hiifire.com/v1/index_recommend'
+  )
+}
+
+// 跳转kol分类详情页
+export function LookForHandel(id) {
+  console.log('https://api.dev.hiifire.com/v1/kol/category/' + id)
+  return axios.get('https://api.dev.hiifire.com/v1/kol/category/' + id
+  )
 }

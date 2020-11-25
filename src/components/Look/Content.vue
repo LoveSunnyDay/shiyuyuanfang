@@ -3,7 +3,7 @@
         <div class="content-look" v-for="list in list" :key="list.id" @click="LookForHandel(list.id)">
       <router-link to="/index/lookfor">
         <div class="content-look-title">
-          <span class="list-title">{{list.title}}</span>
+          <span class="list-title"  >{{list.title}}</span>
           <div class="list-main">
             <span>{{list.subtitle}}</span>
             <!-- <span class="list-name">美妆博主</span>
@@ -14,7 +14,7 @@
           {{list.body}}
         </div>
         <div class="content-look-detail">
-          <div class="detail-box" v-for="list in list.kols" :key="list">
+          <div class="detail-box" v-for="list in list.kols" :key="list._id">
             <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606288023066&di=7f9c720eebe94c83fd56fbb29caf2da7&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa5a8c0adf1ed1bea019e304ce4f6f9365925e04559b7d-uJQJDV_fw658" alt="" />
             <div class="detail-name">{{list.nickname}}</div>
             <div class="detail-from">
@@ -33,21 +33,34 @@
 </div>
 </template>
 <script>
-import axios from 'axios'
+// import axios from 'axios'
+import { ContentList } from '../../services/video'
 export default {
   data() {
     return {
       list: []
     }
   },
-  created() {
-    // 全部KOL分类列表
-    axios.get('https://api.dev.hiifire.com/v1/index_recommend').then(res => {
+  methods: {
+    async ContentList() {
+      const res = await ContentList()
+      // console.log(data)
       console.log(res.data.data.items)
       this.list = res.data.data.items
-    })
-  }
+    },
+    // 跳转详情页
+    async LookForHandel(list) {
+      console.log(list)
+      this.$router.push({
+        path: 'LookFor',
+        query: { id: list }
+      })
+    }
 
+  },
+  created() {
+    this.ContentList()
+  }
 }
 
 </script>

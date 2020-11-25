@@ -1,13 +1,13 @@
 <template>
   <div class="lookfor-main">
-      <h1>美妆达人</h1>
-      <div class="lookfor-item" v-for="item in 8" :key="item">
+      <h1></h1>
+      <div class="lookfor-item" v-for="list in 6" :key="list._id">
         <div class="lookfor-item-left">
           <img
             src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=251289958,1860898046&fm=26&gp=0.jpg"
             alt=""
           />
-          <p class="lookfor-item-left-name">一条小团团</p>
+          <p class="lookfor-item-left-name">{{list.nickname}}</p>
           <p class="lookfor-item-left-list">平台：抖音</p>
           <p class="lookfor-item-left-list">粉丝数：51W</p>
         </div>
@@ -62,8 +62,27 @@
   </div>
 </template>
 <script>
+// import { LookForHandel } from '../../services/video'
 export default {
+  data() {
+    return {
+      // 商品详情
+      list: []
 
+    }
+  }
+//   created() {
+//     const res = LookForHandel(this.$route.query.id)
+//     console.log(this.list)
+//     this.list = res
+//   },
+//   watch: {
+//     $route() {
+//       const res = LookForHandel(this.$route.query.id)
+//       console.log(this.list)
+//       this.list = res
+//     }
+//   }
 }
 </script>
 <style lang="less" scoped>

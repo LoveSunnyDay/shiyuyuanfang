@@ -109,7 +109,7 @@ export default {
   },
   created() {
     // 全部KOL分类列表
-    axios.get('http://api.dev.com/v1/kol-category').then(res => {
+    axios.get('https://api.dev.hiifire.com/v1/kol-category').then(res => {
       console.log(res.data.data)
       this.options = res.data.data
     })

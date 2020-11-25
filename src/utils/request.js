@@ -1,6 +1,7 @@
 import axios from 'axios'
-
-
+// const service = axios.create({
+//   timeout: 5000
+// })
 // 发起get请求
 export function get(url, params) {
   return get(url, {
