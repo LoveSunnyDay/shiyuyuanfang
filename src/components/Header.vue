@@ -14,8 +14,10 @@
       <i class="el-icon-search"></i>
     </div>
     <ul class="nav-list">
-      <li class="nav-text">网红通道</li>
+      <!-- <li class="nav-text">网红通道</li> -->
+      <router-link to="/Channel" tag="li" class="nav-text">网红通道</router-link>
       <li class="nav-text">MCN通道</li>
+      <router-link to="/Mycenter" tag="li" class="nav-text">个人中心</router-link>
       <li>
         <img src="../assets/image/gengduo.png" alt="" class="nav-gengduo" />
       </li>

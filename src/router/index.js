@@ -13,6 +13,7 @@ import LoadFail from '@/views/LoadFail'
 import DetailKuaiShou from '@/views/Detail/DetailKuaiShou'
 import DetailDouYin from '@/views/Detail/DetailDouYin'
 import DetailBilibili from '@/views/Detail/DetailBilibili'
+import Channel from '@/views/Channel'
 
 import Pay from '@/views/Pay/Pay'
 import PayComplete from '@/views/Pay/PayComplete'
@@ -138,6 +139,10 @@ const routes = [
   {
     path: '/DetailBilibili',
     component: DetailBilibili
+  },
+  {
+    path: '/Channel',
+    component: Channel
   }
 ]
 
