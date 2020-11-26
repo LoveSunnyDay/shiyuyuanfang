@@ -76,7 +76,7 @@ export default {
   },
   created() {
     LookForHandel(this.$route.query.id).then(res => {
-      console.log(this.$route.query.id)
+      // console.log(this.$route.query.id)
       this.item = res
       console.log(this.item)
     })

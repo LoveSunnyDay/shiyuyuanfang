@@ -72,7 +72,7 @@
         </p>
         <ul class="editor-time">
           <li>
-            <el-radio v-model="radio" label="1">两天内</el-radio>
+            <el-radio v-model="radio" label="1">2天内</el-radio>
           </li>
           <li>
             <el-radio v-model="radio" label="2">一周内</el-radio>
