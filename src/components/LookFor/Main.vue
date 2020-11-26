@@ -54,7 +54,8 @@
                 有众多线下品牌活动经验。
               </p>
             </div>
-            <div class="item-content-bottom-right">找TA推广</div>
+            <!-- <div class="item-content-bottom-right">找TA推广</div> -->
+            <router-link to="/DetailKuaiShou" tag="div" class="item-content-bottom-right">找TA推广</router-link>
           </div>
         </div>
       </div>
