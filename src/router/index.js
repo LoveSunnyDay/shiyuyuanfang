@@ -13,7 +13,8 @@ import LoadFail from '@/views/LoadFail'
 import DetailKuaiShou from '@/views/Detail/DetailKuaiShou'
 import DetailDouYin from '@/views/Detail/DetailDouYin'
 import DetailBilibili from '@/views/Detail/DetailBilibili'
-import Channel from '@/views/Channel'
+import Channel from '@/views/Channel/Channel'
+import ChannelMCN from '@/views/Channel/ChannelMCN'
 
 import Pay from '@/views/Pay/Pay'
 import PayComplete from '@/views/Pay/PayComplete'
@@ -143,6 +144,10 @@ const routes = [
   {
     path: '/Channel',
     component: Channel
+  },
+  {
+    path: '/ChannelMCN',
+    component: ChannelMCN
   }
 ]
 

@@ -2,39 +2,71 @@
   <div class="editor">
     <Header></Header>
     <div class="editor-main">
-          <div class="filter-crumbs">
-      <button size="mini" class="button_mini">
-         <span class="el-icon-arrow-left"></span>
-         <span class="mini_i"  @click="$router.back(-1)">返回</span>
-       </button>
-    <el-breadcrumb separator-class="el-icon-arrow-right" class="crumbs-nav">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>按需求筛选</el-breadcrumb-item>
-    </el-breadcrumb>
-    </div>
+      <el-row class="el-row-one">
+        <h5>平台：</h5>
+        <el-checkbox-button type="primary" round>
+          <img src="../assets/image/show/douyin.png" alt="" />
+          <p>抖音网红</p>
+        </el-checkbox-button>
+        <el-checkbox-button round>
+          <img src="../assets/image/show/xiaohongshu.png" alt="" />
+          <p>小红书网红</p>
+        </el-checkbox-button>
+        <el-checkbox-button round>
+          <img src="../assets/image/show/bilibili.png" alt="" />
+          <p>B站网红</p>
+        </el-checkbox-button>
+        <el-checkbox-button round>
+          <img src="../assets/image/show/kuaishou.png" alt="" />
+          <p>快手网红</p>
+        </el-checkbox-button>
+        <el-checkbox-button round>
+          <img src="../assets/image/show/taobao.png" alt="" />
+          <p>淘宝直播</p>
+        </el-checkbox-button>
+        <el-checkbox-button round>
+          <img src="../assets/image/show/tongyi.png" alt="" />
+          <p>同一经济公司</p>
+        </el-checkbox-button>
+      </el-row>
+      <el-row class="el-row-two">
+        <h5 style="width: 40px">粉丝:</h5>
+        <el-checkbox-button fill="">美妆达人</el-checkbox-button>
+        <el-checkbox-button type="primary">电商带货</el-checkbox-button>
+        <el-checkbox-button type="primary">汽车达人</el-checkbox-button>
+        <el-checkbox-button type="primary">网红打卡</el-checkbox-button>
+        <el-checkbox-button type="primary">美食餐饮</el-checkbox-button>
+        <el-checkbox-button type="primary">大快销品</el-checkbox-button>
+        <el-checkbox-button type="primary">服饰箱包</el-checkbox-button>
+        <el-checkbox-button type="primary">母婴亲子</el-checkbox-button>
+        <el-checkbox-button type="primary">游戏网络</el-checkbox-button>
+        <el-checkbox-button type="primary">食品达人</el-checkbox-button>
+      </el-row>
+      <el-row class="el-row-two">
+        <h5>预算：</h5>
+        <el-checkbox-button type="primary">1万以下</el-checkbox-button>
+        <el-checkbox-button type="primary">2-5万</el-checkbox-button>
+        <el-checkbox-button type="primary">5万以上</el-checkbox-button>
+      </el-row>
+      <el-row class="el-row-two">
+        <h5 style="margin: 40px 18px 0px 0px">粉丝数：</h5>
+        <el-checkbox-button type="primary">10万以下</el-checkbox-button>
+        <el-checkbox-button type="primary">10万-30万</el-checkbox-button>
+        <el-checkbox-button type="primary">30万-100万</el-checkbox-button>
+        <el-checkbox-button type="primary">一百万以上</el-checkbox-button>
+      </el-row>
       <p class="editor-title">
-        推广内容描述：
-        <i class="el-icon-question" title="推广内容描述提示"></i>
+        <!-- 推广内容描述：
+        <i class="el-icon-question" title="推广内容描述提示"></i> -->
       </p>
       <el-input
-          type="textarea"
-          :rows="2"
-          placeholder="请按照需求发布要求"
-          v-model="textarea">
+        type="textarea"
+        :rows="2"
+        placeholder="请按照需求发布要求"
+        v-model="textarea"
+      >
       </el-input>
       <div class="editor-content">
-        <p class="editor-title">
-          推广平台：
-          <i class="el-icon-question" title="推广平台提示"></i>
-        </p>
-        <ul class="editor-platform">
-          <li>抖音</li>
-          <li>小红书</li>
-          <li>B站</li>
-          <li>快手</li>
-          <li>微博</li>
-          <li>公众号</li>
-        </ul>
         <p class="editor-title">
           发布时间：
           <i class="el-icon-question" title="发布时间提示"></i>
@@ -50,8 +82,14 @@
             <el-radio v-model="radio" label="3">10天内</el-radio>
           </li>
           <li>
+            <el-radio v-model="radio" label="4">15天内</el-radio>
+          </li>
+          <li>
+            <el-radio v-model="radio" label="5">30天内</el-radio>
+          </li>
+          <li>
             <el-date-picker
-              v-model="value1"
+              v-model="value"
               type="daterange"
               range-separator="至"
               start-placeholder="开始日期"
@@ -62,9 +100,7 @@
         </ul>
         <div class="editor-button">
           <!-- <button>下一步：按要求给我推荐网红</button> -->
-          <router-link to="/Filter" tag="button"
-            >下一步：按要求给我推荐网红</router-link
-          >
+          <router-link to="/Filter" tag="button">发布</router-link>
         </div>
       </div>
     </div>
@@ -108,7 +144,8 @@ export default {
   data() {
     return {
       radio: '',
-      textarea: ''
+      textarea: '',
+      value: ''
     }
   },
   components: {
@@ -119,37 +156,78 @@ export default {
 
  <style lang="less" scoped>
 .editor {
+  margin: o auto;
   margin-top: 100px;
   .editor-main {
-    width: 944px;
+    width: 1070px;
     margin: 66px auto 0;
-      .filter-crumbs{
-    margin-bottom: 40px;
-    .button_mini{
-      width: 70px;
-    height: 26px;
-    cursor:pointer;
-    outline: none;
-    border-radius: 13px;
-      float: left;
-      color:#3D3A3A;
-      background: #EFEFEF;
-      margin-right: 20px;
-      border: none;
-    }
-    .crumbs-nav{
-      padding-top:8px;
-      color: #888888;
-       /deep/ .el-breadcrumb__inner:hover{
-        color: #888888;
+    .el-row-one {
+      display: flex;
+      h5 {
+        margin: 80px 28px 0px 0px;
+        color: #5e5e5eff;
+      }
+      /deep/ .el-checkbox-button__inner {
+        min-height: 0px;
+        padding: 0;
+        border: none;
+        margin-top: 66px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
+        border-radius: 45px;
+        display: flex;
+        margin-right: 20px;
+        cursor: pointer;
+        text-align: center;
+        img {
+          float: left;
+          width: 20px;
+          height: 20px;
+          margin-left: 16px;
+          margin-top: 14px;
+          margin-right: 4px;
+        }
+        p {
+          font-size: 14px;
+          font-weight: bold;
+          color: #5e5e5e;
+          margin-right: 16px;
+          line-height: 50px;
+        }
       }
     }
-  }
+    .el-row-two {
+      display: flex;
+      h5 {
+        // width: 100px;
+        margin: 40px 28px 0px 0px;
+        color: #5e5e5eff;
+      }
+      /deep/ .el-checkbox__inner {
+        background-color: #00a581;
+        // border-color:;
+      }
+      /deep/ .el-checkbox-button__inner {
+        // fill:#00a581;
+        border: none;
+        min-width: 70px;
+        padding: 0 10px;
+        border-radius: 45px;
+        height: 30px;
+        line-height: 30px;
+        margin-top: 31px;
+        // background: #ffffff;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
+        // border-radius: 20px;
+        margin-right: 10px;
+        cursor: pointer;
+        text-align: center;
+      }
+    }
     .editor-title {
       font-size: 18px;
       font-weight: bold;
       color: #191919;
-      margin-bottom: 27px;
+      margin-bottom: 80px;
       i {
         cursor: pointer;
       }
@@ -194,9 +272,9 @@ export default {
         justify-content: flex-end;
         margin-top: 56px;
         button {
-          width: 260px;
-          height: 40px;
-          background: #FF7519;
+          width: 100px;
+          height: 50px;
+          background: #ff7519;
           border-radius: 4px;
           font-size: 18px;
           outline: none;
@@ -206,8 +284,8 @@ export default {
           cursor: pointer;
         }
         button:hover {
-          background: #E36713;
-          color: #FFD7C2;
+          background: #e36713;
+          color: #ffd7c2;
         }
       }
     }
@@ -249,14 +327,19 @@ export default {
         margin-bottom: 10px;
       }
       li:last-child {
-        color: #B32A13;
+        color: #b32a13;
       }
     }
   }
 }
-/deep/ .el-textarea__inner{
-  height:600px
-};
+/deep/ .el-checkbox-button.is-checked .el-checkbox-button__inner {
+  color: #ffffff;
+  background: #00a581;
+}
+/deep/ .el-textarea__inner {
+  width: 1070px;
+  height: 600px;
+}
 /deep/.ql-editor {
   font-size: 18px;
   line-height: 2.4;

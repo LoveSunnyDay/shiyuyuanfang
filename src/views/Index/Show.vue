@@ -1,14 +1,14 @@
 <template>
   <div class="show">
     <div class="header">
-       <img src="../../assets/image/show.png" alt="" class="header-img" />
+      <img src="../../assets/image/show.png" alt="" class="header-img" />
     </div>
     <el-row>
-         <el-button round>
+      <el-button round>
         <p>全部网红</p>
       </el-button>
       <el-button round>
-        <img src="../../assets/image/show/douyin.png" alt=""/>
+        <img src="../../assets/image/show/douyin.png" alt="" />
         <p>抖音网红</p>
       </el-button>
       <el-button round>
@@ -20,7 +20,7 @@
         <p>快手网红</p>
       </el-button>
       <el-button round>
-         <img src="../../assets/image/show/bilibili.png" alt="" />
+        <img src="../../assets/image/show/bilibili.png" alt="" />
         <p>B站网红</p>
       </el-button>
     </el-row>
@@ -39,23 +39,23 @@ export default {
 
 <style lang="less" scoped>
 .show {
-  width: 1806px;
+  width: 1440px;
   margin: 0 auto;
   // padding: 0 57px;
-   .header-img{
+  .header-img {
     width: 100%;
-   height: 504px;
-  position:absolute;
-  left:0;
-  top:0px;
-  z-index: -100;
-}
-  .el-row{
+    height: 504px;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    z-index: -100;
+  }
+  .el-row {
     display: flex;
     margin-left: 10px;
-    margin-top:20px;
-    /deep/ .el-button{
-      border:none;
+    margin-top: 20px;
+    /deep/ .el-button {
+      border: none;
       background: #ffffff;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
       border-radius: 20px;
@@ -63,11 +63,11 @@ export default {
       margin-right: 20px;
       cursor: pointer;
       text-align: center;
-      /deep/ .is-round{
+      /deep/ .is-round {
         padding: 0;
       }
       img {
-        float:left;
+        float: left;
         width: 20px;
         height: 20px;
         margin-left: -13px;
@@ -81,7 +81,7 @@ export default {
         // line-height: 40px;
       }
     }
-    /deep/ .el-button:hover{
+    /deep/ .el-button:hover {
       background: #f1eeee;
     }
   }
