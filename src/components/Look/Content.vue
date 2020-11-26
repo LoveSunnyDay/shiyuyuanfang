@@ -1,9 +1,9 @@
 <template>
 <div>
         <div class="content-look" v-for="list in list" :key="list.id" @click="LookForHandel(list.id)">
-      <router-link to="/index/lookfor">
+      <router-link to="">
         <div class="content-look-title">
-          <span class="list-title"  >{{list.title}}</span>
+          <span class="list-title" :class="BorderLeft(list)" >{{list.title}}</span>
           <div class="list-main">
             <span>{{list.subtitle}}</span>
             <!-- <span class="list-name">美妆博主</span>
@@ -42,6 +42,33 @@ export default {
     }
   },
   methods: {
+    // 根据id判断小边框颜色
+    BorderLeft(list) {
+      if (list.id === 1) {
+        // console.log(list.id)
+        return 'list-title1'
+      } else if (list.id === 2) {
+        return 'list-title2'
+      } else if (list.id === 3) {
+        return 'list-title3'
+      } else if (list.id === 4) {
+        return 'list-title4'
+      } else if (list.id === 5) {
+        return 'list-title5'
+      } else if (list.id === 6) {
+        return 'list-title6'
+      } else if (list.id === 7) {
+        return 'list-title7'
+      } else if (list.id === 8) {
+        return 'list-title8'
+      } else if (list.id === 8) {
+        return 'list-title8'
+      } else if (list.id === 9) {
+        return 'list-title9'
+      } else if (list.id === 10) {
+        return 'list-title10'
+      }
+    },
     async ContentList() {
       const res = await ContentList()
       // console.log(data)
@@ -49,7 +76,7 @@ export default {
       this.list = res.data.data.items
     },
     // 跳转详情页
-    async LookForHandel(list) {
+    LookForHandel(list) {
       console.log(list)
       this.$router.push({
         path: 'LookFor',
@@ -77,13 +104,44 @@ export default {
   .content-look-title {
     display: flex;
     height: 27px;
+    .list-title1{
+      border-left: 3px #8C9EB1FF solid;
+      // border-image: linear-gradient(#E2E6E8FF,#8C9EB1FF) 20 20;
+    }
+    .list-title2{
+      border-left: 3px #FFB8FAFF solid;
+    }
+    .list-title3{
+      border-left: 3px #646364FF solid;
+    }
+    .list-title4{
+      border-left: 3px #79242FFF solid;
+    }
+    .list-title5{
+      border-left: 3px #D63458FF solid;
+    }
+    .list-title6{
+      border-left: 3px#E6BB8BFF solid;
+    }
+    .list-title7{
+      border-left: 3px #3A89A7FF solid;
+    }
+    .list-title8{
+      border-left: 3px #FFD5DEFF solid;
+    }
+    .list-title9{
+      border-left: 3px #8EBAE5FF solid;
+    }
+    .list-title10{
+      border-left: 3px #EA964DFF solid;
+    }
     .list-title {
       font-size: 20px;
       font-family: Source 'Han Sans SC';
       font-weight: bold;
       line-height: 27px;
       color: #1a1a1c;
-      border-left: 3px #ffb8fa solid;
+      // border-left: 3px #ffb8fa solid;
       padding-left: 2px;
       margin-right: 40px;
       cursor: pointer;
