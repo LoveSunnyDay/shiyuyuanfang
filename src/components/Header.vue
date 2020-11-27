@@ -105,7 +105,7 @@ export default {
       cursor: pointer;
     }
     input {
-      width: 360px;
+      width: 350px;
       height: 40px;
       background: #ffffff;
       border-radius: 6px;

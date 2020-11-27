@@ -65,16 +65,16 @@ export default {
 
 <style lang="less" scoped>
 .expenditure {
-  width: 1200px;
-  margin-left: 48px;
+  width: 1095px;
+  // margin-left: 48px;
   .expenditure-title {
     display: flex;
     justify-content: space-between;
-    margin-top: 33px;
+    // margin-top: 33px;
     .expenditure-title-left {
       display: flex;
       p {
-        font-size: 20px;
+        font-size: 16px;
         font-weight: bold;
         color: #171717;
         line-height: 32px;
@@ -92,7 +92,7 @@ export default {
           color: #7b7b7b;
           line-height: 32px;
           text-align: center;
-          margin-left: 22px;
+          margin-left: 15px;
           cursor: pointer;
         }
         // /deep/.el-input__inner {
@@ -118,7 +118,8 @@ export default {
   }
   .expenditure-type {
     display: flex;
-    margin: 20px 0;
+    // margin: 20px 0;
+    margin-top: 20px;
     height: 40px;
     background-color: #dee2ed;
     border-radius: 0px;
@@ -130,19 +131,19 @@ export default {
       color: #2b2b2b;
     }
     li:nth-child(1) {
-      width: 176px;
+      width: 166px;
     }
     li:nth-child(2) {
-      width: 272px;
+      width: 262px;
     }
     li:nth-child(3) {
-      width: 224px;
+      width: 174px;
     }
     li:nth-child(4) {
-      width: 188px;
+      width: 198px;
     }
     li:nth-child(5) {
-      width: 190px;
+      width: 160px;
     }
   }
   .expenditure-content {
@@ -162,19 +163,19 @@ export default {
         line-height: 64px;
       }
       li:nth-child(1) {
-        width: 176px;
+        width: 166px;
       }
       li:nth-child(2) {
-        width: 272px;
+        width: 262px;
       }
       li:nth-child(3) {
-        width: 224px;
+        width: 174px;
       }
       li:nth-child(4) {
-        width: 188px;
+        width: 198px;
       }
       li:nth-child(5) {
-        width: 190px;
+        width: 160px;
       }
     }
     .expenditure-page {

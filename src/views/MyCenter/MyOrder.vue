@@ -55,10 +55,10 @@ export default {
 <style lang="less">
 .myOrder {
   width: 1095px;
-  margin-left: 48px;
+  // margin-left: 48px;
   .order-title {
-    margin: 20px 0 23px 0;
-    font-size: 20px;
+    margin: 0 0 23px 0;
+    font-size: 16px;
     font-weight: bold;
     color: #171717;
   }
@@ -67,14 +67,14 @@ export default {
     li {
       height: 22px;
       padding: 9px 20px;
-      font-size: 16px;
+      font-size: 14px;
       font-weight: bold;
       color: #545454;
       background: #ffffff;
       box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
       border-radius: 20px;
       line-height: 22px;
-      margin-right: 4px;
+      margin-right: 15px;
       cursor: pointer;
     }
     .order-type-active {
@@ -86,7 +86,6 @@ export default {
     margin-top: 22px;
     .order-content-title {
       display: flex;
-      // width: 1176px;
       height: 40px;
       padding-left: 24px;
       background: #dee2ed;
@@ -114,19 +113,16 @@ export default {
       }
     }
     .order-item {
-      // width: 1200px;
       height: 160px;
       background-color: #ffffff;
-      margin-top: 20px;
+      margin-bottom: 10px;
       .order-item-title {
         height: 30px;
         font-size: 14px;
         font-weight: 400;
         line-height: 30px;
         color: #979797;
-        // opacity: 0.65;
-        // border-bottom: 1px solid rgba(0, 2, 8, 0.502);
-        border-bottom: 1px solid #EEF0F6;
+        border-bottom: 1px solid #eef0f6;
         padding-left: 24px;
         span:nth-child(2) {
           margin: 0 20px;

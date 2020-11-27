@@ -24,7 +24,6 @@ import MyCenter from '@/views/MyCenter'
 import MyOrder from '@/views/MyCenter/MyOrder'
 import Expenditure from '@/views/MyCenter/Expenditure'
 import Invoice from '@/views/MyCenter/Invoice'
-import AllInvoice from '@/views/MyCenter/AllInvoice'
 import OpenInvoice from '@/views/MyCenter/OpenInvoice'
 import MyProfile from '@/views/MyCenter/MyProfile'
 import News from '@/views/MyCenter/News'
@@ -95,10 +94,6 @@ const routes = [
       {
         path: 'Invoice',
         component: Invoice
-      },
-      {
-        path: 'AllInvoice',
-        component: AllInvoice
       },
       {
         path: 'OpenInvoice',

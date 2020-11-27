@@ -50,16 +50,16 @@ export default {
 
 <style lang="less">
 .news {
-  width: 1040px;
+  width: 1095px;
   height: 1060px;
-  margin-left: 48px;
+  // margin-left: 48px;
   background-color: #ffffff;
   .news-title {
     display: flex;
     justify-content: space-between;
     margin: 33px 20px 20px 20px;
     p {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: bold;
       color: #171717;
     }
@@ -105,7 +105,7 @@ export default {
         margin: 35px 19px 0 45px;
       }
       .news-content-main {
-        width: 800px;
+        width: 830px;
         font-size: 14px;
         margin-top: 35px;
         .content-main-tag {

@@ -79,28 +79,28 @@ export default {
 
 <style lang="less" scoped>
 .profile {
-  width: 1040px;
+  width: 1095px;
   height: 1060px;
   background-color: #ffffff;
-  margin-left: 48px;
+  // margin-left: 48px;
   .profile-title {
     p {
       height: 80px;
-      border-bottom: 1px solid #f0f0f0;
       line-height: 80px;
     }
     p:nth-child(1) {
       padding-left: 30px;
-      font-size: 20px;
+      font-size: 16px;
       font-weight: bold;
       color: #171717;
       opacity: 0.86;
     }
     p:nth-child(2) {
-      font-size: 22px;
+      font-size: 16px;
       font-weight: 800;
       color: #171717;
       text-align: center;
+      border-bottom: 1px solid #f0f0f0;
     }
   }
   .profile-content {
