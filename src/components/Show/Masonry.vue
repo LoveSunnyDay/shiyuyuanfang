@@ -1,20 +1,20 @@
 <template>
   <div>
-    <ul class="masonry">
+    <ul class="masonry" v-for="item in item" :key="item.id">
       <li class="masonry-item" @mouseover="mouseOver" @mouseleave="mouseLeave">
         <img src="https://picsum.photos/348/580?random=1" alt="" />
-        <p class="masonry-item-name">我是你的cc啊</p>
+        <p class="masonry-item-name">{{item.kol.nickname}}</p>
         <transition name="el-zoom-in-bottom">
           <div class="item-text" v-show="seen">
             <div class="item-text-left">
               <img src="../../assets/image/show/bilibili.png" alt="" />
-              <p>我是你的cc啊</p>
-              <p>段子手/搞笑</p>
+              <p>{{item.kol.nickname}}</p>
+              <p>{{item.kol.tags}}</p>
             </div>
             <span class="item-text-border"></span>
             <div class="item-text-right">
               <div class="item-text-right-one">
-                <p>3766W</p>
+                <p>{{item.kol.fan_count}}W</p>
                 <p>88</p>
               </div>
               <div class="item-text-right-two">
@@ -33,78 +33,30 @@
           </div>
         </transition>
       </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/420?random=2" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/530?random=3" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/470?random=4" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/390?random=5" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/410?random=6" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/460?random=7" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/430?random=8" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/500?random=9" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/480?random=10" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/520?random=11" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/460?random=12" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/490?random=13" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/560?random=14" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/510?random=15" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/420?random=16" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/500?random=17" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/420?random=18" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/510?random=19" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/450?random=20" alt="" />
-      </li>
     </ul>
   </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
-      seen: false
+      seen: false,
+      item: []
     }
+  },
+  created() {
+    // 全部KOL分类列表
+    axios.get('https://api.dev.hiifire.com/v1/kol-plat').then(res => {
+      // console.log(res.data.data)
+      this.item = res.data.data
+    })
   },
   methods: {
     mouseOver() {
       this.seen = true
     },
-    mouseLeave() {
+    mouseLeave(item) {
       this.seen = false
     }
   }

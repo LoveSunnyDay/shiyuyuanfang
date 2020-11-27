@@ -1,6 +1,6 @@
 <template>
     <div>
-          <div class="filter-list" v-for="list in list" :key="list._id">
+          <div class="filter-list" v-for="list in list" :key="list.id">
       <div class="list-left">
         <div class="list-left-main">
           <div class="left-main-icon">
@@ -38,7 +38,7 @@
               只接受上海地区的，中国好声音学院，搞笑音乐人，鸡汤段子手，全网最迷人的猪猪宝藏女友对口型段子达人哦
             </p>
             <p class="main-item-url">
-              访问TA的抖音链接>>><a href="" target="_blank"></a>
+              访问TA的抖音链接<a href="" target="_blank">{{list.home_url}}</a>
             </p>
           </div>
         </div>
@@ -57,12 +57,23 @@
 </template>
 
 <script>
+import { FilterList } from '../../services/FilterList'
 // import axios from 'axios'
 export default {
   data() {
     return {
       list: []
     }
+  },
+  methods: {
+    async FilterList() {
+      const res = await FilterList()
+      console.log(res.data.data.items)
+      this.list = res.data.data.items
+    }
+  },
+  created() {
+    this.FilterList()
   }
 }
 </script>

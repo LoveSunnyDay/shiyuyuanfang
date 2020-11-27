@@ -33,7 +33,6 @@
 </div>
 </template>
 <script>
-// import axios from 'axios'
 import { ContentList } from '../../services/video'
 export default {
   data() {
@@ -98,6 +97,7 @@ export default {
   background-color: #EEEEEE;
 }
 .content-look {
+  overflow: hidden;
   width: 1010px;
   margin: 42px auto 0;
   padding: 20px 20px 0;
@@ -224,7 +224,7 @@ export default {
     }
     .detail-box {
       width: 160px;
-      margin-right: 10px;
+      margin-right: 13px;
       img {
         width: 160px;
         height: 198px;
