@@ -18,6 +18,7 @@ import ChannelMCN from '@/views/Channel/ChannelMCN'
 
 import Pay from '@/views/Pay/Pay'
 import PayComplete from '@/views/Pay/PayComplete'
+import PaymentAgreement from '@/views/Pay/PaymentAgreement'
 
 import MyCenter from '@/views/MyCenter'
 import MyOrder from '@/views/MyCenter/MyOrder'
@@ -124,6 +125,10 @@ const routes = [
   {
     path: '/PayComplete',
     component: PayComplete
+  },
+  {
+    path: '/PaymentAgreement',
+    component: PaymentAgreement
   },
   {
     path: '/LoadFail',
