@@ -77,7 +77,11 @@
           </p>
         </li>
       </ul>
-      <p class="pay-qr-text">支付即同意《付款协议》</p>
+      <p class="pay-qr-text">
+        支付即同意<router-link to="/PaymentAgreement" target="_blank"
+          >《付款协议》</router-link
+        >
+      </p>
     </div>
   </div>
 </template>
@@ -298,11 +302,14 @@ export default {
     .pay-qr-text {
       font-size: 14px;
       font-weight: bold;
-      color: #191919;
-      opacity: 0.41;
+      color: #a0a0a0;
+      // opacity: 0.41;
       position: absolute;
       bottom: 30px;
       left: 40px;
+      a {
+        color: #a0a0a0;
+      }
     }
   }
 }

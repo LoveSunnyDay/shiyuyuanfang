@@ -100,11 +100,11 @@ export default {
 
 <style lang="less" scoped>
 .myCenter {
-  width: 1500px;
+  width: 1366px;
   margin: 100px auto 80px;
   display: flex;
   .myCenter-nav {
-    width: 252px;
+    width: 230px;
     height: 778px;
     background-color: #fff;
     overflow: hidden;
@@ -140,12 +140,13 @@ export default {
         }
       }
       .nav-list-item {
-        font-size: 16px;
+        font-size: 14px;
         font-weight: bold;
         color: #949494;
         padding-left: 60px;
         cursor: pointer;
         i {
+          font-size: 14px;
           margin-right: 4px;
         }
       }
@@ -154,7 +155,7 @@ export default {
 }
 .myCenter-active {
   background-color: #eafaf8;
-  color: #0daf99;
+  color: #0daf99 !important;
   border-left: 4px solid #32ccb7;
 }
 </style>

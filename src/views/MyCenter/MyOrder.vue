@@ -54,7 +54,7 @@ export default {
 
 <style lang="less">
 .myOrder {
-  width: 1200px;
+  width: 1095px;
   margin-left: 48px;
   .order-title {
     margin: 20px 0 23px 0;
@@ -86,7 +86,7 @@ export default {
     margin-top: 22px;
     .order-content-title {
       display: flex;
-      width: 1176px;
+      // width: 1176px;
       height: 40px;
       padding-left: 24px;
       background: #dee2ed;
@@ -98,23 +98,23 @@ export default {
         color: #2b2b2b;
       }
       li:nth-child(1) {
-        width: 300px;
+        width: 277px;
       }
       li:nth-child(2) {
-        width: 246px;
+        width: 192px;
       }
       li:nth-child(3) {
-        width: 196px;
+        width: 178px;
       }
       li:nth-child(4) {
-        width: 180px;
+        width: 166px;
       }
       li:nth-child(5) {
-        width: 152px;
+        width: 153px;
       }
     }
     .order-item {
-      width: 1200px;
+      // width: 1200px;
       height: 160px;
       background-color: #ffffff;
       margin-top: 20px;
@@ -123,9 +123,10 @@ export default {
         font-size: 14px;
         font-weight: 400;
         line-height: 30px;
-        color: #505050;
-        opacity: 0.65;
-        border-bottom: 1px solid rgba(0, 2, 8, 0.502);
+        color: #979797;
+        // opacity: 0.65;
+        // border-bottom: 1px solid rgba(0, 2, 8, 0.502);
+        border-bottom: 1px solid #EEF0F6;
         padding-left: 24px;
         span:nth-child(2) {
           margin: 0 20px;
@@ -144,20 +145,20 @@ export default {
           font-weight: bold;
         }
         li:nth-child(1) {
-          width: 300px;
+          width: 277px;
           p:nth-child(2) {
             color: #8e8e8e;
             margin-top: 4px;
           }
         }
         li:nth-child(2) {
-          width: 246px;
+          width: 192px;
         }
         li:nth-child(3) {
-          width: 196px;
+          width: 178px;
         }
         li:nth-child(4) {
-          width: 180px;
+          width: 166px;
           p:nth-child(1) {
             color: #e55757;
           }
@@ -167,7 +168,7 @@ export default {
           }
         }
         li:nth-child(5) {
-          width: 152px;
+          width: 153px;
         }
         li:nth-child(6) {
           button {
