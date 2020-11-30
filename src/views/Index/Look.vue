@@ -1,9 +1,9 @@
 <template>
   <div>
-     <div class="header">
-       <img src="../../assets/image/banner.png" alt="" class="header-img" />
+    <div class="header">
+      <img src="../../assets/image/banner.png" alt="" class="header-img" />
     </div>
-      <Content></Content>
+    <Content></Content>
   </div>
 </template>
 
@@ -17,11 +17,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.header-img{
-    width: 100%;
+.header-img {
+  width: 100%;
   height: 504px;
-  position:absolute;
-  top:0px;
+  position: absolute;
+  top: 0px;
   z-index: -100;
 }
 </style>

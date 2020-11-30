@@ -68,8 +68,8 @@ export default {
       color: #545454;
       cursor: pointer;
     }
-    span:hover{
-      color: #E92E2E;
+    span:hover {
+      color: #e92e2e;
     }
   }
   .news-type {

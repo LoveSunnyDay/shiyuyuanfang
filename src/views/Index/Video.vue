@@ -2,16 +2,11 @@
   <div class="video">
     <div>
       <img class="video-img" src="../../assets/image/video.png" />
-      <!-- <video class="video-img" autoplay="" loop="" muted="" poster="https://www.pexels.com/assets/videos/free-videos-7daa2ef41a140f70c757ce91913a4ecb90570b7d7cd2b401bae868350e02c83a.jpg">
-<source src="https://static.pexels.com/lib/videos/free-videos.mp4" type="video/mp4">
-<source src="https://static.pexels.com/lib/videos/free-videos.webm" type="video/webm">
-</video> -->
     </div>
     <div class="video-nav">
       <img src="../../assets/image/video/navLogo.png" alt="" />
       <ul>
-        <li v-for="item in item" :key="item.id" >{{item.title}}</li>
-        <!-- <li>电商带货</li>
+        <li>电商带货</li>
         <li>汽车达人</li>
         <li>网红打卡</li>
         <li>餐饮美食</li>
@@ -20,15 +15,18 @@
         <li>母婴亲子</li>
         <li>游戏网络</li>
         <li>食品达人</li>
-        <li>美妆达人</li> -->
+        <li>美妆达人</li>
       </ul>
     </div>
     <div class="video-main">
       <div class="block">
         <el-carousel height="260px">
           <el-carousel-item v-for="item in 5" :key="item">
-            <!-- <h3 class="small">{{ item }}</h3> -->
-            <img style="width:100%" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606282239700&di=c1b9477ce7a2d445ef52a489780e8102&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180912%2F6e295e5cc30f4dd89558d5572f08c072.gif" alt="">
+            <img
+              style="width: 100%"
+              src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606282239700&di=c1b9477ce7a2d445ef52a489780e8102&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20180912%2F6e295e5cc30f4dd89558d5572f08c072.gif"
+              alt=""
+            />
           </el-carousel-item>
         </el-carousel>
         <span>商业策划</span>
@@ -39,7 +37,6 @@
       <div class="right-list">
         <div class="list-title">
           <p>24小时网红热榜</p>
-          <span>查看更多榜单</span>
         </div>
         <div class="right-icon" v-for="list in 3" :key="list">
           <img
@@ -47,44 +44,26 @@
             alt=""
             class="icon-content"
           />
-          <!-- <img src="../assets/image/video/top1.png" alt="" class="icon-top" /> -->
           <span class="icon-top"></span>
         </div>
       </div>
       <RightMaterial></RightMaterial>
     </div>
   </div>
-
 </template>
 
 <script>
 import VideoList from '@/components/Video/VideoList.vue'
 import RightMaterial from '@/components/Video/RightMaterial.vue'
-// import { Category } from '@/services/video'
-import axios from 'axios'
 export default {
   data() {
-    return {
-      item: []
-    }
+    return {}
   },
-  // created() {
-  //   Category().then((res) => {
-  //     console.log(res)
-  //   })
-  // },
-  created() {
-    // 全部KOL分类列表
-    axios.get('https://api.dev.hiifire.com/v1/kol-category').then(res => {
-      console.log(res.data.data)
-      this.item = res.data.data
-    })
-  },
+  created() {},
   components: {
     VideoList,
     RightMaterial
   }
-
 }
 </script>
 
@@ -190,13 +169,6 @@ export default {
           border-left: 4px #35c4ba solid;
           padding-left: 4px;
           line-height: 24px;
-        }
-        span {
-          font-size: 12px;
-          font-weight: 800;
-          line-height: 24px;
-          color: #656366;
-          opacity: 0.7;
         }
       }
       .right-icon {

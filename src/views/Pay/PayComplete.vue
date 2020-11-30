@@ -102,14 +102,14 @@ export default {
         border: 1px #ff7519 solid;
       }
       button:nth-child(1):hover {
-        transition: .5s;
+        transition: 0.5s;
         background: #e36713;
         color: #ffd7c2;
       }
       button:nth-child(2):hover {
-        transition: .5s;
+        transition: 0.5s;
         border: 1px #e36713 solid;
-        color: #E36713;
+        color: #e36713;
       }
     }
   }

@@ -57,7 +57,6 @@
       </el-row>
       <el-input type="textarea" :placeholder="placeholder" v-model="textarea">
       </el-input>
-      <!-- <input type="textarea" cols="1070" rows="478" class="editor-input" /> -->
       <div class="editor-content">
         <p class="editor-title">
           <i class="iconfont icon-bixuan"></i>
@@ -151,9 +150,10 @@ export default {
 
  <style lang="less" scoped>
 .editor {
-  margin: 138px auto 0;
-  width: 1070px;
+  margin-top: 138px;
   .editor-main {
+    margin: 0 auto;
+    width: 1070px;
     .el-row-one {
       display: flex;
       margin-bottom: 30px;
@@ -267,12 +267,6 @@ export default {
         cursor: pointer;
         text-align: center;
       }
-    }
-    .editor-input {
-      // width: 1070px;
-      // height: 478px;
-      border: 1px solid rgba(112, 112, 112, 0.10196078431372549);
-      outline: none;
     }
     .editor-content {
       margin-top: 80px;

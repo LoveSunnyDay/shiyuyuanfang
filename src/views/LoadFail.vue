@@ -69,8 +69,8 @@ export default {
   }
   button:hover {
     transition: 0.5s;
-    background-color: #FF7519;
-    color: #FFFFFF;
+    background-color: #ff7519;
+    color: #ffffff;
     border: 0;
   }
 }
