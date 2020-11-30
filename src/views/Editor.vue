@@ -30,7 +30,7 @@
         </el-checkbox-button>
       </el-row>
       <el-row class="el-row-two">
-        <h5 style="width: 40px">粉丝:</h5>
+        <h5>粉丝：</h5>
         <el-checkbox-button fill="">美妆达人</el-checkbox-button>
         <el-checkbox-button type="primary">电商带货</el-checkbox-button>
         <el-checkbox-button type="primary">汽车达人</el-checkbox-button>
@@ -42,32 +42,25 @@
         <el-checkbox-button type="primary">游戏网络</el-checkbox-button>
         <el-checkbox-button type="primary">食品达人</el-checkbox-button>
       </el-row>
-      <el-row class="el-row-two">
+      <el-row class="el-row-three">
         <h5>预算：</h5>
         <el-checkbox-button type="primary">1万以下</el-checkbox-button>
         <el-checkbox-button type="primary">2-5万</el-checkbox-button>
         <el-checkbox-button type="primary">5万以上</el-checkbox-button>
       </el-row>
-      <el-row class="el-row-two">
-        <h5 style="margin: 40px 18px 0px 0px">粉丝数：</h5>
+      <el-row class="el-row-four">
+        <h5>粉丝数：</h5>
         <el-checkbox-button type="primary">10万以下</el-checkbox-button>
         <el-checkbox-button type="primary">10万-30万</el-checkbox-button>
         <el-checkbox-button type="primary">30万-100万</el-checkbox-button>
         <el-checkbox-button type="primary">一百万以上</el-checkbox-button>
       </el-row>
-      <p class="editor-title">
-        <!-- 推广内容描述：
-        <i class="el-icon-question" title="推广内容描述提示"></i> -->
-      </p>
-      <el-input
-        type="textarea"
-        :rows="2"
-        placeholder="请按照需求发布要求"
-        v-model="textarea"
-      >
+      <el-input type="textarea" :placeholder="placeholder" v-model="textarea">
       </el-input>
+      <!-- <input type="textarea" cols="1070" rows="478" class="editor-input" /> -->
       <div class="editor-content">
         <p class="editor-title">
+          <i class="iconfont icon-bixuan"></i>
           发布时间：
           <i class="el-icon-question" title="发布时间提示"></i>
         </p>
@@ -143,9 +136,11 @@ export default {
   name: 'Editor',
   data() {
     return {
-      radio: '',
+      radio: '1',
       textarea: '',
-      value: ''
+      value: '',
+      placeholder:
+        '请按照下列各式提供视频发布要求：\n①短视频简介：建议100-500字\n②标签/关键词：可不填\n③短视频链接：如果您提供的视频链接上游简介标签等信息，可不填'
     }
   },
   components: {
@@ -156,24 +151,26 @@ export default {
 
  <style lang="less" scoped>
 .editor {
-  margin: o auto;
-  margin-top: 100px;
+  margin: 138px auto 0;
+  width: 1070px;
   .editor-main {
-    width: 1070px;
-    margin: 66px auto 0;
     .el-row-one {
       display: flex;
+      margin-bottom: 30px;
       h5 {
-        margin: 80px 28px 0px 0px;
         color: #5e5e5eff;
+        line-height: 40px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #5e5e5e;
+        margin-right: 18px;
       }
       /deep/ .el-checkbox-button__inner {
         min-height: 0px;
         padding: 0;
         border: none;
-        margin-top: 66px;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
-        border-radius: 45px;
+        border-radius: 20px;
         display: flex;
         margin-right: 20px;
         cursor: pointer;
@@ -182,79 +179,112 @@ export default {
           float: left;
           width: 20px;
           height: 20px;
-          margin-left: 16px;
-          margin-top: 14px;
-          margin-right: 4px;
+          margin: 10px 4px 0 10px;
         }
         p {
           font-size: 14px;
           font-weight: bold;
           color: #5e5e5e;
           margin-right: 16px;
-          line-height: 50px;
+          line-height: 40px;
         }
       }
     }
     .el-row-two {
       display: flex;
+      margin-bottom: 30px;
       h5 {
-        // width: 100px;
-        margin: 40px 28px 0px 0px;
-        color: #5e5e5eff;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 30px;
+        color: #5e5e5e;
+        margin-right: 18px;
       }
       /deep/ .el-checkbox__inner {
         background-color: #00a581;
-        // border-color:;
       }
       /deep/ .el-checkbox-button__inner {
-        // fill:#00a581;
         border: none;
         min-width: 70px;
-        padding: 0 10px;
-        border-radius: 45px;
+        padding: 0 16px;
+        border-radius: 20px;
         height: 30px;
         line-height: 30px;
-        margin-top: 31px;
-        // background: #ffffff;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
-        // border-radius: 20px;
         margin-right: 10px;
         cursor: pointer;
         text-align: center;
       }
     }
-    .editor-title {
-      font-size: 18px;
-      font-weight: bold;
-      color: #191919;
-      margin-bottom: 80px;
-      i {
+    .el-row-three {
+      display: flex;
+      margin-bottom: 30px;
+      h5 {
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 30px;
+        color: #5e5e5e;
+        margin-right: 18px;
+      }
+      /deep/ .el-checkbox__inner {
+        background-color: #00a581;
+      }
+      /deep/ .el-checkbox-button__inner {
+        border: none;
+        min-width: 70px;
+        padding: 0 16px;
+        border-radius: 20px;
+        height: 30px;
+        line-height: 30px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
+        margin-right: 10px;
         cursor: pointer;
+        text-align: center;
       }
     }
-    .quill-editor {
-      cursor: pointer;
-      height: 600px;
+    .el-row-four {
+      display: flex;
+      margin-bottom: 80px;
+      h5 {
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 30px;
+        color: #5e5e5e;
+        margin-right: 4px;
+      }
+      /deep/ .el-checkbox__inner {
+        background-color: #00a581;
+      }
+      /deep/ .el-checkbox-button__inner {
+        border: none;
+        min-width: 70px;
+        padding: 0 16px;
+        border-radius: 20px;
+        height: 30px;
+        line-height: 30px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
+        margin-right: 10px;
+        cursor: pointer;
+        text-align: center;
+      }
+    }
+    .editor-input {
+      // width: 1070px;
+      // height: 478px;
+      border: 1px solid rgba(112, 112, 112, 0.10196078431372549);
+      outline: none;
     }
     .editor-content {
-      padding-left: 12px;
-      p:first-child {
-        margin: 72px 0 18px 0;
-      }
-      .editor-platform {
-        display: flex;
-        margin-bottom: 51px;
-        li {
-          width: 80px;
-          height: 40px;
-          border: 1px solid #00a581;
-          border-radius: 4px;
-          font-size: 18px;
-          font-weight: bold;
-          color: #35b79b;
-          line-height: 40px;
-          text-align: center;
-          margin-right: 36px;
+      margin-top: 80px;
+      .editor-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #191919;
+        line-height: 28px;
+        .icon-bixuan {
+          color: #e5102a;
+        }
+        .el-icon-question {
           cursor: pointer;
         }
       }
@@ -264,7 +294,6 @@ export default {
           margin-right: 26px;
           height: 40px;
           line-height: 40px;
-          margin-top: -20px;
         }
       }
       .editor-button {
@@ -332,21 +361,17 @@ export default {
     }
   }
 }
+// 选中按钮颜色
 /deep/ .el-checkbox-button.is-checked .el-checkbox-button__inner {
   color: #ffffff;
   background: #00a581;
 }
-/deep/ .el-textarea__inner {
-  width: 1070px;
-  height: 600px;
+// 经过按钮字体颜色
+/deep/ .el-checkbox-button__inner:hover {
+  color: #00a581;
 }
-/deep/.ql-editor {
-  font-size: 18px;
-  line-height: 2.4;
-}
-/deep/.ql-toolbar.ql-snow .ql-picker-label {
-  outline: none;
-}
+
+//单选按钮
 /deep/.el-radio__inner {
   border-color: #35b79b;
   width: 20px;
@@ -359,11 +384,20 @@ export default {
   border-color: #35b79b;
   background: #35b79b;
 }
-
 /deep/.el-radio__label {
-  padding-left: 3px;
+  padding-left: 8px;
   font-size: 16px;
   font-weight: 500;
   color: #656565;
+}
+
+//输入框
+/deep/ .el-textarea__inner {
+  width: 1070px;
+  height: 478px;
+  font-size: 18px;
+}
+/deep/.el-textarea__inner:focus {
+  border-color: #00a581;
 }
 </style>
