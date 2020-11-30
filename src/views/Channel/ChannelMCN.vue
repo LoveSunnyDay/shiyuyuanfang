@@ -128,12 +128,12 @@
           </li>
           <li>
             <img src="../../assets/image/channel/process5.png" alt="" />
-            <p>开通MCN账户 立刻接订单</p>
+            <p>开通MCN账户</p>
             <img src="../../assets/image/channel/xian1.png" class="xian5" />
           </li>
           <li>
             <img src="../../assets/image/channel/process6.png" alt="" />
-            <p>开通MCN账户 立刻接订单</p>
+            <p>立刻接订单</p>
           </li>
         </ul>
       </div>

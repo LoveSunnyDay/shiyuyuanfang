@@ -311,6 +311,7 @@ export default {
     color: #161616;
     font-size: 16px;
     margin-top: 30px;
+    font-weight: 800;
   }
   ul {
     li {
