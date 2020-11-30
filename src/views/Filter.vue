@@ -99,7 +99,7 @@
 import Shopping from '@/components/Shopping.vue'
 import Header from '@/components/Header.vue'
 import FilterList from '@/components/Filter/FilterList.vue'
-import axios from 'axios'
+// import axios from 'axios'
 export default {
   data() {
     return {
@@ -109,7 +109,7 @@ export default {
   },
   created() {
     // 全部KOL分类列表
-    axios.get('https://api.dev.hiifire.com/v1/kol-category').then(res => {
+    this.axios.get('https://api.dev.hiifire.com/v1/kol-category').then(res => {
       console.log(res.data.data)
       this.options = res.data.data
     })

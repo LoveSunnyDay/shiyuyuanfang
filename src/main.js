@@ -3,6 +3,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import './plugins/element.js'
+import './plugins/axios.js'
 import './assets/css/resrt.css' // 引入resrt.css
 import './assets/iconfont/iconfont.css' // 引入阿里字体图标
 import Es6Promise from 'es6-promise' // 适配ie
