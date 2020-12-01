@@ -87,17 +87,17 @@ export default {
 
 <style lang="less" scoped>
 .company {
-  width: 1040px;
-  margin-left: 48px;
+  width: 1095px;
+  // margin-left: 48px;
   .company-warn {
     height: 52px;
   }
   .company-content {
-    height: 1086px;
+    // height: 1086px;
     background-color: #ffffff;
     overflow: hidden;
     .company-content-title {
-      font-size: 20px;
+      font-size: 16px;
       font-weight: bold;
       color: #171717;
       opacity: 0.6;
@@ -105,7 +105,7 @@ export default {
     }
     .company-content-item {
       p:nth-child(1) {
-        font-size: 22px;
+        font-size: 16px;
         font-weight: 800;
         line-height: 30px;
         color: #171717;
@@ -131,6 +131,25 @@ export default {
             font-size: 16px;
             font-weight: 600;
             color: #818181;
+          }
+          input::-webkit-input-placeholder {
+            color: #b5b4b7;
+            font-size: 16px;
+          }
+          input::-moz-placeholder {
+            /* Mozilla Firefox 19+ */
+            color: #b5b4b7;
+            font-size: 16px;
+          }
+          input:-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 */
+            color: #b5b4b7;
+            font-size: 16px;
+          }
+          input:-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: #b5b4b7;
+            font-size: 16px;
           }
         }
         li:nth-child(1) {

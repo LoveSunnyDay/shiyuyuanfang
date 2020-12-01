@@ -103,8 +103,9 @@ export default {
   width: 1366px;
   margin: 100px auto 80px;
   display: flex;
+  justify-content: space-between;
   .myCenter-nav {
-    width: 230px;
+    width: 250px;
     height: 778px;
     background-color: #fff;
     overflow: hidden;
@@ -129,7 +130,7 @@ export default {
         line-height: 56px;
       }
       .nav-list-title {
-        margin-left: 41px;
+        margin-left: 60px;
         font-size: 16px;
         font-weight: bold;
         color: #212121;
@@ -143,12 +144,15 @@ export default {
         font-size: 14px;
         font-weight: bold;
         color: #949494;
-        padding-left: 60px;
+        padding-left: 82px;
         cursor: pointer;
         i {
           font-size: 14px;
           margin-right: 4px;
         }
+      }
+      .nav-list-item:hover {
+        color: #0daf99;
       }
     }
   }

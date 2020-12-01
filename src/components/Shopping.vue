@@ -59,7 +59,8 @@
           </div>
           <div class="drawer-btn">
             <button>联系客服</button>
-            <button>立即推广</button>
+            <!-- <button>立即推广</button> -->
+            <router-link to="/pay" tag="button">立即推广</router-link>
           </div>
         </div>
       </div>
@@ -125,7 +126,7 @@ export default {
   .shopping-order {
     width: 40px;
     height: 203px;
-    background: #34B299;
+    background: #34b299;
     margin-top: 232px;
     cursor: pointer;
     img {
@@ -137,7 +138,7 @@ export default {
       writing-mode: tb-rl;
       font-size: 18px;
       font-weight: 400;
-      color: #FFFFFF;
+      color: #ffffff;
       line-height: 40px;
       letter-spacing: 10px;
     }
@@ -145,13 +146,13 @@ export default {
       display: block;
       width: 24px;
       height: 24px;
-      background: #FFFFFF;
+      background: #ffffff;
       border-radius: 50%;
       line-height: 24px;
       margin: 0 auto;
       font-size: 17px;
       font-weight: 800;
-      color: #F79220;
+      color: #f79220;
       text-align: center;
     }
   }
@@ -167,7 +168,7 @@ export default {
       span {
         font-size: 16px;
         font-weight: bold;
-        color: #00A581;
+        color: #00a581;
       }
       i {
         font-weight: bold;
@@ -187,7 +188,7 @@ export default {
         .drawer-details {
           cursor: pointer;
           i {
-            color: #D91818;
+            color: #d91818;
             cursor: pointer;
             margin: 8px 0 10px 0;
             opacity: 0;
@@ -203,19 +204,19 @@ export default {
               margin-left: 8px;
               li {
                 font-size: 14px;
-                color: #9F9F9F;
+                color: #9f9f9f;
                 line-height: 22px;
               }
               li:nth-child(1) {
                 font-weight: bold;
-                color: #232A34;
+                color: #232a34;
               }
               li:nth-child(3) {
                 display: flex;
                 p {
                   width: 52px;
                   height: 24px;
-                  background: #F4F4F4;
+                  background: #f4f4f4;
                   border-radius: 18px;
                   text-align: center;
                   line-height: 24px;
@@ -234,7 +235,7 @@ export default {
                 span:nth-child(2) {
                   font-size: 18px;
                   font-weight: 800;
-                  color: #F79220;
+                  color: #f79220;
                   opacity: 0.81;
                   margin-left: 25px;
                 }
@@ -249,7 +250,7 @@ export default {
         right: 65px;
         width: 304px;
         height: 265px;
-        background-color: #FFFFFF;
+        background-color: #ffffff;
       }
       .drawer-all {
         height: 46px;
@@ -261,7 +262,7 @@ export default {
         p:nth-child(1) {
           font-weight: 800;
           span {
-            color: #DB3E3E;
+            color: #db3e3e;
             font-weight: 800;
           }
         }
@@ -269,7 +270,7 @@ export default {
           font-weight: 800;
           span {
             font-size: 24px;
-            color: #F9844F;
+            color: #f9844f;
           }
         }
       }
@@ -288,7 +289,7 @@ export default {
           flex-wrap: wrap;
           justify-content: space-between;
           p {
-            color: #AAAAAA;
+            color: #aaaaaa;
             line-height: 32px;
             span {
               color: #676767;
@@ -303,11 +304,11 @@ export default {
         button:nth-child(1) {
           width: 144px;
           height: 44px;
-          border: 1px #F79220 solid;
+          border: 1px #f79220 solid;
           border-radius: 4px;
-          background-color: #FFFFFF;
+          background-color: #ffffff;
           outline: none;
-          color: #F79220;
+          color: #f79220;
           font-size: 20px;
           font-weight: bold;
           margin-right: 10px;
@@ -317,8 +318,8 @@ export default {
           width: 144px;
           height: 44px;
           border-radius: 4px;
-          background-color: #F79220;
-          color: #FFFFFF;
+          background-color: #f79220;
+          color: #ffffff;
           outline: none;
           font-size: 20px;
           font-weight: bold;
@@ -345,11 +346,11 @@ export default {
       button {
         width: 170px;
         height: 44px;
-        border: 1px #F79220 solid;
+        border: 1px #f79220 solid;
         border-radius: 4px;
-        background-color: #FFFFFF;
+        background-color: #ffffff;
         outline: none;
-        color: #F79220;
+        color: #f79220;
         font-size: 20px;
         font-weight: bold;
         cursor: pointer;

@@ -1,36 +1,46 @@
 <template>
-<div>
-        <div class="content-look" v-for="list in list" :key="list.id" @click="LookForHandel(list.id)">
-      <router-link to="">
-        <div class="content-look-title">
-          <span class="list-title" :class="BorderLeft(list)" >{{list.title}}</span>
-          <div class="list-main">
-            <span>{{list.subtitle}}</span>
-            <!-- <span class="list-name">美妆博主</span>
+  <div>
+    <div
+      class="content-look"
+      v-for="list in list"
+      :key="list.id"
+      @click="LookForHandel(list.id)"
+    >
+      <!-- <router-link to=""> -->
+      <div class="content-look-title">
+        <span class="list-title" :class="BorderLeft(list)">
+          {{ list.title }}
+        </span>
+        <div class="list-main">
+          <span>{{ list.subtitle }}</span>
+          <!-- <span class="list-name">美妆博主</span>
             <span>再次等候，为您提供推广。</span> -->
+        </div>
+      </div>
+      <div class="content-look-introduce">
+        {{ list.body }}
+      </div>
+      <div class="content-look-detail">
+        <div class="detail-box" v-for="list in list.kols" :key="list._id">
+          <img
+            src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3160269277,4211240727&fm=26&gp=0.jpg"
+            alt=""
+          />
+          <div class="detail-name">{{ list.nickname }}</div>
+          <div class="detail-from">
+            平台：
+            <span>抖音</span>
+          </div>
+          <div class="detail-fans">
+            粉丝数：
+            <span>{{ list.fan_count }}</span>
+            <span>W</span>
           </div>
         </div>
-        <div class="content-look-introduce">
-          {{list.body}}
-        </div>
-        <div class="content-look-detail">
-          <div class="detail-box" v-for="list in list.kols" :key="list._id">
-            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606288023066&di=7f9c720eebe94c83fd56fbb29caf2da7&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa5a8c0adf1ed1bea019e304ce4f6f9365925e04559b7d-uJQJDV_fw658" alt="" />
-            <div class="detail-name">{{list.nickname}}</div>
-            <div class="detail-from">
-              平台：
-              <span>抖音</span>
-            </div>
-            <div class="detail-fans">
-              粉丝数：
-              <span>{{list.fan_count}}</span>
-              <span>W</span>
-            </div>
-          </div>
-        </div>
-      </router-link>
+      </div>
+      <!-- </router-link> -->
     </div>
-</div>
+  </div>
 </template>
 <script>
 import { ContentList } from '../../services/video'
@@ -82,58 +92,55 @@ export default {
         query: { id: list }
       })
     }
-
   },
   created() {
     this.ContentList()
   }
 }
-
 </script>
 <style lang="less" scoped>
-    .content-look:hover {
+.content-look:hover {
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
   transition: 0.5s;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
 }
 .content-look {
-  overflow: hidden;
+  // overflow: hidden;
   width: 1010px;
   margin: 42px auto 0;
   padding: 20px 20px 0;
   .content-look-title {
     display: flex;
     height: 27px;
-    .list-title1{
-      border-left: 3px #8C9EB1FF solid;
-      // border-image: linear-gradient(#E2E6E8FF,#8C9EB1FF) 20 20;
+    .list-title1 {
+      border-left: 3px #8c9eb1ff solid;
     }
-    .list-title2{
-      border-left: 3px #FFB8FAFF solid;
+    .list-title2 {
+      border-left: 3px #ffb8faff solid;
     }
-    .list-title3{
-      border-left: 3px #646364FF solid;
+    .list-title3 {
+      border-left: 3px #646364ff solid;
     }
-    .list-title4{
-      border-left: 3px #79242FFF solid;
+    .list-title4 {
+      border-left: 3px #79242fff solid;
     }
-    .list-title5{
-      border-left: 3px #D63458FF solid;
+    .list-title5 {
+      border-left: 3px #d63458ff solid;
     }
-    .list-title6{
+    .list-title6 {
       border-left: 3px#E6BB8BFF solid;
     }
-    .list-title7{
-      border-left: 3px #3A89A7FF solid;
+    .list-title7 {
+      border-left: 3px #3a89a7ff solid;
     }
-    .list-title8{
-      border-left: 3px #FFD5DEFF solid;
+    .list-title8 {
+      border-left: 3px #ffd5deff solid;
     }
-    .list-title9{
-      border-left: 3px #8EBAE5FF solid;
+    .list-title9 {
+      border-left: 3px #8ebae5ff solid;
     }
-    .list-title10{
-      border-left: 3px #EA964DFF solid;
+    .list-title10 {
+      border-left: 3px #ea964dff solid;
     }
     .list-title {
       font-size: 20px;
@@ -147,7 +154,7 @@ export default {
       cursor: pointer;
     }
     .list-title:hover {
-      color: #0A5CFF;
+      color: #0a5cff;
     }
     .list-name {
       font-size: 12px;
@@ -223,10 +230,10 @@ export default {
       }
     }
     .detail-box {
-      width: 160px;
+      width: 158px;
       margin-right: 13px;
       img {
-        width: 160px;
+        width: 158px;
         height: 198px;
         cursor: pointer;
       }
