@@ -1,66 +1,81 @@
 <template>
-    <div>
+  <div>
 
-        <button
-          class="nav-login"
-          @click="dialogVisible = true"
-          >登录</button
-        >
-        <el-dialog
-          :visible.sync="dialogVisible"
-          width="440px"
-          :before-close="handleClose"
-          :modal-append-to-body="false"
-        >
-          <div class="login">
-            <div class="wx-login" v-if="loginMode">
-              <div class="phone-login-tab" @click="loginModeButton">
-                <img src="../../assets/image/shouji-login.png" />
-                <span></span>
-              </div>
-              <p><i class="iconfont icon-weixin1"></i>微信登录</p>
-              <div class="wx-login-erweima">
-                <img src="../../assets/image/footer/erweima.jpg" />
-              </div>
-              <p class="wx-login-text">扫描二维码登录</p>
-              <img src="../../assets/image/welcome.png" class="wx-login-welcom" />
-            </div>
-            <div class="phone-login" v-else>
-              <div class="phone-login-tab" @click="loginModeButton">
-                <img src="../../assets/image/weixin-login.png" />
-                <span></span>
-              </div>
-              <p><i class="el-icon-mobile"></i>手机验证码登录</p>
-              <input
-                type="text"
-                placeholder="请输入手机号"
-                class="login-input-phone"
-              />
-              <input
-                type="text"
-                placeholder="短信验证码"
-                class="login-input-code"
-              />
-              <button class="code-button">发送验证码</button>
-              <button class="login-button">立即登录</button>
-              <p class="phone-login-list">专业网红推广服务平台</p>
-              <p class="phone-login-item">欢迎使用超火引擎</p>
-            </div>
+    <button
+      class="nav-login"
+      @click="showLoginDiaolog"
+    >登录</button
+    >
+    <el-dialog
+      :visible.sync="dialogVisible"
+      width="440px"
+      :before-close="handleClose"
+      :modal-append-to-body="false"
+    >
+      <div class="login">
+        <div v-if="loginMode" class="wx-login">
+          <div class="phone-login-tab" @click="loginModeButton">
+            <img src="../../assets/image/shouji-login.png" />
+            <span></span>
           </div>
-        </el-dialog>
+          <p><i class="iconfont icon-weixin1"></i>微信登录</p>
+          <div class="wx-login-erweima">
+            <!-- <img src="../../assets/image/footer/erweima.jpg" /> -->
+            <wxlogin
+                  appid="wx5900ce0ef941d566"
+                  scope="snsapi_login"
+                  :state="state"
+                  :redirect_uri="redirect_uri"
+                  href="data:text/css;base64,LmltcG93ZXJCb3ggLnFyY29kZSB7d2lkdGg6IDIyMHB4O3Bvc2l0aW9uOnJlbGF0aXZlO3JpZ2h0OjQycHg7dG9wOi0xOHB4fQouaW1wb3dlckJveCAudGl0bGUge2Rpc3BsYXk6IG5vbmU7fQouaW1wb3dlckJveCAuaW5mbyB7ZGlzcGxheTogbm9uZTt9Ci5zdGF0dXNfaWNvbiB7ZGlzcGxheTogbm9uZX0KLmltcG93ZXJCb3ggLnN0YXR1cyB7dGV4dC1hbGlnbjogY2VudGVyO30KLndldWlfbXNnIHtwYWRkaW5nLXRvcDogMzZweDt0ZXh0LWFsaWduOiBjZW50ZXI7cG9zaXRpb246IHJlbGF0aXZlO3JpZ2h0OiA0MnB4fQ=="
+              ></wxlogin>
+          </div>
+          <p class="wx-login-text">扫描二维码登录</p>
+          <img src="../../assets/image/welcome.png" class="wx-login-welcom" />
+        </div>
+        <div v-else class="phone-login">
+          <div class="phone-login-tab" @click="loginModeButton">
+            <img src="../../assets/image/weixin-login.png" />
+            <span></span>
+          </div>
+          <p><i class="el-icon-mobile"></i>手机验证码登录</p>
+          <input
+            type="text"
+            placeholder="请输入手机号"
+            class="login-input-phone"
+          />
+          <input
+            type="text"
+            placeholder="短信验证码"
+            class="login-input-code"
+          />
+          <button class="code-button">发送验证码</button>
+          <button class="login-button">立即登录</button>
+          <p class="phone-login-list">专业网红推广服务平台</p>
+          <p class="phone-login-item">欢迎使用超火引擎</p>
+        </div>
+      </div>
+    </el-dialog>
 
-    </div>
+  </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import wxlogin from 'vue-wxlogin'
+import { getUrl } from '../../utils'
 export default {
   // 引入组件
-  components: {},
+  components: {
+    wxlogin
+  },
   data() {
     // 这里存放数据
     return {
       dialogVisible: false,
-      loginMode: true
+      loginMode: true,
+      qrCode: '',
+      redirect_uri: '',
+      state: ''
     }
   },
   // 方法集合
@@ -74,10 +89,18 @@ export default {
     },
     loginModeButton() {
       return (this.loginMode = !this.loginMode)
+    },
+    async showLoginDiaolog() {
+      this.dialogVisible = true
+      const { data } = await this.axios.get('https://api.dev.hiifire.com/v1/auth/qr_url?authclient=wx')
+      this.state = getUrl(data, 'state')
+      this.redirect_uri = getUrl(data, 'redirect_uri')
     }
   },
   // 监听属性 类似于data概念
-  computed: {},
+  computed: {
+    ...mapState('wxLogin', ['token', 'profile', 'user', 'loginStatus'])
+  },
   // 监控data中的数据变化
   watch: {},
   // 生命周期 - 创建之前
@@ -87,7 +110,9 @@ export default {
   // 生命周期 - 挂载之前
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
+  mounted() {
+    console.log('mounted', this)
+  },
   // 生命周期 - 更新之前
   beforeUpdate() {},
   // 生命周期 - 更新之后
@@ -283,5 +308,9 @@ export default {
 }
 /deep/.el-dialog__header {
   padding: 10px;
+}
+
+.qrcode{
+  width: 20px;
 }
 </style>

@@ -22,6 +22,7 @@ _axios.interceptors.request.use(
 _axios.interceptors.response.use(
   response => {
     // Do something with response data
+    console.log('response.data', response.data)
     return response.data
   },
   error => {
