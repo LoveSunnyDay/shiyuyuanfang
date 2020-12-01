@@ -6,39 +6,39 @@
       :key="list.id"
       @click="LookForHandel(list.id)"
     >
-      <router-link to="">
-        <div class="content-look-title">
-          <span class="list-title" :class="BorderLeft(list)">{{
-            list.title
-          }}</span>
-          <div class="list-main">
-            <span>{{ list.subtitle }}</span>
-            <!-- <span class="list-name">美妆博主</span>
+      <!-- <router-link to=""> -->
+      <div class="content-look-title">
+        <span class="list-title" :class="BorderLeft(list)">
+          {{ list.title }}
+        </span>
+        <div class="list-main">
+          <span>{{ list.subtitle }}</span>
+          <!-- <span class="list-name">美妆博主</span>
             <span>再次等候，为您提供推广。</span> -->
+        </div>
+      </div>
+      <div class="content-look-introduce">
+        {{ list.body }}
+      </div>
+      <div class="content-look-detail">
+        <div class="detail-box" v-for="list in list.kols" :key="list._id">
+          <img
+            src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3160269277,4211240727&fm=26&gp=0.jpg"
+            alt=""
+          />
+          <div class="detail-name">{{ list.nickname }}</div>
+          <div class="detail-from">
+            平台：
+            <span>抖音</span>
+          </div>
+          <div class="detail-fans">
+            粉丝数：
+            <span>{{ list.fan_count }}</span>
+            <span>W</span>
           </div>
         </div>
-        <div class="content-look-introduce">
-          {{ list.body }}
-        </div>
-        <div class="content-look-detail">
-          <div class="detail-box" v-for="list in list.kols" :key="list._id">
-            <img
-              src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606288023066&di=7f9c720eebe94c83fd56fbb29caf2da7&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fa5a8c0adf1ed1bea019e304ce4f6f9365925e04559b7d-uJQJDV_fw658"
-              alt=""
-            />
-            <div class="detail-name">{{ list.nickname }}</div>
-            <div class="detail-from">
-              平台：
-              <span>抖音</span>
-            </div>
-            <div class="detail-fans">
-              粉丝数：
-              <span>{{ list.fan_count }}</span>
-              <span>W</span>
-            </div>
-          </div>
-        </div>
-      </router-link>
+      </div>
+      <!-- </router-link> -->
     </div>
   </div>
 </template>
@@ -105,7 +105,7 @@ export default {
   background-color: #eeeeee;
 }
 .content-look {
-  overflow: hidden;
+  // overflow: hidden;
   width: 1010px;
   margin: 42px auto 0;
   padding: 20px 20px 0;
@@ -114,7 +114,6 @@ export default {
     height: 27px;
     .list-title1 {
       border-left: 3px #8c9eb1ff solid;
-      // border-image: linear-gradient(#E2E6E8FF,#8C9EB1FF) 20 20;
     }
     .list-title2 {
       border-left: 3px #ffb8faff solid;
@@ -231,10 +230,10 @@ export default {
       }
     }
     .detail-box {
-      width: 160px;
+      width: 158px;
       margin-right: 13px;
       img {
-        width: 160px;
+        width: 158px;
         height: 198px;
         cursor: pointer;
       }

@@ -50,7 +50,7 @@
             <p>{{ list.price }}</p>
           </li>
         </ul>
-        <button @click="del(list._id)">找TA推广</button>
+        <button>找TA推广</button>
       </div>
     </div>
   </div>
@@ -208,10 +208,8 @@ export default {
             cursor: pointer;
           }
         }
-        .main-item-url:hover {
-          color: #0064f9;
-        }
-        a:hover {
+        .main-item-url:hover,
+        .main-item-url:hover a {
           color: #0064f9;
         }
       }

@@ -54,7 +54,7 @@ export default {
       options: [
         {
           value: '选项一',
-          label: '美妆'
+          label: '美妆达人'
         },
         {
           value: '选项二',

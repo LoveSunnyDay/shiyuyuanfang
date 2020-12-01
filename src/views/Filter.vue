@@ -8,9 +8,9 @@
       </button>
       <el-breadcrumb separator-class="el-icon-arrow-right" class="crumbs-nav">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item :to="{ path: '/editor' }"
-          >按需求筛选</el-breadcrumb-item
-        >
+        <el-breadcrumb-item :to="{ path: '/editor' }">
+          按需求筛选
+        </el-breadcrumb-item>
         <el-breadcrumb-item>网红筛选</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
@@ -35,10 +35,10 @@
         <img src="../assets/image/show/taobao.png" alt="" />
         <p>淘宝直播</p>
       </el-button>
-      <el-button round>
+      <!-- <el-button round>
         <img src="../assets/image/show/tongyi.png" alt="" />
         <p>同一经济公司</p>
-      </el-button>
+      </el-button> -->
     </el-row>
     <el-select
       v-model="id"
@@ -188,13 +188,13 @@ export default {
   }
   .el-row {
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     /deep/ .el-button {
       background: #ffffff;
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
       border-radius: 20px;
       display: flex;
-      margin-right: 20px;
+      margin-right: 10px;
       cursor: pointer;
       text-align: center;
       /deep/ .is-round {
@@ -212,14 +212,11 @@ export default {
         font-size: 14px;
         font-weight: bold;
         color: #5e5e5e;
-        // line-height: 40px;
       }
     }
   }
   /deep/ .el-button {
-    // background: #FFFFFF;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
-    // border-radius: 20px;
     font-size: 14px;
     font-weight: 500;
     height: 40px;

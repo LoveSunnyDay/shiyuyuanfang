@@ -20,10 +20,11 @@
         <div class="lookfor-item-content-top">
           <div class="content-top-suggest">
             <p>投放建议：</p>
-            <ul>
+            <!-- <ul>
               <li>垂类美妆</li>
               <li>美食</li>
-            </ul>
+            </ul> -->
+            <span>{{ list.cases }}</span>
           </div>
           <div class="content-top-fans">
             <p>粉丝状况：</p>
@@ -53,11 +54,12 @@
         </div>
         <div class="lookfor-item-content-bottom">
           <div class="item-content-bottom-left">
-            <span
-              >抖音链接：<a :href="list.home_url" target="_blank">{{
-                list.home_url
-              }}</a></span
-            >
+            <span>
+              抖音链接：
+              <a :href="list.home_url" target="_blank">
+                {{ list.home_url }}
+              </a>
+            </span>
             <p>
               “美妆博主里最温柔的少女”温柔标专业知识，虏获800w+粉丝。有众多大牌合作背景,
               有众多线下品牌活动经验。
@@ -75,9 +77,9 @@
     </div>
   </div>
 </template>
+
 <script>
 import { LookForHandel } from '../../services/video'
-// import axios from 'axios'
 export default {
   data() {
     return {
@@ -127,6 +129,7 @@ export default {
   }
 }
 </script>
+
 <style lang="less" scoped>
 .lookfor-main {
   margin-top: 28px;
@@ -304,10 +307,8 @@ export default {
               cursor: pointer;
             }
           }
-          span:hover {
-            color: #0064f9;
-          }
-          a:hover {
+          span:hover,
+          span:hover a {
             color: #0064f9;
           }
           p {
