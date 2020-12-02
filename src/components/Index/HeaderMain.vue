@@ -8,9 +8,9 @@
         class="search-input"
       />
       <img src="../../assets/image/sousuo.png" class="search-sousuo" />
-      <router-link to="/editor"
-        ><div class="search-shaixuan"></div
-      ></router-link>
+      <router-link to="/editor">
+        <div class="search-shaixuan"></div>
+      </router-link>
     </div>
     <div class="main-cont">
       <span>热门：</span>
@@ -71,6 +71,7 @@ export default {}
       cursor: pointer;
     }
     .search-sousuo:hover {
+      transition: 0.5s;
       opacity: 0.8;
     }
     .search-shaixuan {
@@ -80,10 +81,12 @@ export default {}
       width: 164px;
       height: 60px;
       cursor: pointer;
-      background: url('../../assets/image/shaixuan2.png');
+      background: url('~assets/image/shaixuan_1.png');
     }
     .search-shaixuan:hover {
-      background: url('../../assets/image/shaixuan.png');
+      // background: url('../../assets/image/shaixuan.png');
+      transition: 0.5s;
+      opacity: 0.8;
     }
   }
   .main-cont {

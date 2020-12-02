@@ -5,15 +5,15 @@
       <div class="top-nav">
         <img src="../assets/image/logo.png" alt="" class="logo" />
         <ul class="nav-list">
-          <router-link to="/Channel" tag="li" class="nav-text"
-            >网红通道</router-link
-          >
-          <router-link to="/ChannelMCN" tag="li" class="nav-text"
-            >MCN通道</router-link
-          >
-          <router-link to="/Mycenter" tag="li" class="nav-text"
-            >个人中心</router-link
-          >
+          <router-link to="/Channel" tag="li" class="nav-text">
+            KOC入驻
+          </router-link>
+          <router-link to="/ChannelMCN" tag="li" class="nav-text">
+            MCN通道
+          </router-link>
+          <router-link to="/Mycenter" tag="li" class="nav-text">
+            个人中心
+          </router-link>
           <li>
             <img src="../assets/image/gengduo.png" alt="" class="nav-gengduo" />
           </li>

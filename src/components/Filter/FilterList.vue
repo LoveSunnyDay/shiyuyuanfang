@@ -5,7 +5,7 @@
         <div class="list-left-main">
           <div class="left-main-icon">
             <img
-              src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3829054958,4035218998&fm=26&gp=0.jpg"
+              src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4226413727,164684980&fm=11&gp=0.jpg"
               alt=""
             />
             <p>粉丝数:{{ list.fan_count }}W</p>
@@ -37,9 +37,12 @@
             <p class="main-item-text">
               只接受上海地区的，中国好声音学院，搞笑音乐人，鸡汤段子手，全网最迷人的猪猪宝藏女友对口型段子达人哦
             </p>
-            <p class="main-item-url">
-              访问TA的抖音链接<a href="" target="_blank">{{ list.home_url }}</a>
-            </p>
+            <a :href="list.home_url" target="_blank">
+              <p class="main-item-url">
+                访问TA的抖音链接：
+                {{ list.home_url }}
+              </p>
+            </a>
           </div>
         </div>
       </div>
@@ -131,7 +134,6 @@ export default {
               border-radius: 18px;
               padding: 0 12px;
               margin-left: 10px;
-              cursor: pointer;
             }
             li:nth-child(1) {
               background-color: #fceeca;

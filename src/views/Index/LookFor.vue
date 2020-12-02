@@ -5,19 +5,17 @@
     </div>
     <div class="lookfor-nav">
       <img class="img" src="../../assets/image/show/quanbu.png" alt="1111" />
-      <el-select
-        v-model="value"
-        clearable
-        placeholder="全部分类"
-        class="filter-select"
-      >
+      <el-select v-model="value" placeholder="时尚美妆" class="filter-select">
+        <!-- <a :href="item._links.self.href"> -->
         <el-option
           v-for="item in options"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
+          :key="item.id"
+          :label="item.title"
+          :value="item.id"
         >
+          <!-- @click="classifyJump(item.id)" -->
         </el-option>
+        <!-- </a> -->
       </el-select>
       <el-row>
         <el-button round>
@@ -43,61 +41,55 @@
       </el-row>
     </div>
     <Main></Main>
+    <Shopping v-show="shoppingShow"></Shopping>
   </div>
 </template>
 
 <script>
 import Main from '@/components/LookFor/Main.vue'
+import Shopping from '@/components/Shopping.vue'
+
+import { LookForClassify } from '../../services/video'
 export default {
   data() {
     return {
-      options: [
-        {
-          value: '选项一',
-          label: '美妆达人'
-        },
-        {
-          value: '选项二',
-          label: '电商带货'
-        },
-        {
-          value: '选项三',
-          label: '汽车达人'
-        },
-        {
-          value: '选项四',
-          label: '网红打卡'
-        },
-        {
-          value: '选项五',
-          label: '美食餐饮'
-        },
-        {
-          value: '选项六',
-          label: '大快销品'
-        },
-        {
-          value: '选项七',
-          label: '服饰箱包'
-        },
-        {
-          value: '选项八',
-          label: '母婴亲子'
-        },
-        {
-          value: '选项九',
-          label: '游戏网络'
-        },
-        {
-          value: '选项十',
-          label: '食品达人'
-        }
-      ],
-      value: ''
+      options: [],
+      value: '',
+      shoppingShow: false
     }
   },
   components: {
-    Main
+    Main,
+    Shopping
+  },
+  methods: {
+    shoppingScroll() {
+      var scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop
+      if (scrollTop > 300) {
+        this.shoppingShow = true
+      } else if (scrollTop < 300) {
+        this.shoppingShow = false
+      }
+    }
+    // classifyJump(item) {
+    //   console.log(item)
+    //   this.$router.push({
+    //     path: 'LookFor',
+    //     query: { id: item }
+    //   })
+    // }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.shoppingScroll)
+  },
+  created() {
+    LookForClassify().then((res) => {
+      console.log(res.data.data.items)
+      this.options = res.data.data.items
+    })
   }
 }
 </script>

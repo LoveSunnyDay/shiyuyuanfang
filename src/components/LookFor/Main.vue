@@ -13,40 +13,44 @@
           alt=""
         />
         <p class="lookfor-item-left-name">{{ list.nickname }}</p>
-        <p class="lookfor-item-left-list">平台：抖音</p>
+        <p class="lookfor-item-left-list">平台：{{ list.plat[0].name }}</p>
         <p class="lookfor-item-left-list">粉丝数：{{ list.fan_count }}W</p>
       </div>
       <div class="lookfor-item-content">
         <div class="lookfor-item-content-top">
-          <div class="content-top-suggest">
-            <p>投放建议：</p>
-            <!-- <ul>
+          <div class="lookfor-item-content-top-left">
+            <div class="content-top-suggest">
+              <p>投放建议：</p>
+              <!-- <ul>
               <li>垂类美妆</li>
               <li>美食</li>
             </ul> -->
-            <span>{{ list.cases }}</span>
-          </div>
-          <div class="content-top-fans">
-            <p>粉丝状况：</p>
-            <p>
-              特征：
-              <span>女粉丝偏多</span>
-            </p>
-            <p>
-              分布：
-              <span>河南</span>
-              <span>河北</span>
-              <span>浙江</span>
-            </p>
-            <p>
-              年龄：
-              <span>18-30岁</span>
-            </p>
+              <span>{{ list.cases }}</span>
+            </div>
+            <div class="content-top-fans">
+              <p>粉丝状况：</p>
+              <p>
+                特征：
+                <span>女粉丝偏多</span>
+              </p>
+              <p>
+                分布：
+                <span>河南</span>
+                <span>河北</span>
+                <span>浙江</span>
+              </p>
+              <p>
+                年龄：
+                <span>18-30岁</span>
+              </p>
+            </div>
           </div>
           <div class="content-top-price">
+            <!-- <p>{{ list.products[0].name }}</p> -->
             <p>直播一小时</p>
             <p>
               <span>￥</span>
+              <!-- <span>{{ list.products[0].price }}</span> -->
               <span>1111</span>
               <span>元</span>
             </p>
@@ -54,12 +58,13 @@
         </div>
         <div class="lookfor-item-content-bottom">
           <div class="item-content-bottom-left">
-            <span>
-              抖音链接：
-              <a :href="list.home_url" target="_blank">
+            <a :href="list.home_url" target="_blank">
+              <span>
+                抖音链接：
+
                 {{ list.home_url }}
-              </a>
-            </span>
+              </span>
+            </a>
             <p>
               “美妆博主里最温柔的少女”温柔标专业知识，虏获800w+粉丝。有众多大牌合作背景,
               有众多线下品牌活动经验。
@@ -70,8 +75,8 @@
             to="/DetailKuaiShou"
             tag="div"
             class="item-content-bottom-right"
-            >找TA推广</router-link
-          >
+            >找TA推广
+          </router-link>
         </div>
       </div>
     </div>
@@ -90,25 +95,26 @@ export default {
   methods: {
     // 根据id判断小边框颜色
     Background(list) {
-      if (list.category_id === 1) {
+      // console.log(list.category[0]._id)
+      if (list.category[0]._id === '1') {
         return 'Background1'
-      } else if (list.category_id === 2) {
+      } else if (list.category[0]._id === '2') {
         return 'Background2'
-      } else if (list.category_id === 3) {
+      } else if (list.category[0]._id === '3') {
         return 'Background3'
-      } else if (list.category_id === 4) {
+      } else if (list.category[0]._id === '4') {
         return 'Background4'
-      } else if (list.category_id === 5) {
+      } else if (list.category[0]._id === '5') {
         return 'Background5'
-      } else if (list.category_id === 6) {
+      } else if (list.category[0]._id === '6') {
         return 'Background6'
-      } else if (list.category_id === 7) {
+      } else if (list.category[0]._id === '7') {
         return 'Background7'
-      } else if (list.category_id === 8) {
+      } else if (list.category[0]._id === '8') {
         return 'Background8'
-      } else if (list.category_id === 9) {
+      } else if (list.category[0]._id === '9') {
         return 'Background9'
-      } else if (list.category_id === 10) {
+      } else if (list.category[0]._id === '10') {
         return 'Background10'
       }
     }
@@ -116,7 +122,7 @@ export default {
   created() {
     LookForHandel(this.$route.query.id).then((data) => {
       // 操作
-      console.log(data.data.data.items)
+      // console.log(data.data.data.items)
       this.list = data.data.data.items
     })
   },
@@ -207,66 +213,71 @@ export default {
         font-weight: 800;
         color: #5d5d5d;
         height: 147px;
+        width: 799px;
         margin-top: 9px;
-        .content-top-suggest {
-          width: 170px;
-          p {
-            font-size: 16px;
-            font-weight: 800;
+        justify-content: space-between;
+        .lookfor-item-content-top-left {
+          display: flex;
+          .content-top-suggest {
+            width: 170px;
+            p {
+              font-size: 16px;
+              font-weight: 800;
+            }
+            ul {
+              display: flex;
+              li {
+                font-size: 14px;
+                font-weight: 400;
+                color: #4a5c75;
+                margin: 10px 17px 0 0;
+                background-color: #dde4e2;
+                line-height: 25px;
+                border-radius: 15px;
+                padding: 0 10px;
+              }
+            }
           }
-          ul {
-            display: flex;
-            li {
+          .content-top-fans {
+            font-size: 14px;
+            margin-left: 50px;
+            p:nth-child(1) {
+              font-size: 16px;
+              font-weight: 800;
+            }
+            p:nth-child(2) {
               font-size: 14px;
-              font-weight: 400;
-              color: #4a5c75;
-              margin: 10px 17px 0 0;
-              background-color: #dde4e2;
-              line-height: 25px;
-              border-radius: 15px;
-              padding: 0 10px;
+              color: #eb6694;
+              font-weight: Bold;
+              margin-top: 16px;
+              span {
+                color: #606060;
+              }
             }
-          }
-        }
-        .content-top-fans {
-          font-size: 14px;
-          margin-left: 50px;
-          p:nth-child(1) {
-            font-size: 16px;
-            font-weight: 800;
-          }
-          p:nth-child(2) {
-            font-size: 14px;
-            color: #eb6694;
-            font-weight: Bold;
-            margin-top: 16px;
-            span {
-              color: #606060;
+            p:nth-child(3) {
+              font-size: 14px;
+              color: #4f8bde;
+              font-weight: Bold;
+              margin-top: 15px;
+              span {
+                color: #606060;
+                margin-right: 8px;
+              }
             }
-          }
-          p:nth-child(3) {
-            font-size: 14px;
-            color: #4f8bde;
-            font-weight: Bold;
-            margin-top: 15px;
-            span {
-              color: #606060;
-              margin-right: 8px;
-            }
-          }
-          p:nth-child(4) {
-            font-size: 14px;
-            color: #e18360;
-            font-weight: Bold;
-            margin-top: 15px;
-            span {
-              color: #606060;
-              margin-right: 8px;
+            p:nth-child(4) {
+              font-size: 14px;
+              color: #e18360;
+              font-weight: Bold;
+              margin-top: 15px;
+              span {
+                color: #606060;
+                margin-right: 8px;
+              }
             }
           }
         }
         .content-top-price {
-          margin: 67px 0 0 320px;
+          margin-top: 30px;
           p:nth-child(1) {
             min-width: 100px;
             font-size: 18px;
@@ -301,6 +312,10 @@ export default {
             font-weight: 400;
             color: rgba(120, 120, 120, 0.6);
             cursor: pointer;
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
             a {
               font-weight: 400;
               color: rgba(120, 120, 120, 0.6);
@@ -317,7 +332,6 @@ export default {
             line-height: 24px;
             color: #1a1a1a;
             margin-top: 14px;
-            cursor: pointer;
           }
         }
         .item-content-bottom-right {
