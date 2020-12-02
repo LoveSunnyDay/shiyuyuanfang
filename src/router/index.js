@@ -29,7 +29,7 @@ import OpenInvoice from '@/views/MyCenter/OpenInvoice'
 import MyProfile from '@/views/MyCenter/MyProfile'
 import News from '@/views/MyCenter/News'
 import CompanyInformation from '@/views/MyCenter/CompanyInformation'
-import { getUrl } from '../utils'
+import { getUrl, setCookie } from '../utils'
 
 // const Index = () => import('../components/Index')
 Vue.use(VueRouter)
@@ -160,27 +160,29 @@ const router = new VueRouter({
 })
 router.beforeEach(async(to, from, next) => {
   // add before changing logic
-  console.log('router.app.$options.store', store)
   console.log('window.location.href', window.location.href)
+  // const href = window.location.href
   console.log('asdasdasdasdasdas', to, from)
+
   const code = getUrl(window.location.href, 'code')
   const state = getUrl(window.location.href, 'state')
   console.log('code', code)
   console.log('state', state)
   // /code && state
-  if (to.path === '/auth_redircect' && !!code && !!state) {
-    // http://localhost:8082/auth_redircect?authclient=wx&code=051nl6Ha1WxZ3A0uLjIa1AkUIf2nl6He&state=5594d18b3127dc713d272ae145aac62eff071e11ac7e4ab412f760e3a16898a0
-    console.log(' if (to.fullPath')
+  if (to.path === '/auth_redircect' && (!!code || !!state)) {
+    // http://localhost:8082/auth_redircect?authclient=wx&code=051nl6Ha1WxZ3A0uLjIa1AkUIf2nl6He
     window.axios.get(`http://api.dev.hiifire.com/v1/auth?authclient=wx&code=${code}&state=${state}`).then((res) => {
       console.log('res', res)
       const { data, success } = res
+      const { token } = data || {}
       if (success) {
+        setCookie('wx-token', JSON.stringify(token), window.location.hostname)
+        window.close()
         store.commit('wxLogin/setUserInfo', data)
       } else {
         store.commit('wxLogin/wxLoginFailed')
       }
     })
-    next(from.path)
   } else {
     next()
   }

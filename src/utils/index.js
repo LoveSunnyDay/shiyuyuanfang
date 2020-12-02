@@ -1,8 +1,6 @@
 function getUrl(url, name) {
   const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
-  console.log('url', url)
   const r = url.split('?')[1] && url.split('?')[1].match(reg)
-  //    var r = url.split(name+"=")[1].split("!")[0];
   if (r != null) { return decodeURI(r[2]) }
   return null
 }
@@ -15,7 +13,18 @@ const setCookie = (name, value, host, expiredays) => {
   }
   document.cookie = cookie
 }
+function getCookie(cname) {
+  var name = cname + '='
+  var ca = document.cookie.split(';')
+  for (var i = 0; i < ca.length; i++) {
+    var c = ca[i]
+    while (c.charAt(0) == ' ') c = c.substring(1)
+    if (c.indexOf(name) != -1) return c.substring(name.length, c.length)
+  }
+  return ''
+}
 export {
   getUrl,
-  setCookie
+  setCookie,
+  getCookie
 }

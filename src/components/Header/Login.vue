@@ -20,13 +20,13 @@
           </div>
           <p><i class="iconfont icon-weixin1"></i>微信登录</p>
           <div class="wx-login-erweima">
-            <!-- <img src="../../assets/image/footer/erweima.jpg" /> -->
             <wxlogin
-                  appid="wx5900ce0ef941d566"
-                  scope="snsapi_login"
-                  :state="state"
-                  :redirect_uri="redirect_uri"
-                  href="data:text/css;base64,LmltcG93ZXJCb3ggLnFyY29kZSB7d2lkdGg6IDIyMHB4O3Bvc2l0aW9uOnJlbGF0aXZlO3JpZ2h0OjQycHg7dG9wOi0xOHB4fQouaW1wb3dlckJveCAudGl0bGUge2Rpc3BsYXk6IG5vbmU7fQouaW1wb3dlckJveCAuaW5mbyB7ZGlzcGxheTogbm9uZTt9Ci5zdGF0dXNfaWNvbiB7ZGlzcGxheTogbm9uZX0KLmltcG93ZXJCb3ggLnN0YXR1cyB7dGV4dC1hbGlnbjogY2VudGVyO30KLndldWlfbXNnIHtwYWRkaW5nLXRvcDogMzZweDt0ZXh0LWFsaWduOiBjZW50ZXI7cG9zaXRpb246IHJlbGF0aXZlO3JpZ2h0OiA0MnB4fQ=="
+                style="position:relative;right:43px"
+                appid="wx5900ce0ef941d566"
+                scope="snsapi_login"
+                :state="state"
+                :redirect_uri="redirect_uri"
+                href="data:text/css;base64,LmltcG93ZXJCb3ggLnRpdGxlIHtkaXNwbGF5OiBub25lO30KLmltcG93ZXJCb3ggLmluZm8ge2Rpc3BsYXk6IG5vbmU7fQouc3RhdHVzX2ljb24ge2Rpc3BsYXk6IG5vbmV9Ci5pbXBvd2VyQm94IC5zdGF0dXMge3RleHQtYWxpZ246IGNlbnRlcjt9Ci5pbXBvd2VyQm94IC5xcmNvZGUge3dpZHRoOiAyMjBweDtwb3NpdGlvbjpyZWxhdGl2ZTtyaWdodDozcHg7dG9wOi0yMXB4O2JvcmRlcjpub25lfQ=="
               ></wxlogin>
           </div>
           <p class="wx-login-text">扫描二维码登录</p>
@@ -61,7 +61,7 @@
 <script>
 import { mapState } from 'vuex'
 import wxlogin from 'vue-wxlogin'
-import { getUrl } from '../../utils'
+import { getUrl, getCookie, setCookie } from '../../utils'
 export default {
   // 引入组件
   components: {
@@ -86,12 +86,29 @@ export default {
         })
         .catch((_) => {})
     },
+    openWin(url, name, iWidth, iHeight) {
+      // 获得窗口的垂直位置
+      var iTop = (window.screen.availHeight - 30 - iHeight) / 2
+      // 获得窗口的水平位置
+      var iLeft = (window.screen.availWidth - 10 - iWidth) / 2
+      window.open(url, name, 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft + ',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no')
+    },
     loginModeButton() {
       return (this.loginMode = !this.loginMode)
     },
     async showLoginDiaolog() {
       this.dialogVisible = true
+      console.log('showLoginDiaolog', window.location)
       const { data } = await this.axios.get('https://api.dev.hiifire.com/v1/auth/qr_url?authclient=wx')
+      console.log('data', data)
+      this.openWin(data, '123', 1000, 1000)
+      setCookie('wx-token', '', -1)
+      this.pollwxloginsetInterval(() => {
+        console.log(222222)
+        if (getCookie('wx-token')) {
+
+        }
+      }, 1000)
       this.state = getUrl(data, 'state')
       this.redirect_uri = getUrl(data, 'redirect_uri')
     }
@@ -101,7 +118,8 @@ export default {
     ...mapState('wxLogin', ['token', 'profile', 'user', 'loginStatus'])
   },
   // 监控data中的数据变化
-  watch: {},
+  watch: {
+  },
   // 生命周期 - 创建之前
   beforeCreate() {},
   // 生命周期 - 创建完成（可以访问当前this实例）
