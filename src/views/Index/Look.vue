@@ -3,8 +3,7 @@
     <div class="header">
       <img src="../../assets/image/banner.png" alt="" class="header-img" />
     </div>
-    <Content></Content>
-    <p class="bottom-warn">没有了哦</p>
+    <Content class="content"></Content>
   </div>
 </template>
 
@@ -25,12 +24,7 @@ export default {
   top: 0px;
   z-index: -100;
 }
-.bottom-warn {
-  font-size: 18px;
-  font-weight: bold;
-  line-height: 25px;
-  color: #565252;
-  margin: 70px 0;
-  text-align: center;
+.content {
+  margin-bottom: 70px;
 }
 </style>

@@ -11,3 +11,8 @@ export function LookForHandel(id) {
   // console.log('https://api.dev.hiifire.com/v1/kol/category/' + id)
   return axios.get('https://api.dev.hiifire.com/v1/kol/category/' + id)
 }
+
+// 网红分类列表
+export function LookForClassify() {
+  return axios.get('http://api.dev.hiifire.com/v1/kol-category')
+}

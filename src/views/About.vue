@@ -4,7 +4,7 @@
       <div class="top-nav">
         <img src="../assets/image/logo.png" alt="" class="logo" />
         <ul class="nav-list">
-          <li class="nav-text">网红通道</li>
+          <li class="nav-text">KOC入驻</li>
           <li class="nav-text">MCN通道</li>
           <li>
             <img src="../assets/image/gengduo.png" alt="" class="nav-gengduo" />

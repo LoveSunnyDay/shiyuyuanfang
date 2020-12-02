@@ -11,11 +11,11 @@
         <span class="list-title" :class="BorderLeft(list)">
           {{ list.title }}
         </span>
-        <div class="list-main">
-          <span>{{ list.subtitle }}</span>
-          <!-- <span class="list-name">美妆博主</span>
+        <!-- <div class="list-main"> -->
+        <span class="list-main">{{ list.subtitle }}</span>
+        <!-- <span class="list-name">美妆博主</span>
             <span>再次等候，为您提供推广。</span> -->
-        </div>
+        <!-- </div> -->
       </div>
       <div class="content-look-introduce">
         {{ list.body }}
@@ -104,11 +104,14 @@ export default {
   transition: 0.5s;
   background-color: #eeeeee;
 }
+.content-look:hover .content-look-title span {
+  color: #0a5cff;
+}
 .content-look {
-  // overflow: hidden;
   width: 1010px;
   margin: 42px auto 0;
   padding: 20px 20px 0;
+  cursor: pointer;
   .content-look-title {
     display: flex;
     height: 27px;
@@ -128,7 +131,7 @@ export default {
       border-left: 3px #d63458ff solid;
     }
     .list-title6 {
-      border-left: 3px#E6BB8BFF solid;
+      border-left: 3px #e6bb8bff solid;
     }
     .list-title7 {
       border-left: 3px #3a89a7ff solid;
@@ -151,10 +154,7 @@ export default {
       // border-left: 3px #ffb8fa solid;
       padding-left: 2px;
       margin-right: 40px;
-      cursor: pointer;
-    }
-    .list-title:hover {
-      color: #0a5cff;
+      // cursor: pointer;
     }
     .list-name {
       font-size: 12px;
@@ -168,10 +168,6 @@ export default {
       font-weight: bold;
       line-height: 27px;
       color: #a7a7a7;
-      cursor: pointer;
-    }
-    .list-main:hover > span {
-      color: #0064f9;
     }
   }
   .content-look-introduce {
@@ -235,7 +231,6 @@ export default {
       img {
         width: 158px;
         height: 198px;
-        cursor: pointer;
       }
       .detail-name {
         font-size: 14px;
@@ -243,7 +238,6 @@ export default {
         line-height: 20px;
         color: #1a1a1c;
         margin-top: 10px;
-        cursor: pointer;
       }
       .detail-from {
         margin-top: 4px;
@@ -251,7 +245,6 @@ export default {
         font-weight: 400;
         line-height: 20px;
         color: #5e5e5e;
-        cursor: pointer;
       }
       .detail-fans {
         margin-top: 4px;
@@ -259,10 +252,6 @@ export default {
         font-weight: 400;
         line-height: 20px;
         color: #5e5e5e;
-        cursor: pointer;
-        // span {
-        //   color: #d32dc8;
-        // }
         span:nth-child(1) {
           font-size: 16px;
           font-family: Arial;

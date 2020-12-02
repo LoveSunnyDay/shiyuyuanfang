@@ -62,5 +62,8 @@ export default {
     margin-left: 64px;
     cursor: pointer;
   }
+  p:hover {
+    color: #0064f9;
+  }
 }
 </style>
