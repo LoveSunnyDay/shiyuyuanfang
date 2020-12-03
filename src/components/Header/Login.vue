@@ -2,14 +2,15 @@
   <div>
 
     <button
+    v-if="!loginStatus"
       class="nav-login"
-      @click="showLoginDiaolog"
-    >登录</button
-    >
+      @click="openLoginDiaolog"
+    >登录</button>
+    <img v-else src="../../assets/image/icon.jpg" style="width:30px;border-radius:50%;position:absolute;top:20px;right:15px" />
     <el-dialog
-      :visible.sync="dialogVisible"
+      :visible.sync="showLoginDiaolog"
       width="440px"
-      :before-close="handleClose"
+      @close="handleClose"
       :modal-append-to-body="false"
     >
       <div class="login">
@@ -59,7 +60,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import wxlogin from 'vue-wxlogin'
 import { getUrl, getCookie, setCookie } from '../../utils'
 export default {
@@ -79,12 +80,9 @@ export default {
   },
   // 方法集合
   methods: {
-    handleClose(done) {
-      this.$confirm('确认退出登录吗？')
-        .then((_) => {
-          done()
-        })
-        .catch((_) => {})
+    ...mapMutations('login', ['setShowLoginDiaolog']),
+    handleClose() {
+      this.setShowLoginDiaolog(false)
     },
     openWin(url, name, iWidth, iHeight) {
       // 获得窗口的垂直位置
@@ -96,26 +94,27 @@ export default {
     loginModeButton() {
       return (this.loginMode = !this.loginMode)
     },
-    async showLoginDiaolog() {
-      this.dialogVisible = true
-      console.log('showLoginDiaolog', window.location)
+    async openLoginDiaolog() {
+      this.setShowLoginDiaolog(true)
       const { data } = await this.axios.get('https://api.dev.hiifire.com/v1/auth/qr_url?authclient=wx')
       console.log('data', data)
       this.openWin(data, '123', 1000, 1000)
       setCookie('wx-token', '', -1)
-      this.pollwxloginsetInterval(() => {
-        console.log(222222)
+      this.pollwxlogin = setInterval(() => {
         if (getCookie('wx-token')) {
-
+          window.location.reload()
+          this.pollwxlogin = null
         }
       }, 1000)
+
       this.state = getUrl(data, 'state')
       this.redirect_uri = getUrl(data, 'redirect_uri')
     }
   },
   // 监听属性 类似于data概念
   computed: {
-    ...mapState('wxLogin', ['token', 'profile', 'user', 'loginStatus'])
+    ...mapState('wxLogin', ['token', 'profile', 'user', 'loginStatus']),
+    ...mapState('login', ['showLoginDiaolog'])
   },
   // 监控data中的数据变化
   watch: {

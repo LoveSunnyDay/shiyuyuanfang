@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
+import store from '../store'
 const config = {
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
   // timeout: 60 * 1000, // Timeout
@@ -34,6 +35,9 @@ _axios.interceptors.response.use(
     const status = error?.response?.status
     if (status === 400) {
       Vue.prototype.$message('客户端错误！')
+    }
+    if (status === 401) {
+      store.commit('login/setShowLoginDiaolog', true)
     }
     if (status === 500) {
       Vue.prototype.$message('服务器异常，请稍后重试！')

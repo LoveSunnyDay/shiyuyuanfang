@@ -5,7 +5,7 @@ export default {
     token: null,
     profile: null,
     user: null,
-    loginStatus: true
+    loginStatus: false
   },
   mutations: {
     setUserInfo(state, newData) {
@@ -17,6 +17,9 @@ export default {
     },
     wxLoginFailed(state, newData) {
       state.loginStatus = false
+    },
+    setIsLogin(state, newData) {
+      state.loginStatus = newData
     }
   },
   actions: {
