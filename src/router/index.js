@@ -30,7 +30,7 @@ import OpenInvoice from '@/views/MyCenter/OpenInvoice'
 import MyProfile from '@/views/MyCenter/MyProfile'
 import News from '@/views/MyCenter/News'
 import CompanyInformation from '@/views/MyCenter/CompanyInformation'
-import { getUrl, setCookie } from '../utils'
+import { getUrl, setCookie, getCookie } from '../utils'
 
 // const Index = () => import('../components/Index')
 Vue.use(VueRouter)
@@ -167,27 +167,37 @@ router.beforeEach(async (to, from, next) => {
   // add before changing logic
   console.log('window.location.href', window.location.href)
   // const href = window.location.href
-  console.log('asdasdasdasdasdas', to, from)
-
-  const code = getUrl(window.location.href, 'code')
-  const state = getUrl(window.location.href, 'state')
-  console.log('code', code)
-  console.log('state', state)
+  console.log('路由跳转', to, from)
+  // 检测用户是否已经登录
+  if (getCookie('wx-token')) {
+    console.log('用户存在token已经的登录')
+    store.commit('wxLogin/setIsLogin', true)
+  } else {
+    console.log('不存在token没有登录')
+    store.commit('wxLogin/setIsLogin', false)
+  }
   // /code && state
-  if (to.path === '/auth_redircect' && (!!code || !!state)) {
+  if (to.path === '/auth_redircect') {
     // http://localhost:8082/auth_redircect?authclient=wx&code=051nl6Ha1WxZ3A0uLjIa1AkUIf2nl6He
-    window.axios.get(`http://api.dev.hiifire.com/v1/auth?authclient=wx&code=${code}&state=${state}`).then((res) => {
-      console.log('res', res)
-      const { data, success } = res
-      const { token } = data || {}
-      if (success) {
-        setCookie('wx-token', JSON.stringify(token), window.location.hostname)
-        window.close()
-        store.commit('wxLogin/setUserInfo', data)
-      } else {
-        store.commit('wxLogin/wxLoginFailed')
-      }
-    })
+    const code = getUrl(window.location.href, 'code')
+    const state = getUrl(window.location.href, 'state')
+    console.log('code', code)
+    console.log('state', state)
+    if (!!code || !!state) {
+      window.axios.get(`http://api.dev.hiifire.com/v1/auth?authclient=wx&code=${code}&state=${state}`).then((res) => {
+        console.log('res', res)
+        const { data, success } = res
+        const { token } = data || {}
+        console.log('授权返回值', data)
+        if (success) {
+          setCookie('wx-token', JSON.stringify(token.token), window.location.hostname, token.expire_at)
+          window.close()
+          store.commit('wxLogin/setUserInfo', data)
+        } else {
+          store.commit('wxLogin/wxLoginFailed')
+        }
+      })
+    }
   } else {
     next()
   }
