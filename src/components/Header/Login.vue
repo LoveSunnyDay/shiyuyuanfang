@@ -1,14 +1,13 @@
 <template>
   <div>
-
     <button
-    v-if="!loginStatus"
+      v-if="!loginStatus"
       class="nav-login"
       @click="openLoginDiaolog"
     >登录</button>
     <img v-else src="../../assets/image/icon.jpg" style="width:30px;border-radius:50%;position:absolute;top:20px;right:15px" />
     <el-dialog
-      :visible.sync="showLoginDiaolog"
+      :visible.sync="showDialog"
       width="440px"
       @close="handleClose"
       :modal-append-to-body="false"
@@ -20,7 +19,7 @@
             <span></span>
           </div>
           <p><i class="iconfont icon-weixin1"></i>微信登录</p>
-          <div class="wx-login-erweima">
+          <!-- <div class="wx-login-erweima">
             <wxlogin
                 style="position:relative;right:43px"
                 appid="wx5900ce0ef941d566"
@@ -29,8 +28,8 @@
                 :redirect_uri="redirect_uri"
                 href="data:text/css;base64,LmltcG93ZXJCb3ggLnRpdGxlIHtkaXNwbGF5OiBub25lO30KLmltcG93ZXJCb3ggLmluZm8ge2Rpc3BsYXk6IG5vbmU7fQouc3RhdHVzX2ljb24ge2Rpc3BsYXk6IG5vbmV9Ci5pbXBvd2VyQm94IC5zdGF0dXMge3RleHQtYWxpZ246IGNlbnRlcjt9Ci5pbXBvd2VyQm94IC5xcmNvZGUge3dpZHRoOiAyMjBweDtwb3NpdGlvbjpyZWxhdGl2ZTtyaWdodDozcHg7dG9wOi0yMXB4O2JvcmRlcjpub25lfQ=="
               ></wxlogin>
-          </div>
-          <p class="wx-login-text">扫描二维码登录</p>
+          </div> -->
+          <!-- <p class="wx-login-text">扫描二维码登录</p> -->
           <img src="../../assets/image/welcome.png" class="wx-login-welcom" />
         </div>
         <div v-else class="phone-login">
@@ -56,26 +55,27 @@
         </div>
       </div>
     </el-dialog>
+    <BindingPhone v-if="showBindPhone"/>
   </div>
 </template>
 
 <script>
 import { mapState, mapMutations } from 'vuex'
-import wxlogin from 'vue-wxlogin'
-import { getUrl, getCookie, setCookie } from '../../utils'
+// import wxlogin from 'vue-wxlogin'
+import { getCookie, setCookie } from '../../utils'
+import BindingPhone from './BindingPhone'
 export default {
   // 引入组件
   components: {
-    wxlogin
+    BindingPhone
   },
   data() {
     // 这里存放数据
     return {
       dialogVisible: false,
       loginMode: true,
-      qrCode: '',
-      redirect_uri: '',
-      state: ''
+      showBindPhone: false
+
     }
   },
   // 方法集合
@@ -102,19 +102,26 @@ export default {
       setCookie('wx-token', '', -1)
       this.pollwxlogin = setInterval(() => {
         if (getCookie('wx-token')) {
-          window.location.reload()
           this.pollwxlogin = null
+          // window.location.reload()
+          this.showBindPhone = true
+          this.setShowLoginDiaolog(false)
         }
       }, 1000)
-
-      this.state = getUrl(data, 'state')
-      this.redirect_uri = getUrl(data, 'redirect_uri')
     }
   },
   // 监听属性 类似于data概念
   computed: {
     ...mapState('wxLogin', ['token', 'profile', 'user', 'loginStatus']),
-    ...mapState('login', ['showLoginDiaolog'])
+    ...mapState('login', ['showLoginDiaolog']),
+    showDialog: {
+      get() {
+        return this.showLoginDiaolog
+      },
+      set() {
+
+      }
+    }
   },
   // 监控data中的数据变化
   watch: {
