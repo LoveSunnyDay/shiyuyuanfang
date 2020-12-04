@@ -9,28 +9,32 @@
       <div class="phone">
         <p class="binding-phone-prefix">+86</p>
         <input
+          v-model="phoneNumber"
           type="text"
           placeholder="请输入手机号"
           class="binding-phone-input"
         />
       </div>
       <div class="auth-code">
-        <input type="text" class="auth-code-input" />
-        <button class="auth-code-button">发送验证码</button>
+        <input type="text" class="auth-code-input" v-model="verifyCode" />
+        <button class="auth-code-button" @click="sendVerifyCode">发送验证码</button>
       </div>
-      <button class="accomplish">完成</button>
+      <button class="accomplish" @click="bindPhoneNumber">完成</button>
     </el-dialog>
   </div>
 </template>
 
 <script>
+import { getCookie } from '../../utils/index'
 export default {
   // 引入组件
   components: {},
   data() {
     // 这里存放数据
     return {
-      dialogVisible: true
+      dialogVisible: true,
+      phoneNumber: '',
+      verifyCode: ''
     }
   },
   // 方法集合
@@ -41,6 +45,36 @@ export default {
           done()
         })
         .catch((_) => {})
+    },
+    async  sendVerifyCode() {
+      // 发送短信验证码
+      const { success } = await this.axios.post('https://api.dev.hiifire.com/v1/tool/send_sms', {
+        phone_number: this.phoneNumber,
+        type: 'bind'
+      })
+      if (!success) {
+        this.$message.error('获取验证码失败！')
+      }
+    },
+    async bindPhoneNumber() {
+      if (!this.phoneNumber) {
+        this.$message.info('请输入手机号码！')
+        return
+      }
+      if (!this.verifyCode) {
+        this.$message.info('请输入验证码！')
+        return
+      }
+      // 绑定手机号
+      const { success } = await this.axios.post('https://api.dev.hiifire.com/v1/user/bind', {
+        'access-token': getCookie('wx-token'),
+        phone_number: this.phoneNumber,
+        code: this.verifyCode
+      })
+      if (!success) {
+        this.$message.error('手机号码绑定失败！')
+      }
+      this.$emit('closeBindPhone')
     }
   },
   // 监听属性 类似于data概念

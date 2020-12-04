@@ -55,7 +55,10 @@
         </div>
       </div>
     </el-dialog>
-    <BindingPhone v-if="showBindPhone"/>
+    <BindingPhone
+      v-if="!showBindPhone"
+      @closeBindPhone="closeBindPhone"
+    />
   </div>
 </template>
 
@@ -102,12 +105,22 @@ export default {
       setCookie('wx-token', '', -1)
       this.pollwxlogin = setInterval(() => {
         if (getCookie('wx-token')) {
-          this.pollwxlogin = null
+          clearInterval(this.pollwxlogin)
           // window.location.reload()
-          this.showBindPhone = true
+          // 判断用户是否已经绑定手机号
+          // eslint-disable-next-line camelcase
+          const { auth_type } = JSON.parse(getCookie('user'))
+          // eslint-disable-next-line camelcase
+          if (auth_type === 2) {
+            this.showBindPhone = true
+          }
+
           this.setShowLoginDiaolog(false)
         }
       }, 1000)
+    },
+    closeBindPhone() {
+      this.showBindPhone = false
     }
   },
   // 监听属性 类似于data概念
