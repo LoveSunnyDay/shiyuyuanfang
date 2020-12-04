@@ -47,11 +47,17 @@ export default {
         .catch((_) => {})
     },
     async  sendVerifyCode() {
+      const params = new FormData()
+      params.append('phone_number', this.phoneNumber)
+      params.append('type', 'bind')
       // 发送短信验证码
-      const { success } = await this.axios.post('https://api.dev.hiifire.com/v1/tool/send_sms', {
-        phone_number: this.phoneNumber,
-        type: 'bind'
+      const { success } = await this.axios({
+        method: 'post',
+        url: 'https://api.dev.hiifire.com/v1/tool/send_sms',
+        data: params,
+        headers: { 'Content-Type': 'multipart/form-data' }
       })
+
       if (!success) {
         this.$message.error('获取验证码失败！')
       }
