@@ -17,6 +17,7 @@ import DetailBilibili from '@/views/Detail/DetailBilibili'
 import Channel from '@/views/Channel/Channel'
 import ChannelMCN from '@/views/Channel/ChannelMCN'
 import VideoArticle from '@/views/Index/VideoArticle'
+// import BindingPhone from '@/components/Header/BindingPhone'
 
 import Pay from '@/views/Pay/Pay'
 import PayComplete from '@/views/Pay/PayComplete'
@@ -156,6 +157,10 @@ const routes = [
     path: '/VideoArticle',
     component: VideoArticle
   }
+  // {
+  //   path: '/BindingPhone',
+  //   component: BindingPhone
+  // }
 ]
 
 const router = new VueRouter({

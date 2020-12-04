@@ -5,14 +5,18 @@
       width="440px"
       :before-close="handleClose"
     >
-      <h2>绑定手机号</h2>
+      <h2 class="binding-phone-title">绑定手机号</h2>
       <div class="phone">
-        <p>+86</p>
-        <input type="text" placeholder="请输入手机号" />
+        <p class="binding-phone-prefix">+86</p>
+        <input
+          type="text"
+          placeholder="请输入手机号"
+          class="binding-phone-input"
+        />
       </div>
       <div class="auth-code">
-        <input type="text" />
-        <button>发送验证码</button>
+        <input type="text" class="auth-code-input" />
+        <button class="auth-code-button">发送验证码</button>
       </div>
       <button class="accomplish">完成</button>
     </el-dialog>
@@ -66,19 +70,21 @@ export default {
 
 <style lang='less' scoped>
 .binding-phone {
-  h2 {
+  height: 480px;
+  .binding-phone-title {
     font-size: 24px;
     font-weight: bold;
     line-height: 33px;
     color: #1a1a1a;
     opacity: 0.81;
+    margin: 0 20px;
   }
   .phone {
     height: 40px;
     display: flex;
     justify-content: space-between;
-    margin-top: 90px;
-    p {
+    margin: 90px 20px 0;
+    .binding-phone-prefix {
       width: 83px;
       height: 38px;
       background: #ffffff;
@@ -90,7 +96,7 @@ export default {
       color: #aaaaaa;
       opacity: 0.81;
     }
-    input {
+    .binding-phone-input {
       outline: none;
       width: 238px;
       height: 38px;
@@ -101,10 +107,10 @@ export default {
     }
   }
   .auth-code {
-    margin-top: 24px;
     display: flex;
     justify-content: space-between;
-    input {
+    margin: 24px 20px 0;
+    .auth-code-input {
       outline: none;
       width: 228px;
       height: 38px;
@@ -113,7 +119,7 @@ export default {
       border-radius: 4px;
       padding-left: 20px;
     }
-    button {
+    .auth-code-button {
       outline: none;
       width: 100px;
       height: 40px;
@@ -128,7 +134,6 @@ export default {
     }
   }
   .accomplish {
-    margin-top: 68px;
     cursor: pointer;
     border: 0;
     outline: none;
@@ -140,17 +145,11 @@ export default {
     font-weight: 400;
     color: #ffffff;
     opacity: 0.81;
+    margin: 70px 20px;
   }
   .accomplish:hover {
     transition: 0.5s;
     background: #19a483;
   }
-}
-/deep/.el-dialog__body {
-  padding: 0 40px;
-  height: 480px;
-}
-/deep/.el-dialog__headerbtn .el-dialog__close:hover {
-  color: red;
 }
 </style>

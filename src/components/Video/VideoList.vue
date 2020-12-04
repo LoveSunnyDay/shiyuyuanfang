@@ -141,9 +141,9 @@ export default {
         color: #a3a3a4;
         margin-top: 9px;
         width: 400px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        // white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
       }
       p:hover {
         color: #94b7f8;
