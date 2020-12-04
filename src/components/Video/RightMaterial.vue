@@ -2,21 +2,68 @@
 <template>
   <div class="right-material">
     <p class="material-title">精选热度素材</p>
-    <div class="material-main" v-for="list in 5" :key="list">
-      <img
-        src="https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1554886033,1575606621&fm=26&gp=0.jpg"
-        alt=""
-      />
-      <div class="material-text">
-        <p>题材：双闪高光温馨提醒，慎用远光灯平安人一生</p>
-        <i class="el-icon-view">1296</i>
+    <router-link to="/VideoArticle" target="_blank">
+      <div
+        class="material-main"
+        v-for="materials in material"
+        :key="materials.id"
+      >
+        <img
+          :src="materials.thumbnail_base_url + '/' + materials.thumbnail_path"
+          alt=""
+        />
+        <div class="material-text">
+          <p>{{ materials.title }}</p>
+          <i class="el-icon-view">
+            <span>{{ materials.view_count }}</span>
+          </i>
+        </div>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    material: {
+      type: Array,
+      default() {
+        return []
+      }
+    }
+  },
+  // 引入组件
+  components: {},
+  data() {
+    // 这里存放数据
+    return {}
+  },
+  // 方法集合
+  methods: {},
+  // 监听属性 类似于data概念
+  computed: {},
+  // 监控data中的数据变化
+  watch: {},
+  // 生命周期 - 创建之前
+  beforeCreate() {},
+  // 生命周期 - 创建完成（可以访问当前this实例）
+  created() {},
+  // 生命周期 - 挂载之前
+  beforeMount() {},
+  // 生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {},
+  // 生命周期 - 更新之前
+  beforeUpdate() {},
+  // 生命周期 - 更新之后
+  updated() {},
+  // 生命周期 - 销毁之前
+  beforeDestroy() {},
+  // 生命周期 - 销毁完成
+  destroyed() {},
+  // 如果页面有keep-alive缓存功能，这个函数会触发
+  activated() {}
+}
 </script>
 
 <style lang="less" scoped>
@@ -60,8 +107,11 @@ export default {}
         position: absolute;
         left: 0;
         bottom: 0;
+        span {
+          margin-left: 3px;
+        }
       }
     }
   }
 }
-</style>>
+</style>

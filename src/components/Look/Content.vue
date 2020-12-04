@@ -6,16 +6,11 @@
       :key="list.id"
       @click="LookForHandel(list.id)"
     >
-      <!-- <router-link to=""> -->
       <div class="content-look-title">
         <span class="list-title" :class="BorderLeft(list)">
           {{ list.title }}
         </span>
-        <!-- <div class="list-main"> -->
         <span class="list-main">{{ list.subtitle }}</span>
-        <!-- <span class="list-name">美妆博主</span>
-            <span>再次等候，为您提供推广。</span> -->
-        <!-- </div> -->
       </div>
       <div class="content-look-introduce">
         {{ list.body }}
@@ -38,7 +33,6 @@
           </div>
         </div>
       </div>
-      <!-- </router-link> -->
     </div>
   </div>
 </template>
@@ -105,6 +99,7 @@ export default {
   background-color: #eeeeee;
 }
 .content-look:hover .content-look-title span {
+  transition: 0.5s;
   color: #0a5cff;
 }
 .content-look {
@@ -154,7 +149,6 @@ export default {
       // border-left: 3px #ffb8fa solid;
       padding-left: 2px;
       margin-right: 40px;
-      // cursor: pointer;
     }
     .list-name {
       font-size: 12px;

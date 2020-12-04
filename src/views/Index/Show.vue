@@ -33,14 +33,17 @@ import Masonry from '@/components/Show/Masonry.vue'
 export default {
   components: {
     Masonry
+  },
+  data() {
+    return {}
   }
 }
 </script>
 
 <style lang="less" scoped>
 .show {
-  width: 1440px;
-  margin: 0 auto;
+  width: 1366px;
+  margin: 0 auto 70px;
   // padding: 0 57px;
   .header-img {
     width: 100%;

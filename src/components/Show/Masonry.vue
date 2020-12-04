@@ -1,8 +1,22 @@
 <template>
   <div>
     <ul class="masonry">
+      <li class="masonry-item">
+        <img
+          src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=274952928,879286923&fm=26&gp=0.jpg"
+          alt=""
+        />
+        <h1>找网红做广告</h1>
+        <h2>如遇问题请联系超火客服</h2>
+        <p class="masonry-item-name">超火客服</p>
+      </li>
       <li class="masonry-item" @mouseover="mouseOver" @mouseleave="mouseLeave">
-        <img src="https://picsum.photos/348/580?random=1" alt="" />
+        <!-- v-for="items in item"
+        :key="items.id" -->
+        <img
+          src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3288873043,3914514780&fm=26&gp=0.jpg"
+          alt=""
+        />
         <p class="masonry-item-name">我是你的cc啊</p>
         <transition name="el-zoom-in-bottom">
           <div class="item-text" v-show="seen">
@@ -33,63 +47,114 @@
           </div>
         </transition>
       </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/420?random=2" alt="" />
+      <!-- <li class="masonry-item">
+        <img
+          src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1235603096,1102356358&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/530?random=3" alt="" />
+        <img
+          src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2660509671,3471117234&fm=15&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/470?random=4" alt="" />
+        <img
+          src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2752148155,155093617&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/390?random=5" alt="" />
+        <img
+          src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=188755981,3099070149&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/410?random=6" alt="" />
+        <img
+          src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3665502566,4066182875&fm=15&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/460?random=7" alt="" />
+        <img
+          src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=118353950,2226426098&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/430?random=8" alt="" />
+        <img
+          src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3192923591,134493481&fm=15&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/500?random=9" alt="" />
+        <img
+          src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3197802539,71734146&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/480?random=10" alt="" />
+        <img
+          src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3316307702,2217101271&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/520?random=11" alt="" />
+        <img
+          src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3543666205,3763985446&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/460?random=12" alt="" />
+        <img
+          src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=117402550,3524737531&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/490?random=13" alt="" />
+        <img
+          src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1116313726,3874542020&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/560?random=14" alt="" />
+        <img
+          src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1300003980,2178758242&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/510?random=15" alt="" />
+        <img
+          src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1079686308,4274782743&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/420?random=16" alt="" />
+        <img
+          src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1733582215,4186515281&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/500?random=17" alt="" />
+        <img
+          src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3904644935,268508794&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/420?random=18" alt="" />
+        <img
+          src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3597741797,1693092302&fm=26&gp=0.jpg"
+          alt=""
+        />
       </li>
       <li class="masonry-item">
-        <img src="https://picsum.photos/348/510?random=19" alt="" />
-      </li>
-      <li class="masonry-item">
-        <img src="https://picsum.photos/348/450?random=20" alt="" />
-      </li>
+        <img
+          src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1908051107,2093176700&fm=26&gp=0.jpg"
+          alt=""
+        />
+      </li> -->
     </ul>
   </div>
 </template>
@@ -105,15 +170,15 @@ export default {
   created() {
     // 全部KOL分类列表
     this.axios.get('https://api.dev.hiifire.com/v1/kol-plat').then((res) => {
-      console.log(res)
-      this.item = res.data
+      console.log(res.data.items)
+      this.item = res.data.items
     })
   },
   methods: {
     mouseOver() {
       this.seen = true
     },
-    mouseLeave(item) {
+    mouseLeave() {
       this.seen = false
     }
   }
@@ -124,7 +189,7 @@ export default {
   column-count: 4;
   column-gap: 0;
   margin: 12px 0 0 10px;
-  width: 1440px;
+  width: 1366px;
   .masonry-item {
     padding-top: 10px;
     cursor: pointer;
@@ -132,7 +197,26 @@ export default {
     img {
       display: block;
       height: auto;
-      width: 348px;
+      width: 330px;
+      height: 450px;
+    }
+    h1 {
+      position: absolute;
+      top: 55px;
+      left: 35px;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 33px;
+      color: #ffffff;
+    }
+    h2 {
+      position: absolute;
+      top: 92px;
+      left: 35px;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 26px;
+      color: #ffffff;
     }
     .masonry-item-name {
       font-size: 14px;
@@ -143,7 +227,7 @@ export default {
       left: 24px;
     }
     .item-text {
-      width: 348px;
+      width: 330px;
       height: 120px;
       background: #e5e6e5;
       opacity: 0.86;

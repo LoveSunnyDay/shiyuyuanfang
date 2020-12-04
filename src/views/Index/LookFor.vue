@@ -4,39 +4,27 @@
       <img src="../../assets/image/banner.png" alt="" class="header-img" />
     </div>
     <div class="lookfor-nav">
-      <img class="img" src="../../assets/image/show/quanbu.png" alt="1111" />
-      <el-select v-model="value" placeholder="时尚美妆" class="filter-select">
-        <!-- <a :href="item._links.self.href"> -->
+      <img class="img" src="../../assets/image/show/quanbu.png" />
+      <el-select
+        v-model="value"
+        placeholder="时尚美妆"
+        class="filter-select"
+        @click="classifyJump(item.id)"
+      >
         <el-option
           v-for="item in options"
           :key="item.id"
           :label="item.title"
           :value="item.id"
         >
-          <!-- @click="classifyJump(item.id)" -->
         </el-option>
-        <!-- </a> -->
       </el-select>
       <el-row>
-        <el-button round>
-          <img src="../../assets/image/show/douyin.png" alt="" />
-          <p>抖音网红</p>
-        </el-button>
-        <el-button round>
-          <img src="../../assets/image/show/xiaohongshu.png" alt="" />
-          <p>小红书网红</p>
-        </el-button>
-        <el-button round>
-          <img src="../../assets/image/show/bilibili.png" alt="" />
-          <p>B站网红</p>
-        </el-button>
-        <el-button round>
-          <img src="../../assets/image/show/kuaishou.png" alt="" />
-          <p>快手网红</p>
-        </el-button>
-        <el-button round>
-          <img src="../../assets/image/show/taobao.png" alt="" />
-          <p>淘宝网红</p>
+        <el-button round v-for="platforms in platform" :key="platforms.id">
+          <img
+            :src="platforms.thumbnail_base_url + '/' + platforms.thumbnail_path"
+          />
+          <p>{{ platforms.name }}网红</p>
         </el-button>
       </el-row>
     </div>
@@ -49,11 +37,12 @@
 import Main from '@/components/LookFor/Main.vue'
 import Shopping from '@/components/Shopping.vue'
 
-import { LookForClassify } from '../../services/video'
+import { LookForClassify, LookForPlatform } from '../../services/video'
 export default {
   data() {
     return {
       options: [],
+      platform: [],
       value: '',
       shoppingShow: false
     }
@@ -73,14 +62,13 @@ export default {
       } else if (scrollTop < 300) {
         this.shoppingShow = false
       }
+    },
+    classifyJump(item) {
+      this.$router.push({
+        path: 'LookFor',
+        query: { id: item }
+      })
     }
-    // classifyJump(item) {
-    //   console.log(item)
-    //   this.$router.push({
-    //     path: 'LookFor',
-    //     query: { id: item }
-    //   })
-    // }
   },
   mounted() {
     window.addEventListener('scroll', this.shoppingScroll)
@@ -90,6 +78,10 @@ export default {
       console.log(res.data.data.items)
       this.options = res.data.data.items
     })
+    LookForPlatform().then((res) => {
+      // console.log(res.data.data.items)
+      this.platform = res.data.data.items
+    })
   }
 }
 </script>
@@ -97,7 +89,7 @@ export default {
 <style lang="less" scoped>
 .lookfor {
   width: 1059px;
-  margin: 30px auto 0;
+  margin: 30px auto 70px;
   .header-img {
     width: 100%;
     height: 504px;

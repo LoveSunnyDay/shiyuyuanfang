@@ -16,6 +16,7 @@ import DetailDouYin from '@/views/Detail/DetailDouYin'
 import DetailBilibili from '@/views/Detail/DetailBilibili'
 import Channel from '@/views/Channel/Channel'
 import ChannelMCN from '@/views/Channel/ChannelMCN'
+import VideoArticle from '@/views/Index/VideoArticle'
 
 import Pay from '@/views/Pay/Pay'
 import PayComplete from '@/views/Pay/PayComplete'
@@ -150,6 +151,10 @@ const routes = [
   {
     path: '/ChannelMCN',
     component: ChannelMCN
+  },
+  {
+    path: '/VideoArticle',
+    component: VideoArticle
   }
 ]
 
@@ -158,7 +163,7 @@ const router = new VueRouter({
   mode: 'history'
   // mode: 'hash'
 })
-router.beforeEach(async(to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   // add before changing logic
   console.log('window.location.href', window.location.href)
   // const href = window.location.href

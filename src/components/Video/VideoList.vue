@@ -1,37 +1,86 @@
 <template>
   <div class="video-list">
     <h1>最新视频素材</h1>
-    <div class="list-content" v-for="list in 10" :key="list">
-      <div class="list-icon">
-        <img
-          src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1704421249,3948285061&fm=26&gp=0.jpg"
-          alt=""
-        />
-        <span>#美妆</span>
-      </div>
-      <div class="list-details">
-        <div class="details-title">
-          <span>市场要闻</span>
-          <span>｜</span>
-          <span>周小川：年轻一代储蓄率在明显下调 内循环更加畅通</span>
+    <router-link to="/VideoArticle" target="_blank">
+      <div class="list-content" v-for="articles in article" :key="articles.id">
+        <div class="list-icon">
+          <img
+            :src="articles.thumbnail_base_url + '/' + articles.thumbnail_path"
+          />
+          <span>#{{ articles.category.title }}</span>
         </div>
-        <p>双闪高光温馨提醒，慎用远光灯平安人一生</p>
-        <div class="details-footer">
-          <div class="footer-left">
-            <span>来自主题：</span>
-            <span>双闪高光眼盘</span>
-            <span>｜</span>
-            <span>超火引擎</span>
+        <div class="list-details">
+          <div class="details-title">
+            <span>{{ articles.title }}</span>
           </div>
-          <i class="el-icon-time">8分钟前</i>
+          <p>{{ articles.introduction }}</p>
+          <div class="details-footer">
+            <div class="footer-left">
+              <span>来自主题：</span>
+              <span>{{ articles.category.title }}</span>
+              <span>｜</span>
+              <span>超火引擎</span>
+            </div>
+            <i class="el-icon-time">{{
+              (articles.published_at * 1000) | formatDate
+            }}</i>
+          </div>
         </div>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
+
 <script>
-export default {}
+import { formatDate } from '../../plugins/filters'
+export default {
+  props: {
+    article: {
+      type: Array,
+      default() {
+        return []
+      }
+    }
+  },
+  // 引入组件
+  components: {},
+  data() {
+    // 这里存放数据
+    return {}
+  },
+  filters: {
+    formatDate(time) {
+      var data = new Date(time)
+      return formatDate(data, 'yyyy-MM-dd')
+    }
+  },
+  // 方法集合
+  methods: {},
+  // 监听属性 类似于data概念
+  computed: {},
+  // 监控data中的数据变化
+  watch: {},
+  // 生命周期 - 创建之前
+  beforeCreate() {},
+  // 生命周期 - 创建完成（可以访问当前this实例）
+  created() {},
+  // 生命周期 - 挂载之前
+  beforeMount() {},
+  // 生命周期 - 挂载完成（可以访问DOM元素）
+  mounted() {},
+  // 生命周期 - 更新之前
+  beforeUpdate() {},
+  // 生命周期 - 更新之后
+  updated() {},
+  // 生命周期 - 销毁之前
+  beforeDestroy() {},
+  // 生命周期 - 销毁完成
+  destroyed() {},
+  // 如果页面有keep-alive缓存功能，这个函数会触发
+  activated() {}
+}
 </script>
+
 <style lang="less" scoped>
 .video-list {
   margin-top: 28px;
@@ -60,7 +109,7 @@ export default {}
       }
       span {
         display: inline-block;
-        width: 44px;
+        padding: 0 5px;
         height: 20px;
         font-size: 12px;
         font-weight: 400;
@@ -85,11 +134,16 @@ export default {}
         }
       }
       p {
+        display: inline-block;
         font-size: 14px;
         font-weight: 500;
         line-height: 24px;
         color: #a3a3a4;
         margin-top: 9px;
+        width: 400px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       p:hover {
         color: #94b7f8;
