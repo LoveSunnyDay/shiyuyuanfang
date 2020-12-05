@@ -55,7 +55,9 @@
         </ul>
         <button>找TA推广</button>
       </div>
+      
     </div>
+    <div class="more" @click="expandMore">展开更多</div>
   </div>
 </template>
 
@@ -74,7 +76,9 @@ export default {
    return{}
   },
   methods: {
-   
+  expandMore(){
+    // this.$emit('')
+  }
   },
   created() {
   }
@@ -281,4 +285,13 @@ export default {
     }
   }
 }
+.more{
+    padding:23px 0;
+    background: #F6F6F6;
+    font-size: 16px;
+    font-family: PingFang SC;
+    font-weight: 800;
+    text-align: center;
+    color: #808080;
+  }
 </style>

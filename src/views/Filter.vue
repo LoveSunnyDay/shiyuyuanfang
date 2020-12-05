@@ -15,7 +15,7 @@
       </el-breadcrumb>
     </div>
     <el-row>
-      <el-button v-for="(item, key) in platoptions" :key="key">
+      <el-button  v-for="(item, key) in platoptions" :key="key">
         <img
           :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
           alt=""
@@ -163,9 +163,24 @@ export default {
     this.getSexList()
     this.getPriceList()
     this.getFansList()
+    this.queryKol()
   },
   // 方法集合
   methods: {
+     queryKol(){
+       let queryString=[]
+      for(const key in this.searchParms){
+        if(this.searchParms[key]){
+          queryString.push(`${key}=${ this.searchParms[key]}`)
+        }  
+      }
+      this.axios
+      .get(`https://api.dev.hiifire.com/v1/kol/index?${queryString.join('&')}`)
+      .then((res) => {
+        console.log("kolList",res.data)
+        this.list=res.data.items
+      })
+    },
     async getPlatList() {
       const { data } = await this.axios.get(
         'http://api.dev.hiifire.com/v1/plat'
@@ -292,6 +307,7 @@ export default {
       font-weight: bold;
     }
   }
+
   /deep/ .el-button:hover {
     background: #f1eeee;
     color: #2d2d2d;
