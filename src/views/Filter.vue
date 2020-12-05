@@ -33,6 +33,7 @@
       clearable
       placeholder="全部分类"
       class="filter-select"
+      @change="queryKol"
     >
       <el-option
         v-for="item in categoryoptions"
@@ -61,6 +62,7 @@
       clearable
       placeholder="选择性别"
       class="filter-select"
+       @change="queryKol"
     >
       <el-option
         v-for="item in sexoptions"
@@ -75,6 +77,7 @@
       clearable
       placeholder="价格排序"
       class="filter-select"
+       @change="queryKol"
     >
       <el-option
         v-for="item in priceoptions"
@@ -89,6 +92,7 @@
       clearable
       placeholder="粉丝量"
       class="filter-select"
+       @change="queryKol"
     >
       <el-option
         v-for="item in fansoptions"
@@ -99,18 +103,20 @@
       </el-option>
     </el-select>
     <el-select
-      v-model="id"
+      v-model="searchParms.sort"
       clearable
       placeholder="粉丝排序"
       class="filter-select"
+      @change="queryKol"
+      
     >
       <el-option
-        v-for="item in options"
-        :key="item.id"
-        :label="item.title"
-        :value="item.id"
-      >
-      </el-option>
+        label="升序"
+      />
+       <el-option
+        label="降序"
+      />
+      
     </el-select>
     <el-button round>
       <span class="select-btn">抖音购物车</span>
@@ -212,7 +218,6 @@ export default {
       )
       this.fansoptions = data && data.items
     },
-    categoryClick() {}
   },
   created() {
     this.axios
