@@ -19,14 +19,14 @@ function getCookie(cname) {
   for (var i = 0; i < ca.length; i++) {
     var c = ca[i]
     while (c.charAt(0) === ' ') c = c.substring(1)
-    if (c.indexOf(name) !== -1) return c.substring(name.length, c.length)
+    if (c.indexOf(name) !== -1) return decodeURI(c.substring(name.length, c.length)).replace(/\"/g, '')
   }
   return ''
 }
 function deleteCookie(name){
   var date=new Date();
   date.setTime(date.getTime()-10000);
-  document.cookie=name+"=''; expire="+date.toGMTString()+"; path=/";
+  document.cookie=name+'=""; expire="+date.toGMTString()+"; path=/';
 }
 export {
   getUrl,

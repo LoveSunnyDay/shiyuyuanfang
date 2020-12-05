@@ -72,7 +72,7 @@ const routes = [
     component: About
   },
   {
-    path: '/Filter',
+    path: '/Filter/:search',
     component: Filter
   },
   {

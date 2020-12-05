@@ -193,9 +193,9 @@ export default {
     async phoneLogin() {
       const params = new FormData()
       params.append('phone_number', this.phoneNumber)
-      params.append('verifyCode', this.verifyCode)
+      params.append('code', this.verifyCode)
       // 发送短信验证码
-      const { success } = await this.axios({
+      const { success,data } = await this.axios({
         method: 'post',
         url: 'https://api.dev.hiifire.com/v1/user/phone-sign',
         data: params,
@@ -204,7 +204,13 @@ export default {
 
       if (!success) {
         this.$message.error('登录失败！')
+        return
       }
+      const {profile,token,user}=data
+      setCookie('phone-token', JSON.stringify(token.token), window.location.hostname, token.expire_at)
+      setCookie('user', JSON.stringify(user), window.location.hostname, token.expire_at)
+      setCookie('profile',JSON.stringify(profile),window.location.hostname, token.expire_at)
+      this.setShowLoginDiaolog(false)
     }
   },
   // 监听属性 类似于data概念
@@ -227,7 +233,7 @@ export default {
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    // console.log('mounted',getCookie('profile') )
+    console.log('mounted',!!getCookie('wx-token') )
   },
   // 生命周期 - 更新之前
   beforeUpdate() {},
