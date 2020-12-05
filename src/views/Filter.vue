@@ -15,7 +15,13 @@
       </el-breadcrumb>
     </div>
     <el-row>
-      <el-button v-for="(item, key) in platoptions" :key="key">
+      <el-button
+        v-for="(item, index, key) in platoptions"
+        :key="key"
+        @click="platoptionsClick(index)"
+        :class="{ platoptionsActive: index === platoptionsIndex }"
+      >
+      <el-button  v-for="(item, key) in platoptions" :key="key">
         <img
           :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
           alt=""
@@ -148,7 +154,8 @@ export default {
         fans_type_id: '',
         recommend: '',
         page: 1
-      }
+      },
+      platoptionsIndex: -1 //网红平台按钮默认显示背景色
     }
   },
   mounted() {
@@ -214,12 +221,10 @@ export default {
       )
       this.fansoptions = data && data.items
     },
-    ascClick() {
-      console.log('11111')
-      this.searchParms.sort = 'fan_count'
-    },
-    descClick() {
-      this.searchParms.sort = '-fan_count'
+    categoryClick() {},
+    platoptionsClick(index) {
+      this.platoptionsIndex = index
+      // console.log(this.platoptionsIndex)
     }
   },
   created() {
@@ -314,6 +319,9 @@ export default {
   /deep/ .el-button:hover {
     background: #f1eeee;
     color: #2d2d2d;
+  }
+  .platoptionsActive {
+    background: #f1eeee !important;
   }
   /deep/ .filter-select {
     width: 98px;
