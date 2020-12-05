@@ -15,7 +15,7 @@
       </el-breadcrumb>
     </div>
     <el-row>
-      <el-button round>
+      <el-button type="primary" round>
         <img src="../assets/image/show/douyin.png" alt="" />
         <p>抖音网红</p>
       </el-button>

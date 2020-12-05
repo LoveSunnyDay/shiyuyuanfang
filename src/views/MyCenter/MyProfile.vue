@@ -53,8 +53,7 @@
 export default {
   data() {
     return {
-      imageUrl:
-        'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2334974629,3626811871&fm=26&gp=0.jpg'
+      imageUrl: ''
     }
   },
   methods: {

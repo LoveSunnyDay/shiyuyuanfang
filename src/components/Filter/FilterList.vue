@@ -37,12 +37,13 @@
             <p class="main-item-text">
               只接受上海地区的，中国好声音学院，搞笑音乐人，鸡汤段子手，全网最迷人的猪猪宝藏女友对口型段子达人哦
             </p>
-            <a :href="list.home_url" target="_blank">
-              <p class="main-item-url">
-                访问TA的抖音链接：
+
+            <p class="main-item-url">
+              访问TA的抖音链接：
+              <a :href="list.home_url" target="_blank">
                 {{ list.home_url }}
-              </p>
-            </a>
+              </a>
+            </p>
           </div>
         </div>
       </div>
@@ -61,7 +62,6 @@
 
 <script>
 import { FilterList } from '../../services/FilterList'
-// import axios from 'axios'
 export default {
   data() {
     return {
@@ -179,13 +179,6 @@ export default {
               overflow: hidden;
               text-overflow: ellipsis;
             }
-            // li:nth-child(odd) {
-            //   cursor: pointer;
-            // }
-            // li:nth-child(even) {
-            //   //even表示偶数
-            //   margin: 0 10px;
-            // }
           }
         }
         .main-item-text {
@@ -201,7 +194,6 @@ export default {
           font-weight: 400;
           color: #4c525a;
           margin-top: 20px;
-          cursor: pointer;
           a {
             font-size: 12px;
             font-weight: 400;
@@ -209,10 +201,9 @@ export default {
             margin-top: 20px;
             cursor: pointer;
           }
-        }
-        .main-item-url:hover,
-        .main-item-url:hover a {
-          color: #0064f9;
+          a:hover {
+            color: #0064f9;
+          }
         }
       }
     }

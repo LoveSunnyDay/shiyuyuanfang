@@ -17,6 +17,8 @@ import DetailBilibili from '@/views/Detail/DetailBilibili'
 import Channel from '@/views/Channel/Channel'
 import ChannelMCN from '@/views/Channel/ChannelMCN'
 import VideoArticle from '@/views/Index/VideoArticle'
+// import VideoArticle2 from '@/views/Index/VideoArticle'
+// import VideoArticle3 from '@/views/Index/VideoArticle'
 // import BindingPhone from '@/components/Header/BindingPhone'
 
 import Pay from '@/views/Pay/Pay'
@@ -158,6 +160,14 @@ const routes = [
     component: VideoArticle
   }
   // {
+  //   path: '/VideoArticle2',
+  //   component: VideoArticle2
+  // },
+  // {
+  //   path: '/VideoArticle3',
+  //   component: VideoArticle3
+  // }
+  // {
   //   path: '/BindingPhone',
   //   component: BindingPhone
   // }
@@ -192,12 +202,12 @@ router.beforeEach(async (to, from, next) => {
       window.axios.get(`http://api.dev.hiifire.com/v1/auth?authclient=wx&code=${code}&state=${state}`).then((res) => {
         console.log('res', res)
         const { data, success } = res
-        const { token, user,profile } = data || {}
+        const { token, user, profile } = data || {}
         console.log('授权返回值', data)
         if (success) {
           setCookie('wx-token', JSON.stringify(token.token), window.location.hostname, token.expire_at)
           setCookie('user', JSON.stringify(user), window.location.hostname, token.expire_at)
-          setCookie('profile',JSON.stringify(profile),window.location.hostname, token.expire_at)
+          setCookie('profile', JSON.stringify(profile), window.location.hostname, token.expire_at)
           window.close()
         }
       })

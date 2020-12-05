@@ -325,7 +325,7 @@ export default {
       margin-right: 0;
     }
     a:hover {
-      color: #0064f9;
+      color: #cc4b42;
     }
     a {
       font-weight: 800;
@@ -334,7 +334,7 @@ export default {
   }
 }
 .content-nav-active {
-  color: #0064f9;
-  border-bottom: 3px solid #0064f9;
+  color: #cc4b42;
+  border-bottom: 3px solid #cc4b42;
 }
 </style>

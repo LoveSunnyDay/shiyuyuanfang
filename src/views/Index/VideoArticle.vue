@@ -1,7 +1,7 @@
 <template>
   <div class="article">
     <Header></Header>
-    <h1>妻子因病不愿拖累家人，提出离婚！</h1>
+    <!-- <h1>妻子因病不愿拖累家人，提出离婚！</h1>
     <p class="article-time">
       <span>秀才有料</span>
       <span>2020-10-26</span>
@@ -25,7 +25,8 @@
     <h2>三、希望</h2>
     <p class="article-details">
       出门南行约35米，左转弯进入二巷右拐，这是通向大路金河路的一个出口。刚拐过去不久，一辆橘红色的环卫小三轮车挡在面前。环卫小车上一位环卫工人正缓慢地用力蹬着三轮车。超车是不可能了，我只好在后面缓慢地跟着走，心里虽然急，却也无可奈何。生活就是这样，无论你遇事心里多么急，无论你遇事心里多么气愤，无论你遇事遭受多大挫折，事情的解决方法不可能都随你的意，情绪激动也不能帮助解决问题，生活总是让人们学会接受，以平静的心去解决，让人们学会面对现实，学会等待，学会聆听，学会沉默，学会拼搏。
-    </p>
+    </p> -->
+    {{ details.body }}
   </div>
 </template>
 
@@ -38,7 +39,9 @@ export default {
   },
   data() {
     // 这里存放数据
-    return {}
+    return {
+      details: ''
+    }
   },
   // 方法集合
   methods: {},
@@ -49,7 +52,14 @@ export default {
   // 生命周期 - 创建之前
   beforeCreate() {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    this.axios
+      .get('https://api.dev.hiifire.com/v1/article/view?id=8')
+      .then((res) => {
+        console.log(res.data)
+        this.details = res.data
+      })
+  },
   // 生命周期 - 挂载之前
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）

@@ -100,7 +100,7 @@ export default {
 }
 .content-look:hover .content-look-title span {
   transition: 0.5s;
-  color: #0a5cff;
+  color: #cc4b42;
 }
 .content-look {
   width: 1010px;

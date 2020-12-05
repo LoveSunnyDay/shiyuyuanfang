@@ -1,7 +1,7 @@
 <template>
   <div class="lookfor">
     <div class="header">
-      <img src="../../assets/image/banner.png" alt="" class="header-img" />
+      <img src="~assets/image/look-banner.png" alt="" class="header-img" />
     </div>
     <div class="lookfor-nav">
       <img class="img" src="../../assets/image/show/quanbu.png" />

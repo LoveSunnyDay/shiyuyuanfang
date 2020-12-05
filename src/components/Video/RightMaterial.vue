@@ -97,7 +97,7 @@ export default {
         line-height: 17px;
       }
       p:hover {
-        color: #6295f6;
+        color: #cc4b42;
         cursor: pointer;
       }
       i {

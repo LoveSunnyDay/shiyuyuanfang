@@ -154,7 +154,7 @@ export default {
         // text-overflow: ellipsis;
       }
       p:hover {
-        color: #94b7f8;
+        color: #cc4b42;
       }
       .details-footer {
         width: 452px;
