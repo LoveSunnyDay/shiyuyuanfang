@@ -33,7 +33,6 @@
       clearable
       placeholder="全部分类"
       class="filter-select"
-      @click="categoryClick"
     >
       <el-option
         v-for="item in categoryoptions"
@@ -48,7 +47,6 @@
       clearable
       placeholder="选择地区"
       class="filter-select"
-      @click="areaClick"
     >
       <el-option
         v-for="item in areaoptions"
@@ -63,7 +61,6 @@
       clearable
       placeholder="选择性别"
       class="filter-select"
-      @click="sexClick"
     >
       <el-option
         v-for="item in sexoptions"
@@ -74,13 +71,13 @@
       </el-option>
     </el-select>
     <el-select
-      v-model="id"
+      v-model="priceid"
       clearable
-      placeholder="好评排序"
+      placeholder="价格排序"
       class="filter-select"
     >
       <el-option
-        v-for="item in options"
+        v-for="item in priceoptions"
         :key="item.id"
         :label="item.title"
         :value="item.id"
@@ -88,13 +85,13 @@
       </el-option>
     </el-select>
     <el-select
-      v-model="id"
+      v-model="fansid"
       clearable
-      placeholder="价格排序"
+      placeholder="粉丝量"
       class="filter-select"
     >
       <el-option
-        v-for="item in options"
+        v-for="item in fansoptions"
         :key="item.id"
         :label="item.title"
         :value="item.id"
@@ -142,52 +139,81 @@ export default {
       categoryoptions: [],
       platid: '',
       platoptions: [],
-      list:[]
+      priceid: '',
+      priceoptions: [],
+      fansid: '',
+      fansoptions: [],
+      list: [],
+      searchParms: {
+        category_id: '',
+        plat_id: '',
+        sex: '',
+        tag: this.$route.query.search,
+        sort: '',
+        fans_type_id: '',
+        recommend: '',
+        page: 1
+      }
     }
   },
   mounted() {
-    this.sexClick()
-    this.areaClick()
-    this.categoryClick()
-    this.platClick()
+    this.getPlatList()
+    this.getCategoryList()
+    this.getAreaList()
+    this.getSexList()
+    this.getPriceList()
+    this.getFansList()
   },
   // 方法集合
   methods: {
-    async platClick() {
+    async getPlatList() {
       const { data } = await this.axios.get(
         'http://api.dev.hiifire.com/v1/plat'
       )
-      console.log('data', data)
       this.platoptions = data && data.items
     },
-    async sexClick() {
-      const { data } = await this.axios.get(
-        'https://api.dev.hiifire.com/v1/kind'
-      )
-      console.log('data', data)
-      this.sexoptions = data && data.items
-    },
-    async areaClick() {
-      const { data } = await this.axios.get(
-        'https://api.dev.hiifire.com/v1/tool/region/2/72'
-      )
-      console.log('data', data)
-      this.areaoptions = data
-    },
-    async categoryClick() {
+    async getCategoryList() {
       const { data } = await this.axios.get(
         'https://api.dev.hiifire.com/v1/kol-category'
       )
-      console.log('data', data)
       this.categoryoptions = data && data.items
-    }
+    },
+    async getAreaList() {
+      const { data } = await this.axios.get(
+        'https://api.dev.hiifire.com/v1/tool/region/2/72'
+      )
+      this.areaoptions = data
+    },
+    async getSexList() {
+      const { data } = await this.axios.get(
+        'https://api.dev.hiifire.com/v1/kind'
+      )
+      this.sexoptions = data && data.items
+    },
+    async getPriceList() {
+      const { data } = await this.axios.get(
+        'http://api.dev.hiifire.com/v1/price-type'
+      )
+      this.priceoptions = data && data.items
+    },
+    async getFansList() {
+      const { data } = await this.axios.get(
+        'http://api.dev.hiifire.com/v1/fans-type'
+      )
+      this.fansoptions = data && data.items
+    },
+    categoryClick() {}
   },
   created() {
     this.axios
-      .get(`https://api.dev.hiifire.com/v1/kol/index?tag=${this.$route.query&&this.$route.query.search}`)
+      .get(
+        `https://api.dev.hiifire.com/v1/kol/index?tag=${
+          this.$route.query && this.$route.query.search
+        }`
+      )
       .then((res) => {
-        console.log("kolList",res.data)
-        this.list=res.data.items
+        console.log('kolList', res.data)
+        this.list = res.data.items
       })
   },
   components: {
