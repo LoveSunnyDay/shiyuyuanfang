@@ -1,11 +1,19 @@
 <template>
   <div>
-    <button
-      v-if="!loginStatus"
-      class="nav-login"
-      @click="openLoginDiaolog"
-    >登录</button>
-    <img v-else src="../../assets/image/icon.jpg" style="width:30px;border-radius:50%;position:absolute;top:20px;right:15px" />
+    <button v-if="!loginStatus" class="nav-login" @click="openLoginDiaolog">
+      登录
+    </button>
+    <!-- <img
+      v-else
+      src="../../assets/image/icon.jpg"
+      style="
+        width: 30px;
+        border-radius: 50%;
+        position: absolute;
+        top: 20px;
+        right: 15px;
+      "
+    /> -->
     <el-dialog
       :visible.sync="showDialog"
       width="440px"
@@ -13,11 +21,46 @@
       :modal-append-to-body="false"
     >
       <div class="login">
-        <div v-if="loginMode" class="wx-login">
-          <div class="phone-login-tab" @click="loginModeButton">
+        <div v-if="loginMode" class="phone-login">
+          <!-- <div class="phone-login-tab" @click="loginModeButton">
+            <img src="../../assets/image/weixin-login.png" />
+            <span></span>
+          </div> -->
+          <p class="login-title">
+            <i class="el-icon-mobile"></i>手机验证码登录
+          </p>
+          <input
+            type="text"
+            placeholder="请输入手机号"
+            class="login-input-phone"
+          />
+          <input
+            type="text"
+            placeholder="短信验证码"
+            class="login-input-code"
+          />
+          <button class="code-button">发送验证码</button>
+          <button class="login-button">立即登录</button>
+          <!-- <p class="phone-login-list">专业网红推广服务平台</p>
+          <p class="phone-login-item">欢迎使用超火引擎</p> -->
+          <div class="other-methods">
+            <span class="other-line"></span>
+            <span class="other-txt">其他账号登录</span>
+            <span class="other-line"></span>
+          </div>
+          <img src="~assets/image/wx-login.png" alt="" class="other-wx" />
+          <p class="user-agreement">
+            若登录则表示已阅读并同意本网站的
+            <router-link to="/PaymentAgreement" target="_blank">
+              《付款协议》
+            </router-link>
+          </p>
+        </div>
+        <div v-else class="wx-login">
+          <!-- <div class="phone-login-tab" @click="loginModeButton">
             <img src="../../assets/image/shouji-login.png" />
             <span></span>
-          </div>
+          </div> -->
           <p><i class="iconfont icon-weixin1"></i>微信登录</p>
           <!-- <div class="wx-login-erweima">
             <wxlogin
@@ -32,33 +75,9 @@
           <!-- <p class="wx-login-text">扫描二维码登录</p> -->
           <img src="../../assets/image/welcome.png" class="wx-login-welcom" />
         </div>
-        <div v-else class="phone-login">
-          <div class="phone-login-tab" @click="loginModeButton">
-            <img src="../../assets/image/weixin-login.png" />
-            <span></span>
-          </div>
-          <p><i class="el-icon-mobile"></i>手机验证码登录</p>
-          <input
-            type="text"
-            placeholder="请输入手机号"
-            class="login-input-phone"
-          />
-          <input
-            type="text"
-            placeholder="短信验证码"
-            class="login-input-code"
-          />
-          <button class="code-button">发送验证码</button>
-          <button class="login-button">立即登录</button>
-          <p class="phone-login-list">专业网红推广服务平台</p>
-          <p class="phone-login-item">欢迎使用超火引擎</p>
-        </div>
       </div>
     </el-dialog>
-    <BindingPhone
-      v-if="!showBindPhone"
-      @closeBindPhone="closeBindPhone"
-    />
+    <BindingPhone v-if="!showBindPhone" @closeBindPhone="closeBindPhone" />
   </div>
 </template>
 
@@ -78,7 +97,6 @@ export default {
       dialogVisible: false,
       loginMode: true,
       showBindPhone: false
-
     }
   },
   // 方法集合
@@ -92,14 +110,32 @@ export default {
       var iTop = (window.screen.availHeight - 30 - iHeight) / 2
       // 获得窗口的水平位置
       var iLeft = (window.screen.availWidth - 10 - iWidth) / 2
-      window.open(url, name, 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft + ',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no')
+      window.open(
+        url,
+        name,
+        'height=' +
+          iHeight +
+          ',innerHeight=' +
+          iHeight +
+          ',width=' +
+          iWidth +
+          ',innerWidth=' +
+          iWidth +
+          ',top=' +
+          iTop +
+          ',left=' +
+          iLeft +
+          ',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no'
+      )
     },
     loginModeButton() {
       return (this.loginMode = !this.loginMode)
     },
     async openLoginDiaolog() {
       this.setShowLoginDiaolog(true)
-      const { data } = await this.axios.get('https://api.dev.hiifire.com/v1/auth/qr_url?authclient=wx')
+      const { data } = await this.axios.get(
+        'https://api.dev.hiifire.com/v1/auth/qr_url?authclient=wx'
+      )
       console.log('data', data)
       this.openWin(data, '123', 1000, 1000)
       setCookie('wx-token', '', -1)
@@ -131,14 +167,11 @@ export default {
       get() {
         return this.showLoginDiaolog
       },
-      set() {
-
-      }
+      set() {}
     }
   },
   // 监控data中的数据变化
-  watch: {
-  },
+  watch: {},
   // 生命周期 - 创建之前
   beforeCreate() {},
   // 生命周期 - 创建完成（可以访问当前this实例）
@@ -199,11 +232,11 @@ export default {
         background: url(../../assets/image/wxLogin2.png);
       }
     }
-    p:nth-child(2) {
+    .login-title {
       font-size: 24px;
       font-weight: 500;
       color: #1a1a1a;
-      margin-top: 4px;
+      margin-top: 28px;
     }
     .login-input-phone {
       width: 248px;
@@ -242,17 +275,17 @@ export default {
       font-weight: 600;
       border-radius: 19px;
       position: absolute;
-      top: 172px;
-      right: 67px;
+      top: 114px;
+      right: 87px;
       outline: none;
       cursor: pointer;
     }
-    .phone-login-list {
-      font-size: 14px;
-      font-weight: 400;
-      color: #727272;
-      margin-top: 55px;
-    }
+    // .phone-login-list {
+    //   font-size: 14px;
+    //   font-weight: 400;
+    //   color: #727272;
+    //   margin-top: 55px;
+    // }
     .login-button {
       border: 0;
       width: 266px;
@@ -263,13 +296,45 @@ export default {
       border-radius: 19px;
       outline: none;
       cursor: pointer;
-      margin-top: 43px;
+      margin-top: 40px;
     }
-    .phone-login-item {
-      font-size: 25px;
-      font-weight: 900;
+    // .phone-login-item {
+    //   font-size: 25px;
+    //   font-weight: 900;
+    //   color: #727272;
+    //   margin: 30px 0 63px 0;
+    // }
+    .other-methods {
+      // height: 60px;
+      // line-height: 60px;
+      // text-align: center;
+      margin: 34px 0 14px;
+      .other-line {
+        display: inline-block;
+        width: 80px;
+        border-top: 1px solid #b1b1b1;
+      }
+      .other-txt {
+        vertical-align: -4px;
+        margin: 0 20px;
+        color: #727272;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+      }
+    }
+    .other-wx {
+      width: 56px;
+      height: 20pxpx;
+    }
+    .user-agreement {
+      margin: 24px 0 35px;
       color: #727272;
-      margin: 30px 0 63px 0;
+      font-size: 12px;
+      line-height: 17px;
+      a {
+        color: #e36713;
+      }
     }
   }
   .wx-login {
@@ -346,7 +411,7 @@ export default {
   padding: 10px;
 }
 
-.qrcode{
+.qrcode {
   width: 20px;
 }
 </style>

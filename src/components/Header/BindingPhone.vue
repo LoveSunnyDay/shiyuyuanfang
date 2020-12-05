@@ -17,7 +17,9 @@
       </div>
       <div class="auth-code">
         <input type="text" class="auth-code-input" v-model="verifyCode" />
-        <button class="auth-code-button" @click="sendVerifyCode">发送验证码</button>
+        <button class="auth-code-button" @click="sendVerifyCode">
+          发送验证码
+        </button>
       </div>
       <button class="accomplish" @click="bindPhoneNumber">完成</button>
     </el-dialog>
@@ -46,12 +48,15 @@ export default {
         })
         .catch((_) => {})
     },
-    async  sendVerifyCode() {
+    async sendVerifyCode() {
       // 发送短信验证码
-      const { success } = await this.axios.post('https://api.dev.hiifire.com/v1/tool/send_sms', {
-        phone_number: this.phoneNumber,
-        type: 'bind'
-      })
+      const { success } = await this.axios.post(
+        'https://api.dev.hiifire.com/v1/tool/send_sms',
+        {
+          phone_number: this.phoneNumber,
+          type: 'bind'
+        }
+      )
       if (!success) {
         this.$message.error('获取验证码失败！')
       }
@@ -66,11 +71,14 @@ export default {
         return
       }
       // 绑定手机号
-      const { success } = await this.axios.post('https://api.dev.hiifire.com/v1/user/bind', {
-        'access-token': getCookie('wx-token'),
-        phone_number: this.phoneNumber,
-        code: this.verifyCode
-      })
+      const { success } = await this.axios.post(
+        'https://api.dev.hiifire.com/v1/user/bind',
+        {
+          'access-token': getCookie('wx-token'),
+          phone_number: this.phoneNumber,
+          code: this.verifyCode
+        }
+      )
       if (!success) {
         this.$message.error('手机号码绑定失败！')
       }

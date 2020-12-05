@@ -33,7 +33,7 @@
 
 <script>
 import { formatDate } from '../../plugins/filters'
-import { AllArticle } from '../../services/video'
+import { AllArticle7 } from '../../services/video'
 export default {
   // props: {
   //   article: {
@@ -67,7 +67,7 @@ export default {
   beforeCreate() {},
   // 生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    AllArticle().then((res) => {
+    AllArticle7().then((res) => {
       // console.log(res.data.data)
       this.article = res.data.data.items
     })

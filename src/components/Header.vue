@@ -89,9 +89,9 @@ export default {
     line-height: 72px;
     margin-left: 32px;
     img {
-      width: 110px;
-      height: 21px;
-      margin-top: 25px;
+      width: 106px;
+      height: 33px;
+      margin-top: 20px;
     }
     p:hover {
       color: #b9bab8;

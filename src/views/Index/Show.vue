@@ -4,38 +4,94 @@
       <img src="../../assets/image/show.png" alt="" class="header-img" />
     </div>
     <el-row>
-      <el-button round>
+      <el-button
+        round
+        @click="cur = 0"
+        :class="{ 'order-type-active': cur == 0 }"
+      >
         <p>全部网红</p>
       </el-button>
-      <el-button round>
+      <el-button
+        round
+        @click="cur = 1"
+        :class="{ 'order-type-active': cur == 1 }"
+      >
         <img src="../../assets/image/show/douyin.png" alt="" />
         <p>抖音网红</p>
       </el-button>
-      <el-button round>
-        <img src="../../assets/image/show/xiaohongshu.png" alt="" />
-        <p>小红书网红</p>
-      </el-button>
-      <el-button round>
+      <el-button
+        round
+        @click="cur = 2"
+        :class="{ 'order-type-active': cur == 2 }"
+      >
         <img src="../../assets/image/show/kuaishou.png" alt="" />
         <p>快手网红</p>
       </el-button>
-      <el-button round>
+      <el-button
+        round
+        @click="cur = 3"
+        :class="{ 'order-type-active': cur == 3 }"
+      >
         <img src="../../assets/image/show/bilibili.png" alt="" />
         <p>B站网红</p>
       </el-button>
+      <el-button
+        round
+        @click="cur = 4"
+        :class="{ 'order-type-active': cur == 4 }"
+      >
+        <img src="../../assets/image/show/weibo.png" alt="" />
+        <p>微博网红</p>
+      </el-button>
+      <el-button
+        round
+        @click="cur = 5"
+        :class="{ 'order-type-active': cur == 5 }"
+      >
+        <img src="../../assets/image/show/xiaohongshu.png" alt="" />
+        <p>小红书网红</p>
+      </el-button>
+      <el-button
+        round
+        @click="cur = 6"
+        :class="{ 'order-type-active': cur == 6 }"
+      >
+        <img src="../../assets/image/show/weixin.png" alt="" />
+        <p>微信网红</p>
+      </el-button>
     </el-row>
-    <Masonry></Masonry>
+    <Masonry v-show="cur == 0"></Masonry>
+    <MasonryA v-show="cur == 1"></MasonryA>
+    <MasonryB v-show="cur == 2"></MasonryB>
+    <MasonryC v-show="cur == 3"></MasonryC>
+    <MasonryD v-show="cur == 4"></MasonryD>
+    <MasonryE v-show="cur == 5"></MasonryE>
+    <MasonryF v-show="cur == 6"></MasonryF>
   </div>
 </template>
 
 <script>
 import Masonry from '@/components/Show/Masonry.vue'
+import MasonryA from '@/components/Show/MasonryA.vue'
+import MasonryB from '@/components/Show/MasonryB.vue'
+import MasonryC from '@/components/Show/MasonryC.vue'
+import MasonryD from '@/components/Show/MasonryD.vue'
+import MasonryE from '@/components/Show/MasonryE.vue'
+import MasonryF from '@/components/Show/MasonryF.vue'
 export default {
   components: {
-    Masonry
+    Masonry,
+    MasonryA,
+    MasonryB,
+    MasonryC,
+    MasonryD,
+    MasonryE,
+    MasonryF
   },
   data() {
-    return {}
+    return {
+      cur: 0
+    }
   }
 }
 </script>
@@ -85,6 +141,9 @@ export default {
       }
     }
     /deep/ .el-button:hover {
+      background: #f1eeee;
+    }
+    .order-type-active {
       background: #f1eeee;
     }
   }

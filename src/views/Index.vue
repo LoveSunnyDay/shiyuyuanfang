@@ -112,8 +112,8 @@ export default {
     justify-content: space-between;
     .logo {
       margin: 16px 0 0 32px;
-      width: 120px;
-      height: 21px;
+      width: 106px;
+      height: 33px;
       cursor: pointer;
     }
     .nav-list {
