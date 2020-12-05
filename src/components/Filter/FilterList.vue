@@ -60,23 +60,23 @@
 </template>
 
 <script>
-import { FilterList } from '../../services/FilterList'
 // import axios from 'axios'
 export default {
-  data() {
-    return {
-      list: []
+    props: {
+    list: {
+      type: Array,
+      default() {
+        return []
+      }
     }
+  },
+  data() {
+   return{}
   },
   methods: {
-    async FilterList() {
-      const res = await FilterList()
-      console.log(res.data.data.items)
-      this.list = res.data.data.items
-    }
+   
   },
   created() {
-    this.FilterList()
   }
 }
 </script>

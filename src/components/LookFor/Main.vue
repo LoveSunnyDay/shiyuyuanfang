@@ -1,6 +1,6 @@
 <template>
   <div class="lookfor-main">
-    <h1>{{ list.name }}</h1>
+    <h1>{{list && list.name }}</h1>
     <div
       class="lookfor-item"
       v-for="list in list"

@@ -109,7 +109,7 @@ export default {
       loginStatus: getCookie('wx-token'),
       phoneNumber: '',
       verifyCode: '',
-      avatar_url:getCookie('profile')&&JSON.parse(getCookie('profile'))?.avatar_url 
+      avatar_url:getCookie('avatar_url')
     }
   },
   // 方法集合
@@ -233,7 +233,7 @@ export default {
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    console.log('mounted',!!getCookie('wx-token') )
+    console.log('mounted',getCookie('avatar_url') )
   },
   // 生命周期 - 更新之前
   beforeUpdate() {},

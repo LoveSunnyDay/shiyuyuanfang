@@ -8,7 +8,7 @@
         class="search-input"
         v-model="searchContent"
       />
-      <img src="../../assets/image/sousuo.png" class="search-sousuo" @click="searchWangHong"/>
+      <router-link :to="{ path:'/Filter',query:{search:searchContent} }" ><img src="../../assets/image/sousuo.png" class="search-sousuo" /></router-link>    
       <router-link to="/editor">
         <div class="search-shaixuan"></div>
       </router-link>
@@ -42,11 +42,6 @@ export default {
     }
   },
   methods:{
-    searchWangHong(){
-      this.$router.push({
-        path:`/Filter/${this.searchContent}`
-      })
-    }
   }
 }
 </script>
