@@ -15,39 +15,28 @@
       </el-breadcrumb>
     </div>
     <el-row>
-      <el-button round>
-        <img src="../assets/image/show/douyin.png" alt="" />
-        <p>抖音网红</p>
+      <el-button v-for="(item, key) in platoptions" :key="key">
+        <img
+          :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
+          alt=""
+        />
+        <p>{{ item.name }}</p>
       </el-button>
-      <el-button round>
-        <img src="../assets/image/show/xiaohongshu.png" alt="" />
-        <p>小红书网红</p>
-      </el-button>
-      <el-button round>
-        <img src="../assets/image/show/bilibili.png" alt="" />
-        <p>B站网红</p>
-      </el-button>
-      <el-button round>
-        <img src="../assets/image/show/kuaishou.png" alt="" />
-        <p>快手网红</p>
-      </el-button>
-      <el-button round>
-        <img src="../assets/image/show/taobao.png" alt="" />
-        <p>淘宝直播</p>
-      </el-button>
+
       <!-- <el-button round>
         <img src="../assets/image/show/tongyi.png" alt="" />
         <p>同一经济公司</p>
       </el-button> -->
     </el-row>
     <el-select
-      v-model="id"
+      v-model="categoryid"
       clearable
       placeholder="全部分类"
       class="filter-select"
+      @click="categoryClick"
     >
       <el-option
-        v-for="item in options"
+        v-for="item in categoryoptions"
         :key="item.id"
         :label="item.title"
         :value="item.id"
@@ -55,29 +44,31 @@
       </el-option>
     </el-select>
     <el-select
-      v-model="id"
+      v-model="areaid"
       clearable
       placeholder="选择地区"
       class="filter-select"
+      @click="areaClick"
     >
       <el-option
-        v-for="item in options"
+        v-for="item in areaoptions"
         :key="item.id"
-        :label="item.title"
+        :label="item.name"
         :value="item.id"
       >
       </el-option>
     </el-select>
     <el-select
-      v-model="id"
+      v-model="sexid"
       clearable
       placeholder="选择性别"
       class="filter-select"
+      @click="sexClick"
     >
       <el-option
-        v-for="item in options"
+        v-for="item in sexoptions"
         :key="item.id"
-        :label="item.title"
+        :label="item.name"
         :value="item.id"
       >
       </el-option>
@@ -142,7 +133,52 @@ export default {
   data() {
     return {
       options: [],
-      id: ''
+      id: '',
+      sexid: '',
+      sexoptions: [],
+      areaid: '',
+      areaoptions: [],
+      categoryid: '',
+      categoryoptions: [],
+      platid: '',
+      platoptions: []
+    }
+  },
+  mounted() {
+    this.sexClick()
+    this.areaClick()
+    this.categoryClick()
+    this.platClick()
+  },
+  // 方法集合
+  methods: {
+    async platClick() {
+      const { data } = await this.axios.get(
+        'http://api.dev.hiifire.com/v1/plat'
+      )
+      console.log('data', data)
+      this.platoptions = data && data.items
+    },
+    async sexClick() {
+      const { data } = await this.axios.get(
+        'https://api.dev.hiifire.com/v1/kind'
+      )
+      console.log('data', data)
+      this.sexoptions = data && data.items
+    },
+    async areaClick() {
+      const { data } = await this.axios.get(
+        'https://api.dev.hiifire.com/v1/tool/region/2/72'
+      )
+      console.log('data', data)
+      this.areaoptions = data
+    },
+    async categoryClick() {
+      const { data } = await this.axios.get(
+        'https://api.dev.hiifire.com/v1/kol-category'
+      )
+      console.log('data', data)
+      this.categoryoptions = data && data.items
     }
   },
   created() {
