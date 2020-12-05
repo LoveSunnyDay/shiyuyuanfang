@@ -182,9 +182,6 @@ export default {
       this.categoryoptions = data && data.items
     }
   },
-  mounted(){
-    console.log("asdsad",this.$route.query)
-  },
   created() {
     this.axios
       .get(`https://api.dev.hiifire.com/v1/kol/index?tag=${this.$route.query&&this.$route.query.search}`)
