@@ -134,6 +134,7 @@ export default {
     return {
       options: [],
       id: '',
+<<<<<<< HEAD
       sexid: '',
       sexoptions: [],
       areaid: '',
@@ -182,6 +183,11 @@ export default {
       this.categoryoptions = data && data.items
     }
   },
+=======
+      list:[]
+    }
+  },
+>>>>>>> 13318a12a70344f8b33bbe51db0668d1afd11e4d
   mounted(){
     console.log("asdsad",this.$route.query)
   },
