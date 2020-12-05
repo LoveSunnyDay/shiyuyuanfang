@@ -29,7 +29,7 @@
       </el-button> -->
     </el-row>
     <el-select
-      v-model="categoryid"
+      v-model="searchParms.category_id"
       clearable
       placeholder="全部分类"
       class="filter-select"
@@ -42,8 +42,8 @@
       >
       </el-option>
     </el-select>
-    <el-select
-      v-model="areaid"
+    <!-- <el-select
+      v-model="searchParms.area"
       clearable
       placeholder="选择地区"
       class="filter-select"
@@ -55,9 +55,9 @@
         :value="item.id"
       >
       </el-option>
-    </el-select>
+    </el-select> -->
     <el-select
-      v-model="sexid"
+      v-model="searchParms.sex"
       clearable
       placeholder="选择性别"
       class="filter-select"
@@ -71,7 +71,7 @@
       </el-option>
     </el-select>
     <el-select
-      v-model="priceid"
+      v-model="searchParms.price"
       clearable
       placeholder="价格排序"
       class="filter-select"
@@ -85,7 +85,7 @@
       </el-option>
     </el-select>
     <el-select
-      v-model="fansid"
+      v-model="searchParms.fans_type_id"
       clearable
       placeholder="粉丝量"
       class="filter-select"
@@ -131,21 +131,16 @@ export default {
     return {
       options: [],
       id: '',
-      sexid: '',
       sexoptions: [],
-      areaid: '',
-      areaoptions: [],
-      categoryid: '',
+      //areaoptions: [],
       categoryoptions: [],
-      platid: '',
       platoptions: [],
-      priceid: '',
       priceoptions: [],
-      fansid: '',
       fansoptions: [],
       list: [],
       searchParms: {
         category_id: '',
+        area:'',
         plat_id: '',
         sex: '',
         tag: this.$route.query.search,
@@ -159,7 +154,7 @@ export default {
   mounted() {
     this.getPlatList()
     this.getCategoryList()
-    this.getAreaList()
+    //this.getAreaList()
     this.getSexList()
     this.getPriceList()
     this.getFansList()
@@ -178,12 +173,12 @@ export default {
       )
       this.categoryoptions = data && data.items
     },
-    async getAreaList() {
-      const { data } = await this.axios.get(
-        'https://api.dev.hiifire.com/v1/tool/region/2/72'
-      )
-      this.areaoptions = data
-    },
+    // async getAreaList() {
+    //   const { data } = await this.axios.get(
+    //     'https://api.dev.hiifire.com/v1/tool/region/2/72'
+    //   )
+    //   this.areaoptions = data
+    // },
     async getSexList() {
       const { data } = await this.axios.get(
         'https://api.dev.hiifire.com/v1/kind'
