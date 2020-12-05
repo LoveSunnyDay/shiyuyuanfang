@@ -15,7 +15,7 @@
       </el-breadcrumb>
     </div>
     <el-row>
-      <el-button  v-for="(item, key) in platoptions" :key="key">
+      <el-button v-for="(item, key) in platoptions" :key="key">
         <img
           :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
           alt=""
@@ -62,7 +62,7 @@
       clearable
       placeholder="选择性别"
       class="filter-select"
-       @change="queryKol"
+      @change="queryKol"
     >
       <el-option
         v-for="item in sexoptions"
@@ -77,7 +77,7 @@
       clearable
       placeholder="价格排序"
       class="filter-select"
-       @change="queryKol"
+      @change="queryKol"
     >
       <el-option
         v-for="item in priceoptions"
@@ -92,7 +92,7 @@
       clearable
       placeholder="粉丝量"
       class="filter-select"
-       @change="queryKol"
+      @change="queryKol"
     >
       <el-option
         v-for="item in fansoptions"
@@ -108,15 +108,9 @@
       placeholder="粉丝排序"
       class="filter-select"
       @change="queryKol"
-      
     >
-      <el-option
-        label="升序"
-      />
-       <el-option
-        label="降序"
-      />
-      
+      <el-option label="升序" value="fan_count"/>
+      <el-option label="降序" value="-fan_count"/>
     </el-select>
     <el-button round>
       <span class="select-btn">抖音购物车</span>
@@ -146,7 +140,7 @@ export default {
       list: [],
       searchParms: {
         category_id: '',
-        area:'',
+        area: '',
         plat_id: '',
         sex: '',
         tag: this.$route.query.search,
@@ -164,23 +158,25 @@ export default {
     this.getSexList()
     this.getPriceList()
     this.getFansList()
-    this.queryKol()
+   // this.queryKol()
   },
   // 方法集合
   methods: {
-     queryKol(){
-       let queryString=[]
-      for(const key in this.searchParms){
-        if(this.searchParms[key]){
-          queryString.push(`${key}=${ this.searchParms[key]}`)
-        }  
+    queryKol() {
+      let queryString = []
+      for (const key in this.searchParms) {
+        if (this.searchParms[key]) {
+          queryString.push(`${key}=${this.searchParms[key]}`)
+        }
       }
       this.axios
-      .get(`https://api.dev.hiifire.com/v1/kol/index?${queryString.join('&')}`)
-      .then((res) => {
-        console.log("kolList",res.data)
-        this.list=res.data.items
-      })
+        .get(
+          `https://api.dev.hiifire.com/v1/kol/index?${queryString.join('&')}`
+        )
+        .then((res) => {
+          console.log('kolList', res.data)
+          this.list = res.data.items
+        })
     },
     async getPlatList() {
       const { data } = await this.axios.get(
@@ -218,6 +214,13 @@ export default {
       )
       this.fansoptions = data && data.items
     },
+    ascClick() {
+      console.log('11111')
+      this.searchParms.sort = 'fan_count'
+    },
+    descClick() {
+      this.searchParms.sort = '-fan_count'
+    }
   },
   created() {
     this.axios
