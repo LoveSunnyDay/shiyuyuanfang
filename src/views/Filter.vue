@@ -119,7 +119,7 @@
       <span class="select-btn">抖音购物车</span>
     </el-button>
     <p class="filter-warn">提醒：为了减少沟通成本，最好选择5家经济公司</p>
-    <FilterList></FilterList>
+    <FilterList :list="list"></FilterList>
     <Shopping></Shopping>
   </div>
 </template>
@@ -141,7 +141,8 @@ export default {
       categoryid: '',
       categoryoptions: [],
       platid: '',
-      platoptions: []
+      platoptions: [],
+      list:[]
     }
   },
   mounted() {
@@ -181,13 +182,15 @@ export default {
       this.categoryoptions = data && data.items
     }
   },
+  mounted(){
+    console.log("asdsad",this.$route.query)
+  },
   created() {
-    // 全部KOL分类列表
     this.axios
-      .get('https://api.dev.hiifire.com/v1/kol-category')
+      .get(`https://api.dev.hiifire.com/v1/kol/index?tag=${this.$route.query&&this.$route.query.search}`)
       .then((res) => {
-        console.log(res.data.data)
-        this.options = res.data.data
+        console.log("kolList",res.data)
+        this.list=res.data.items
       })
   },
   components: {

@@ -6,8 +6,9 @@
         type="text"
         placeholder="请输入您想推广的产品或相关网红，精确匹配"
         class="search-input"
+        v-model="searchContent"
       />
-      <img src="../../assets/image/sousuo.png" class="search-sousuo" />
+      <router-link :to="{ path:'/Filter',query:{search:searchContent} }" ><img src="../../assets/image/sousuo.png" class="search-sousuo" /></router-link>    
       <router-link to="/editor">
         <div class="search-shaixuan"></div>
       </router-link>
@@ -34,7 +35,15 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data(){
+    return{
+      searchContent:''
+    }
+  },
+  methods:{
+  }
+}
 </script>
 
 <style lang="less" scoped>

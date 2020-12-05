@@ -193,11 +193,14 @@ router.beforeEach(async (to, from, next) => {
         console.log('res', res)
         const { data, success } = res
         const { token, user,profile } = data || {}
+        const {avatar_url}=profile||{}
         console.log('授权返回值', data)
         if (success) {
           setCookie('wx-token', JSON.stringify(token.token), window.location.hostname, token.expire_at)
           setCookie('user', JSON.stringify(user), window.location.hostname, token.expire_at)
           setCookie('profile',JSON.stringify(profile),window.location.hostname, token.expire_at)
+          setCookie('avatar_url',JSON.stringify(avatar_url),window.location.hostname, token.expire_at)
+          
           window.close()
         }
       })
