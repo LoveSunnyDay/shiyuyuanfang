@@ -20,7 +20,7 @@
         :key="key"
         @click="platoptionsClick(index)"
         :class="{ platoptionsActive: index === platoptionsIndex }"
-      >
+      />
       <el-button  v-for="(item, key) in platoptions" :key="key">
         <img
           :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
