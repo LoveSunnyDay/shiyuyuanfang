@@ -131,14 +131,12 @@
 import Shopping from '@/components/Shopping.vue'
 import Header from '@/components/Header.vue'
 import FilterList from '@/components/Filter/FilterList.vue'
-// import axios from 'axios'
 export default {
   data() {
     return {
       options: [],
       id: '',
       sexoptions: [],
-      //areaoptions: [],
       categoryoptions: [],
       platoptions: [],
       priceoptions: [],
@@ -161,11 +159,10 @@ export default {
   mounted() {
     this.getPlatList()
     this.getCategoryList()
-    //this.getAreaList()
     this.getSexList()
     this.getPriceList()
     this.getFansList()
-   // this.queryKol()
+   this.queryKol()
   },
   // 方法集合
   methods: {
@@ -197,12 +194,6 @@ export default {
       )
       this.categoryoptions = data && data.items
     },
-    // async getAreaList() {
-    //   const { data } = await this.axios.get(
-    //     'https://api.dev.hiifire.com/v1/tool/region/2/72'
-    //   )
-    //   this.areaoptions = data
-    // },
     async getSexList() {
       const { data } = await this.axios.get(
         'https://api.dev.hiifire.com/v1/kind'
@@ -221,23 +212,12 @@ export default {
       )
       this.fansoptions = data && data.items
     },
-    categoryClick() {},
     platoptionsClick(index) {
       this.platoptionsIndex = index
       // console.log(this.platoptionsIndex)
     }
   },
   created() {
-    this.axios
-      .get(
-        `https://api.dev.hiifire.com/v1/kol/index?tag=${
-          this.$route.query && this.$route.query.search
-        }`
-      )
-      .then((res) => {
-        console.log('kolList', res.data)
-        this.list = res.data.items
-      })
   },
   components: {
     Shopping,
