@@ -192,11 +192,12 @@ router.beforeEach(async (to, from, next) => {
       window.axios.get(`http://api.dev.hiifire.com/v1/auth?authclient=wx&code=${code}&state=${state}`).then((res) => {
         console.log('res', res)
         const { data, success } = res
-        const { token, user } = data || {}
+        const { token, user,profile } = data || {}
         console.log('授权返回值', data)
         if (success) {
           setCookie('wx-token', JSON.stringify(token.token), window.location.hostname, token.expire_at)
           setCookie('user', JSON.stringify(user), window.location.hostname, token.expire_at)
+          setCookie('profile',JSON.stringify(profile),window.location.hostname, token.expire_at)
           window.close()
         }
       })

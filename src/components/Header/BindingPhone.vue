@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { getCookie } from '../../utils/index'
+import { getCookie, deleteCookie } from '../../utils/index'
 export default {
   // 引入组件
   components: {},
@@ -44,6 +44,10 @@ export default {
     handleClose(done) {
       this.$confirm('确认关闭吗？关闭则需要重新登录！')
         .then((_) => {
+          //未绑定手机号码，清除token
+          deleteCookie('wx-token')
+          deleteCookie('user')
+          deleteCookie('profile')
           done()
         })
         .catch((_) => {})
@@ -73,19 +77,23 @@ export default {
         this.$message.info('请输入验证码！')
         return
       }
+      const params = new FormData()
+      params.append('phone_number', this.phoneNumber)
+      params.append('code', this.verifyCode)
       // 绑定手机号
-      const { success } = await this.axios.post(
-        'https://api.dev.hiifire.com/v1/user/bind',
-        {
-          'access-token': getCookie('wx-token'),
-          phone_number: this.phoneNumber,
-          code: this.verifyCode
-        }
-      )
+      const { success } = await this.axios({
+        method: 'post',
+        url:
+          'https://api.dev.hiifire.com/v1/user/bind?access-token=' +
+          getCookie('wx-token').replace(/\"/g, ''),
+        data: params,
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
       if (!success) {
         this.$message.error('手机号码绑定失败！')
       }
       this.$emit('closeBindPhone')
+      window.location.reload()
     }
   },
   // 监听属性 类似于data概念

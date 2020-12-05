@@ -3,9 +3,9 @@
     <button v-if="!loginStatus" class="nav-login" @click="openLoginDiaolog">
       登录
     </button>
-    <!-- <img
+    <img
       v-else
-      src="../../assets/image/icon.jpg"
+      :src="avatar_url?avatar_url:'../../assets/image/default-icon.png'"
       style="
         width: 30px;
         border-radius: 50%;
@@ -13,7 +13,7 @@
         top: 20px;
         right: 15px;
       "
-    /> -->
+    />
     <el-dialog
       :visible.sync="showDialog"
       width="440px"
@@ -33,14 +33,18 @@
             type="text"
             placeholder="请输入手机号"
             class="login-input-phone"
+            v-model="phoneNumber"
           />
           <input
             type="text"
             placeholder="短信验证码"
             class="login-input-code"
+            v-model="verifyCode"
           />
-          <button class="code-button">发送验证码</button>
-          <button class="login-button">立即登录</button>
+          <button class="code-button" @click="sendVerifyCode">
+            发送验证码
+          </button>
+          <button class="login-button" @click="phoneLogin">立即登录</button>
           <!-- <p class="phone-login-list">专业网红推广服务平台</p>
           <p class="phone-login-item">欢迎使用超火引擎</p> -->
           <div class="other-methods">
@@ -48,7 +52,12 @@
             <span class="other-txt">其他账号登录</span>
             <span class="other-line"></span>
           </div>
-          <img src="~assets/image/wx-login.png" alt="" class="other-wx" />
+          <img
+            src="~assets/image/wx-login.png"
+            alt=""
+            class="other-wx"
+            @click="wxloginClick"
+          />
           <p class="user-agreement">
             若登录则表示已阅读并同意本网站的
             <router-link to="/PaymentAgreement" target="_blank">
@@ -77,7 +86,7 @@
         </div>
       </div>
     </el-dialog>
-    <BindingPhone v-if="!showBindPhone" @closeBindPhone="closeBindPhone" />
+    <BindingPhone v-if="showBindPhone" @closeBindPhone="closeBindPhone" />
   </div>
 </template>
 
@@ -96,7 +105,11 @@ export default {
     return {
       dialogVisible: false,
       loginMode: true,
-      showBindPhone: false
+      showBindPhone: false,
+      loginStatus: getCookie('wx-token'),
+      phoneNumber: '',
+      verifyCode: '',
+      avatar_url:getCookie('profile')&&JSON.parse(getCookie('profile'))?.avatar_url 
     }
   },
   // 方法集合
@@ -131,14 +144,15 @@ export default {
     loginModeButton() {
       return (this.loginMode = !this.loginMode)
     },
-    async openLoginDiaolog() {
+    openLoginDiaolog() {
       this.setShowLoginDiaolog(true)
+    },
+    async wxloginClick() {
       const { data } = await this.axios.get(
         'https://api.dev.hiifire.com/v1/auth/qr_url?authclient=wx'
       )
       console.log('data', data)
       this.openWin(data, '123', 1000, 1000)
-      setCookie('wx-token', '', -1)
       this.pollwxlogin = setInterval(() => {
         if (getCookie('wx-token')) {
           clearInterval(this.pollwxlogin)
@@ -149,6 +163,8 @@ export default {
           // eslint-disable-next-line camelcase
           if (auth_type === 2) {
             this.showBindPhone = true
+          } else {
+            window.location.reload()
           }
 
           this.setShowLoginDiaolog(false)
@@ -157,11 +173,42 @@ export default {
     },
     closeBindPhone() {
       this.showBindPhone = false
+    },
+    async sendVerifyCode() {
+      const params = new FormData()
+      params.append('phone_number', this.phoneNumber)
+      params.append('type', 'login')
+      // 发送短信验证码
+      const { success } = await this.axios({
+        method: 'post',
+        url: 'https://api.dev.hiifire.com/v1/tool/send_sms',
+        data: params,
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
+
+      if (!success) {
+        this.$message.error('获取验证码失败！')
+      }
+    },
+    async phoneLogin() {
+      const params = new FormData()
+      params.append('phone_number', this.phoneNumber)
+      params.append('verifyCode', this.verifyCode)
+      // 发送短信验证码
+      const { success } = await this.axios({
+        method: 'post',
+        url: 'https://api.dev.hiifire.com/v1/user/phone-sign',
+        data: params,
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
+
+      if (!success) {
+        this.$message.error('登录失败！')
+      }
     }
   },
   // 监听属性 类似于data概念
   computed: {
-    ...mapState('wxLogin', ['token', 'profile', 'user', 'loginStatus']),
     ...mapState('login', ['showLoginDiaolog']),
     showDialog: {
       get() {
@@ -180,7 +227,7 @@ export default {
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    console.log('mounted', this)
+    // console.log('mounted',getCookie('profile') )
   },
   // 生命周期 - 更新之前
   beforeUpdate() {},

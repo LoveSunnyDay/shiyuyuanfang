@@ -23,8 +23,14 @@ function getCookie(cname) {
   }
   return ''
 }
+function deleteCookie(name){
+  var date=new Date();
+  date.setTime(date.getTime()-10000);
+  document.cookie=name+"=''; expire="+date.toGMTString()+"; path=/";
+}
 export {
   getUrl,
   setCookie,
-  getCookie
+  getCookie,
+  deleteCookie
 }
