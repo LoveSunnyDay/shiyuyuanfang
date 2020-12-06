@@ -169,6 +169,7 @@ export default {
       handler() {
         this.isExpandAll=false
         this.page=1
+         this.isLastPage=false
         this.queryKol()
       },
       deep: true //true 深度监听
