@@ -42,15 +42,14 @@
             v-model="verifyCode"
           />
           <button
-            :class="!isDisabled ? 'code-button' : 'send-wait'"          
-            :disabled="this.isDisabled"
+            v-if="!this.isDisabled"
+            class="code-button"
+            @click="sendVerifyCode"
           >
-            <span v-show="show" v-if="!isDisabled" @click="sendVerifyCode"
-              >发送验证码</span
-            >
-            <span v-show="!show" v-if="isDisabled"
-              >{{ count }} s后重新获取</span
-            >
+            <span>发送验证码</span>
+          </button>
+          <button v-else class="send-wait" :disabled="this.isDisabled">
+            <span>{{ count }} s后重新获取</span>
           </button>
           <button class="login-button" @click="phoneLogin">立即登录</button>
           <!-- <p class="phone-login-list">专业网红推广服务平台</p>
@@ -114,18 +113,23 @@ export default {
       dialogVisible: false,
       loginMode: true,
       showBindPhone: false,
-      loginStatus: JSON.parse(getCookie('wx-token'))||JSON.parse(getCookie('phone-token')),
+      loginStatus:
+        JSON.parse(getCookie('wx-token')) ||
+        JSON.parse(getCookie('phone-token')),
       phoneNumber: '',
       verifyCode: '',
-      avatar_url: JSON.parse(getCookie('avatar_url'))
+      avatar_url: JSON.parse(getCookie('avatar_url')),
+      isDisabled: false,
+      count: 60,
+      timer:null
     }
   },
   // 方法集合
   methods: {
     ...mapMutations('login', ['setShowLoginDiaolog']),
     handleClose() {
-      this.phoneNumber=''
-      this.verifyCode=''
+      this.phoneNumber = ''
+      this.verifyCode = ''
       this.setShowLoginDiaolog(false)
     },
 
@@ -208,23 +212,17 @@ export default {
       })
 
       if (!success) {
-        this.isDisabled = false
-        this.show = true
         this.$message.error('获取验证码失败！')
         return false
       }
 
-      const TIME_COUNT = 60
+      this.isDisabled = true
       if (!this.timer) {
-        this.count = TIME_COUNT
-        this.show = false
         this.timer = setInterval(() => {
-          if (this.count > 0 && this.count <= TIME_COUNT) {
-            this.isDisabled = true
+          if (this.count > 0 && this.count <= 60) {          
             this.count--
           } else {
             this.isDisabled = false
-            this.show = true
             clearInterval(this.timer)
             this.timer = null
           }
