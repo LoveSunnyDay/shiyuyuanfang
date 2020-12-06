@@ -233,7 +233,7 @@ export default {
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    console.log('mounted',getCookie('avatar_url') )
+    console.log('mounted',JSON.parse(getCookie('profile') ))
   },
   // 生命周期 - 更新之前
   beforeUpdate() {},
