@@ -15,13 +15,7 @@
       </el-breadcrumb>
     </div>
     <el-row>
-      <el-button
-        v-for="(item, index, key) in platoptions"
-        :key="key"
-        @click="platoptionsClick(index)"
-        :class="{ platoptionsActive: index === platoptionsIndex }"
-      />
-      <el-button  v-for="(item, key) in platoptions" :key="key">
+      <el-button  v-for="(item, index,key) in platoptions" :key="key" @click="platoptionsClick(index)" :class="{ platoptionsActive: index === platoptionsIndex }">
         <img
           :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
           alt=""
@@ -79,7 +73,7 @@
       </el-option>
     </el-select>
     <el-select
-      v-model="searchParms.price"
+      v-model="searchParms.price_type_id"
       clearable
       placeholder="价格排序"
       class="filter-select"
@@ -146,6 +140,7 @@ export default {
         category_id: '',
         area: '',
         plat_id: '',
+        price_type_id:'',
         sex: '',
         tag: this.$route.query.search,
         sort: '',
