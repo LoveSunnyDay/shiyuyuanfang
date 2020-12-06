@@ -1,9 +1,10 @@
 <template>
   <div class="binding-phone">
     <el-dialog
-      :visible.sync="dialogVisible"
+      :visible="true"
       width="440px"
       :before-close="handleClose"
+      :modal-append-to-body="false"
     >
       <h2 class="binding-phone-title">绑定手机号</h2>
       <div class="phone">
@@ -49,7 +50,8 @@ export default {
           setCookie('user','',window.location.hostname,-1)
           setCookie('profile','',window.location.hostname,-1)
           setCookie('avatar_url','',window.location.hostname,-1)
-          done()
+          this.$emit('closeBindPhone')
+          // done()
         })
         .catch((_) => {})
     },

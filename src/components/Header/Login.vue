@@ -15,7 +15,7 @@
       "
     />
     <el-dialog
-      :visible.sync="showDialog"
+      :visible="showLoginDiaolog"
       width="440px"
       @close="handleClose"
       :modal-append-to-body="false"
@@ -181,7 +181,6 @@ export default {
           } else {
             window.location.reload()
           }
-
           this.setShowLoginDiaolog(false)
         }
       }, 1000)
@@ -271,12 +270,6 @@ export default {
   // 监听属性 类似于data概念
   computed: {
     ...mapState('login', ['showLoginDiaolog']),
-    showDialog: {
-      get() {
-        return this.showLoginDiaolog
-      },
-      set() {}
-    }
   },
   // 监控data中的数据变化
   watch: {},
@@ -288,7 +281,7 @@ export default {
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    console.log('mounted', JSON.parse(getCookie('avatar_url')))
+    console.log('mounted', JSON.parse(getCookie('avatar_url')))       
   },
   // 生命周期 - 更新之前
   beforeUpdate() {},
