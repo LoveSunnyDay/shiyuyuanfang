@@ -266,6 +266,7 @@ export default {
         token.expire_at
       )
       this.setShowLoginDiaolog(false)
+      location.reload();
     }
   },
   // 监听属性 类似于data概念
