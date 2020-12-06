@@ -3,9 +3,9 @@
     <button v-if="!loginStatus" class="nav-login" @click="openLoginDiaolog">
       登录
     </button>
-    <img
+     <img
       v-else
-      :src="avatar_url ? avatar_url : '../../assets/image/default-icon.png'"
+      :src="avatar_url ? avatar_url : require('../../assets/image/default-icon.png')"
       style="
         width: 30px;
         border-radius: 50%;
