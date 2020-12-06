@@ -41,8 +41,16 @@
             class="login-input-code"
             v-model="verifyCode"
           />
-          <button class="code-button" @click="sendVerifyCode">
-            发送验证码
+          <button
+            :class="!isDisabled ? 'code-button' : 'send-wait'"          
+            :disabled="this.isDisabled"
+          >
+            <span v-show="show" v-if="!isDisabled" @click="sendVerifyCode"
+              >发送验证码</span
+            >
+            <span v-show="!show" v-if="isDisabled"
+              >{{ count }} s后重新获取</span
+            >
           </button>
           <button class="login-button" @click="phoneLogin">立即登录</button>
           <!-- <p class="phone-login-list">专业网红推广服务平台</p>
@@ -106,7 +114,7 @@ export default {
       dialogVisible: false,
       loginMode: true,
       showBindPhone: false,
-      loginStatus: JSON.parse(getCookie('wx-token')),
+      loginStatus: JSON.parse(getCookie('wx-token'))||JSON.parse(getCookie('phone-token')),
       phoneNumber: '',
       verifyCode: '',
       avatar_url: JSON.parse(getCookie('avatar_url'))
@@ -116,8 +124,11 @@ export default {
   methods: {
     ...mapMutations('login', ['setShowLoginDiaolog']),
     handleClose() {
+      this.phoneNumber=''
+      this.verifyCode=''
       this.setShowLoginDiaolog(false)
     },
+
     openWin(url, name, iWidth, iHeight) {
       // 获得窗口的垂直位置
       var iTop = (window.screen.availHeight - 30 - iHeight) / 2
@@ -178,6 +189,16 @@ export default {
       const params = new FormData()
       params.append('phone_number', this.phoneNumber)
       params.append('type', 'login')
+      let reg = /^1[0-9]{10}$/
+      if (
+        this.phoneNumber == '' ||
+        this.phoneNumber.length <= 10 ||
+        !reg.test(this.phoneNumber)
+      ) {
+        this.$message.error('请输入正确的手机号')
+        return false
+      }
+
       // 发送短信验证码
       const { success } = await this.axios({
         method: 'post',
@@ -187,13 +208,34 @@ export default {
       })
 
       if (!success) {
+        this.isDisabled = false
+        this.show = true
         this.$message.error('获取验证码失败！')
+        return false
+      }
+
+      const TIME_COUNT = 60
+      if (!this.timer) {
+        this.count = TIME_COUNT
+        this.show = false
+        this.timer = setInterval(() => {
+          if (this.count > 0 && this.count <= TIME_COUNT) {
+            this.isDisabled = true
+            this.count--
+          } else {
+            this.isDisabled = false
+            this.show = true
+            clearInterval(this.timer)
+            this.timer = null
+          }
+        }, 1000)
       }
     },
     async phoneLogin() {
       const params = new FormData()
       params.append('phone_number', this.phoneNumber)
       params.append('code', this.verifyCode)
+
       // 发送短信验证码
       const { success, data } = await this.axios({
         method: 'post',
@@ -481,5 +523,20 @@ export default {
 
 .qrcode {
   width: 20px;
+}
+
+.send-wait {
+  border: 0;
+  width: 112px;
+  height: 36px;
+  background-color: darkgrey;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 19px;
+  position: absolute;
+  top: 114px;
+  right: 87px;
+  outline: none;
+  cursor: pointer;
 }
 </style>
