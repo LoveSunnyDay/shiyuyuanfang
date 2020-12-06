@@ -18,10 +18,9 @@
       <el-button
         v-for="(item, index, key) in platoptions"
         :key="key"
-        @click="platoptionsClick(index)"
+        @click="platoptionsClick(index, item.id)"
         :class="{ platoptionsActive: index === platoptionsIndex }"
-      />
-      <el-button v-for="(item, key) in platoptions" :key="key">
+      >
         <img
           :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
           alt=""
@@ -77,7 +76,7 @@
       </el-option>
     </el-select>
     <el-select
-      v-model="searchParms.price"
+      v-model="searchParms.price_type_id"
       clearable
       placeholder="价格排序"
       class="filter-select"
@@ -145,6 +144,7 @@ export default {
         category_id: '',
         area: '',
         plat_id: '',
+        price_type_id: '',
         sex: '',
         tag: this.$route.query.search,
         sort: '',
@@ -160,11 +160,7 @@ export default {
     }
   },
   mounted() {
-    this.getPlatList()
-    this.getCategoryList()
-    this.getSexList()
-    this.getPriceList()
-    this.getFansList()
+    this.getFilterList()
     this.queryKol()
   },
   watch: {
@@ -180,6 +176,13 @@ export default {
   },
   // 方法集合
   methods: {
+    getFilterList() {
+      this.getPlatList()
+      this.getCategoryList()
+      this.getSexList()
+      this.getPriceList()
+      this.getFansList()
+    },
     queryKol() {
       let queryString = []
       for (const key in this.searchParms) {
@@ -252,9 +255,9 @@ export default {
       )
       this.fansoptions = data && data.items
     },
-    platoptionsClick(index) {
+    platoptionsClick(index, id) {
       this.platoptionsIndex = index
-      // console.log(this.platoptionsIndex)
+      this.searchParms.plat_id = id
     }
   },
   created() {},
