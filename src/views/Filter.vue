@@ -18,7 +18,7 @@
       <el-button
         v-for="(item, index, key) in platoptions"
         :key="key"
-        @click="platoptionsClick(index)"
+        @click="platoptionsClick(index, item.id)"
         :class="{ platoptionsActive: index === platoptionsIndex }"
       >
         <img
@@ -218,9 +218,9 @@ export default {
       )
       this.fansoptions = data && data.items
     },
-    platoptionsClick(index) {
+    platoptionsClick(index, id) {
       this.platoptionsIndex = index
-      // console.log(this.platoptionsIndex)
+      this.searchParms.plat_id = id
     }
   },
   created() {},
