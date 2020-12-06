@@ -55,33 +55,37 @@
         </ul>
         <button>找TA推广</button>
       </div>
-      
     </div>
-    <div class="more" @click="expandMore">展开更多</div>
+    <div class="more" v-if="isLastPage">没有更多了</div>
+    <div class="more" v-else @click="expandMore">展开更多</div>
   </div>
 </template>
 
 <script>
-// import axios from 'axios'
 export default {
-    props: {
+  props: {
     list: {
       type: Array,
       default() {
         return []
       }
+    },
+    isLastPage:{
+      type: Boolean,
+      default() {
+        return false
+      }
     }
   },
   data() {
-   return{}
+    return {}
   },
   methods: {
-  expandMore(){
-    // this.$emit('')
-  }
+    expandMore() {
+      this.$emit('expandMore')
+    }
   },
-  created() {
-  }
+  created() {}
 }
 </script>
 
@@ -285,13 +289,13 @@ export default {
     }
   }
 }
-.more{
-    padding:23px 0;
-    background: #F6F6F6;
-    font-size: 16px;
-    font-family: PingFang SC;
-    font-weight: 800;
-    text-align: center;
-    color: #808080;
-  }
+.more {
+  padding: 23px 0;
+  background: #f6f6f6;
+  font-size: 16px;
+  font-family: PingFang SC;
+  font-weight: 800;
+  text-align: center;
+  color: #808080;
+}
 </style>

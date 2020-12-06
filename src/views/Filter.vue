@@ -21,7 +21,7 @@
         @click="platoptionsClick(index)"
         :class="{ platoptionsActive: index === platoptionsIndex }"
       />
-      <el-button  v-for="(item, key) in platoptions" :key="key">
+      <el-button v-for="(item, key) in platoptions" :key="key">
         <img
           :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
           alt=""
@@ -39,7 +39,6 @@
       clearable
       placeholder="全部分类"
       class="filter-select"
-      @change="queryKol"
     >
       <el-option
         v-for="item in categoryoptions"
@@ -68,7 +67,6 @@
       clearable
       placeholder="选择性别"
       class="filter-select"
-      @change="queryKol"
     >
       <el-option
         v-for="item in sexoptions"
@@ -83,7 +81,6 @@
       clearable
       placeholder="价格排序"
       class="filter-select"
-      @change="queryKol"
     >
       <el-option
         v-for="item in priceoptions"
@@ -98,7 +95,6 @@
       clearable
       placeholder="粉丝量"
       class="filter-select"
-      @change="queryKol"
     >
       <el-option
         v-for="item in fansoptions"
@@ -113,16 +109,19 @@
       clearable
       placeholder="粉丝排序"
       class="filter-select"
-      @change="queryKol"
     >
-      <el-option label="升序" value="fan_count"/>
-      <el-option label="降序" value="-fan_count"/>
+      <el-option label="升序" value="fan_count" />
+      <el-option label="降序" value="-fan_count" />
     </el-select>
     <el-button round>
       <span class="select-btn">抖音购物车</span>
     </el-button>
     <p class="filter-warn">提醒：为了减少沟通成本，最好选择5家经济公司</p>
-    <FilterList :list="list"></FilterList>
+    <FilterList
+      :list="list"
+      @expandMore="expandMore"
+      :isLastPage="isLastPage"
+    ></FilterList>
     <Shopping></Shopping>
   </div>
 </template>
@@ -153,6 +152,10 @@ export default {
         recommend: '',
         page: 1
       },
+      page: 1,
+      pageCount: '',
+      isLastPage: false,
+      isExpandAll: false,
       platoptionsIndex: -1 //网红平台按钮默认显示背景色
     }
   },
@@ -162,7 +165,18 @@ export default {
     this.getSexList()
     this.getPriceList()
     this.getFansList()
-   this.queryKol()
+    this.queryKol()
+  },
+  watch: {
+    searchParms: {
+      //深度监听，可监听到对象、数组的变化
+      handler() {
+        this.isExpandAll=false
+        this.page=1
+        this.queryKol()
+      },
+      deep: true //true 深度监听
+    }
   },
   // 方法集合
   methods: {
@@ -173,14 +187,40 @@ export default {
           queryString.push(`${key}=${this.searchParms[key]}`)
         }
       }
+      if (this.isExpandAll) {
+        window.queryString = queryString
+        queryString = queryString.map((item) => {
+          if (item.includes('page')) {
+            return `page=${this.page}`
+          }
+          return item
+        })
+      }
       this.axios
         .get(
           `https://api.dev.hiifire.com/v1/kol/index?${queryString.join('&')}`
         )
         .then((res) => {
           console.log('kolList', res.data)
-          this.list = res.data.items
+          console.log('isExpandAll', this.isExpandAll)
+          if (this.isExpandAll) {
+            this.list = this.list.concat(res.data.items)
+          } else {
+            this.list = res.data.items
+            this.pageCount = res.data?._meta?.pageCount
+          }
+         
         })
+    },
+    expandMore() {
+      console.log('this.pageCount', this.pageCount)
+      if (this.page < this.pageCount) {
+        this.isExpandAll = true
+        this.page += 1
+        this.queryKol()
+      } else {
+        this.isLastPage = true
+      }
     },
     async getPlatList() {
       const { data } = await this.axios.get(
@@ -217,8 +257,7 @@ export default {
       // console.log(this.platoptionsIndex)
     }
   },
-  created() {
-  },
+  created() {},
   components: {
     Shopping,
     Header,
@@ -301,7 +340,7 @@ export default {
     color: #2d2d2d;
   }
   .platoptionsActive {
-    background:#00a581 !important;
+    background: #00a581 !important;
   }
   /deep/ .filter-select {
     width: 98px;
