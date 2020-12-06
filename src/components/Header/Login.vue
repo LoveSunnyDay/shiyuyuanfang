@@ -5,7 +5,7 @@
     </button>
     <img
       v-else
-      :src="avatar_url?avatar_url:'../../assets/image/default-icon.png'"
+      :src="avatar_url ? avatar_url : '../../assets/image/default-icon.png'"
       style="
         width: 30px;
         border-radius: 50%;
@@ -106,10 +106,10 @@ export default {
       dialogVisible: false,
       loginMode: true,
       showBindPhone: false,
-      loginStatus: getCookie('wx-token'),
+      loginStatus: JSON.parse(getCookie('wx-token')),
       phoneNumber: '',
       verifyCode: '',
-      avatar_url:getCookie('avatar_url')
+      avatar_url: JSON.parse(getCookie('avatar_url'))
     }
   },
   // 方法集合
@@ -195,7 +195,7 @@ export default {
       params.append('phone_number', this.phoneNumber)
       params.append('code', this.verifyCode)
       // 发送短信验证码
-      const { success,data } = await this.axios({
+      const { success, data } = await this.axios({
         method: 'post',
         url: 'https://api.dev.hiifire.com/v1/user/phone-sign',
         data: params,
@@ -206,10 +206,25 @@ export default {
         this.$message.error('登录失败！')
         return
       }
-      const {profile,token,user}=data
-      setCookie('phone-token', JSON.stringify(token.token), window.location.hostname, token.expire_at)
-      setCookie('user', JSON.stringify(user), window.location.hostname, token.expire_at)
-      setCookie('profile',JSON.stringify(profile),window.location.hostname, token.expire_at)
+      const { profile, token, user } = data
+      setCookie(
+        'phone-token',
+        JSON.stringify(token.token),
+        window.location.hostname,
+        token.expire_at
+      )
+      setCookie(
+        'user',
+        JSON.stringify(user),
+        window.location.hostname,
+        token.expire_at
+      )
+      setCookie(
+        'profile',
+        JSON.stringify(profile),
+        window.location.hostname,
+        token.expire_at
+      )
       this.setShowLoginDiaolog(false)
     }
   },
@@ -233,7 +248,7 @@ export default {
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    console.log('mounted',JSON.parse(getCookie('profile') ))
+    console.log('mounted', JSON.parse(getCookie('avatar_url')))
   },
   // 生命周期 - 更新之前
   beforeUpdate() {},
