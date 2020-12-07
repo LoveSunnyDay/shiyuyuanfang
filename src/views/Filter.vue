@@ -47,8 +47,8 @@
       >
       </el-option>
     </el-select>
-    <!-- <el-select
-      v-model="searchParms.area"
+    <el-select
+      v-model="searchParms.area_id"
       clearable
       placeholder="选择地区"
       class="filter-select"
@@ -60,7 +60,7 @@
         :value="item.id"
       >
       </el-option>
-    </el-select> -->
+    </el-select>
     <el-select
       v-model="searchParms.sex"
       clearable
@@ -135,6 +135,7 @@ export default {
       options: [],
       id: '',
       sexoptions: [],
+      areaoptions:[],
       categoryoptions: [],
       platoptions: [],
       priceoptions: [],
@@ -142,7 +143,7 @@ export default {
       list: [],
       searchParms: {
         category_id: '',
-        area: '',
+        area_id: '',
         plat_id: '',
         price_type_id: '',
         sex: '',
@@ -180,6 +181,7 @@ export default {
     getFilterList() {
       this.getPlatList()
       this.getCategoryList()
+      this.getAreaList()
       this.getSexList()
       this.getPriceList()
       this.getFansList()
@@ -237,6 +239,12 @@ export default {
         'https://api.dev.hiifire.com/v1/kol-category'
       )
       this.categoryoptions = data && data.items
+    },
+    async getAreaList() {
+      const { data } = await this.axios.get(
+        'https://api.hiifire.com/v1/tool/area'
+      )
+      this.areaoptions = data && data
     },
     async getSexList() {
       const { data } = await this.axios.get(
