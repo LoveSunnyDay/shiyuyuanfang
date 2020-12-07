@@ -62,7 +62,7 @@ export default {
       // 发送短信验证码
       const { success } = await this.axios({
         method: 'post',
-        url: 'https://api.dev.hiifire.com/v1/tool/send_sms',
+        url: 'https://api.hiifire.com/v1/tool/send_sms',
         data: params,
         headers: { 'Content-Type': 'multipart/form-data' }
       })
@@ -87,7 +87,7 @@ export default {
       const { success } = await this.axios({
         method: 'post',
         url:
-          'https://api.dev.hiifire.com/v1/user/bind?access-token=' +
+          'https://api.hiifire.com/v1/user/bind?access-token=' +
           getCookie('wx-token').replace(/\"/g, ''),
         data: params,
         headers: { 'Content-Type': 'multipart/form-data' }

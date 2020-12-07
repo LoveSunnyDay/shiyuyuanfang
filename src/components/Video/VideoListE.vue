@@ -16,7 +16,7 @@
           <div class="details-title">
             <span>{{ articles.title }}</span>
           </div>
-          <p>{{ articles.introduction }}</p>
+          <p>{{ articles.introduction.slice(0, 79) }}...</p>
           <div class="details-footer">
             <div class="footer-left">
               <span>来自主题：</span>
@@ -61,8 +61,7 @@ export default {
     }
   },
   // 方法集合
-  methods: {
-  },
+  methods: {},
   // 监听属性 类似于data概念
   computed: {},
   // 监控data中的数据变化
@@ -97,7 +96,7 @@ export default {
 <style lang="less" scoped>
 .video-list {
   margin-top: 28px;
-  a{
+  a {
     display: flex;
   }
   h1 {
@@ -145,6 +144,10 @@ export default {
         font-size: 18px;
         color: rgba(26, 26, 28, 0.7);
         line-height: 25px;
+        width: 452px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         span {
           font-weight: bold;
         }

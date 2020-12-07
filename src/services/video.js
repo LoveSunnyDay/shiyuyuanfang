@@ -7,7 +7,7 @@ export function ContentList() {
 
 // 跳转kol分类详情页
 export function LookForHandel(id) {
-  return axios.get('https://api.dev.hiifire.com/v1/kol/index/')
+  return axios.get('https://api.hiifire.com/v1/kol/index/')
 }
 
 // 网红分类列表

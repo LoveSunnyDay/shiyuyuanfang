@@ -175,8 +175,8 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  mode: 'history'
-  // mode: 'hash'
+  // mode: 'history'
+  mode: 'hash'
 })
 router.beforeEach(async (to, from, next) => {
   // add before changing logic
@@ -199,7 +199,7 @@ router.beforeEach(async (to, from, next) => {
     console.log('code', code)
     console.log('state', state)
     if (!!code || !!state) {
-      window.axios.get(`http://api.dev.hiifire.com/v1/auth?authclient=wx&code=${code}&state=${state}`).then((res) => {
+      window.axios.get(`http://api.hiifire.com/v1/auth?authclient=wx&code=${code}&state=${state}`).then((res) => {
         console.log('res', res)
         const { data, success } = res
         const { token, user,profile } = data || {}

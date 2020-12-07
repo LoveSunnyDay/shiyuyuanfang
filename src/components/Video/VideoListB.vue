@@ -144,6 +144,10 @@ export default {
         font-size: 18px;
         color: rgba(26, 26, 28, 0.7);
         line-height: 25px;
+        width: 452px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         span {
           font-weight: bold;
         }
@@ -155,7 +159,7 @@ export default {
         line-height: 24px;
         color: #a3a3a4;
         margin-top: 9px;
-        width: 452px;
+        width: 400px;
         // white-space: nowrap;
         // overflow: hidden;
         // text-overflow: ellipsis;
