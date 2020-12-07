@@ -3,17 +3,17 @@
     <button v-if="!loginStatus" class="nav-login" @click="openLoginDiaolog">
       登录
     </button>
-     <img
+    <div
       v-else
-      :src="avatar_url ? avatar_url : require('../../assets/image/default-icon.png')"
-      style="
-        width: 30px;
-        border-radius: 50%;
-        position: absolute;
-        top: 20px;
-        right: 15px;
-      "
-    />
+      @mouseover="mouseOver"
+      @mouseleave="mouseLeave"
+      class="login-operation"
+    >
+      <img :src="avatar_url ? avatar_url:require('../../assets/image/default-icon.png')"
+        class="login-icon"
+      />
+      <div class="login-out" v-show="seen">退出登录</div>
+    </div>
     <el-dialog
       :visible="showLoginDiaolog"
       width="440px"
@@ -121,7 +121,8 @@ export default {
       avatar_url: JSON.parse(getCookie('avatar_url')),
       isDisabled: false,
       count: 60,
-      timer:null
+      timer: null,
+      seen: false
     }
   },
   // 方法集合
@@ -218,7 +219,7 @@ export default {
       this.isDisabled = true
       if (!this.timer) {
         this.timer = setInterval(() => {
-          if (this.count > 0 && this.count <= 60) {          
+          if (this.count > 0 && this.count <= 60) {
             this.count--
           } else {
             this.isDisabled = false
@@ -265,12 +266,18 @@ export default {
         token.expire_at
       )
       this.setShowLoginDiaolog(false)
-      location.reload();
+      location.reload()
+    },
+    mouseOver() {
+      this.seen = true
+    },
+    mouseLeave() {
+      this.seen = false
     }
   },
   // 监听属性 类似于data概念
   computed: {
-    ...mapState('login', ['showLoginDiaolog']),
+    ...mapState('login', ['showLoginDiaolog'])
   },
   // 监控data中的数据变化
   watch: {},
@@ -282,7 +289,7 @@ export default {
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    console.log('mounted', JSON.parse(getCookie('avatar_url')))       
+    console.log('mounted', JSON.parse(getCookie('avatar_url')))
   },
   // 生命周期 - 更新之前
   beforeUpdate() {},
@@ -313,6 +320,24 @@ export default {
   opacity: 0.8;
   background-color: #2fb598;
 }
+.login-operation {
+  position: relative;
+  .login-icon {
+    width: 30px;
+    border-radius: 50%;
+    margin-top: 20px;
+  }
+  .login-out {
+    width: 56px;
+    color: #cc4b42;
+    font-size: 14px;
+    position: absolute;
+    top: 50px;
+    left: -12px;
+    padding-top: 6px;
+  }
+}
+
 .login {
   text-align: center;
   .phone-login {
