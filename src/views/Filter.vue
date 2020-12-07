@@ -204,7 +204,7 @@ export default {
       }
       this.axios
         .get(
-          `https://api.dev.hiifire.com/v1/kol/index?${queryString.join('&')}`
+          `https://api.hiifire.com/v1/kol/index?${queryString.join('&')}`
         )
         .then((res) => {
           console.log('kolList', res.data)
