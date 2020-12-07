@@ -156,7 +156,7 @@ const routes = [
     component: ChannelMCN
   },
   {
-    path: '/VideoArticle',
+    path: '/VideoArticle/:id',
     component: VideoArticle
   }
   // {

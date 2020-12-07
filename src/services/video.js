@@ -21,10 +21,21 @@ export function LookForPlatform() {
 }
 
 // 全部素材（文章）
+
 export function AllArticle() {
   // return axios.get('http://api.dev.hiifire.com/v1/article')
   return axios.get('https://api.dev.hiifire.com/v1/article?category_id=1')
 }
+
+// export function AllArticle(category_id) {
+//   return axios({
+//     url: 'http://api.dev.hiifire.com/v1/article',
+//     params:{
+//       category_id
+//     }
+//   })
+// }
+
 export function AllArticle2() {
   return axios.get('https://api.dev.hiifire.com/v1/article?category_id=2')
 }
@@ -54,13 +65,14 @@ export function AllArticle10() {
 }
 
 // 素材（文章）详情
-// export function ArticleDetails(id) {
-//   return axios.get('http://api.dev.hiifire.com/v1/article/' + id)
-// }
-
-// export const getArticle = (id = 1) => {
-//   return axios.get(`http://api.dev.hiifire.com/v1/article/?${id}`)
-// }
+export function ArticleDetails(id) {
+  return axios({
+    url: 'http://api.dev.hiifire.com/v1/article/view',
+    params: {
+      id
+    }
+  })
+}
 
 // 视频素材分类接口
 export function VideoClassify() {
