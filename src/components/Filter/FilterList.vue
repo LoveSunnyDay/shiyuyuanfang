@@ -57,27 +57,40 @@
         <button>找TA推广</button>
       </div>
     </div>
+    <div class="more" v-if="isLastPage">没有更多了</div>
+    <div class="more" v-else @click="expandMore">展开更多</div>
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import { FilterList } from '../../services/FilterList'
+=======
+>>>>>>> dev
 export default {
-  data() {
-    return {
-      list: []
+  props: {
+    list: {
+      type: Array,
+      default() {
+        return []
+      }
+    },
+    isLastPage:{
+      type: Boolean,
+      default() {
+        return false
+      }
     }
+  },
+  data() {
+    return {}
   },
   methods: {
-    async FilterList() {
-      const res = await FilterList()
-      console.log(res.data.data.items)
-      this.list = res.data.data.items
+    expandMore() {
+      this.$emit('expandMore')
     }
   },
-  created() {
-    this.FilterList()
-  }
+  created() {}
 }
 </script>
 
@@ -271,5 +284,14 @@ export default {
       color: #ffd7c2;
     }
   }
+}
+.more {
+  padding: 23px 0;
+  background: #f6f6f6;
+  font-size: 16px;
+  font-family: PingFang SC;
+  font-weight: 800;
+  text-align: center;
+  color: #808080;
 }
 </style>

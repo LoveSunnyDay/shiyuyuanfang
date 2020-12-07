@@ -1,9 +1,10 @@
 <template>
   <div class="binding-phone">
     <el-dialog
-      :visible.sync="dialogVisible"
+      :visible="true"
       width="440px"
       :before-close="handleClose"
+      :modal-append-to-body="false"
     >
       <h2 class="binding-phone-title">绑定手机号</h2>
       <div class="phone">
@@ -27,7 +28,7 @@
 </template>
 
 <script>
-import { getCookie, deleteCookie } from '../../utils/index'
+import { getCookie, deleteCookie, setCookie } from '../../utils/index'
 export default {
   // 引入组件
   components: {},
@@ -45,10 +46,12 @@ export default {
       this.$confirm('确认关闭吗？关闭则需要重新登录！')
         .then((_) => {
           //未绑定手机号码，清除token
-          deleteCookie('wx-token')
-          deleteCookie('user')
-          deleteCookie('profile')
-          done()
+          setCookie('wx-token','',window.location.hostname,-1)
+          setCookie('user','',window.location.hostname,-1)
+          setCookie('profile','',window.location.hostname,-1)
+          setCookie('avatar_url','',window.location.hostname,-1)
+          this.$emit('closeBindPhone')
+          // done()
         })
         .catch((_) => {})
     },

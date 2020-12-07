@@ -15,6 +15,7 @@
       </el-breadcrumb>
     </div>
     <el-row>
+<<<<<<< HEAD
       <el-button type="primary" round>
         <img src="../assets/image/show/douyin.png" alt="" />
         <p>抖音网红</p>
@@ -34,76 +35,76 @@
       <el-button round>
         <img src="../assets/image/show/taobao.png" alt="" />
         <p>淘宝直播</p>
+=======
+      <el-button
+        v-for="(item, index, key) in platoptions"
+        :key="key"
+        @click="platoptionsClick(index, item.id)"
+        :class="{ platoptionsActive: index === platoptionsIndex }"
+      >
+        <img
+          :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
+          alt=""
+        />
+        <p>{{ item.name }}</p>
+>>>>>>> dev
       </el-button>
+
       <!-- <el-button round>
         <img src="../assets/image/show/tongyi.png" alt="" />
         <p>同一经济公司</p>
       </el-button> -->
     </el-row>
     <el-select
-      v-model="id"
+      v-model="searchParms.category_id"
       clearable
       placeholder="全部分类"
       class="filter-select"
     >
       <el-option
-        v-for="item in options"
+        v-for="item in categoryoptions"
         :key="item.id"
         :label="item.title"
         :value="item.id"
       >
       </el-option>
     </el-select>
-    <el-select
-      v-model="id"
+    <!-- <el-select
+      v-model="searchParms.area"
       clearable
       placeholder="选择地区"
       class="filter-select"
     >
       <el-option
-        v-for="item in options"
+        v-for="item in areaoptions"
         :key="item.id"
-        :label="item.title"
+        :label="item.name"
         :value="item.id"
       >
       </el-option>
-    </el-select>
+    </el-select> -->
     <el-select
-      v-model="id"
+      v-model="searchParms.sex"
       clearable
       placeholder="选择性别"
       class="filter-select"
     >
       <el-option
-        v-for="item in options"
+        v-for="item in sexoptions"
         :key="item.id"
-        :label="item.title"
+        :label="item.name"
         :value="item.id"
       >
       </el-option>
     </el-select>
     <el-select
-      v-model="id"
-      clearable
-      placeholder="好评排序"
-      class="filter-select"
-    >
-      <el-option
-        v-for="item in options"
-        :key="item.id"
-        :label="item.title"
-        :value="item.id"
-      >
-      </el-option>
-    </el-select>
-    <el-select
-      v-model="id"
+      v-model="searchParms.price_type_id"
       clearable
       placeholder="价格排序"
       class="filter-select"
     >
       <el-option
-        v-for="item in options"
+        v-for="item in priceoptions"
         :key="item.id"
         :label="item.title"
         :value="item.id"
@@ -111,24 +112,37 @@
       </el-option>
     </el-select>
     <el-select
-      v-model="id"
+      v-model="searchParms.fans_type_id"
       clearable
-      placeholder="粉丝排序"
+      placeholder="粉丝量"
       class="filter-select"
     >
       <el-option
-        v-for="item in options"
+        v-for="item in fansoptions"
         :key="item.id"
         :label="item.title"
         :value="item.id"
       >
       </el-option>
     </el-select>
+    <el-select
+      v-model="searchParms.sort"
+      clearable
+      placeholder="粉丝排序"
+      class="filter-select"
+    >
+      <el-option label="升序" value="fan_count" />
+      <el-option label="降序" value="-fan_count" />
+    </el-select>
     <el-button round>
       <span class="select-btn">抖音购物车</span>
     </el-button>
     <p class="filter-warn">提醒：为了减少沟通成本，最好选择5家经济公司</p>
-    <FilterList></FilterList>
+    <FilterList
+      :list="list"
+      @expandMore="expandMore"
+      :isLastPage="isLastPage"
+    ></FilterList>
     <Shopping></Shopping>
   </div>
 </template>
@@ -137,23 +151,139 @@
 import Shopping from '@/components/Shopping.vue'
 import Header from '@/components/Header.vue'
 import FilterList from '@/components/Filter/FilterList.vue'
-// import axios from 'axios'
 export default {
   data() {
     return {
       options: [],
-      id: ''
+      id: '',
+      sexoptions: [],
+      categoryoptions: [],
+      platoptions: [],
+      priceoptions: [],
+      fansoptions: [],
+      list: [],
+      searchParms: {
+        category_id: '',
+        area: '',
+        plat_id: '',
+        price_type_id: '',
+        sex: '',
+        tag: this.$route.query.search,
+        sort: '',
+        fans_type_id: '',
+        recommend: '',
+        page: 1
+      },
+      page: 1,
+      pageCount: '',
+      isLastPage: false,
+      isExpandAll: false,
+      platoptionsIndex: -1 //网红平台按钮默认显示背景色
     }
   },
-  created() {
-    // 全部KOL分类列表
-    this.axios
-      .get('https://api.dev.hiifire.com/v1/kol-category')
-      .then((res) => {
-        console.log(res.data.data)
-        this.options = res.data.data
-      })
+  mounted() {
+    this.getFilterList()
+    this.queryKol()
   },
+  watch: {
+    searchParms: {
+      //深度监听，可监听到对象、数组的变化
+      handler() {
+        this.isExpandAll=false
+        this.page=1
+         this.isLastPage=false
+        this.queryKol()
+      },
+      deep: true //true 深度监听
+    }
+  },
+  // 方法集合
+  methods: {
+    getFilterList() {
+      this.getPlatList()
+      this.getCategoryList()
+      this.getSexList()
+      this.getPriceList()
+      this.getFansList()
+    },
+    queryKol() {
+      let queryString = []
+      for (const key in this.searchParms) {
+        if (this.searchParms[key]) {
+          queryString.push(`${key}=${this.searchParms[key]}`)
+        }
+      }
+      if (this.isExpandAll) {
+        window.queryString = queryString
+        queryString = queryString.map((item) => {
+          if (item.includes('page')) {
+            return `page=${this.page}`
+          }
+          return item
+        })
+      }
+      this.axios
+        .get(
+          `https://api.dev.hiifire.com/v1/kol/index?${queryString.join('&')}`
+        )
+        .then((res) => {
+          console.log('kolList', res.data)
+          console.log('isExpandAll', this.isExpandAll)
+          if (this.isExpandAll) {
+            this.list = this.list.concat(res.data.items)
+          } else {
+            this.list = res.data.items
+            this.pageCount = res.data?._meta?.pageCount
+          }
+         
+        })
+    },
+    expandMore() {
+      console.log('this.pageCount', this.pageCount)
+      if (this.page < this.pageCount) {
+        this.isExpandAll = true
+        this.page += 1
+        this.queryKol()
+      } else {
+        this.isLastPage = true
+      }
+    },
+    async getPlatList() {
+      const { data } = await this.axios.get(
+        'http://api.dev.hiifire.com/v1/plat'
+      )
+      this.platoptions = data && data.items
+    },
+    async getCategoryList() {
+      const { data } = await this.axios.get(
+        'https://api.dev.hiifire.com/v1/kol-category'
+      )
+      this.categoryoptions = data && data.items
+    },
+    async getSexList() {
+      const { data } = await this.axios.get(
+        'https://api.dev.hiifire.com/v1/kind'
+      )
+      this.sexoptions = data && data.items
+    },
+    async getPriceList() {
+      const { data } = await this.axios.get(
+        'http://api.dev.hiifire.com/v1/price-type'
+      )
+      this.priceoptions = data && data.items
+    },
+    async getFansList() {
+      const { data } = await this.axios.get(
+        'http://api.dev.hiifire.com/v1/fans-type'
+      )
+      this.fansoptions = data && data.items
+    },
+    platoptionsClick(index, id) {
+      this.platoptionsIndex = index
+      this.searchParms.plat_id = id
+    }
+  },
+  created() {},
   components: {
     Shopping,
     Header,
@@ -230,9 +360,13 @@ export default {
       font-weight: bold;
     }
   }
+
   /deep/ .el-button:hover {
     background: #f1eeee;
     color: #2d2d2d;
+  }
+  .platoptionsActive {
+    background: #00a581 !important;
   }
   /deep/ .filter-select {
     width: 98px;

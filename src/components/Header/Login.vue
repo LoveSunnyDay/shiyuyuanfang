@@ -3,19 +3,19 @@
     <button v-if="!loginStatus" class="nav-login" @click="openLoginDiaolog">
       登录
     </button>
-    <img
+    <div
       v-else
-      :src="avatar_url?avatar_url:'../../assets/image/default-icon.png'"
-      style="
-        width: 30px;
-        border-radius: 50%;
-        position: absolute;
-        top: 20px;
-        right: 15px;
-      "
-    />
+      @mouseover="mouseOver"
+      @mouseleave="mouseLeave"
+      class="login-operation"
+    >
+      <img :src="avatar_url ? avatar_url:require('../../assets/image/default-icon.png')"
+        class="login-icon"
+      />
+      <div class="login-out" v-show="seen">退出登录</div>
+    </div>
     <el-dialog
-      :visible.sync="showDialog"
+      :visible="showLoginDiaolog"
       width="440px"
       @close="handleClose"
       :modal-append-to-body="false"
@@ -41,8 +41,15 @@
             class="login-input-code"
             v-model="verifyCode"
           />
-          <button class="code-button" @click="sendVerifyCode">
-            发送验证码
+          <button
+            v-if="!this.isDisabled"
+            class="code-button"
+            @click="sendVerifyCode"
+          >
+            <span>发送验证码</span>
+          </button>
+          <button v-else class="send-wait" :disabled="this.isDisabled">
+            <span>{{ count }} s后重新获取</span>
           </button>
           <button class="login-button" @click="phoneLogin">立即登录</button>
           <!-- <p class="phone-login-list">专业网红推广服务平台</p>
@@ -106,18 +113,27 @@ export default {
       dialogVisible: false,
       loginMode: true,
       showBindPhone: false,
-      loginStatus: getCookie('wx-token'),
+      loginStatus:
+        JSON.parse(getCookie('wx-token')) ||
+        JSON.parse(getCookie('phone-token')),
       phoneNumber: '',
       verifyCode: '',
-      avatar_url:getCookie('profile')&&JSON.parse(getCookie('profile'))?.avatar_url 
+      avatar_url: JSON.parse(getCookie('avatar_url')),
+      isDisabled: false,
+      count: 60,
+      timer: null,
+      seen: false
     }
   },
   // 方法集合
   methods: {
     ...mapMutations('login', ['setShowLoginDiaolog']),
     handleClose() {
+      this.phoneNumber = ''
+      this.verifyCode = ''
       this.setShowLoginDiaolog(false)
     },
+
     openWin(url, name, iWidth, iHeight) {
       // 获得窗口的垂直位置
       var iTop = (window.screen.availHeight - 30 - iHeight) / 2
@@ -166,7 +182,6 @@ export default {
           } else {
             window.location.reload()
           }
-
           this.setShowLoginDiaolog(false)
         }
       }, 1000)
@@ -178,6 +193,16 @@ export default {
       const params = new FormData()
       params.append('phone_number', this.phoneNumber)
       params.append('type', 'login')
+      let reg = /^1[0-9]{10}$/
+      if (
+        this.phoneNumber == '' ||
+        this.phoneNumber.length <= 10 ||
+        !reg.test(this.phoneNumber)
+      ) {
+        this.$message.error('请输入正确的手机号')
+        return false
+      }
+
       // 发送短信验证码
       const { success } = await this.axios({
         method: 'post',
@@ -188,14 +213,29 @@ export default {
 
       if (!success) {
         this.$message.error('获取验证码失败！')
+        return false
+      }
+
+      this.isDisabled = true
+      if (!this.timer) {
+        this.timer = setInterval(() => {
+          if (this.count > 0 && this.count <= 60) {
+            this.count--
+          } else {
+            this.isDisabled = false
+            clearInterval(this.timer)
+            this.timer = null
+          }
+        }, 1000)
       }
     },
     async phoneLogin() {
       const params = new FormData()
       params.append('phone_number', this.phoneNumber)
-      params.append('verifyCode', this.verifyCode)
+      params.append('code', this.verifyCode)
+
       // 发送短信验证码
-      const { success } = await this.axios({
+      const { success, data } = await this.axios({
         method: 'post',
         url: 'https://api.dev.hiifire.com/v1/user/phone-sign',
         data: params,
@@ -204,18 +244,40 @@ export default {
 
       if (!success) {
         this.$message.error('登录失败！')
+        return
       }
+      const { profile, token, user } = data
+      setCookie(
+        'phone-token',
+        JSON.stringify(token.token),
+        window.location.hostname,
+        token.expire_at
+      )
+      setCookie(
+        'user',
+        JSON.stringify(user),
+        window.location.hostname,
+        token.expire_at
+      )
+      setCookie(
+        'profile',
+        JSON.stringify(profile),
+        window.location.hostname,
+        token.expire_at
+      )
+      this.setShowLoginDiaolog(false)
+      location.reload()
+    },
+    mouseOver() {
+      this.seen = true
+    },
+    mouseLeave() {
+      this.seen = false
     }
   },
   // 监听属性 类似于data概念
   computed: {
-    ...mapState('login', ['showLoginDiaolog']),
-    showDialog: {
-      get() {
-        return this.showLoginDiaolog
-      },
-      set() {}
-    }
+    ...mapState('login', ['showLoginDiaolog'])
   },
   // 监控data中的数据变化
   watch: {},
@@ -227,7 +289,7 @@ export default {
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    // console.log('mounted',getCookie('profile') )
+    console.log('mounted', JSON.parse(getCookie('avatar_url')))
   },
   // 生命周期 - 更新之前
   beforeUpdate() {},
@@ -258,6 +320,24 @@ export default {
   opacity: 0.8;
   background-color: #2fb598;
 }
+.login-operation {
+  position: relative;
+  .login-icon {
+    width: 30px;
+    border-radius: 50%;
+    margin-top: 20px;
+  }
+  .login-out {
+    width: 56px;
+    color: #cc4b42;
+    font-size: 14px;
+    position: absolute;
+    top: 50px;
+    left: -12px;
+    padding-top: 6px;
+  }
+}
+
 .login {
   text-align: center;
   .phone-login {
@@ -460,5 +540,20 @@ export default {
 
 .qrcode {
   width: 20px;
+}
+
+.send-wait {
+  border: 0;
+  width: 112px;
+  height: 36px;
+  background-color: darkgrey;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 19px;
+  position: absolute;
+  top: 114px;
+  right: 87px;
+  outline: none;
+  cursor: pointer;
 }
 </style>
