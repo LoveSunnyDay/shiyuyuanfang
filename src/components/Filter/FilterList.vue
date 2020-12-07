@@ -63,10 +63,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-import { FilterList } from '../../services/FilterList'
-=======
->>>>>>> dev
 export default {
   props: {
     list: {

@@ -15,27 +15,6 @@
       </el-breadcrumb>
     </div>
     <el-row>
-<<<<<<< HEAD
-      <el-button type="primary" round>
-        <img src="../assets/image/show/douyin.png" alt="" />
-        <p>抖音网红</p>
-      </el-button>
-      <el-button round>
-        <img src="../assets/image/show/xiaohongshu.png" alt="" />
-        <p>小红书网红</p>
-      </el-button>
-      <el-button round>
-        <img src="../assets/image/show/bilibili.png" alt="" />
-        <p>B站网红</p>
-      </el-button>
-      <el-button round>
-        <img src="../assets/image/show/kuaishou.png" alt="" />
-        <p>快手网红</p>
-      </el-button>
-      <el-button round>
-        <img src="../assets/image/show/taobao.png" alt="" />
-        <p>淘宝直播</p>
-=======
       <el-button
         v-for="(item, index, key) in platoptions"
         :key="key"
@@ -47,7 +26,6 @@
           alt=""
         />
         <p>{{ item.name }}</p>
->>>>>>> dev
       </el-button>
 
       <!-- <el-button round>
