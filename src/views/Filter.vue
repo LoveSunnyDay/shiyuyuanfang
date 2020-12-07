@@ -228,7 +228,7 @@ export default {
     },
     async getPlatList() {
       const { data } = await this.axios.get(
-        'http://api.dev.hiifire.com/v1/plat'
+        'https://api.dev.hiifire.com/v1/plat'
       )
       this.platoptions = data && data.items
     },
@@ -246,13 +246,13 @@ export default {
     },
     async getPriceList() {
       const { data } = await this.axios.get(
-        'http://api.dev.hiifire.com/v1/price-type'
+        'https://api.dev.hiifire.com/v1/price-type'
       )
       this.priceoptions = data && data.items
     },
     async getFansList() {
       const { data } = await this.axios.get(
-        'http://api.dev.hiifire.com/v1/fans-type'
+        'https://api.dev.hiifire.com/v1/fans-type'
       )
       this.fansoptions = data && data.items
     },

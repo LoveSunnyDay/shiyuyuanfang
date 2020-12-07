@@ -14,7 +14,11 @@
             <div class="main-item-name">
               <p>{{ list.nickname }}</p>
               <ul>
-                <li>{{ list.tags }}</li>
+                <li 
+                  v-for="(item,key) in list.tags.split('、')"
+                  :key="key"
+                >{{ item }}
+                </li>
                 <!-- <li>家庭</li>
                 <li>搞笑</li>
                 <li>颜值</li>
@@ -25,7 +29,7 @@
             <div class="main-item-case">
               <p>案例：</p>
               <ul>
-                <li>{{ list.cases }}</li>
+                <li>{{ list.cases.replace('、',' / ') }}</li>
                 <!-- <li>/</li>
                 <li>比亚迪</li>
                 <li>/</li>
