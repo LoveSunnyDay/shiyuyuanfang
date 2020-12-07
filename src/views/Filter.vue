@@ -19,7 +19,7 @@
         v-for="(item, index, key) in platoptions"
         :key="key"
         @click="platoptionsClick(index, item.id)"
-        :class="{ platoptionsActive: index === platoptionsIndex }"
+        :class="{ platoptionsActive:  platoptionsIndex.includes(index) }"
       >
         <img
           :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
@@ -157,7 +157,8 @@ export default {
       pageCount: '',
       isLastPage: false,
       isExpandAll: false,
-      platoptionsIndex: -1 //网红平台按钮默认显示背景色
+      platoptionsIndex:[], //网红平台按钮默认显示背景色,
+      plat_id:[]
     }
   },
   mounted() {
@@ -265,8 +266,15 @@ export default {
       this.fansoptions = data && data.items
     },
     platoptionsClick(index, id) {
-      this.platoptionsIndex = index
-      this.searchParms.plat_id = id
+      const idx= this.platoptionsIndex.indexOf(index)
+      if(idx!==-1){
+        this.platoptionsIndex.splice(idx,1)
+        this.plat_id.splice(idx,1)
+      }else{
+        this.platoptionsIndex.push(index)
+        this.plat_id.push(index)
+      }
+      this.searchParms.plat_id = this.plat_id.join(',')
     }
   },
   created() {},
