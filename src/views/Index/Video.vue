@@ -52,7 +52,15 @@
           <el-carousel-item v-for="banners in banner" :key="banners.id">
             <!-- <img :src="banners.ad_base_url + '/' + banners.ad_path" alt="" /> -->
             <router-link to="/VideoArticle" target="_blank">
-              <img :src="banners.ad_base_url + '/' + banners.ad_path" alt="" />
+              <router-link
+                :to="{ path: '/VideoArticle/' + banners.article_id }"
+                target="_blank"
+              >
+                <img
+                  :src="banners.ad_base_url + '/' + banners.ad_path"
+                  alt=""
+                />
+              </router-link>
             </router-link>
           </el-carousel-item>
         </el-carousel>
@@ -70,7 +78,8 @@
       <VideoListH v-show="cur == 8"></VideoListH>
       <VideoListI v-show="cur == 9"></VideoListI>
     </div>
-    <RightMaterial :material="material"></RightMaterial>
+    <!-- <RightMaterial :material="material"></RightMaterial> -->
+    <RightMaterial></RightMaterial>
   </div>
 </template>
 
@@ -93,8 +102,8 @@ import VideoListI from '@/components/Video/VideoListI.vue'
 import {
   // AllArticle,
   VideoClassify,
-  VideoBanner,
-  VideoMaterial
+  VideoBanner
+  // VideoMaterial
 } from '../../services/video'
 export default {
   data() {
@@ -103,7 +112,7 @@ export default {
       classify: [],
       classifyIndex: 0,
       banner: [],
-      material: [],
+      // material: [],
       cur: 0
     }
   },
@@ -120,10 +129,12 @@ export default {
       // console.log(res.data.data)
       this.banner = res.data.data.items
     })
-    VideoMaterial().then((res) => {
-      // console.log(res.data.data.items)
-      this.material = res.data.data.items
-    })
+
+    // 精选热度素材
+    // VideoMaterial().then((res) => {
+    //   // console.log(res.data.data.items)
+    //   this.material = res.data.data.items
+    // })
 
     // axios.post('https://api.dev.hiifire.com/v1/tool/send_sms').then((res) => {
     //   console.log(res)

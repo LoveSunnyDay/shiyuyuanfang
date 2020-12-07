@@ -202,7 +202,7 @@ export default {
       }
       this.axios
         .get(
-          `https://api.dev.hiifire.com/v1/kol/index?${queryString.join('&')}`
+          `https://api.hiifire.com/v1/kol/index?${queryString.join('&')}`
         )
         .then((res) => {
           console.log('kolList', res.data)
@@ -228,31 +228,31 @@ export default {
     },
     async getPlatList() {
       const { data } = await this.axios.get(
-        'http://api.dev.hiifire.com/v1/plat'
+        'http://api.hiifire.com/v1/plat'
       )
       this.platoptions = data && data.items
     },
     async getCategoryList() {
       const { data } = await this.axios.get(
-        'https://api.dev.hiifire.com/v1/kol-category'
+        'https://api.hiifire.com/v1/kol-category'
       )
       this.categoryoptions = data && data.items
     },
     async getSexList() {
       const { data } = await this.axios.get(
-        'https://api.dev.hiifire.com/v1/kind'
+        'https://api.hiifire.com/v1/kind'
       )
       this.sexoptions = data && data.items
     },
     async getPriceList() {
       const { data } = await this.axios.get(
-        'http://api.dev.hiifire.com/v1/price-type'
+        'http://api.hiifire.com/v1/price-type'
       )
       this.priceoptions = data && data.items
     },
     async getFansList() {
       const { data } = await this.axios.get(
-        'http://api.dev.hiifire.com/v1/fans-type'
+        'http://api.hiifire.com/v1/fans-type'
       )
       this.fansoptions = data && data.items
     },

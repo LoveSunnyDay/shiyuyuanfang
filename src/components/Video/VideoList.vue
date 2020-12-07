@@ -1,38 +1,36 @@
 <template>
   <div class="video-list">
     <h1>最新视频素材</h1>
-    <!-- <router-link to="/VideoArticle" target="_blank"> -->
-    <div
-      class="list-content"
-      v-for="articles in article"
-      :key="articles.id"
-      @click="articleClick()"
-    >
-      <div class="list-icon">
-        <img
-          :src="articles.thumbnail_base_url + '/' + articles.thumbnail_path"
-        />
-        <span>#{{ articles.category.title }}</span>
-      </div>
-      <div class="list-details">
-        <div class="details-title">
-          <span>{{ articles.title }}</span>
+    <div class="list-content" v-for="articles in article" :key="articles.id">
+      <router-link
+        :to="{ path: '/VideoArticle/' + articles.id }"
+        target="_blank"
+      >
+        <div class="list-icon">
+          <img
+            :src="articles.thumbnail_base_url + '/' + articles.thumbnail_path"
+          />
+          <span>#{{ articles.category.title }}</span>
         </div>
-        <p>{{ articles.introduction }}</p>
-        <div class="details-footer">
-          <div class="footer-left">
-            <span>来自主题：</span>
-            <span>{{ articles.category.title }}</span>
-            <span>｜</span>
-            <span>超火引擎</span>
+        <div class="list-details">
+          <div class="details-title">
+            <span>{{ articles.title }}</span>
           </div>
-          <i class="el-icon-time">{{
-            (articles.published_at * 1000) | formatDate
-          }}</i>
+          <p>{{ articles.introduction }}</p>
+          <div class="details-footer">
+            <div class="footer-left">
+              <span>来自主题：</span>
+              <span>{{ articles.category.title }}</span>
+              <span>｜</span>
+              <span>超火引擎</span>
+            </div>
+            <i class="el-icon-time">{{
+              (articles.published_at * 1000) | formatDate
+            }}</i>
+          </div>
         </div>
-      </div>
+      </router-link>
     </div>
-    <!-- </router-link> -->
   </div>
 </template>
 
@@ -63,13 +61,7 @@ export default {
     }
   },
   // 方法集合
-  methods: {
-    articleClick() {
-      // console.log('111')
-      this.$router.push('/VideoArticle/' + this.article[0].id)
-      // window.open(routeUrl.href, '_blank')
-    }
-  },
+  methods: {},
   // 监听属性 类似于data概念
   computed: {},
   // 监控data中的数据变化
@@ -81,7 +73,6 @@ export default {
     AllArticle().then((res) => {
       // console.log(res.data.data)
       this.article = res.data.data.items
-      // console.log(this.article[0].id)
     })
   },
   // 生命周期 - 挂载之前
@@ -121,6 +112,9 @@ export default {
     padding: 17px 20px 19px 12px;
     display: flex;
     cursor: pointer;
+    a {
+      display: flex;
+    }
     .list-icon {
       position: relative;
       img {

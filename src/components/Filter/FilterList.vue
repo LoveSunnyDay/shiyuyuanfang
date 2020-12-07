@@ -51,7 +51,7 @@
         <ul>
           <li v-for="list in list.products" :key="list.id">
             <p>{{ list.name }}</p>
-            <p>{{ list.price }}</p>
+            <p>￥{{ list.price }}</p>
           </li>
         </ul>
         <button>找TA推广</button>
@@ -71,7 +71,7 @@ export default {
         return []
       }
     },
-    isLastPage:{
+    isLastPage: {
       type: Boolean,
       default() {
         return false
@@ -219,6 +219,7 @@ export default {
   }
   .list-right {
     margin: 21px 40px 0 0;
+    position: relative;
     ul {
       width: 324px;
       display: flex;
@@ -272,7 +273,9 @@ export default {
       outline: none;
       border: 0;
       cursor: pointer;
-      margin: 15px 0 0 116px;
+      position: absolute;
+      bottom: 24px;
+      right: 0;
     }
     button:hover {
       transition: 0.5s;

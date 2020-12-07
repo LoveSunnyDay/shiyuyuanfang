@@ -1,18 +1,32 @@
 <template>
-  <div class="article">{{ items.body }}</div>
+  <div class="article">
+    <Header></Header>
+    <h1>{{ items.title }}</h1>
+    <span>{{ (items.published_at * 1000) | formatDate }}</span>
+    <p v-html="items.body"></p>
+  </div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
 import { ArticleDetails } from '../../services/video'
-
+import { formatDate } from '../../plugins/filters'
 export default {
   // 引入组件
-  components: {},
+  components: {
+    Header
+  },
   data() {
     // 这里存放数据
     return {
       id: null,
       items: {}
+    }
+  },
+  filters: {
+    formatDate(time) {
+      var data = new Date(time)
+      return formatDate(data, 'yyyy-MM-dd')
     }
   },
   // 方法集合
@@ -52,4 +66,26 @@ export default {
 </script>
 
 <style lang='less' scoped>
+.article {
+  width: 800px;
+  margin: 100px auto;
+  h1 {
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 36px;
+    color: #212121;
+  }
+  span {
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 30px;
+    color: #617de3;
+  }
+  p {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 28px;
+    color: #495158;
+  }
+}
 </style>
