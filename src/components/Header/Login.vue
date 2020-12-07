@@ -9,7 +9,12 @@
       @mouseleave="mouseLeave"
       class="login-operation"
     >
-      <img :src="avatar_url ? avatar_url:require('../../assets/image/default-icon.png')"
+      <img
+        :src="
+          avatar_url
+            ? avatar_url
+            : require('../../assets/image/default-icon.png')
+        "
         class="login-icon"
       />
       <div class="login-out" v-show="seen">退出登录</div>
@@ -118,7 +123,8 @@ export default {
         JSON.parse(getCookie('phone-token')),
       phoneNumber: '',
       verifyCode: '',
-      avatar_url: JSON.parse(getCookie('avatar_url')),
+      avatar_url:
+        JSON.parse(getCookie('avatar_url')),
       isDisabled: false,
       count: 60,
       timer: null,
@@ -246,7 +252,7 @@ export default {
         this.$message.error('登录失败！')
         return
       }
-      const { profile, token, user } = data
+      const { profile, token, user, avatar_url } = data || {}
       setCookie(
         'phone-token',
         JSON.stringify(token.token),
@@ -265,8 +271,14 @@ export default {
         window.location.hostname,
         token.expire_at
       )
+      setCookie(
+        'avatar_url',
+        JSON.stringify(avatar_url),
+        window.location.hostname,
+        token.expire_at
+      )
       this.setShowLoginDiaolog(false)
-      location.reload()
+      window.location.reload()
     },
     mouseOver() {
       this.seen = true
