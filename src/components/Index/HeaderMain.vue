@@ -23,25 +23,12 @@ const { keyFor } = require("core-js/fn/symbol")
       <ul>
         <li 
           v-for="(tag,key) in hotTags"
-          :key=key
+          :key="key"
           style="margin-right:5px"
           @click="hotSearch(tag)"
         >
         {{tag}}
         </li>
-        <!-- <li>美妆达人</li>
-        <li>，</li>
-        <li>时尚达人</li>
-        <li>，</li>
-        <li>手表带货</li>
-        <li>，</li>
-        <li>抖音网红</li>
-        <li>，</li>
-        <li>一条小团团</li>
-        <li>，</li>
-        <li>小红书</li>
-        <li>，</li>
-        <li>快手</li> -->
       </ul>
     </div>
   </div>
