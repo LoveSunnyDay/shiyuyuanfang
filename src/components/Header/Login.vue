@@ -17,7 +17,7 @@
         "
         class="login-icon"
       />
-      <div class="login-out" v-show="seen">退出登录</div>
+      <div class="login-out" v-show="seen" @click="logOut">退出登录</div>
     </div>
     <el-dialog
       :visible="showLoginDiaolog"
@@ -285,6 +285,15 @@ export default {
     },
     mouseLeave() {
       this.seen = false
+    },
+    logOut(){
+      //退出登录，清除cookie
+      setCookie( 'phone-token','',window.location.hostname,-1)
+      setCookie( 'user','',window.location.hostname,-1)
+      setCookie( 'profile','',window.location.hostname,-1)
+      setCookie( 'avatar_url','',window.location.hostname,-1)
+      setCookie( 'wx-token','',window.location.hostname,-1)
+      window.location.reload()
     }
   },
   // 监听属性 类似于data概念
