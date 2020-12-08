@@ -16,8 +16,8 @@
     </div>
     <el-row>
       <el-button
-        v-for="(item, index, key) in platoptions"
-        :key="key"
+        v-for="(item, index) in platoptions"
+        :key="index"
         @click="platoptionsClick(index, item.id)"
         :class="{ platoptionsActive:  platoptionsIndex.includes(index) }"
       >
@@ -272,7 +272,7 @@ export default {
         this.plat_id.splice(idx,1)
       }else{
         this.platoptionsIndex.push(index)
-        this.plat_id.push(index)
+        this.plat_id.push(id)
       }
       this.searchParms.plat_id = this.plat_id.join(',')
     }
