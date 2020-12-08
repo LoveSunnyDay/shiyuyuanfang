@@ -363,7 +363,7 @@ export default {
     color: #2d2d2d;
   }
   .platoptionsActive {
-    background: #00a581 !important;
+    background: #f1eeee !important;
   }
   /deep/ .filter-select {
     width: 98px;

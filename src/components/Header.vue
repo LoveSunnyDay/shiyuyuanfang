@@ -12,14 +12,16 @@
     </div>
     <ul class="nav-list">
       <!-- <li class="nav-text">KOC入驻</li> -->
-      <router-link to="/Channel" tag="li" class="nav-text">KOC入驻</router-link>
-      <li class="nav-text">MCN通道</li>
-      <router-link to="/Mycenter" tag="li" class="nav-text"
-        >个人中心</router-link
+      <router-link to="/Channel" tag="li" class="nav-text nav-text-KOC"
+        >KOC入驻</router-link
       >
-      <li>
+      <li class="nav-text nav-text-MCN">MCN通道</li>
+      <!-- <router-link to="/Mycenter" tag="li" class="nav-text"
+        >个人中心</router-link
+      > -->
+      <!-- <li>
         <img src="../assets/image/gengduo.png" alt="" class="nav-gengduo" />
-      </li>
+      </li> -->
       <li>
         <i class="el-icon-message-solid nav-xiaoxi"></i>
       </li>
@@ -42,7 +44,7 @@ export default {
     return {
       dialogVisible: false,
       loginMode: true,
-      searchContent:this.$route.query.search||''
+      searchContent: this.$route.query.search || ''
     }
   },
   // 方法集合
@@ -108,6 +110,7 @@ export default {
       font-weight: 400;
       color: #ffffff;
       cursor: pointer;
+      width: 72px;
     }
     input {
       width: 537px;
@@ -117,6 +120,9 @@ export default {
       margin: 16px 0 0 30px;
       outline: none;
       padding: 0 13px 0 22px;
+    }
+    .el-icon-search{
+      margin-right: 20px;
     }
     /* 设置了浏览器宽度小于1600px时的样式 */
     @media screen and (max-width: 1680px) {
@@ -159,6 +165,12 @@ export default {
       font-weight: 400;
       color: #ffffff;
       line-height: 72px;
+    }
+    .nav-text-KOC {
+      width: 75px;
+    }
+    .nav-text-MCN {
+      width: 81px;
     }
     .nav-text:hover {
       color: #b9bab8;

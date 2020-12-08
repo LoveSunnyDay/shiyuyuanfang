@@ -5,10 +5,24 @@
         <img
           src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=274952928,879286923&fm=26&gp=0.jpg"
           alt=""
+          @click="dialogVisible = true"
         />
-        <h1>找网红做广告</h1>
-        <h2>如遇问题请联系超火客服</h2>
-        <p class="masonry-item-name">超火客服</p>
+        <el-dialog
+          title="联系超火引擎"
+          :visible.sync="dialogVisible"
+          width="440px"
+          :modal="false"
+          class="masonry-dialog"
+        >
+          <img
+            src="~assets/image/service.png"
+            alt=""
+            class="masonry-dialog-image"
+          />
+        </el-dialog>
+        <h1>loading......</h1>
+        <h2>距离您找到网红还有2分钟</h2>
+        <p class="masonry-item-name">联系我们-超火引擎</p>
       </li>
       <li
         class="masonry-item"
@@ -33,13 +47,13 @@
             <div class="item-text-right">
               <div class="item-text-right-one">
                 <p>{{ items.kol.fan_count }}W</p>
-                <p>{{ items.ability }}</p>
+                <p>{{ items.interact_count }}W</p>
               </div>
               <div class="item-text-right-two">
                 <p>粉丝量</p>
                 <p>点赞量</p>
               </div>
-              <div class="item-text-right-one">
+              <div class="item-text-right-one item-text-right-three">
                 <p>-</p>
                 <p>-</p>
               </div>
@@ -61,7 +75,8 @@ export default {
     return {
       seen: false,
       item: [],
-      current: 0 //复制成功提示显示或者隐藏
+      current: 0, //复制成功提示显示或者隐藏
+      dialogVisible: false
     }
   },
   created() {
@@ -93,6 +108,14 @@ export default {
     padding-top: 10px;
     cursor: pointer;
     position: relative;
+    .masonry-dialog {
+      text-align: center;
+    }
+    .masonry-dialog-image {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+    }
     img {
       display: block;
       height: auto;
@@ -160,7 +183,9 @@ export default {
           margin: 0 auto;
           padding: 6px 11px;
           margin-top: 10px;
-          overflow: hidden;
+          overflow: hidden; //超出文本隐藏
+          white-space: nowrap; //溢出不换行
+          text-overflow: ellipsis; //溢出省略号显示
         }
       }
       .item-text-border {
@@ -191,6 +216,12 @@ export default {
           margin-bottom: 24px;
           p {
             font-weight: 400;
+          }
+        }
+        .item-text-right-three{
+          p{
+            width: 56px;
+            text-align: center;
           }
         }
       }
