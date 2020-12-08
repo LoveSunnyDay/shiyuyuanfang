@@ -41,7 +41,7 @@
         </el-button>
       </el-row>
     </div>
-    <Main :list="list"></Main>
+    <Main v-if="list.length>0" :list="list"></Main>
     <Shopping v-show="shoppingShow"></Shopping>
   </div>
 </template>
@@ -101,8 +101,9 @@ export default {
         this.shoppingShow = false
       }
     },
-    query() {
-      this.axios.get(`/v1/kol?recommend=1&category_id=1`)
+   async query() {
+     const data=await LookForHandel(this.$route.query.category_id, this.plat_id)
+     this.list=data.data.data.items
     },
     platoptionsClick(index, id) {
       const idx = this.platoptionsIndex.indexOf(index)
@@ -117,11 +118,9 @@ export default {
       console.log(this.platoptionsIndex, this.plat_id)
     }
   },
- async mounted() {
+  mounted() {
     window.addEventListener('scroll', this.shoppingScroll)
-   await LookForHandel(this.$route.query.category_id, this.plat_id).then((data) => {
-      this.list = data.data.data.items
-    })
+    this.query()
   },
   created() {
     LookForClassify().then((res) => {

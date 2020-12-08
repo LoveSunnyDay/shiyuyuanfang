@@ -1,6 +1,6 @@
 <template>
   <div class="lookfor-main">
-    <!-- <h1>{{ list && list.name }}</h1> -->
+    <h1>{{ list.length>0 && list.name }}</h1>
     <div class="lookfor-item" v-for="list in list" :key="list.id">
       <div class="lookfor-item-left">
         <img
@@ -45,11 +45,11 @@
             </div>
           </div>
           <div class="content-top-price">
-            <p>{{ list.products[0].name }}</p>
+            <p>{{ list.products[0]&&list.products[0].name }}</p>
             <!-- <p>直播一小时</p> -->
             <p>
               <span>￥</span>
-              <span>{{ list.products[0].price }}</span>
+              <span>{{ list.products[0]&&list.products[0].price }}</span>
               <!-- <span>1111</span> -->
               <span>元</span>
             </p>
@@ -130,7 +130,7 @@ export default {
    
     // 保存category_id
     // console.log(this.$route.query.category_id)
-    console.log("this.list",this.list)
+    console.log("this.list11111",this.list)
     // this.category_id = this.$route.query.category_id
     // LookForHandel(this.category_id,this.plat_id).then((data) => {
     //   // console.log(data.data.data.items)
