@@ -1,7 +1,7 @@
 <template>
   <div class="show">
     <div class="header">
-      <img src="../../assets/image/show.png" alt="" class="header-img" />
+      <img src="~assets/image/show-banner.png" alt="" class="header-img" />
     </div>
     <el-row>
       <el-button

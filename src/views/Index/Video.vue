@@ -1,10 +1,10 @@
 <template>
   <div class="video">
     <div>
-      <img class="video-img" src="../../assets/image/video.png" />
+      <img class="video-img" src="~assets/image/video-banner.png" />
     </div>
     <div class="video-nav">
-      <img src="../../assets/image/video/navLogo.png" alt="" />
+      <img src="../../assets/image/logo.png" alt="" />
       <ul>
         <!-- <li
           v-for="(classifys, index) in classify"
@@ -52,7 +52,15 @@
           <el-carousel-item v-for="banners in banner" :key="banners.id">
             <!-- <img :src="banners.ad_base_url + '/' + banners.ad_path" alt="" /> -->
             <router-link to="/VideoArticle" target="_blank">
-              <img :src="banners.ad_base_url + '/' + banners.ad_path" alt="" />
+              <router-link
+                :to="{ path: '/VideoArticle/' + banners.article_id }"
+                target="_blank"
+              >
+                <img
+                  :src="banners.ad_base_url + '/' + banners.ad_path"
+                  alt=""
+                />
+              </router-link>
             </router-link>
           </el-carousel-item>
         </el-carousel>
@@ -70,7 +78,8 @@
       <VideoListH v-show="cur == 8"></VideoListH>
       <VideoListI v-show="cur == 9"></VideoListI>
     </div>
-    <RightMaterial :material="material"></RightMaterial>
+    <!-- <RightMaterial :material="material"></RightMaterial> -->
+    <RightMaterial></RightMaterial>
   </div>
 </template>
 
@@ -93,8 +102,8 @@ import VideoListI from '@/components/Video/VideoListI.vue'
 import {
   // AllArticle,
   VideoClassify,
-  VideoBanner,
-  VideoMaterial
+  VideoBanner
+  // VideoMaterial
 } from '../../services/video'
 export default {
   data() {
@@ -103,7 +112,7 @@ export default {
       classify: [],
       classifyIndex: 0,
       banner: [],
-      material: [],
+      // material: [],
       cur: 0
     }
   },
@@ -120,10 +129,12 @@ export default {
       // console.log(res.data.data)
       this.banner = res.data.data.items
     })
-    VideoMaterial().then((res) => {
-      // console.log(res.data.data.items)
-      this.material = res.data.data.items
-    })
+
+    // 精选热度素材
+    // VideoMaterial().then((res) => {
+    //   // console.log(res.data.data.items)
+    //   this.material = res.data.data.items
+    // })
 
     // axios.post('https://api.dev.hiifire.com/v1/tool/send_sms').then((res) => {
     //   console.log(res)
@@ -165,15 +176,15 @@ export default {
     z-index: -10;
   }
   .video-nav {
-    width: 120px;
+    width: 110px;
     img {
-      width: 120px;
-      height: 21px;
+      width: 106px;
+      height: 33px;
       margin-bottom: 12px;
     }
     ul {
       width: 110px;
-      margin-left: 10px;
+      // margin-left: 10px;
       font-size: 14px;
       text-align: center;
       border-radius: 2px;
@@ -185,15 +196,15 @@ export default {
         cursor: pointer;
       }
       .classifyActive {
-        color: #0daf99;
-        background-color: #eafaf8;
+        color: #cc4b42;
+        background-color: #f7e2e0;
       }
       li:hover {
-        color: #0daf99;
+        color: #cc4b42;
       }
       .order-type-active {
-        color: #0daf99;
-        background-color: #eafaf8;
+        color: #cc4b42;
+        background-color: #f7e2e0;
       }
     }
   }

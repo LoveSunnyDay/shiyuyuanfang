@@ -41,12 +41,13 @@
             <p class="main-item-text">
               只接受上海地区的，中国好声音学院，搞笑音乐人，鸡汤段子手，全网最迷人的猪猪宝藏女友对口型段子达人哦
             </p>
-            <a :href="list.home_url" target="_blank">
-              <p class="main-item-url">
-                访问TA的抖音链接：
+
+            <p class="main-item-url">
+              访问TA的抖音链接：
+              <a :href="list.home_url" target="_blank">
                 {{ list.home_url }}
-              </p>
-            </a>
+              </a>
+            </p>
           </div>
         </div>
       </div>
@@ -54,7 +55,7 @@
         <ul>
           <li v-for="list in list.products" :key="list.id">
             <p>{{ list.name }}</p>
-            <p>{{ list.price }}</p>
+            <p>￥{{ list.price }}</p>
           </li>
         </ul>
         <button>找TA推广</button>
@@ -74,7 +75,7 @@ export default {
         return []
       }
     },
-    isLastPage:{
+    isLastPage: {
       type: Boolean,
       default() {
         return false
@@ -191,13 +192,6 @@ export default {
               overflow: hidden;
               text-overflow: ellipsis;
             }
-            // li:nth-child(odd) {
-            //   cursor: pointer;
-            // }
-            // li:nth-child(even) {
-            //   //even表示偶数
-            //   margin: 0 10px;
-            // }
           }
         }
         .main-item-text {
@@ -213,7 +207,6 @@ export default {
           font-weight: 400;
           color: #4c525a;
           margin-top: 20px;
-          cursor: pointer;
           a {
             font-size: 12px;
             font-weight: 400;
@@ -221,29 +214,29 @@ export default {
             margin-top: 20px;
             cursor: pointer;
           }
-        }
-        .main-item-url:hover,
-        .main-item-url:hover a {
-          color: #0064f9;
+          a:hover {
+            color: #0064f9;
+          }
         }
       }
     }
   }
   .list-right {
     margin: 21px 40px 0 0;
+    position: relative;
     ul {
       width: 324px;
       display: flex;
       justify-content: flex-end;
       flex-wrap: wrap;
-      li:hover {
-        transition: 0.5s;
-        border: 1px solid #34b299;
-      }
+      // li:hover {
+      //   transition: 0.5s;
+      //   border: 1px solid #34b299;
+      // }
       li {
         width: 90px;
         height: 56px;
-        border: 1px solid #ffffff;
+        border: 1px solid #34b299;
         border-radius: 2px;
         font-size: 14px;
         text-align: center;
@@ -284,7 +277,9 @@ export default {
       outline: none;
       border: 0;
       cursor: pointer;
-      margin: 15px 0 0 116px;
+      position: absolute;
+      bottom: 24px;
+      right: 0;
     }
     button:hover {
       transition: 0.5s;

@@ -58,7 +58,7 @@
             </div>
           </div>
           <div class="drawer-btn">
-            <button>联系客服</button>
+            <button @click="serviceClick">联系客服</button>
             <!-- <button>立即推广</button> -->
             <router-link to="/pay" tag="button">立即推广</router-link>
           </div>
@@ -88,7 +88,11 @@ export default {
     }
   },
   // 方法集合
-  methods: {},
+  methods: {
+    serviceClick() {
+      console.log('111')
+    }
+  },
   // 监听属性 类似于data概念
   computed: {},
   // 监控data中的数据变化

@@ -2,7 +2,7 @@ const { keyFor } = require("core-js/fn/symbol")
 
 <template>
   <div class="header-main">
-    <div class="header-text">超火引擎，两分钟 找到对的网红！</div>
+    <div class="header-text">超火引擎，两分钟找到对的网红！</div>
     <div class="main-search">
       <input
         type="text"

@@ -2,42 +2,45 @@
 <template>
   <div class="right-material">
     <p class="material-title">精选热度素材</p>
-    <router-link to="/VideoArticle" target="_blank">
-      <div
-        class="material-main"
-        v-for="materials in material"
-        :key="materials.id"
+    <div class="material-main" v-for="material in materials" :key="material.id">
+      <router-link
+        :to="{ path: '/VideoArticle/' + material.id }"
+        target="_blank"
       >
         <img
-          :src="materials.thumbnail_base_url + '/' + materials.thumbnail_path"
+          :src="material.thumbnail_base_url + '/' + material.thumbnail_path"
           alt=""
         />
         <div class="material-text">
-          <p>{{ materials.title }}</p>
+          <!-- slice 截取字符串 -->
+          <p>{{ material.introduction.slice(0, 30) }}...</p>
           <i class="el-icon-view">
-            <span>{{ materials.view_count }}</span>
+            <span>{{ material.view_count }}</span>
           </i>
         </div>
-      </div>
-    </router-link>
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
+import { VideoMaterial } from '../../services/video'
 export default {
-  props: {
-    material: {
-      type: Array,
-      default() {
-        return []
-      }
-    }
-  },
+  // props: {
+  //   material: {
+  //     type: Array,
+  //     default() {
+  //       return []
+  //     }
+  //   }
+  // },
   // 引入组件
   components: {},
   data() {
     // 这里存放数据
-    return {}
+    return {
+      materials: []
+    }
   },
   // 方法集合
   methods: {},
@@ -48,7 +51,12 @@ export default {
   // 生命周期 - 创建之前
   beforeCreate() {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    VideoMaterial().then((res) => {
+      console.log(res.data.data.items)
+      this.materials = res.data.data.items
+    })
+  },
   // 生命周期 - 挂载之前
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
@@ -82,6 +90,9 @@ export default {
     margin: 20px 0 0 10px;
     display: flex;
     cursor: pointer;
+    a {
+      display: flex;
+    }
     img {
       width: 110px;
       height: 70px;
@@ -97,7 +108,7 @@ export default {
         line-height: 17px;
       }
       p:hover {
-        color: #6295f6;
+        color: #cc4b42;
         cursor: pointer;
       }
       i {

@@ -12,10 +12,10 @@
       </li>
       <li
         class="masonry-item"
-        @mouseover="mouseOver"
-        @mouseleave="mouseLeave"
-        v-for="items in item"
+        v-for="(items, index) in item"
         :key="items.id"
+        @mouseover="mouseOver(index)"
+        @mouseleave="mouseLeave()"
       >
         <!-- v-for="items in item" :key="items.id" -->
         <img
@@ -24,7 +24,7 @@
         />
         <p class="masonry-item-name">{{ items.kol.nickname }}</p>
         <transition name="el-zoom-in-bottom">
-          <div class="item-text" v-show="seen">
+          <div class="item-text" v-show="seen && index == current">
             <div class="item-text-left">
               <img src="../../assets/image/show/bilibili.png" alt="" />
               <p>{{ items.kol.nickname }}</p>
@@ -52,114 +52,6 @@
           </div>
         </transition>
       </li>
-      <!-- <li class="masonry-item">
-        <img
-          src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1235603096,1102356358&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2660509671,3471117234&fm=15&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2752148155,155093617&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=188755981,3099070149&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3665502566,4066182875&fm=15&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=118353950,2226426098&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3192923591,134493481&fm=15&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3197802539,71734146&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3316307702,2217101271&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3543666205,3763985446&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=117402550,3524737531&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1116313726,3874542020&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1300003980,2178758242&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1079686308,4274782743&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1733582215,4186515281&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3904644935,268508794&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3597741797,1693092302&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li>
-      <li class="masonry-item">
-        <img
-          src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1908051107,2093176700&fm=26&gp=0.jpg"
-          alt=""
-        />
-      </li> -->
     </ul>
   </div>
 </template>
@@ -169,24 +61,27 @@ export default {
   data() {
     return {
       seen: false,
-      item: []
+      item: [],
+      current: 0 //复制成功提示显示或者隐藏
     }
   },
   created() {
     // 全部KOL分类列表
     this.axios
-      .get('https://api.dev.hiifire.com/v1/kol-plat?plat_id=6')
+      .get('https://api.hiifire.com/v1/kol-plat?plat_id=6')
       .then((res) => {
         console.log(res.data.items)
         this.item = res.data.items
       })
   },
   methods: {
-    mouseOver() {
+    mouseOver(index) {
       this.seen = true
+      this.current = index
     },
-    mouseLeave() {
+    mouseLeave(index) {
       this.seen = false
+      this.current = null
     }
   }
 }
@@ -236,13 +131,11 @@ export default {
     .item-text {
       width: 330px;
       height: 120px;
-      background: #e5e6e5;
-      opacity: 0.86;
+      background: #eeeeee;
       padding-top: 24px;
       position: absolute;
       bottom: 0;
       left: 0;
-      // padding: 24px 42px 0 0;
       display: flex;
       .item-text-left {
         width: 152px;

@@ -1,8 +1,11 @@
 <template>
   <div class="video-list">
     <h1>最新视频素材</h1>
-    <router-link to="/VideoArticle" target="_blank">
-      <div class="list-content" v-for="articles in article" :key="articles.id">
+    <div class="list-content" v-for="articles in article" :key="articles.id">
+      <router-link
+        :to="{ path: '/VideoArticle/' + articles.id }"
+        target="_blank"
+      >
         <div class="list-icon">
           <img
             :src="articles.thumbnail_base_url + '/' + articles.thumbnail_path"
@@ -13,7 +16,7 @@
           <div class="details-title">
             <span>{{ articles.title }}</span>
           </div>
-          <p>{{ articles.introduction }}</p>
+          <p>{{ articles.introduction.slice(0, 79) }}...</p>
           <div class="details-footer">
             <div class="footer-left">
               <span>来自主题：</span>
@@ -26,8 +29,8 @@
             }}</i>
           </div>
         </div>
-      </div>
-    </router-link>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -109,6 +112,9 @@ export default {
     padding: 17px 20px 19px 12px;
     display: flex;
     cursor: pointer;
+    a {
+      display: flex;
+    }
     .list-icon {
       position: relative;
       img {
@@ -137,6 +143,10 @@ export default {
         font-size: 18px;
         color: rgba(26, 26, 28, 0.7);
         line-height: 25px;
+        width: 452px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         span {
           font-weight: bold;
         }
@@ -154,7 +164,7 @@ export default {
         // text-overflow: ellipsis;
       }
       p:hover {
-        color: #94b7f8;
+        color: #cc4b42;
       }
       .details-footer {
         width: 452px;

@@ -152,14 +152,14 @@ export default {
         }
       }
       .nav-list-item:hover {
-        color: #0daf99;
+        color: #cd4d41;
       }
     }
   }
 }
 .myCenter-active {
-  background-color: #eafaf8;
-  color: #0daf99 !important;
-  border-left: 4px solid #32ccb7;
+  background-color: #faedeb;
+  color: #cd4d41 !important;
+  border-left: 4px solid #cc4b42;
 }
 </style>

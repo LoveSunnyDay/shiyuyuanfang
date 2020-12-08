@@ -1,8 +1,11 @@
 <template>
   <div class="video-list">
     <h1>最新视频素材</h1>
-    <router-link to="/VideoArticle" target="_blank">
-      <div class="list-content" v-for="articles in article" :key="articles.id">
+    <div class="list-content" v-for="articles in article" :key="articles.id">
+      <router-link
+        :to="{ path: '/VideoArticle/' + articles.id }"
+        target="_blank"
+      >
         <div class="list-icon">
           <img
             :src="articles.thumbnail_base_url + '/' + articles.thumbnail_path"
@@ -13,7 +16,7 @@
           <div class="details-title">
             <span>{{ articles.title }}</span>
           </div>
-          <p>{{ articles.introduction }}</p>
+          <p>{{ articles.introduction.slice(0, 79) }}...</p>
           <div class="details-footer">
             <div class="footer-left">
               <span>来自主题：</span>
@@ -26,8 +29,8 @@
             }}</i>
           </div>
         </div>
-      </div>
-    </router-link>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -70,6 +73,7 @@ export default {
     AllArticle5().then((res) => {
       // console.log(res.data.data)
       this.article = res.data.data.items
+      // console.log(this.article[0].id)
     })
   },
   // 生命周期 - 挂载之前
@@ -92,6 +96,9 @@ export default {
 <style lang="less" scoped>
 .video-list {
   margin-top: 28px;
+  a {
+    display: flex;
+  }
   h1 {
     font-size: 30px;
     font-weight: 800;
@@ -137,6 +144,10 @@ export default {
         font-size: 18px;
         color: rgba(26, 26, 28, 0.7);
         line-height: 25px;
+        width: 452px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         span {
           font-weight: bold;
         }
@@ -154,7 +165,7 @@ export default {
         // text-overflow: ellipsis;
       }
       p:hover {
-        color: #94b7f8;
+        color: #cc4b42;
       }
       .details-footer {
         width: 452px;

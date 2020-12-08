@@ -25,7 +25,7 @@
           :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
           alt=""
         />
-        <p>{{ item.name }}</p>
+        <p>{{ item.name }}网红</p>
       </el-button>
 
       <!-- <el-button round>
@@ -78,7 +78,7 @@
     <el-select
       v-model="searchParms.price_type_id"
       clearable
-      placeholder="价格排序"
+      placeholder="价格"
       class="filter-select"
     >
       <el-option
@@ -112,9 +112,9 @@
       <el-option label="升序" value="fan_count" />
       <el-option label="降序" value="-fan_count" />
     </el-select>
-    <el-button round>
+    <!-- <el-button round>
       <span class="select-btn">抖音购物车</span>
-    </el-button>
+    </el-button> -->
     <p class="filter-warn">提醒：为了减少沟通成本，最好选择5家经济公司</p>
     <FilterList
       :list="list"
@@ -231,13 +231,13 @@ export default {
     },
     async getPlatList() {
       const { data } = await this.axios.get(
-        'https://api.dev.hiifire.com/v1/plat'
+        'https://api.hiifire.com/v1/plat'
       )
       this.platoptions = data && data.items
     },
     async getCategoryList() {
       const { data } = await this.axios.get(
-        'https://api.dev.hiifire.com/v1/kol-category'
+        'https://api.hiifire.com/v1/kol-category'
       )
       this.categoryoptions = data && data.items
     },
@@ -249,19 +249,19 @@ export default {
     },
     async getSexList() {
       const { data } = await this.axios.get(
-        'https://api.dev.hiifire.com/v1/kind'
+        'https://api.hiifire.com/v1/kind'
       )
       this.sexoptions = data && data.items
     },
     async getPriceList() {
       const { data } = await this.axios.get(
-        'https://api.dev.hiifire.com/v1/price-type'
+        'https://api.hiifire.com/v1/price-type'
       )
       this.priceoptions = data && data.items
     },
     async getFansList() {
       const { data } = await this.axios.get(
-        'https://api.dev.hiifire.com/v1/fans-type'
+        'https://api.hiifire.com/v1/fans-type'
       )
       this.fansoptions = data && data.items
     },

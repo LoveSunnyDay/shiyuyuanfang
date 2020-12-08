@@ -17,41 +17,50 @@
         </div>
         <div class="banner-main-login">
           <div class="login">
-            <div class="wx-login" v-if="loginMode">
-              <div class="phone-login-tab" @click="loginModeButton">
-                <img src="../../assets/image/shouji-login.png" />
-                <span></span>
-              </div>
-              <p><i class="iconfont icon-weixin1"></i>微信登录</p>
-              <div class="wx-login-erweima">
-                <img src="../../assets/image/footer/erweima.jpg" />
-              </div>
-              <p class="wx-login-text">扫描二维码登录</p>
-              <img
-                src="../../assets/image/welcome.png"
-                class="wx-login-welcom"
-              />
-            </div>
-            <div class="phone-login" v-else>
-              <div class="phone-login-tab" @click="loginModeButton">
-                <img src="../../assets/image/weixin-login.png" />
-                <span></span>
-              </div>
-              <p><i class="el-icon-mobile"></i>手机验证码登录</p>
+            <div v-if="loginMode" class="phone-login">
+              <p class="login-title">
+                <i class="el-icon-mobile"></i>手机验证码登录
+              </p>
               <input
                 type="text"
                 placeholder="请输入手机号"
                 class="login-input-phone"
+                v-model="phoneNumber"
               />
               <input
                 type="text"
                 placeholder="短信验证码"
                 class="login-input-code"
+                v-model="verifyCode"
               />
-              <button class="code-button">发送验证码</button>
-              <button class="login-button">立即登录</button>
-              <p class="phone-login-list">专业网红推广服务平台</p>
-              <p class="phone-login-item">欢迎使用超火引擎</p>
+              <button class="code-button" @click="sendVerifyCode">
+                发送验证码
+              </button>
+              <button class="login-button" @click="phoneLogin">立即登录</button>
+              <div class="other-methods">
+                <span class="other-line"></span>
+                <span class="other-txt">其他账号登录</span>
+                <span class="other-line"></span>
+              </div>
+              <img
+                src="~assets/image/wx-login.png"
+                alt=""
+                class="other-wx"
+                @click="wxloginClick"
+              />
+              <p class="user-agreement">
+                若登录则表示已阅读并同意本网站的
+                <router-link to="/PaymentAgreement" target="_blank">
+                  《付款协议》
+                </router-link>
+              </p>
+            </div>
+            <div v-else class="wx-login">
+              <p><i class="iconfont icon-weixin1"></i>微信登录</p>
+              <img
+                src="../../assets/image/welcome.png"
+                class="wx-login-welcom"
+              />
             </div>
           </div>
         </div>
@@ -253,23 +262,21 @@ export default {
               img {
                 width: 100px;
                 height: 30px;
-                cursor: pointer;
               }
               span {
                 width: 56px;
                 height: 54px;
                 background: url(../../assets/image/wxLogin.png);
-                cursor: pointer;
               }
               span:hover {
                 background: url(../../assets/image/wxLogin2.png);
               }
             }
-            p:nth-child(2) {
+            .login-title {
               font-size: 24px;
               font-weight: 500;
               color: #1a1a1a;
-              margin-top: 4px;
+              margin-top: 28px;
             }
             .login-input-phone {
               width: 248px;
@@ -308,16 +315,10 @@ export default {
               font-weight: 600;
               border-radius: 19px;
               position: absolute;
-              top: 172px;
-              right: 88px;
+              top: 114px;
+              right: 87px;
               outline: none;
               cursor: pointer;
-            }
-            .phone-login-list {
-              font-size: 14px;
-              font-weight: 400;
-              color: #727272;
-              margin-top: 55px;
             }
             .login-button {
               border: 0;
@@ -329,13 +330,36 @@ export default {
               border-radius: 19px;
               outline: none;
               cursor: pointer;
-              margin-top: 43px;
+              margin-top: 40px;
             }
-            .phone-login-item {
-              font-size: 25px;
-              font-weight: 900;
+            .other-methods {
+              margin: 34px 0 14px;
+              .other-line {
+                display: inline-block;
+                width: 80px;
+                border-top: 1px solid #b1b1b1;
+              }
+              .other-txt {
+                vertical-align: -4px;
+                margin: 0 20px;
+                color: #727272;
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 20px;
+              }
+            }
+            .other-wx {
+              width: 56px;
+              height: 20pxpx;
+            }
+            .user-agreement {
+              margin: 24px 0 35px;
               color: #727272;
-              margin: 30px 0 63px 0;
+              font-size: 12px;
+              line-height: 17px;
+              a {
+                color: #e36713;
+              }
             }
           }
           .wx-login {
@@ -346,13 +370,11 @@ export default {
               img {
                 width: 100px;
                 height: 30px;
-                cursor: pointer;
               }
               span {
                 width: 56px;
                 height: 54px;
                 background: url(../../assets/image/phoneLogin.png);
-                cursor: pointer;
               }
               span:hover {
                 background: url(../../assets/image/phoneLogin2.png);

@@ -17,6 +17,8 @@ import DetailBilibili from '@/views/Detail/DetailBilibili'
 import Channel from '@/views/Channel/Channel'
 import ChannelMCN from '@/views/Channel/ChannelMCN'
 import VideoArticle from '@/views/Index/VideoArticle'
+// import VideoArticle2 from '@/views/Index/VideoArticle'
+// import VideoArticle3 from '@/views/Index/VideoArticle'
 // import BindingPhone from '@/components/Header/BindingPhone'
 
 import Pay from '@/views/Pay/Pay'
@@ -154,9 +156,17 @@ const routes = [
     component: ChannelMCN
   },
   {
-    path: '/VideoArticle',
+    path: '/VideoArticle/:id',
     component: VideoArticle
   }
+  // {
+  //   path: '/VideoArticle2',
+  //   component: VideoArticle2
+  // },
+  // {
+  //   path: '/VideoArticle3',
+  //   component: VideoArticle3
+  // }
   // {
   //   path: '/BindingPhone',
   //   component: BindingPhone
@@ -165,8 +175,8 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  mode: 'history'
-  // mode: 'hash'
+  // mode: 'history'
+  mode: 'hash'
 })
 router.beforeEach(async (to, from, next) => {
   // add before changing logic
@@ -189,7 +199,7 @@ router.beforeEach(async (to, from, next) => {
     console.log('code', code)
     console.log('state', state)
     if (!!code || !!state) {
-      window.axios.get(`http://api.dev.hiifire.com/v1/auth?authclient=wx&code=${code}&state=${state}`).then((res) => {
+      window.axios.get(`http://api.hiifire.com/v1/auth?authclient=wx&code=${code}&state=${state}`).then((res) => {
         console.log('res', res)
         const { data, success } = res
         const { token, user,profile } = data || {}
