@@ -7,8 +7,8 @@
       <router-link to="/Index/Look" tag="p">网红达人</router-link>
       <router-link to="/Index/Show" tag="p">网红T台</router-link>
       <router-link to="/Index/Video" tag="p">视频素材</router-link>
-      <input type="text" placeholder="输入推广产品或网红,精确匹配" v-model="searchContent" />
-      <i class="el-icon-search"></i>
+      <input type="text" placeholder="输入推广产品或网红,精确匹配" v-model="searchContent" @keyup.enter="searchWangHong"/>
+      <i class="el-icon-search"  @click="searchWangHong"></i>
     </div>
     <ul class="nav-list">
       <!-- <li class="nav-text">KOC入驻</li> -->
@@ -46,7 +46,12 @@ export default {
     }
   },
   // 方法集合
-  methods: {},
+  methods: {
+    searchWangHong(){
+      console.log("searchWangHong")
+      this.$emit('search',this.searchContent)
+    }
+  },
   // 监听属性 类似于data概念
   computed: {},
   // 监控data中的数据变化
