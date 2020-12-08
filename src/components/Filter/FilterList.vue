@@ -229,14 +229,14 @@ export default {
       display: flex;
       justify-content: flex-end;
       flex-wrap: wrap;
-      li:hover {
-        transition: 0.5s;
-        border: 1px solid #34b299;
-      }
+      // li:hover {
+      //   transition: 0.5s;
+      //   border: 1px solid #34b299;
+      // }
       li {
         width: 90px;
         height: 56px;
-        border: 1px solid #ffffff;
+        border: 1px solid #34b299;
         border-radius: 2px;
         font-size: 14px;
         text-align: center;

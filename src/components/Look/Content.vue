@@ -21,6 +21,9 @@
             src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3160269277,4211240727&fm=26&gp=0.jpg"
             alt=""
           />
+          <!-- <img
+            :src="list.kols.avatar_base_url + '/' + list.kols.avatar_path"
+          /> -->
           <div class="detail-name">{{ list.nickname }}</div>
           <div class="detail-from">
             平台：

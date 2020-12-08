@@ -30,7 +30,7 @@
         </el-checkbox-button>
       </el-row>
       <el-row class="el-row-two">
-        <h5>粉丝：</h5>
+        <h5>分类：</h5>
         <el-checkbox-button fill="">美妆达人</el-checkbox-button>
         <el-checkbox-button type="primary">电商带货</el-checkbox-button>
         <el-checkbox-button type="primary">汽车达人</el-checkbox-button>
