@@ -86,7 +86,7 @@ export default {
       console.log(list)
       this.$router.push({
         path: 'LookFor',
-        query: { id: list }
+        query: { category_id: list }
       })
     }
   },
