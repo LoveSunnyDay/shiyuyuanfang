@@ -84,7 +84,7 @@ export default {
   p {
     font-size: 16px;
     font-weight: bold;
-    line-height: 28px;
+    line-height: 40px;
     color: #495158;
   }
 }

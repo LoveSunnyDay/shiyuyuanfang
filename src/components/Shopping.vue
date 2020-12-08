@@ -58,7 +58,22 @@
             </div>
           </div>
           <div class="drawer-btn">
-            <button @click="serviceClick">联系客服</button>
+            <button @click="dialogVisible = true">联系客服</button>
+            <el-dialog
+              title="联系超火引擎"
+              :visible.sync="dialogVisible"
+              width="30%"
+              :modal="false"
+            >
+              <!-- <span>这是一段信息</span>
+              <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false"
+                  >确 定</el-button
+                >
+              </span> -->
+              <img src="../assets/image/service.png" alt="">
+            </el-dialog>
             <!-- <button>立即推广</button> -->
             <router-link to="/pay" tag="button">立即推广</router-link>
           </div>
@@ -84,15 +99,12 @@ export default {
     // 这里存放数据
     return {
       drawer: false,
-      size: '354px'
+      size: '354px',
+      dialogVisible: false
     }
   },
   // 方法集合
-  methods: {
-    serviceClick() {
-      console.log('111')
-    }
-  },
+  methods: {},
   // 监听属性 类似于data概念
   computed: {},
   // 监控data中的数据变化
@@ -318,7 +330,7 @@ export default {
           margin-right: 10px;
           cursor: pointer;
         }
-        button:nth-child(2) {
+        button:nth-child(3) {
           width: 144px;
           height: 44px;
           border-radius: 4px;
@@ -329,6 +341,10 @@ export default {
           font-weight: bold;
           border: 0;
           cursor: pointer;
+        }
+        img{
+          width: 200px;
+          height: 200px;
         }
       }
     }

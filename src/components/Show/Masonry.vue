@@ -17,7 +17,6 @@
         @mouseover="mouseOver(index)"
         @mouseleave="mouseLeave()"
       >
-        <!-- v-for="items in item" :key="items.id" -->
         <img
           src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3288873043,3914514780&fm=26&gp=0.jpg"
           alt=""
@@ -38,15 +37,15 @@
               </div>
               <div class="item-text-right-two">
                 <p>粉丝量</p>
-                <p>种草能力得分</p>
+                <p>点赞量</p>
               </div>
               <div class="item-text-right-one">
-                <p>{{ items.play_count }}W</p>
-                <p>{{ items.interact_count }}W</p>
+                <p>-</p>
+                <p>-</p>
               </div>
               <div class="item-text-right-two">
-                <p>预计播放量</p>
-                <p>预计互动量</p>
+                <p>种草能力</p>
+                <p>预计播放</p>
               </div>
             </div>
           </div>
@@ -171,7 +170,7 @@ export default {
         margin-top: 7px;
       }
       .item-text-right {
-        padding: 0 42px 0 27px;
+        margin: 0 20px;
         width: 210px;
         div {
           display: flex;

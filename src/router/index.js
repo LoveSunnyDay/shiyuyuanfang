@@ -157,7 +157,7 @@ const routes = [
     component: VideoArticle
   },
   {
-    path: '//auth_redircect',
+    path: '/auth_redircect',
     component: LoginJump
   }
 ]
