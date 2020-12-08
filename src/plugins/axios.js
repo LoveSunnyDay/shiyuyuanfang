@@ -2,7 +2,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import store from '../store'
 const config = {
-  // baseURL: process.env.baseURL || process.env.apiUrl || ""
+  baseURL: 'https://api.hiifire.com/v1'
   // timeout: 60 * 1000, // Timeout
   // withCredentials: true, // Check cross-site Access-Control
 }

@@ -9,9 +9,9 @@
       <el-breadcrumb separator-class="el-icon-arrow-right" class="crumbs-nav">
         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
         <el-breadcrumb-item :to="{ path: '/editor' }">
-          按需求筛选
+          搜索
         </el-breadcrumb-item>
-        <el-breadcrumb-item>网红筛选</el-breadcrumb-item>
+        <el-breadcrumb-item>{{$route.query.search}}</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <el-row>
@@ -205,7 +205,7 @@ export default {
       }
       this.axios
         .get(
-          `https://api.hiifire.com/v1/kol/index?${queryString.join('&')}`
+          `/kol/index?${queryString.join('&')}`
         )
         .then((res) => {
           console.log('kolList', res.data)
@@ -231,37 +231,37 @@ export default {
     },
     async getPlatList() {
       const { data } = await this.axios.get(
-        'https://api.hiifire.com/v1/plat'
+        '/plat'
       )
       this.platoptions = data && data.items
     },
     async getCategoryList() {
       const { data } = await this.axios.get(
-        'https://api.hiifire.com/v1/kol-category'
+        '/kol-category'
       )
       this.categoryoptions = data && data.items
     },
     async getAreaList() {
       const { data } = await this.axios.get(
-        'https://api.hiifire.com/v1/tool/area'
+        '/tool/area'
       )
       this.areaoptions = data && data
     },
     async getSexList() {
       const { data } = await this.axios.get(
-        'https://api.hiifire.com/v1/kind'
+        '/kind'
       )
       this.sexoptions = data && data.items
     },
     async getPriceList() {
       const { data } = await this.axios.get(
-        'https://api.hiifire.com/v1/price-type'
+        '/price-type'
       )
       this.priceoptions = data && data.items
     },
     async getFansList() {
       const { data } = await this.axios.get(
-        'https://api.hiifire.com/v1/fans-type'
+        '/fans-type'
       )
       this.fansoptions = data && data.items
     },

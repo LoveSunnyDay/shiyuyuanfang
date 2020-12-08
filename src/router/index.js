@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '../store'
 
 import Index from '@/views/Index'
 import Show from '@/views/Index/Show'
@@ -183,14 +182,6 @@ router.beforeEach(async (to, from, next) => {
   console.log('window.location.href', window.location.href)
   // const href = window.location.href
   console.log('路由跳转', to, from)
-  // 检测用户是否已经登录
-  if (getCookie('wx-token')) {
-    console.log('用户存在token已经的登录')
-    store.commit('wxLogin/setIsLogin', true)
-  } else {
-    console.log('不存在token没有登录')
-    store.commit('wxLogin/setIsLogin', false)
-  }
   // /code && state
   if (to.path === '/auth_redircect') {
     // http://localhost:8082/auth_redircect?authclient=wx&code=051nl6Ha1WxZ3A0uLjIa1AkUIf2nl6He
@@ -199,7 +190,7 @@ router.beforeEach(async (to, from, next) => {
     console.log('code', code)
     console.log('state', state)
     if (!!code || !!state) {
-      window.axios.get(`http://api.hiifire.com/v1/auth?authclient=wx&code=${code}&state=${state}`).then((res) => {
+      window.axios.get(`/auth?authclient=wx&code=${code}&state=${state}`).then((res) => {
         console.log('res', res)
         const { data, success } = res
         const { token, user,profile } = data || {}

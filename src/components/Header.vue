@@ -7,7 +7,7 @@
       <router-link to="/Index/Look" tag="p">网红达人</router-link>
       <router-link to="/Index/Show" tag="p">网红T台</router-link>
       <router-link to="/Index/Video" tag="p">视频素材</router-link>
-      <input type="text" placeholder="输入推广产品或网红,精确匹配" />
+      <input type="text" placeholder="输入推广产品或网红,精确匹配" v-model="searchContent" />
       <i class="el-icon-search"></i>
     </div>
     <ul class="nav-list">
@@ -41,7 +41,8 @@ export default {
     // 这里存放数据
     return {
       dialogVisible: false,
-      loginMode: true
+      loginMode: true,
+      searchContent:this.$route.query.search||''
     }
   },
   // 方法集合

@@ -5,7 +5,7 @@
         <div class="list-left-main">
           <div class="left-main-icon">
             <img
-              src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4226413727,164684980&fm=11&gp=0.jpg"
+              :src="list.avatar_base_url?(list.avatar_base_url+'/'+list.avatar_path):require('../../assets/image/myCenter/icon.png')"
               alt=""
             />
             <p>粉丝数:{{ list.fan_count }}W</p>

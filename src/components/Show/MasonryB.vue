@@ -68,7 +68,7 @@ export default {
   created() {
     // 全部KOL分类列表
     this.axios
-      .get('https://api.hiifire.com/v1/kol-plat?plat_id=2')
+      .get('/kol-plat?plat_id=2')
       .then((res) => {
         console.log(res.data.items)
         this.item = res.data.items
