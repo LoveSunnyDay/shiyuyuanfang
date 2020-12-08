@@ -164,8 +164,8 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  // mode: 'history'
-  mode: 'hash'
+  mode: 'history'
+  // mode: 'hash'
 })
 router.beforeEach(async (to, from, next) => {
   // add before changing logic
