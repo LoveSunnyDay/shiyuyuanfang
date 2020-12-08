@@ -173,7 +173,7 @@ router.beforeEach(async (to, from, next) => {
   // const href = window.location.href
   console.log('路由跳转', to, from)
   // /code && state
-  if (to.path === '/auth_redircect') {
+  if (to.path === '/auth_redirect.html') {
     // http://localhost:8082/auth_redircect?authclient=wx&code=051nl6Ha1WxZ3A0uLjIa1AkUIf2nl6He
     const code = getUrl(window.location.href, 'code')
     const state = getUrl(window.location.href, 'state')
@@ -191,7 +191,6 @@ router.beforeEach(async (to, from, next) => {
           setCookie('user', JSON.stringify(user), window.location.hostname, token.expire_at)
           setCookie('profile', JSON.stringify(profile), window.location.hostname, token.expire_at)
           setCookie('avatar_url', JSON.stringify(avatar_url), window.location.hostname, token.expire_at)
-
           window.close()
         }
       })
