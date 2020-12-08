@@ -1,3 +1,5 @@
+const { keyFor } = require("core-js/fn/symbol")
+
 <template>
   <div class="header-main">
     <div class="header-text">超火引擎，两分钟找到对的网红！</div>
@@ -7,8 +9,11 @@
         placeholder="请输入您想推广的产品或相关网红，精确匹配"
         class="search-input"
         v-model="searchContent"
+        @keyup.enter="onSubmit"
       />
-      <router-link :to="{ path:'/Filter',query:{search:searchContent} }" ><img src="../../assets/image/sousuo.png" class="search-sousuo" /></router-link>    
+      <router-link :to="{ path:'/Filter',query:{search:searchContent} }" >
+        <img src="../../assets/image/sousuo.png" class="search-sousuo" />
+        </router-link>    
       <router-link to="/editor">
         <div class="search-shaixuan"></div>
       </router-link>
@@ -42,6 +47,15 @@ export default {
     }
   },
   methods:{
+    onSubmit(){
+       this.$router.push({  //核心语句
+        path:'/Filter',   //跳转的路径
+        query:{           //路由传参时push和query搭配使用 ，作用时传递参数
+          search:this.searchContent, 
+        }
+      })
+    }
+   
   }
 }
 </script>

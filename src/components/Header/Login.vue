@@ -9,7 +9,12 @@
       @mouseleave="mouseLeave"
       class="login-operation"
     >
-      <img :src="avatar_url ? avatar_url:require('../../assets/image/default-icon.png')"
+      <img
+        :src="
+          avatar_url
+            ? avatar_url
+            : require('../../assets/image/default-icon.png')
+        "
         class="login-icon"
       />
       <div class="login-out" v-show="seen">退出登录</div>
@@ -114,11 +119,12 @@ export default {
       loginMode: true,
       showBindPhone: false,
       loginStatus:
-        JSON.parse(getCookie('wx-token')) ||
-        JSON.parse(getCookie('phone-token')),
+        (getCookie('wx-token')!=="undefined"&&JSON.parse(getCookie('wx-token'))) ||
+         (getCookie('phone-token')!=="undefined"&&JSON.parse(getCookie('phone-token'))) &&JSON.parse(getCookie('phone-token')),
       phoneNumber: '',
       verifyCode: '',
-      avatar_url: JSON.parse(getCookie('avatar_url')),
+      avatar_url:
+         (getCookie('avatar_url')!=="undefined"&&JSON.parse(getCookie('avatar_url')))&&JSON.parse(getCookie('avatar_url')),
       isDisabled: false,
       count: 60,
       timer: null,
@@ -246,7 +252,7 @@ export default {
         this.$message.error('登录失败！')
         return
       }
-      const { profile, token, user } = data
+      const { profile, token, user, avatar_url } = data || {}
       setCookie(
         'phone-token',
         JSON.stringify(token.token),
@@ -265,8 +271,14 @@ export default {
         window.location.hostname,
         token.expire_at
       )
+      setCookie(
+        'avatar_url',
+        JSON.stringify(avatar_url),
+        window.location.hostname,
+        token.expire_at
+      )
       this.setShowLoginDiaolog(false)
-      location.reload()
+      window.location.reload()
     },
     mouseOver() {
       this.seen = true
@@ -289,7 +301,7 @@ export default {
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    console.log('mounted', JSON.parse(getCookie('avatar_url')))
+    // console.log('mounted', JSON.parse(getCookie('avatar_url')))
   },
   // 生命周期 - 更新之前
   beforeUpdate() {},

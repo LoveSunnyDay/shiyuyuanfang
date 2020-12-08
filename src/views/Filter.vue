@@ -19,7 +19,7 @@
         v-for="(item, index, key) in platoptions"
         :key="key"
         @click="platoptionsClick(index, item.id)"
-        :class="{ platoptionsActive: index === platoptionsIndex }"
+        :class="{ platoptionsActive:  platoptionsIndex.includes(index) }"
       >
         <img
           :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
@@ -47,8 +47,8 @@
       >
       </el-option>
     </el-select>
-    <!-- <el-select
-      v-model="searchParms.area"
+    <el-select
+      v-model="searchParms.area_id"
       clearable
       placeholder="选择地区"
       class="filter-select"
@@ -60,7 +60,7 @@
         :value="item.id"
       >
       </el-option>
-    </el-select> -->
+    </el-select>
     <el-select
       v-model="searchParms.sex"
       clearable
@@ -135,6 +135,7 @@ export default {
       options: [],
       id: '',
       sexoptions: [],
+      areaoptions:[],
       categoryoptions: [],
       platoptions: [],
       priceoptions: [],
@@ -142,7 +143,7 @@ export default {
       list: [],
       searchParms: {
         category_id: '',
-        area: '',
+        area_id: '',
         plat_id: '',
         price_type_id: '',
         sex: '',
@@ -156,7 +157,8 @@ export default {
       pageCount: '',
       isLastPage: false,
       isExpandAll: false,
-      platoptionsIndex: -1 //网红平台按钮默认显示背景色
+      platoptionsIndex:[], //网红平台按钮默认显示背景色,
+      plat_id:[]
     }
   },
   mounted() {
@@ -180,6 +182,7 @@ export default {
     getFilterList() {
       this.getPlatList()
       this.getCategoryList()
+      this.getAreaList()
       this.getSexList()
       this.getPriceList()
       this.getFansList()
@@ -238,6 +241,12 @@ export default {
       )
       this.categoryoptions = data && data.items
     },
+    async getAreaList() {
+      const { data } = await this.axios.get(
+        'https://api.hiifire.com/v1/tool/area'
+      )
+      this.areaoptions = data && data
+    },
     async getSexList() {
       const { data } = await this.axios.get(
         'https://api.hiifire.com/v1/kind'
@@ -257,8 +266,15 @@ export default {
       this.fansoptions = data && data.items
     },
     platoptionsClick(index, id) {
-      this.platoptionsIndex = index
-      this.searchParms.plat_id = id
+      const idx= this.platoptionsIndex.indexOf(index)
+      if(idx!==-1){
+        this.platoptionsIndex.splice(idx,1)
+        this.plat_id.splice(idx,1)
+      }else{
+        this.platoptionsIndex.push(index)
+        this.plat_id.push(index)
+      }
+      this.searchParms.plat_id = this.plat_id.join(',')
     }
   },
   created() {},
