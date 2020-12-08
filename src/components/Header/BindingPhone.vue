@@ -18,8 +18,15 @@
       </div>
       <div class="auth-code">
         <input type="text" class="auth-code-input" v-model="verifyCode" />
-        <button class="auth-code-button" @click="sendVerifyCode">
-          发送验证码
+        <button
+          v-if="!this.isDisabled"
+          class="auth-code-button"
+          @click="sendVerifyCode"
+        >
+          <span>发送验证码</span>
+        </button>
+        <button v-else class="send-wait" :disabled="this.isDisabled">
+          <span>{{ count }} s后重新获取</span>
         </button>
       </div>
       <button class="accomplish" @click="bindPhoneNumber">完成</button>
@@ -37,7 +44,10 @@ export default {
     return {
       dialogVisible: true,
       phoneNumber: '',
-      verifyCode: ''
+      verifyCode: '',
+      isDisabled: false,
+      count: 60,
+      timer: null
     }
   },
   // 方法集合
@@ -46,10 +56,12 @@ export default {
       this.$confirm('确认关闭吗？关闭则需要重新登录！')
         .then((_) => {
           //未绑定手机号码，清除token
-          setCookie('wx-token','',window.location.hostname,-1)
-          setCookie('user','',window.location.hostname,-1)
-          setCookie('profile','',window.location.hostname,-1)
-          setCookie('avatar_url','',window.location.hostname,-1)
+          this.phoneNumber = ''
+          this.verifyCode = ''
+          setCookie('wx-token', '', window.location.hostname, -1)
+          setCookie('user', '', window.location.hostname, -1)
+          setCookie('profile', '', window.location.hostname, -1)
+          setCookie('avatar_url', '', window.location.hostname, -1)
           this.$emit('closeBindPhone')
           // done()
         })
@@ -59,6 +71,17 @@ export default {
       const params = new FormData()
       params.append('phone_number', this.phoneNumber)
       params.append('type', 'bind')
+
+      let reg = /^1[0-9]{10}$/
+      if (
+        this.phoneNumber == '' ||
+        this.phoneNumber.length <= 10 ||
+        !reg.test(this.phoneNumber)
+      ) {
+        this.$message.error('请输入正确的手机号')
+        return false
+      }
+
       // 发送短信验证码
       const { success } = await this.axios({
         method: 'post',
@@ -69,6 +92,19 @@ export default {
 
       if (!success) {
         this.$message.error('获取验证码失败！')
+        return
+      }
+      this.isDisabled = true
+      if (!this.timer) {
+        this.timer = setInterval(() => {
+          if (this.count > 0 && this.count <= 60) {
+            this.count--
+          } else {
+            this.isDisabled = false
+            clearInterval(this.timer)
+            this.timer = null
+          }
+        }, 1000)
       }
     },
     async bindPhoneNumber() {
@@ -177,14 +213,27 @@ export default {
     }
     .auth-code-button {
       outline: none;
-      width: 100px;
+      width: 120px;
       height: 40px;
-      background: #ffffff;
+      background-color: #00a581;
       border: 1px solid rgba(112, 112, 112, 0.2);
       border-radius: 4px;
       font-size: 14px;
       font-weight: bold;
-      color: #aaaaaa;
+      color: #ffffff;
+      opacity: 0.81;
+      cursor: pointer;
+    }
+    .send-wait {
+      outline: none;
+      width: 120px;
+      height: 40px;
+      background-color: darkgrey;
+      border: 1px solid rgba(112, 112, 112, 0.2);
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #ffffff;
       opacity: 0.81;
       cursor: pointer;
     }
@@ -201,7 +250,7 @@ export default {
     font-weight: 400;
     color: #ffffff;
     opacity: 0.81;
-    margin: 70px 20px;
+    margin: 70px 20px;   
   }
   .accomplish:hover {
     transition: 0.5s;
