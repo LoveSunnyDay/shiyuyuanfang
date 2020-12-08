@@ -64,8 +64,7 @@
               </a>
             </span>
             <p>
-              “美妆博主里最温柔的少女”温柔标专业知识，虏获800w+粉丝。有众多大牌合作背景,
-              有众多线下品牌活动经验。
+              {{list.introduce}}
             </p>
           </div>
           <!-- <div class="item-content-bottom-right">找TA推广</div> -->

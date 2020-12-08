@@ -41,7 +41,7 @@
               </ul>
             </div>
             <p class="main-item-text">
-              只接受上海地区的，中国好声音学院，搞笑音乐人，鸡汤段子手，全网最迷人的猪猪宝藏女友对口型段子达人哦
+              {{list.introduce}}
             </p>
 
             <p class="main-item-url">
