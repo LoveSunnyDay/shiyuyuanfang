@@ -62,17 +62,10 @@
             <el-dialog
               title="联系超火引擎"
               :visible.sync="dialogVisible"
-              width="30%"
+              width="440px"
               :modal="false"
             >
-              <!-- <span>这是一段信息</span>
-              <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogVisible = false"
-                  >确 定</el-button
-                >
-              </span> -->
-              <img src="../assets/image/service.png" alt="">
+              <img src="~assets/image/service.png" alt="" />
             </el-dialog>
             <!-- <button>立即推广</button> -->
             <router-link to="/pay" tag="button">立即推广</router-link>
@@ -342,7 +335,7 @@ export default {
           border: 0;
           cursor: pointer;
         }
-        img{
+        img {
           width: 200px;
           height: 200px;
         }
