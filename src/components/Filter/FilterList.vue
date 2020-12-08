@@ -5,7 +5,11 @@
         <div class="list-left-main">
           <div class="left-main-icon">
             <img
-              :src="list.avatar_base_url?(list.avatar_base_url+'/'+list.avatar_path):require('../../assets/image/myCenter/icon.png')"
+              :src="
+                list.avatar_base_url
+                  ? list.avatar_base_url + '/' + list.avatar_path
+                  : require('../../assets/image/myCenter/icon.png')
+              "
               alt=""
             />
             <p>粉丝数:{{ list.fan_count }}W</p>
@@ -14,10 +18,8 @@
             <div class="main-item-name">
               <p>{{ list.nickname }}</p>
               <ul>
-                <li 
-                  v-for="(item,key) in list.tags.split('、')"
-                  :key="key"
-                >{{ item }}
+                <li v-for="(item, key) in list.tags.split('、')" :key="key">
+                  {{ item }}
                 </li>
                 <!-- <li>家庭</li>
                 <li>搞笑</li>
@@ -29,7 +31,7 @@
             <div class="main-item-case">
               <p>案例：</p>
               <ul>
-                <li>{{ list.cases.replace('、',' / ') }}</li>
+                <li>{{ list.cases.replace('、', ' / ') }}</li>
                 <!-- <li>/</li>
                 <li>比亚迪</li>
                 <li>/</li>
@@ -43,7 +45,7 @@
             </p>
 
             <p class="main-item-url">
-              访问TA的抖音链接：
+              访问TA的链接：
               <a :href="list.home_url" target="_blank">
                 {{ list.home_url }}
               </a>
@@ -207,6 +209,10 @@ export default {
           font-weight: 400;
           color: #4c525a;
           margin-top: 20px;
+          width: 449px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
           a {
             font-size: 12px;
             font-weight: 400;
