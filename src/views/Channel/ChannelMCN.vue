@@ -51,7 +51,7 @@
               <p class="user-agreement">
                 若登录则表示已阅读并同意本网站的
                 <router-link to="/PaymentAgreement" target="_blank">
-                  《付款协议》
+                  《用户协议》
                 </router-link>
               </p>
             </div>

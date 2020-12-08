@@ -1,6 +1,6 @@
 <template>
   <div class="lookfor-main">
-    <h1>{{ list.length>0 && list.name }}</h1>
+    <h1>{{ list.length > 0 && list.name }}</h1>
     <div class="lookfor-item" v-for="list in list" :key="list.id">
       <div class="lookfor-item-left">
         <img
@@ -21,8 +21,11 @@
             <div class="content-top-suggest">
               <p>投放建议：</p>
               <ul>
-                <li>垂类美妆</li>
-                <li>美食</li>
+                <!-- <li>垂类美妆</li>
+                <li>美食</li> -->
+                <li v-for="(item, key) in list.tags.split('、')" :key="key">
+                  {{ item }}
+                </li>
               </ul>
               <!-- <span>{{ list.tags }}</span> -->
             </div>
@@ -45,11 +48,11 @@
             </div>
           </div>
           <div class="content-top-price">
-            <p>{{ list.products[0]&&list.products[0].name }}</p>
+            <p>{{ list.products[0] && list.products[0].name }}</p>
             <!-- <p>直播一小时</p> -->
             <p>
               <span>￥</span>
-              <span>{{ list.products[0]&&list.products[0].price }}</span>
+              <span>{{ list.products[0] && list.products[0].price }}</span>
               <!-- <span>1111</span> -->
               <span>元</span>
             </p>
@@ -64,7 +67,7 @@
               </a>
             </span>
             <p>
-              {{list.introduce}}
+              {{ list.introduce }}
             </p>
           </div>
           <!-- <div class="item-content-bottom-right">找TA推广</div> -->
@@ -83,10 +86,10 @@
 <script>
 import { LookForHandel } from '../../services/video'
 export default {
-  props:{
-    list:{
-      type:Array,
-      default(){
+  props: {
+    list: {
+      type: Array,
+      default() {
         return []
       }
     }
@@ -95,7 +98,7 @@ export default {
     return {
       // 商品详情
       category_id: null,
-      plat_id:null,
+      plat_id: null
     }
   },
   methods: {
@@ -126,17 +129,15 @@ export default {
     }
   },
   created() {
-   
     // 保存category_id
     // console.log(this.$route.query.category_id)
-    console.log("this.list11111",this.list)
+    console.log('this.list11111', this.list)
     // this.category_id = this.$route.query.category_id
     // LookForHandel(this.category_id,this.plat_id).then((data) => {
     //   // console.log(data.data.data.items)
     //   this.list = data.data.data.items
     //    console.log("this.list",this.list)
     // })
-
   }
 }
 </script>
@@ -231,11 +232,19 @@ export default {
             }
             ul {
               display: flex;
+              // overflow: hidden;
+              // white-space: normal;
+              // word-break: break-all;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display: -webkit-box;
+              // -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
               li {
                 font-size: 14px;
                 font-weight: 400;
                 color: #4a5c75;
-                margin: 10px 17px 0 0;
+                margin: 10px 10px 0 0;
                 background-color: #dde4e2;
                 line-height: 25px;
                 border-radius: 15px;
