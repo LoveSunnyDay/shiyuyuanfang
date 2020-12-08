@@ -20,15 +20,28 @@
         </el-option>
       </el-select>
       <el-row>
-        <el-button round v-for="platforms in platform" :key="platforms.id">
+        <!-- <el-button round v-for="platforms in platform" :key="platforms.id">
           <img
             :src="platforms.thumbnail_base_url + '/' + platforms.thumbnail_path"
           />
           <p>{{ platforms.name }}网红</p>
+        </el-button> -->
+
+        <el-button
+          v-for="(item, index) in platform"
+          :key="index"
+          @click="platoptionsClick(index, item.id)"
+          :class="{ platoptionsActive: platoptionsIndex.includes(index) }"
+        >
+          <img
+            :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
+            alt=""
+          />
+          <p>{{ item.name }}网红</p>
         </el-button>
       </el-row>
     </div>
-    <Main></Main>
+    <Main :list="list"></Main>
     <Shopping v-show="shoppingShow"></Shopping>
   </div>
 </template>
@@ -37,14 +50,39 @@
 import Main from '@/components/LookFor/Main.vue'
 import Shopping from '@/components/Shopping.vue'
 
-import { LookForClassify, LookForPlatform } from '../../services/video'
+import {
+  LookForClassify,
+  LookForPlatform,
+  LookForHandel
+} from '../../services/video'
 export default {
   data() {
     return {
       options: [],
       platform: [],
       value: '',
-      shoppingShow: false
+      shoppingShow: false,
+      searchParms: {
+        category_id: '',
+        plat_id: '',
+        recommend: ''
+      },
+      plat_id: [],
+      platoptionsIndex: [],
+      list: []
+    }
+  },
+  watch: {
+    searchParms: {
+      //深度监听，可监听到对象、数组的变化
+      handler() {
+        LookForHandel(this.$route.query.category_id, this.plat_id).then(
+          (data) => {
+            this.list = data.data.data.items
+          }
+        )
+      },
+      deep: true //true 深度监听
     }
   },
   components: {
@@ -62,10 +100,28 @@ export default {
       } else if (scrollTop < 300) {
         this.shoppingShow = false
       }
+    },
+    query() {
+      this.axios.get(`/v1/kol?recommend=1&category_id=1`)
+    },
+    platoptionsClick(index, id) {
+      const idx = this.platoptionsIndex.indexOf(index)
+      if (idx !== -1) {
+        this.platoptionsIndex.splice(idx, 1)
+        this.plat_id.splice(idx, 1)
+      } else {
+        this.platoptionsIndex.push(index)
+        this.plat_id.push(id)
+      }
+      this.searchParms.plat_id = this.plat_id.join(',')
+      console.log(this.platoptionsIndex, this.plat_id)
     }
   },
-  mounted() {
+ async mounted() {
     window.addEventListener('scroll', this.shoppingScroll)
+   await LookForHandel(this.$route.query.category_id, this.plat_id).then((data) => {
+      this.list = data.data.data.items
+    })
   },
   created() {
     LookForClassify().then((res) => {
@@ -157,6 +213,9 @@ export default {
       }
       /deep/ .el-button:hover {
         background: #f1eeee;
+      }
+      .platoptionsActive {
+        background: #f1eeee !important;
       }
     }
   }

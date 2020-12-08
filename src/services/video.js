@@ -6,8 +6,9 @@ export function ContentList() {
 }
 
 // 跳转kol分类详情页
-export function LookForHandel(category_id) {
-  return axios.get('https://api.hiifire.com/v1/kol?recommend=1&category_id=' + category_id)
+export function LookForHandel(category_id,plat_id) {
+  const contentString=plat_id?`&plat_id=${plat_id}`:''
+  return axios.get(`https://api.hiifire.com/v1/kol?recommend=1&category_id=${category_id}`+contentString)
 }
 
 // 网红分类列表

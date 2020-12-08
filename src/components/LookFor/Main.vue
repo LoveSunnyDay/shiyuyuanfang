@@ -1,6 +1,6 @@
 <template>
   <div class="lookfor-main">
-    <h1>{{ list && list.name }}</h1>
+    <!-- <h1>{{ list && list.name }}</h1> -->
     <div class="lookfor-item" v-for="list in list" :key="list.id">
       <div class="lookfor-item-left">
         <img
@@ -84,11 +84,19 @@
 <script>
 import { LookForHandel } from '../../services/video'
 export default {
+  props:{
+    list:{
+      type:Array,
+      default(){
+        return []
+      }
+    }
+  },
   data() {
     return {
       // 商品详情
       category_id: null,
-      list: []
+      plat_id:null,
     }
   },
   methods: {
@@ -119,14 +127,17 @@ export default {
     }
   },
   created() {
+   
     // 保存category_id
     // console.log(this.$route.query.category_id)
-    this.category_id = this.$route.query.category_id
+    console.log("this.list",this.list)
+    // this.category_id = this.$route.query.category_id
+    // LookForHandel(this.category_id,this.plat_id).then((data) => {
+    //   // console.log(data.data.data.items)
+    //   this.list = data.data.data.items
+    //    console.log("this.list",this.list)
+    // })
 
-    LookForHandel(this.category_id).then((data) => {
-      // console.log(data.data.data.items)
-      this.list = data.data.data.items
-    })
   }
 }
 </script>
