@@ -10,11 +10,7 @@
       class="login-operation"
     >
       <img
-        :src="
-          avatar_url
-            ? avatar_url
-            : require('../../assets/image/default-icon.png')
-        "
+        :src="avatar_url|| require('../../assets/image/default-icon.png')"
         class="login-icon"
       />
       <div class="login-out" v-show="seen" @click="logOut">退出登录</div>
@@ -118,17 +114,28 @@ export default {
       dialogVisible: false,
       loginMode: true,
       showBindPhone: false,
-      loginStatus:
-        (getCookie('wx-token')!=="undefined"&&JSON.parse(getCookie('wx-token'))) ||
-         (getCookie('phone-token')!=="undefined"&&JSON.parse(getCookie('phone-token'))) &&JSON.parse(getCookie('phone-token')),
+      loginStatus:false,
       phoneNumber: '',
       verifyCode: '',
-      avatar_url:
-         (getCookie('avatar_url')!=="undefined"&&JSON.parse(getCookie('avatar_url')))&&JSON.parse(getCookie('avatar_url')),
+      avatar_url:'',
       isDisabled: false,
       count: 60,
       timer: null,
       seen: false
+    }
+  },
+  mounted(){ 
+    if(getCookie('avatar_url')!=="undefined"&&!!getCookie('avatar_url')){
+      this.avatar_url=JSON.parse(getCookie('avatar_url'))
+    }
+    if(getCookie('phone-profile')!=="undefined"&&!!getCookie('phone-profile')){ 
+      this.avatar_url=JSON.parse(getCookie('phone-profile')).avatar_base_url+"/"+JSON.parse(getCookie('phone-profile')).avatar_path
+    }
+    if(getCookie('wx-token')!=="undefined"&&!!getCookie('wx-token')){
+      this.loginStatus=true
+    }
+    if(getCookie('phone-token')!=="undefined"&&!!getCookie('phone-token')){
+      this.loginStatus=true
     }
   },
   // 方法集合
@@ -252,7 +259,8 @@ export default {
         this.$message.error('登录失败！')
         return
       }
-      const { profile, token, user, avatar_url } = data || {}
+      console.log("data",JSON.parse(JSON.stringify(data)))
+      const { profile, token, user } = data || {}
       setCookie(
         'phone-token',
         JSON.stringify(token.token),
@@ -260,20 +268,14 @@ export default {
         token.expire_at
       )
       setCookie(
-        'user',
+        'phone-user',
         JSON.stringify(user),
         window.location.hostname,
         token.expire_at
       )
       setCookie(
-        'profile',
+        'phone-profile',
         JSON.stringify(profile),
-        window.location.hostname,
-        token.expire_at
-      )
-      setCookie(
-        'avatar_url',
-        JSON.stringify(avatar_url),
         window.location.hostname,
         token.expire_at
       )
@@ -289,10 +291,15 @@ export default {
     logOut(){
       //退出登录，清除cookie
       setCookie( 'phone-token','',window.location.hostname,-1)
-      setCookie( 'user','',window.location.hostname,-1)
-      setCookie( 'profile','',window.location.hostname,-1)
-      setCookie( 'avatar_url','',window.location.hostname,-1)
       setCookie( 'wx-token','',window.location.hostname,-1)
+
+      setCookie( 'user','',window.location.hostname,-1)
+      setCookie( 'phone-user','',window.location.hostname,-1)
+
+      setCookie( 'profile','',window.location.hostname,-1)
+      setCookie( 'phone-profile','',window.location.hostname,-1)
+
+      setCookie( 'avatar_url','',window.location.hostname,-1)
       window.location.reload()
     }
   },
@@ -309,9 +316,9 @@ export default {
   // 生命周期 - 挂载之前
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    // console.log('mounted', JSON.parse(getCookie('avatar_url')))
-  },
+  // mounted() {
+  //   // console.log('mounted', JSON.parse(getCookie('avatar_url')))
+  // },
   // 生命周期 - 更新之前
   beforeUpdate() {},
   // 生命周期 - 更新之后
