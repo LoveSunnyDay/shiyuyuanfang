@@ -1,19 +1,18 @@
 <template>
   <div class="lookfor-main">
-    <h1>{{list && list.name }}</h1>
-    <div
-      class="lookfor-item"
-      v-for="list in list"
-      :key="list.id"
-      :class="Background(list)"
-    >
+    <h1>{{ list && list.name }}</h1>
+    <div class="lookfor-item" v-for="list in list" :key="list.id">
       <div class="lookfor-item-left">
         <img
           src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=251289958,1860898046&fm=26&gp=0.jpg"
           alt=""
         />
-        <p class="lookfor-item-left-name">{{ list.nickname }}</p>
+        <!-- <p class="lookfor-item-left-name">{{ list.nickname }}</p>
         <p class="lookfor-item-left-list">平台：{{ list.plat[0].name }}</p>
+        <p class="lookfor-item-left-list">粉丝数：{{ list.fan_count }}W</p> -->
+
+        <p class="lookfor-item-left-name">{{ list.nickname }}</p>
+        <p class="lookfor-item-left-list">平台：{{ list.plat.name }}</p>
         <p class="lookfor-item-left-list">粉丝数：{{ list.fan_count }}W</p>
       </div>
       <div class="lookfor-item-content">
@@ -21,11 +20,11 @@
           <div class="lookfor-item-content-top-left">
             <div class="content-top-suggest">
               <p>投放建议：</p>
-              <!-- <ul>
-              <li>垂类美妆</li>
-              <li>美食</li>
-            </ul> -->
-              <span>{{ list.cases }}</span>
+              <ul>
+                <li>垂类美妆</li>
+                <li>美食</li>
+              </ul>
+              <!-- <span>{{ list.tags }}</span> -->
             </div>
             <div class="content-top-fans">
               <p>粉丝状况：</p>
@@ -46,25 +45,24 @@
             </div>
           </div>
           <div class="content-top-price">
-            <!-- <p>{{ list.products[0].name }}</p> -->
-            <p>直播一小时</p>
+            <p>{{ list.products[0].name }}</p>
+            <!-- <p>直播一小时</p> -->
             <p>
               <span>￥</span>
-              <!-- <span>{{ list.products[0].price }}</span> -->
-              <span>1111</span>
+              <span>{{ list.products[0].price }}</span>
+              <!-- <span>1111</span> -->
               <span>元</span>
             </p>
           </div>
         </div>
         <div class="lookfor-item-content-bottom">
           <div class="item-content-bottom-left">
-            <a :href="list.home_url" target="_blank">
-              <span>
-                抖音链接：
-
+            <span>
+              抖音链接：
+              <a :href="list.home_url" target="_blank">
                 {{ list.home_url }}
-              </span>
-            </a>
+              </a>
+            </span>
             <p>
               “美妆博主里最温柔的少女”温柔标专业知识，虏获800w+粉丝。有众多大牌合作背景,
               有众多线下品牌活动经验。
@@ -89,6 +87,7 @@ export default {
   data() {
     return {
       // 商品详情
+      category_id: null,
       list: []
     }
   },
@@ -96,43 +95,46 @@ export default {
     // 根据id判断小边框颜色
     Background(list) {
       // console.log(list.category[0]._id)
-      if (list.category[0]._id === '1') {
+      if (list.category.id === 1) {
         return 'Background1'
-      } else if (list.category[0]._id === '2') {
+      } else if (list.category.id === 2) {
         return 'Background2'
-      } else if (list.category[0]._id === '3') {
+      } else if (list.category.id === 3) {
         return 'Background3'
-      } else if (list.category[0]._id === '4') {
+      } else if (list.category.id === 4) {
         return 'Background4'
-      } else if (list.category[0]._id === '5') {
+      } else if (list.category.id === 5) {
         return 'Background5'
-      } else if (list.category[0]._id === '6') {
+      } else if (list.category.id === 6) {
         return 'Background6'
-      } else if (list.category[0]._id === '7') {
+      } else if (list.category.id === 7) {
         return 'Background7'
-      } else if (list.category[0]._id === '8') {
+      } else if (list.category.id === 8) {
         return 'Background8'
-      } else if (list.category[0]._id === '9') {
+      } else if (list.category.id === 9) {
         return 'Background9'
-      } else if (list.category[0]._id === '10') {
+      } else if (list.category.id === 10) {
         return 'Background10'
       }
     }
   },
   created() {
-    LookForHandel(this.$route.query.id).then((data) => {
+    // console.log(this.$route.query.category_id)
+    this.category_id = this.$route.query.category_id
+
+    LookForHandel(this.category_id).then((data) => {
       // 操作
       // console.log(data.data.data.items)
       this.list = data.data.data.items
     })
-  },
-  watch: {
-    $route() {
-      const res = LookForHandel(this.$route.query.id)
-      console.log(this.list)
-      this.list = res
-    }
   }
+  // watch: {
+  //   $route() {
+  //     const res = LookForHandel(this.$route.query.category_id)
+  //     console.log(this.list)
+  //     this.list = res
+  //   }
+  // }
 }
 </script>
 
@@ -177,7 +179,7 @@ export default {
   .lookfor-item {
     width: 1059px;
     height: 290px;
-    // background: url(../../assets/image/show/meizhuang.png);
+    background: url(../../assets/image/show/meizhuang.png);
     margin-top: 19px;
     padding-top: 25px;
     display: flex;
@@ -278,6 +280,7 @@ export default {
         }
         .content-top-price {
           margin-top: 30px;
+          text-align: center;
           p:nth-child(1) {
             min-width: 100px;
             font-size: 18px;
@@ -311,7 +314,6 @@ export default {
           span {
             font-weight: 400;
             color: rgba(120, 120, 120, 0.6);
-            cursor: pointer;
             display: block;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -321,10 +323,9 @@ export default {
               color: rgba(120, 120, 120, 0.6);
               cursor: pointer;
             }
-          }
-          span:hover,
-          span:hover a {
-            color: #0064f9;
+            a:hover {
+              color: #0064f9;
+            }
           }
           p {
             font-size: 14px;

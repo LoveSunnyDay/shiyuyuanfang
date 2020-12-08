@@ -66,7 +66,7 @@ export default {
     classifyJump(item) {
       this.$router.push({
         path: 'LookFor',
-        query: { id: item }
+        query: { category_id: item }
       })
     }
   },

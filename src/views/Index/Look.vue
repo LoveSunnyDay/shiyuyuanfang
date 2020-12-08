@@ -19,6 +19,7 @@ export default {
 <style lang="less" scoped>
 .header-img {
   width: 100%;
+  min-width: 1200px;
   height: 504px;
   position: absolute;
   top: 0px;

@@ -6,8 +6,8 @@ export function ContentList() {
 }
 
 // 跳转kol分类详情页
-export function LookForHandel(id) {
-  return axios.get('https://api.hiifire.com/v1/kol/index/')
+export function LookForHandel(category_id) {
+  return axios.get('https://api.hiifire.com/v1/kol?recommend=1&category_id=' + category_id)
 }
 
 // 网红分类列表
@@ -87,39 +87,4 @@ export function VideoBanner() {
 // 精选热度素材
 export function VideoMaterial() {
   return axios.get('https://api.hiifire.com/v1/article/recommend')
-}
-
-
-
-
-// 首页分类详情
-export function recommend1() {
-  return axios.get('https://api.hiifire.com/v1/kol?recommend=1&category_id=1')
-}
-export function recommend2() {
-  return axios.get('https://api.hiifire.com/v1/kol?recommend=1&category_id=2')
-}
-export function recommend3() {
-  return axios.get('https://api.hiifire.com/v1/kol?recommend=1&category_id=3')
-}
-export function recommend4() {
-  return axios.get('https://api.hiifire.com/v1/kol?recommend=1&category_id=4')
-}
-export function recommend5() {
-  return axios.get('https://api.hiifire.com/v1/kol?recommend=1&category_id=5')
-}
-export function recommend6() {
-  return axios.get('https://api.hiifire.com/v1/kol?recommend=1&category_id=6')
-}
-export function recommend7() {
-  return axios.get('https://api.hiifire.com/v1/kol?recommend=1&category_id=7')
-}
-export function recommend8() {
-  return axios.get('https://api.hiifire.com/v1/kol?recommend=1&category_id=8')
-}
-export function recommend9() {
-  return axios.get('https://api.hiifire.com/v1/kol?recommend=1&category_id=9')
-}
-export function recommend10() {
-  return axios.get('https://api.hiifire.com/v1/kol?recommend=1&category_id=10')
 }
