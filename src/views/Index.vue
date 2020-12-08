@@ -5,10 +5,10 @@
       <div class="top-nav">
         <img src="../assets/image/logo.png" alt="" class="logo" />
         <ul class="nav-list">
-          <router-link to="/Channel" tag="li" class="nav-text">
+          <router-link to="/Channel" tag="li" class="nav-text nav-text-KOC">
             KOC入驻
           </router-link>
-          <router-link to="/ChannelMCN" tag="li" class="nav-text">
+          <router-link to="/ChannelMCN" tag="li" class="nav-text nav-text-MCN">
             MCN通道
           </router-link>
           <!-- <router-link to="/Mycenter" tag="li" class="nav-text">
@@ -128,6 +128,12 @@ export default {
         color: #ffffff;
         opacity: 1;
         margin-top: 26px;
+      }
+      .nav-text-KOC {
+        width: 75px;
+      }
+      .nav-text-MCN {
+        width: 81px;
       }
       .nav-text:hover {
         color: #b9bab8;
