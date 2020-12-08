@@ -51,14 +51,6 @@
         <img src="../../assets/image/show/xiaohongshu.png" alt="" />
         <p>小红书网红</p>
       </el-button>
-      <el-button
-        round
-        @click="cur = 6"
-        :class="{ 'order-type-active': cur == 6 }"
-      >
-        <img src="../../assets/image/show/weixin.png" alt="" />
-        <p>微信网红</p>
-      </el-button>
     </el-row>
     <Masonry v-show="cur == 0"></Masonry>
     <MasonryA v-show="cur == 1"></MasonryA>
@@ -66,7 +58,6 @@
     <MasonryC v-show="cur == 3"></MasonryC>
     <MasonryD v-show="cur == 4"></MasonryD>
     <MasonryE v-show="cur == 5"></MasonryE>
-    <MasonryF v-show="cur == 6"></MasonryF>
   </div>
 </template>
 
@@ -77,7 +68,6 @@ import MasonryB from '@/components/Show/MasonryB.vue'
 import MasonryC from '@/components/Show/MasonryC.vue'
 import MasonryD from '@/components/Show/MasonryD.vue'
 import MasonryE from '@/components/Show/MasonryE.vue'
-import MasonryF from '@/components/Show/MasonryF.vue'
 export default {
   components: {
     Masonry,
@@ -85,8 +75,7 @@ export default {
     MasonryB,
     MasonryC,
     MasonryD,
-    MasonryE,
-    MasonryF
+    MasonryE
   },
   data() {
     return {

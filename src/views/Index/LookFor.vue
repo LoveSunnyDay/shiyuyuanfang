@@ -9,7 +9,7 @@
         v-model="value"
         placeholder="时尚美妆"
         class="filter-select"
-        @click="classifyJump(item.id)"
+        clearable
       >
         <el-option
           v-for="item in options"
@@ -62,12 +62,6 @@ export default {
       } else if (scrollTop < 300) {
         this.shoppingShow = false
       }
-    },
-    classifyJump(item) {
-      this.$router.push({
-        path: 'LookFor',
-        query: { category_id: item }
-      })
     }
   },
   mounted() {
@@ -159,7 +153,6 @@ export default {
           font-size: 14px;
           font-weight: bold;
           color: #5e5e5e;
-          // line-height: 40px;
         }
       }
       /deep/ .el-button:hover {

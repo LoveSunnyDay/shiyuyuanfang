@@ -27,15 +27,6 @@ export function AllArticle() {
   return axios.get('https://api.hiifire.com/v1/article?category_id=1')
 }
 
-// export function AllArticle(category_id) {
-//   return axios({
-//     url: 'http://api.hiifire.com/v1/article',
-//     params:{
-//       category_id
-//     }
-//   })
-// }
-
 export function AllArticle2() {
   return axios.get('https://api.hiifire.com/v1/article?category_id=2')
 }

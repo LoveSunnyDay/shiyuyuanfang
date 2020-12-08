@@ -4,13 +4,13 @@
     <div class="lookfor-item" v-for="list in list" :key="list.id">
       <div class="lookfor-item-left">
         <img
-          src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=251289958,1860898046&fm=26&gp=0.jpg"
+          :src="
+            list.avatar_base_url
+              ? list.avatar_base_url + '/' + list.avatar_path
+              : require('../../assets/image/myCenter/icon.png')
+          "
           alt=""
         />
-        <!-- <p class="lookfor-item-left-name">{{ list.nickname }}</p>
-        <p class="lookfor-item-left-list">平台：{{ list.plat[0].name }}</p>
-        <p class="lookfor-item-left-list">粉丝数：{{ list.fan_count }}W</p> -->
-
         <p class="lookfor-item-left-name">{{ list.nickname }}</p>
         <p class="lookfor-item-left-list">平台：{{ list.plat.name }}</p>
         <p class="lookfor-item-left-list">粉丝数：{{ list.fan_count }}W</p>
@@ -119,22 +119,15 @@ export default {
     }
   },
   created() {
+    // 保存category_id
     // console.log(this.$route.query.category_id)
     this.category_id = this.$route.query.category_id
 
     LookForHandel(this.category_id).then((data) => {
-      // 操作
       // console.log(data.data.data.items)
       this.list = data.data.data.items
     })
   }
-  // watch: {
-  //   $route() {
-  //     const res = LookForHandel(this.$route.query.category_id)
-  //     console.log(this.list)
-  //     this.list = res
-  //   }
-  // }
 }
 </script>
 

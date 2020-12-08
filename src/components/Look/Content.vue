@@ -17,13 +17,21 @@
       </div>
       <div class="content-look-detail">
         <div class="detail-box" v-for="list in list.kols" :key="list._id">
-          <img
+          <!-- <img
             src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3160269277,4211240727&fm=26&gp=0.jpg"
             alt=""
-          />
+          /> -->
           <!-- <img
             :src="list.kols.avatar_base_url + '/' + list.kols.avatar_path"
           /> -->
+          <img
+            :src="
+              list.avatar_base_url
+                ? list.avatar_base_url + '/' + list.avatar_path
+                : require('../../assets/image/myCenter/icon.png')
+            "
+            alt=""
+          />
           <div class="detail-name">{{ list.nickname }}</div>
           <div class="detail-from">
             平台：
@@ -227,7 +235,7 @@ export default {
       margin-right: 13px;
       img {
         width: 158px;
-        height: 198px;
+        height: 158px;
       }
       .detail-name {
         font-size: 14px;
