@@ -2,13 +2,26 @@
   <div>
     <ul class="masonry">
       <li class="masonry-item">
-        <img
-          src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=274952928,879286923&fm=26&gp=0.jpg"
-          alt=""
-        />
-        <h1>找网红做广告</h1>
-        <h2>如遇问题请联系超火客服</h2>
-        <p class="masonry-item-name">超火客服</p>
+        <div @click="dialogVisible = true">
+          <img src="../../assets/image/show/shou-one.png" alt="" />
+
+          <h1>loading......</h1>
+          <h2>距离您找到网红还有2分钟</h2>
+          <p class="masonry-item-name">联系我们-超火引擎</p>
+        </div>
+        <el-dialog
+          title="联系超火引擎"
+          :visible.sync="dialogVisible"
+          width="440px"
+          :modal="false"
+          class="masonry-dialog"
+        >
+          <img
+            src="~assets/image/service.png"
+            alt=""
+            class="masonry-dialog-image"
+          />
+        </el-dialog>
       </li>
       <li
         class="masonry-item"
@@ -17,10 +30,11 @@
         @mouseover="mouseOver(index)"
         @mouseleave="mouseLeave()"
       >
-        <img
+        <!-- <img
           src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3288873043,3914514780&fm=26&gp=0.jpg"
           alt=""
-        />
+        /> -->
+        <img :src="items.ad_base_url + '/' + items.ad_path" alt="" />
         <p class="masonry-item-name">{{ items.kol.nickname }}</p>
         <transition name="el-zoom-in-bottom">
           <div class="item-text" v-show="seen && index == current">
@@ -33,13 +47,13 @@
             <div class="item-text-right">
               <div class="item-text-right-one">
                 <p>{{ items.kol.fan_count }}W</p>
-                <p>{{ items.ability }}</p>
+                <p>{{ items.interact_count }}W</p>
               </div>
               <div class="item-text-right-two">
                 <p>粉丝量</p>
                 <p>点赞量</p>
               </div>
-              <div class="item-text-right-one">
+              <div class="item-text-right-one item-text-right-three">
                 <p>-</p>
                 <p>-</p>
               </div>
@@ -61,17 +75,16 @@ export default {
     return {
       seen: false,
       item: [],
-      current: 0 //复制成功提示显示或者隐藏
+      current: 0, //复制成功提示显示或者隐藏
+      dialogVisible: false
     }
   },
   created() {
     // 全部KOL分类列表
-    this.axios
-      .get('/kol-plat?plat_id=1')
-      .then((res) => {
-        console.log(res.data.items)
-        this.item = res.data.items
-      })
+    this.axios.get('/kol-plat?plat_id=1').then((res) => {
+      // console.log(res.data.items)
+      this.item = res.data.items
+    })
   },
   methods: {
     mouseOver(index) {
@@ -91,10 +104,19 @@ export default {
   column-gap: 0;
   margin: 12px 0 0 10px;
   width: 1366px;
+
   .masonry-item {
     padding-top: 10px;
     cursor: pointer;
     position: relative;
+    .masonry-dialog {
+      text-align: center;
+    }
+    .masonry-dialog-image {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto;
+    }
     img {
       display: block;
       height: auto;
@@ -162,7 +184,9 @@ export default {
           margin: 0 auto;
           padding: 6px 11px;
           margin-top: 10px;
-          overflow: hidden;
+          overflow: hidden; //超出文本隐藏
+          white-space: nowrap; //溢出不换行
+          text-overflow: ellipsis; //溢出省略号显示
         }
       }
       .item-text-border {
@@ -195,7 +219,165 @@ export default {
             font-weight: 400;
           }
         }
+        .item-text-right-three {
+          p {
+            width: 56px;
+            text-align: center;
+          }
+        }
       }
+    }
+  }
+  .masonry-item:nth-child(2) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(3) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 430px;
+    }
+  }
+  .masonry-item:nth-child(4) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 470px;
+    }
+  }
+  .masonry-item:nth-child(5) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 420px;
+    }
+  }
+  .masonry-item:nth-child(6) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(7) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(8) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 420px;
+    }
+  }
+  .masonry-item:nth-child(9) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(10) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 430px;
+    }
+  }
+  .masonry-item:nth-child(11) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 470px;
+    }
+  }
+  .masonry-item:nth-child(12) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 420px;
+    }
+  }
+  .masonry-item:nth-child(13) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 380px;
+    }
+  }
+  .masonry-item:nth-child(14) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 450px;
+    }
+  }
+  .masonry-item:nth-child(15) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 430px;
+    }
+  }
+  .masonry-item:nth-child(16) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 470px;
+    }
+  }
+  .masonry-item:nth-child(17) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(18) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 420px;
+    }
+  }
+  .masonry-item:nth-child(19) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 450px;
+    }
+  }
+  .masonry-item:nth-child(20) {
+    img {
+      display: block;
+      height: auto;
+      width: 330px;
+      height: 470px;
     }
   }
 }

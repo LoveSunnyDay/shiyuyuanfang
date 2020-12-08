@@ -60,11 +60,11 @@
                   :src="banners.ad_base_url + '/' + banners.ad_path"
                   alt=""
                 />
+                <p class="video-main-tag">{{banners.title}}</p>
               </router-link>
             </router-link>
           </el-carousel-item>
         </el-carousel>
-        <span>商业策划</span>
       </div>
       <!-- <VideoList :article="article"></VideoList> -->
       <VideoList v-show="cur == 0"></VideoList>
@@ -217,9 +217,10 @@ export default {
         width: 100%;
         height: 100%;
       }
-      span {
+      .video-main-tag {
         display: inline-block;
-        width: 69px;
+        // width: 69px;
+        padding: 0 5px;
         height: 21px;
         background-color: #038659;
         line-height: 21px;
@@ -228,10 +229,10 @@ export default {
         color: #ffffff;
         font-weight: 600;
         position: absolute;
-        top: -11px;
+        top: 0;
         left: 0;
         text-align: center;
-        z-index: 10;
+        z-index: 9999;
       }
     }
   }
