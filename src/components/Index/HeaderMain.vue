@@ -11,9 +11,9 @@ const { keyFor } = require("core-js/fn/symbol")
         v-model="searchContent"
         @keyup.enter="onSubmit"
       />
-      <router-link :to="{ path:'/Filter',query:{search:searchContent} }" >
+      <router-link :to="{ path: '/Filter', query: { search: searchContent } }">
         <img src="../../assets/image/sousuo.png" class="search-sousuo" />
-        </router-link>    
+      </router-link>
       <router-link to="/editor">
         <div class="search-shaixuan"></div>
       </router-link>
@@ -21,7 +21,15 @@ const { keyFor } = require("core-js/fn/symbol")
     <div class="main-cont">
       <span>热门：</span>
       <ul>
-        <li>美妆达人</li>
+        <li 
+          v-for="(tag,key) in hotTags"
+          :key=key
+          style="margin-right:5px"
+          @click="hotSearch(tag)"
+        >
+        {{tag}}
+        </li>
+        <!-- <li>美妆达人</li>
         <li>，</li>
         <li>时尚达人</li>
         <li>，</li>
@@ -33,7 +41,7 @@ const { keyFor } = require("core-js/fn/symbol")
         <li>，</li>
         <li>小红书</li>
         <li>，</li>
-        <li>快手</li>
+        <li>快手</li> -->
       </ul>
     </div>
   </div>
@@ -41,21 +49,43 @@ const { keyFor } = require("core-js/fn/symbol")
 
 <script>
 export default {
-  data(){
-    return{
-      searchContent:''
+  data() {
+    return {
+      searchContent: '',
+      hotTags: []
     }
   },
-  methods:{
-    onSubmit(){
-       this.$router.push({  //核心语句
-        path:'/Filter',   //跳转的路径
-        query:{           //路由传参时push和query搭配使用 ，作用时传递参数
-          search:this.searchContent, 
+  mounted() {
+    this.getHotTags()
+  },
+  methods: {
+    onSubmit() {
+      this.$router.push({
+        //核心语句
+        path: '/Filter', //跳转的路径
+        query: {
+          //路由传参时push和query搭配使用 ，作用时传递参数
+          search: this.searchContent
+        }
+      })
+    },
+    async getHotTags() {
+      const { data } = await this.axios.get('/tool/hot-tags')
+      this.hotTags =data&&data.map((item) => {
+          return item.tag
+        })
+        console.log(" this.hotTags", this.hotTags)
+    },
+    hotSearch(tag){
+      this.$router.push({
+        //核心语句
+        path: '/Filter', //跳转的路径
+        query: {
+          //路由传参时push和query搭配使用 ，作用时传递参数
+          search: tag
         }
       })
     }
-   
   }
 }
 </script>
