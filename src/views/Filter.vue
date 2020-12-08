@@ -1,6 +1,6 @@
 <template>
   <div class="filter">
-    <Header></Header>
+    <Header @search="search"></Header>
     <div class="filter-crumbs">
       <button size="mini" class="button_mini">
         <span class="el-icon-arrow-left"></span>
@@ -179,6 +179,9 @@ export default {
   },
   // 方法集合
   methods: {
+    search(tag){
+      this.searchParms.tag=tag
+    },
     getFilterList() {
       this.getPlatList()
       this.getCategoryList()
@@ -360,7 +363,7 @@ export default {
     color: #2d2d2d;
   }
   .platoptionsActive {
-    background: #00a581 !important;
+    background: #f1eeee !important;
   }
   /deep/ .filter-select {
     width: 98px;

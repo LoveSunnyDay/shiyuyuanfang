@@ -11,12 +11,12 @@
           <router-link to="/ChannelMCN" tag="li" class="nav-text">
             MCN通道
           </router-link>
-          <router-link to="/Mycenter" tag="li" class="nav-text">
+          <!-- <router-link to="/Mycenter" tag="li" class="nav-text">
             个人中心
-          </router-link>
-          <li>
+          </router-link> -->
+          <!-- <li>
             <img src="../assets/image/gengduo.png" alt="" class="nav-gengduo" />
-          </li>
+          </li> -->
           <li>
             <i class="el-icon-message-solid nav-xiaoxi"></i>
           </li>

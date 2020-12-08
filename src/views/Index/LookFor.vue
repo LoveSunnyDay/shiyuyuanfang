@@ -69,7 +69,7 @@ export default {
   },
   created() {
     LookForClassify().then((res) => {
-      console.log(res.data.data.items)
+      // console.log(res.data.data.items)
       this.options = res.data.data.items
     })
     LookForPlatform().then((res) => {
