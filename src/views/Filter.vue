@@ -387,4 +387,12 @@ export default {
 .el-dropdown-menu__item {
   text-align: center;
 }
+.el-select-dropdown__item:hover {
+  background: #ffffff;
+  color: #cc4b42;
+}
+.el-select-dropdown__item.selected {
+  background: #f7e2e0;
+  color: #cc4b42;
+}
 </style>
