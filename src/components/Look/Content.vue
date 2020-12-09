@@ -121,35 +121,47 @@ export default {
   .content-look-title {
     display: flex;
     height: 27px;
+
+    /* 边框颜色渐变 */
     .list-title1 {
-      border-left: 3px #8c9eb1ff solid;
+      border-left: 4px transparent solid;
+      border-image: linear-gradient(#eba0e8, #33012e) 1 10;
     }
     .list-title2 {
-      border-left: 3px #ffb8faff solid;
+      border-left: 4px transparent solid;
+      border-image: linear-gradient(#fbd0df, #6e75dc) 1 10;
     }
     .list-title3 {
-      border-left: 3px #646364ff solid;
+      border-left: 4px transparent solid;
+      border-image: linear-gradient(#79242f, #0a080f) 1 10;
     }
     .list-title4 {
-      border-left: 3px #79242fff solid;
+      border-left: 4px transparent solid;
+      border-image: linear-gradient(#ffd5de, #d63458) 1 10;
     }
     .list-title5 {
-      border-left: 3px #d63458ff solid;
+      border-left: 4px transparent solid;
+      border-image: linear-gradient(#e6bb8b, #302b26) 1 10;
     }
     .list-title6 {
-      border-left: 3px #e6bb8bff solid;
+      border-left: 4px transparent solid;
+      border-image: linear-gradient(#aae9fe, #3a89a7) 1 10;
     }
     .list-title7 {
-      border-left: 3px #3a89a7ff solid;
+      border-left: 4px transparent solid;
+      border-image: linear-gradient(#eba0e8, #33012e) 1 10;
     }
     .list-title8 {
-      border-left: 3px #ffd5deff solid;
+      border-left: 4px transparent solid;
+      border-image: linear-gradient(#8ebae5, #242829) 1 10;
     }
     .list-title9 {
-      border-left: 3px #8ebae5ff solid;
+      border-left: 4px transparent solid;
+      border-image: linear-gradient(#e3efae, #ea964d) 1 10;
     }
     .list-title10 {
-      border-left: 3px #ea964dff solid;
+      border-left: 4px transparent solid;
+      border-image: linear-gradient(#e2e6e8, #8c9eb1) 1 10;
     }
     .list-title {
       font-size: 20px;
@@ -158,7 +170,7 @@ export default {
       line-height: 27px;
       color: #1a1a1c;
       // border-left: 3px #ffb8fa solid;
-      padding-left: 2px;
+      padding-left: 5px;
       margin-right: 40px;
     }
     .list-name {

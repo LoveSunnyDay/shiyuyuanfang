@@ -11,7 +11,7 @@
         <el-breadcrumb-item :to="{ path: '/editor' }">
           搜索
         </el-breadcrumb-item>
-        <el-breadcrumb-item>{{$route.query.search}}</el-breadcrumb-item>
+        <el-breadcrumb-item>{{ $route.query.search }}</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <el-row>
@@ -19,7 +19,7 @@
         v-for="(item, index) in platoptions"
         :key="index"
         @click="platoptionsClick(index, item.id)"
-        :class="{ platoptionsActive:  platoptionsIndex.includes(index) }"
+        :class="{ platoptionsActive: platoptionsIndex.includes(index) }"
       >
         <img
           :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
@@ -115,7 +115,9 @@
     <!-- <el-button round>
       <span class="select-btn">抖音购物车</span>
     </el-button> -->
-    <p class="filter-warn">提醒：为了减少沟通成本，最好选择5家经济公司</p>
+    <p class="filter-warn">
+      根据所提供内容，推荐以下网红KOL为您做短视频/直播/种草等推广服务
+    </p>
     <FilterList
       :list="list"
       @expandMore="expandMore"
@@ -135,7 +137,7 @@ export default {
       options: [],
       id: '',
       sexoptions: [],
-      areaoptions:[],
+      areaoptions: [],
       categoryoptions: [],
       platoptions: [],
       priceoptions: [],
@@ -157,8 +159,8 @@ export default {
       pageCount: '',
       isLastPage: false,
       isExpandAll: false,
-      platoptionsIndex:[], //网红平台按钮默认显示背景色,
-      plat_id:[]
+      platoptionsIndex: [], //网红平台按钮默认显示背景色,
+      plat_id: []
     }
   },
   mounted() {
@@ -169,9 +171,9 @@ export default {
     searchParms: {
       //深度监听，可监听到对象、数组的变化
       handler() {
-        this.isExpandAll=false
-        this.page=1
-         this.isLastPage=false
+        this.isExpandAll = false
+        this.page = 1
+        this.isLastPage = false
         this.queryKol()
       },
       deep: true //true 深度监听
@@ -179,8 +181,8 @@ export default {
   },
   // 方法集合
   methods: {
-    search(tag){
-      this.searchParms.tag=tag
+    search(tag) {
+      this.searchParms.tag = tag
     },
     getFilterList() {
       this.getPlatList()
@@ -206,21 +208,16 @@ export default {
           return item
         })
       }
-      this.axios
-        .get(
-          `/kol/index?${queryString.join('&')}`
-        )
-        .then((res) => {
-          console.log('kolList', res.data)
-          console.log('isExpandAll', this.isExpandAll)
-          if (this.isExpandAll) {
-            this.list = this.list.concat(res.data.items)
-          } else {
-            this.list = res.data.items
-            this.pageCount = res.data?._meta?.pageCount
-          }
-         
-        })
+      this.axios.get(`/kol/index?${queryString.join('&')}`).then((res) => {
+        console.log('kolList', res.data)
+        console.log('isExpandAll', this.isExpandAll)
+        if (this.isExpandAll) {
+          this.list = this.list.concat(res.data.items)
+        } else {
+          this.list = res.data.items
+          this.pageCount = res.data?._meta?.pageCount
+        }
+      })
     },
     expandMore() {
       console.log('this.pageCount', this.pageCount)
@@ -233,47 +230,35 @@ export default {
       }
     },
     async getPlatList() {
-      const { data } = await this.axios.get(
-        '/plat'
-      )
+      const { data } = await this.axios.get('/plat')
       this.platoptions = data && data.items
     },
     async getCategoryList() {
-      const { data } = await this.axios.get(
-        '/kol-category'
-      )
+      const { data } = await this.axios.get('/kol-category')
       this.categoryoptions = data && data.items
     },
     async getAreaList() {
-      const { data } = await this.axios.get(
-        '/tool/area'
-      )
+      const { data } = await this.axios.get('/tool/area')
       this.areaoptions = data && data
     },
     async getSexList() {
-      const { data } = await this.axios.get(
-        '/kind'
-      )
+      const { data } = await this.axios.get('/kind')
       this.sexoptions = data && data.items
     },
     async getPriceList() {
-      const { data } = await this.axios.get(
-        '/price-type'
-      )
+      const { data } = await this.axios.get('/price-type')
       this.priceoptions = data && data.items
     },
     async getFansList() {
-      const { data } = await this.axios.get(
-        '/fans-type'
-      )
+      const { data } = await this.axios.get('/fans-type')
       this.fansoptions = data && data.items
     },
     platoptionsClick(index, id) {
-      const idx= this.platoptionsIndex.indexOf(index)
-      if(idx!==-1){
-        this.platoptionsIndex.splice(idx,1)
-        this.plat_id.splice(idx,1)
-      }else{
+      const idx = this.platoptionsIndex.indexOf(index)
+      if (idx !== -1) {
+        this.platoptionsIndex.splice(idx, 1)
+        this.plat_id.splice(idx, 1)
+      } else {
         this.platoptionsIndex.push(index)
         this.plat_id.push(id)
       }
@@ -390,13 +375,24 @@ export default {
     background: #efefef;
   }
   .filter-warn {
-    font-size: 12px;
+    font-size: 20px;
     font-weight: 400;
     color: #2d2d2d;
-    margin: 45px 0 10px 0;
+    font-weight: 800;
+    // margin: 45px 0 10px 0;
+    margin: 40px 0;
+    text-align: center;
   }
 }
 .el-dropdown-menu__item {
   text-align: center;
+}
+.el-select-dropdown__item:hover {
+  background: #ffffff;
+  color: #cc4b42;
+}
+.el-select-dropdown__item.selected {
+  background: #f7e2e0;
+  color: #cc4b42;
 }
 </style>

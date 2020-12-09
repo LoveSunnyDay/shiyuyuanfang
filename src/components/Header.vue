@@ -7,15 +7,25 @@
       <router-link to="/Index/Look" tag="p">网红达人</router-link>
       <router-link to="/Index/Show" tag="p">网红T台</router-link>
       <router-link to="/Index/Video" tag="p">视频素材</router-link>
-      <input type="text" placeholder="输入推广产品或网红,精确匹配" v-model="searchContent" @keyup.enter="searchWangHong"/>
-      <i class="el-icon-search"  @click="searchWangHong"></i>
+      <input
+        type="text"
+        placeholder="输入推广产品或网红,精确匹配"
+        v-model="searchContent"
+        @keyup.enter="searchWangHong"
+      />
+      <i class="el-icon-search" @click="searchWangHong"></i>
     </div>
     <ul class="nav-list">
-      <!-- <li class="nav-text">KOC入驻</li> -->
-      <router-link to="/Channel" tag="li" class="nav-text nav-text-KOC"
-        >KOC入驻</router-link
-      >
-      <li class="nav-text nav-text-MCN">MCN通道</li>
+      <li class="nav-text nav-text-KOC">
+        <router-link to="/Channel" target="_blank" class="nav-text">
+          KOC入驻
+        </router-link>
+      </li>
+      <li class="nav-text nav-text-MCN">
+        <router-link to="/ChannelMCN" target="_blank" class="nav-text">
+          MCN通道
+        </router-link>
+      </li>
       <!-- <router-link to="/Mycenter" tag="li" class="nav-text"
         >个人中心</router-link
       > -->
@@ -49,9 +59,9 @@ export default {
   },
   // 方法集合
   methods: {
-    searchWangHong(){
-      console.log("searchWangHong")
-      this.$emit('search',this.searchContent)
+    searchWangHong() {
+      console.log('searchWangHong')
+      this.$emit('search', this.searchContent)
     }
   },
   // 监听属性 类似于data概念
@@ -121,8 +131,9 @@ export default {
       outline: none;
       padding: 0 13px 0 22px;
     }
-    .el-icon-search{
+    .el-icon-search {
       margin-right: 20px;
+      cursor: pointer;
     }
     /* 设置了浏览器宽度小于1600px时的样式 */
     @media screen and (max-width: 1680px) {
@@ -158,7 +169,6 @@ export default {
     li {
       float: left;
       margin-right: 30px;
-      cursor: pointer;
     }
     .nav-text {
       font-size: 18px;
@@ -167,10 +177,10 @@ export default {
       line-height: 72px;
     }
     .nav-text-KOC {
-      width: 75px;
+      width: 80px;
     }
     .nav-text-MCN {
-      width: 81px;
+      width: 85px;
     }
     .nav-text:hover {
       color: #b9bab8;
@@ -184,6 +194,7 @@ export default {
       font-size: 14px;
       margin-top: 30px;
       color: #f9f9f9;
+      cursor: pointer;
     }
     .nav-xiaoxi:hover {
       color: #b9bab8;

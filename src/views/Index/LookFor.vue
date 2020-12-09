@@ -7,7 +7,7 @@
       <img class="img" src="../../assets/image/show/quanbu.png" />
       <el-select
         v-model="searchParms.category_id"
-        placeholder="时尚美妆"
+        placeholder="全部分类"
         class="filter-select"
         clearable
       >
@@ -35,7 +35,7 @@
         </el-button>
       </el-row>
     </div>
-    <Main v-if="list.length>0" :list="list"></Main>
+    <Main v-if="list.length > 0" :list="list"></Main>
     <Shopping v-show="shoppingShow"></Shopping>
   </div>
 </template>
@@ -94,9 +94,12 @@ export default {
         this.shoppingShow = false
       }
     },
-   async query() {
-     const data=await LookForHandel(this.$route.query.category_id, this.plat_id)
-     this.list=data.data.data.items
+    async query() {
+      const data = await LookForHandel(
+        this.$route.query.category_id,
+        this.plat_id
+      )
+      this.list = data.data.data.items
     },
     platoptionsClick(index, id) {
       const idx = this.platoptionsIndex.indexOf(index)
@@ -211,5 +214,13 @@ export default {
       }
     }
   }
+}
+.el-select-dropdown__item:hover {
+  background: #ffffff;
+  color: #cc4b42;
+}
+.el-select-dropdown__item.selected {
+  background: #f7e2e0;
+  color: #cc4b42;
 }
 </style>
