@@ -69,11 +69,12 @@ export default {
     searchParms: {
       //深度监听，可监听到对象、数组的变化
       handler() {
-        LookForHandel(this.searchParms.category_id, this.plat_id).then(
-          (data) => {
-            this.list = data.data.data.items
-          }
-        )
+        LookForHandel(
+          this.searchParms.category_id,
+          this.plat_id.length > 0 && this.plat_id
+        ).then((data) => {
+          this.list = data.data.data.items
+        })
       },
       deep: true //true 深度监听
     }
@@ -95,10 +96,7 @@ export default {
       }
     },
     async query() {
-      const data = await LookForHandel(
-        this.$route.query.category_id,
-        this.plat_id
-      )
+      const data = await LookForHandel()
       this.list = data.data.data.items
     },
     platoptionsClick(index, id) {
