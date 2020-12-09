@@ -1,7 +1,7 @@
 <template>
   <div class="lookfor-main">
     <h1>{{ list.length > 0 && list.name }}</h1>
-    <div class="lookfor-item" v-for="list in list" :key="list.id">
+    <div class="lookfor-item" v-for="list in list" :key="list.id" :class="Background(list)">
       <div class="lookfor-item-left">
         <img
           :src="
@@ -183,7 +183,7 @@ export default {
   .lookfor-item {
     width: 1059px;
     height: 290px;
-    background: url(../../assets/image/show/meizhuang.png);
+    // background: url(../../assets/image/show/meizhuang.png);
     margin-top: 19px;
     padding-top: 25px;
     display: flex;

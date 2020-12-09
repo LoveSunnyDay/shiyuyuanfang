@@ -340,9 +340,9 @@ export default {
   border-radius: 4px;
   outline: none;
   color: #ffffff;
-  // margin-right: 30px;
   background-color: #2fb598;
   border: 0;
+  cursor: pointer;
 }
 .nav-login:hover {
   opacity: 0.8;
@@ -362,7 +362,7 @@ export default {
     position: absolute;
     top: 50px;
     left: -12px;
-    padding-top: 6px;
+    line-height: 26px;
   }
 }
 
@@ -405,7 +405,6 @@ export default {
       color: #757575;
       line-height: 36px;
       margin-top: 24px;
-      cursor: pointer;
     }
     .login-input-code {
       width: 248px;
@@ -419,7 +418,6 @@ export default {
       color: #757575;
       line-height: 36px;
       margin-top: 30px;
-      cursor: pointer;
     }
     .code-button {
       border: 0;
@@ -435,12 +433,6 @@ export default {
       outline: none;
       cursor: pointer;
     }
-    // .phone-login-list {
-    //   font-size: 14px;
-    //   font-weight: 400;
-    //   color: #727272;
-    //   margin-top: 55px;
-    // }
     .login-button {
       border: 0;
       width: 266px;
@@ -453,16 +445,7 @@ export default {
       cursor: pointer;
       margin-top: 40px;
     }
-    // .phone-login-item {
-    //   font-size: 25px;
-    //   font-weight: 900;
-    //   color: #727272;
-    //   margin: 30px 0 63px 0;
-    // }
     .other-methods {
-      // height: 60px;
-      // line-height: 60px;
-      // text-align: center;
       margin: 34px 0 14px;
       .other-line {
         display: inline-block;
@@ -480,7 +463,8 @@ export default {
     }
     .other-wx {
       width: 56px;
-      height: 20pxpx;
+      height: 20px;
+      cursor: pointer;
     }
     .user-agreement {
       margin: 24px 0 35px;
@@ -555,9 +539,6 @@ export default {
     font-size: 16px;
     font-weight: 700;
   }
-  // i:hover {
-  //   color: red !important;
-  // }
 }
 /deep/.el-dialog__body {
   padding: 0 0 1px 0;

@@ -92,13 +92,6 @@ export default {
   },
   mounted() {},
   methods: {
-    handleClose(done) {
-      this.$confirm('确认退出登录吗？')
-        .then((_) => {
-          done()
-        })
-        .catch((_) => {})
-    },
     loginModeButton() {
       return (this.loginMode = !this.loginMode)
     }

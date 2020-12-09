@@ -24,10 +24,6 @@
           <img src="../assets/image/show/taobao.png" alt="" />
           <p>淘宝直播</p>
         </el-checkbox-button>
-        <el-checkbox-button round>
-          <img src="../assets/image/show/tongyi.png" alt="" />
-          <p>同一经济公司</p>
-        </el-checkbox-button>
       </el-row>
       <el-row class="el-row-two">
         <h5>分类：</h5>

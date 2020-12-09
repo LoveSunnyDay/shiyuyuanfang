@@ -41,7 +41,7 @@
               </ul>
             </div>
             <p class="main-item-text">
-              {{list.introduce}}
+              {{ list.introduce }}
             </p>
 
             <p class="main-item-url">
@@ -302,5 +302,7 @@ export default {
   font-weight: 800;
   text-align: center;
   color: #808080;
+  margin: 50px 0 70px;
+  cursor: pointer;
 }
 </style>
