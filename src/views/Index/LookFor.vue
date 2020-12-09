@@ -6,7 +6,7 @@
     <div class="lookfor-nav">
       <img class="img" src="../../assets/image/show/quanbu.png" />
       <el-select
-        v-model="value"
+        v-model="searchParms.category_id"
         placeholder="时尚美妆"
         class="filter-select"
         clearable
@@ -20,14 +20,8 @@
         </el-option>
       </el-select>
       <el-row>
-        <!-- <el-button round v-for="platforms in platform" :key="platforms.id">
-          <img
-            :src="platforms.thumbnail_base_url + '/' + platforms.thumbnail_path"
-          />
-          <p>{{ platforms.name }}网红</p>
-        </el-button> -->
-
         <el-button
+          round
           v-for="(item, index) in platform"
           :key="index"
           @click="platoptionsClick(index, item.id)"
@@ -60,7 +54,6 @@ export default {
     return {
       options: [],
       platform: [],
-      value: '',
       shoppingShow: false,
       searchParms: {
         category_id: '',
@@ -76,7 +69,7 @@ export default {
     searchParms: {
       //深度监听，可监听到对象、数组的变化
       handler() {
-        LookForHandel(this.$route.query.category_id, this.plat_id).then(
+        LookForHandel(this.searchParms.category_id, this.plat_id).then(
           (data) => {
             this.list = data.data.data.items
           }

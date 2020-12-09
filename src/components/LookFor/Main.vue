@@ -131,7 +131,6 @@ export default {
   created() {
     // 保存category_id
     // console.log(this.$route.query.category_id)
-    console.log('this.list11111', this.list)
     // this.category_id = this.$route.query.category_id
     // LookForHandel(this.category_id,this.plat_id).then((data) => {
     //   // console.log(data.data.data.items)
