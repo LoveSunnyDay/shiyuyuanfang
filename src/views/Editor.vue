@@ -7,7 +7,7 @@
         <el-checkbox-button
           v-for="(item, index) in platoptions"
           :key="index"
-          @click.native="platoptionsClick(index, item.id)"
+          @click.native.prevent="platoptionsClick(index, item.id)"
           :class="{ optionsActive: platoptionsIndex.includes(index) }"
         >
           <img
@@ -43,7 +43,7 @@
           @click.native.prevent="fansoptionsClick(item.id)"
         ><p>{{ item.title }}</p></el-checkbox-button>
       </el-row>
-      <el-input type="textarea" :placeholder="placeholder" v-model="textarea">
+      <el-input type="textarea" maxlength="100" show-word-limit :placeholder="placeholder" v-model="searchParms.tag">
       </el-input>
       <div class="editor-content">
         <p class="editor-title">
@@ -78,9 +78,9 @@
             </el-date-picker>
           </li>
         </ul>
-        <div class="editor-button">
+        <div class="editor-button" @click="submit">
           <!-- <button>下一步：按要求给我推荐网红</button> -->
-          <router-link to="/Filter" tag="button">发布</router-link>
+           <el-button >发布</el-button>
         </div>
       </div>
     </div>
@@ -124,15 +124,14 @@ export default {
   data() {
     return {
       radio: '1',
-      textarea: '',
       value: '',
       platoptionsIndex: [],
       categoryoptionsIndex: '',
       plat_id: [],
       platoptions: [],
       categoryoptions: [],
-      priceoptions: [],
-      fansoptions: [],
+      priceoptions:[],
+      fansoptions:[],
       list: [],
       searchParms: {
         category_id: '',
@@ -165,6 +164,15 @@ export default {
       this.getCategoryList()
       this.getPriceList()
       this.getFansList()
+    },
+    submit(){
+      this.queryKol(this.searchParms)
+      // this.$router.push({
+      //   path:'/Filter',
+      //   query:{
+      //     search:this.textarea
+      //   }
+      // })
     },
     queryKol() {
       let queryString = []
@@ -476,7 +484,7 @@ export default {
 //输入框
 /deep/ .el-textarea__inner {
   width: 1070px;
-  height: 478px;
+  height: 234px;
   font-size: 18px;
 }
 /deep/.el-textarea__inner:focus {
