@@ -22,7 +22,7 @@
         <el-checkbox-button
           v-for="(item, index) in categoryoptions"
           :key="index"
-          @click.native="categoryoptionsClick(item.id)"
+          @click.native.prevent="categoryoptionsClick(item.id)"
         >
           <p>{{ item.title }}</p>
         </el-checkbox-button>
@@ -32,7 +32,7 @@
         <el-checkbox-button 
          v-for="(item, index) in priceoptions"
           :key="index"
-          @click.native="priceoptionsClick(item.id)"
+          @click.native.prevent="priceoptionsClick(item.id)"
         ><p>{{ item.title }}</p></el-checkbox-button>
       </el-row>
       <el-row class="el-row-four">
@@ -40,7 +40,7 @@
         <el-checkbox-button 
          v-for="(item, index) in fansoptions"
           :key="index"
-          @click.native="fansoptionsClick(item.id)"
+          @click.native.prevent="fansoptionsClick(item.id)"
         ><p>{{ item.title }}</p></el-checkbox-button>
       </el-row>
       <el-input type="textarea" :placeholder="placeholder" v-model="textarea">
@@ -129,9 +129,6 @@ export default {
       platoptionsIndex: [],
       categoryoptionsIndex: '',
       plat_id: [],
-      category_id: '',
-      price_type_id: '',
-      fans_type_id: '',
       platoptions: [],
       categoryoptions: [],
       priceoptions: [],
@@ -224,16 +221,13 @@ export default {
       this.searchParms.plat_id = this.plat_id.join(',')
     },
     categoryoptionsClick(id) {
-      this.category_id = id
-      this.searchParms.category_id = this.category_id
+      this.searchParms.category_id = id
     },
     priceoptionsClick(id) {
-      this.price_type_id = id
-      this.searchParms.price_type_id = this.price_type_id
+      this.searchParms.price_type_id = id
     },
     fansoptionsClick(id) {
-      this.fans_type_id = id
-      this.searchParms.fans_type_id = this.fans_type_id
+      this.searchParms.fans_type_id = id
     }
   }
 }
