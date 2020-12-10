@@ -17,7 +17,7 @@
         />
       </div>
       <div class="auth-code">
-        <input type="text" class="auth-code-input" v-model="verifyCode" />
+        <input type="text" class="auth-code-input" v-model="verifyCode" @input="verifyCodeChange"/>
         <button
           v-if="!this.isDisabled"
           class="auth-code-button"
@@ -27,9 +27,10 @@
         </button>
         <button v-else class="send-wait" :disabled="this.isDisabled">
           <span>{{ count }} s后重新获取</span>
+         
         </button>
       </div>
-      <button class="accomplish" @click="bindPhoneNumber">完成</button>
+      <button class="accomplish" :style="{background : enabled?'#19a483':'#dcdcdc'}" @click="bindPhoneNumber">完成</button>
     </el-dialog>
   </div>
 </template>
@@ -47,11 +48,19 @@ export default {
       verifyCode: '',
       isDisabled: false,
       count: 60,
-      timer: null
+      timer: null,
+      enabled:false
     }
   },
   // 方法集合
   methods: {
+    verifyCodeChange(){
+      if(this.verifyCode.length>=6){
+        this.enabled=true
+      }else{
+        this.enabled=false
+      }
+    },
     handleClose(done) {
       this.$confirm('确认关闭吗？关闭则需要重新登录！')
         .then((_) => {
@@ -83,7 +92,7 @@ export default {
       }
 
       // 发送短信验证码
-      const { success } = await this.axios({
+      const { success,data } = await this.axios({
         method: 'post',
         url: '/tool/send_sms',
         data: params,
@@ -91,7 +100,7 @@ export default {
       })
 
       if (!success) {
-        this.$message.error('获取验证码失败！')
+        this.$message.error(data?.message||"获取验证码失败！")
         return
       }
       this.isDisabled = true
@@ -120,19 +129,23 @@ export default {
       params.append('phone_number', this.phoneNumber)
       params.append('code', this.verifyCode)
       // 绑定手机号
-      const { success } = await this.axios({
+      const { success,data } = await this.axios({
         method: 'post',
         url:
           '/user/bind?access-token=' +
-          getCookie('wx-token').replace(/\"/g, ''),
+         getCookie('wx-token')?.replace(/\"/g, ''),
         data: params,
         headers: { 'Content-Type': 'multipart/form-data' }
       })
       if (!success) {
-        this.$message.error('手机号码绑定失败！')
+        this.$message.error(data?.message||'手机号码绑定失败！')
+      }else{
+        this.$message.success('手机号码绑定成功！')
       }
       this.$emit('closeBindPhone')
-      window.location.reload()
+      setTimeout(()=>{
+        window.location.reload()
+      },800)
     }
   },
   // 监听属性 类似于data概念
@@ -252,6 +265,7 @@ export default {
     opacity: 0.81;
     margin: 70px 20px;   
   }
+  
   .accomplish:hover {
     transition: 0.5s;
     background: #19a483;

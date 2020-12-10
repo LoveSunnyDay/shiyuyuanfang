@@ -1,5 +1,7 @@
 <template>
   <div class="lookfor-main">
+    <div>
+    </div>
     <h1>{{ list.length > 0 && list.name }}</h1>
     <div class="lookfor-item" v-for="list in list" :key="list.id" :class="Background(list)">
       <div class="lookfor-item-left">
@@ -231,10 +233,9 @@ export default {
             }
             ul {
               display: flex;
-              // overflow: hidden;
-              // white-space: normal;
-              // word-break: break-all;
-              overflow: hidden;
+              white-space: nowrap;
+              word-break: break-all;
+              overflow-x: auto;
               text-overflow: ellipsis;
               display: -webkit-box;
               // -webkit-box-orient: vertical;

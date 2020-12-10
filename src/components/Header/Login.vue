@@ -217,7 +217,7 @@ export default {
       }
 
       // 发送短信验证码
-      const { success } = await this.axios({
+      const { success,data } = await this.axios({
         method: 'post',
         url: '/tool/send_sms',
         data: params,
@@ -225,7 +225,7 @@ export default {
       })
 
       if (!success) {
-        this.$message.error('获取验证码失败！')
+        this.$message.error(data?.message||"获取验证码失败！")
         return false
       }
 
@@ -256,7 +256,7 @@ export default {
       })
 
       if (!success) {
-        this.$message.error('登录失败！')
+        this.$message.error(data?.message||"手机号码或者验证码错误。")
         return
       }
       console.log("data",JSON.parse(JSON.stringify(data)))
