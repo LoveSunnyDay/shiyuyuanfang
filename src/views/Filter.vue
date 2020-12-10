@@ -344,32 +344,27 @@ export default {
   }
 
   /deep/ .el-button:hover {
-    background: #f1eeee;
+    background: #f1f1f1;
     color: #2d2d2d;
   }
   .platoptionsActive {
-    background: #f1eeee !important;
+    background: #e8e8e8 !important;
   }
   /deep/ .filter-select {
-    width: 98px;
-    height: 40px;
     margin-right: 20px;
-    opacity: 0.84;
+  }
+  /deep/ .el-input__inner {
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    font-weight: bold;
     border-radius: 25px;
-    /deep/ .el-input__inner {
-      color: #5e5e5e;
-      font-size: 6px;
-      text-align: center;
-      font-weight: bold;
-      border-radius: 25px;
-      background: #ffffff;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-      border: none;
-    }
-    /deep/ .el-input__inner::placeholder {
-      color: #5e5e5e;
-      font-size: 8px;
-    }
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border: none;
+  }
+  /deep/ .el-input__inner::placeholder {
+    color: black;
+    font-size: 14px;
   }
   /deep/ .el-input__inner:hover {
     background: #efefef;
@@ -379,7 +374,6 @@ export default {
     font-weight: 400;
     color: #2d2d2d;
     font-weight: 800;
-    // margin: 45px 0 10px 0;
     margin: 40px 0;
     text-align: center;
   }

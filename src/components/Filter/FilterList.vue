@@ -132,6 +132,7 @@ export default {
       }
       .left-main-item {
         margin: 42px 0 0 34px;
+        position: relative;
         .main-item-name {
           display: flex;
           p {
@@ -208,11 +209,13 @@ export default {
           font-size: 12px;
           font-weight: 400;
           color: #4c525a;
-          margin-top: 20px;
           width: 449px;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
+          position: absolute;
+          bottom: 10px;
+          left: 0;
           a {
             font-size: 12px;
             font-weight: 400;
@@ -302,7 +305,7 @@ export default {
   font-weight: 800;
   text-align: center;
   color: #808080;
-  margin: 50px 0 70px;
+  margin: 70px 0;
   cursor: pointer;
 }
 </style>
