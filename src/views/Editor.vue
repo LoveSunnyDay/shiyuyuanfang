@@ -29,16 +29,19 @@
       </el-row>
       <el-row class="el-row-three">
         <h5>预算：</h5>
-        <el-checkbox-button type="primary">1万以下</el-checkbox-button>
-        <el-checkbox-button type="primary">2-5万</el-checkbox-button>
-        <el-checkbox-button type="primary">5万以上</el-checkbox-button>
+        <el-checkbox-button 
+         v-for="(item, index) in priceoptions"
+          :key="index"
+          @click.native="priceoptionsClick(item.id)"
+        ><p>{{ item.title }}</p></el-checkbox-button>
       </el-row>
       <el-row class="el-row-four">
         <h5>粉丝数：</h5>
-        <el-checkbox-button type="primary">10万以下</el-checkbox-button>
-        <el-checkbox-button type="primary">10万-30万</el-checkbox-button>
-        <el-checkbox-button type="primary">30万-100万</el-checkbox-button>
-        <el-checkbox-button type="primary">一百万以上</el-checkbox-button>
+        <el-checkbox-button 
+         v-for="(item, index) in fansoptions"
+          :key="index"
+          @click.native="fansoptionsClick(item.id)"
+        ><p>{{ item.title }}</p></el-checkbox-button>
       </el-row>
       <el-input type="textarea" :placeholder="placeholder" v-model="textarea">
       </el-input>
@@ -124,11 +127,15 @@ export default {
       textarea: '',
       value: '',
       platoptionsIndex: [],
-      categoryoptionsIndex:'',
+      categoryoptionsIndex: '',
       plat_id: [],
       category_id: '',
+      price_type_id: '',
+      fans_type_id: '',
       platoptions: [],
       categoryoptions: [],
+      priceoptions: [],
+      fansoptions: [],
       list: [],
       searchParms: {
         category_id: '',
@@ -159,6 +166,8 @@ export default {
     getFilterList() {
       this.getPlatList()
       this.getCategoryList()
+      this.getPriceList()
+      this.getFansList()
     },
     queryKol() {
       let queryString = []
@@ -195,6 +204,14 @@ export default {
       const { data } = await this.axios.get('/kol-category')
       this.categoryoptions = data && data.items
     },
+    async getPriceList() {
+      const { data } = await this.axios.get('/price-type')
+      this.priceoptions = data && data.items
+    },
+    async getFansList() {
+      const { data } = await this.axios.get('/fans-type')
+      this.fansoptions = data && data.items
+    },
     platoptionsClick(index, id) {
       const idx = this.platoptionsIndex.indexOf(index)
       if (idx !== -1) {
@@ -209,6 +226,14 @@ export default {
     categoryoptionsClick(id) {
       this.category_id = id
       this.searchParms.category_id = this.category_id
+    },
+    priceoptionsClick(id) {
+      this.price_type_id = id
+      this.searchParms.price_type_id = this.price_type_id
+    },
+    fansoptionsClick(id) {
+      this.fans_type_id = id
+      this.searchParms.fans_type_id = this.fans_type_id
     }
   }
 }
