@@ -4,39 +4,28 @@
     <div class="editor-main">
       <el-row class="el-row-one">
         <h5>平台：</h5>
-        <el-checkbox-button type="primary" round>
-          <img src="../assets/image/show/douyin.png" alt="" />
-          <p>抖音网红</p>
-        </el-checkbox-button>
-        <el-checkbox-button round>
-          <img src="../assets/image/show/xiaohongshu.png" alt="" />
-          <p>小红书网红</p>
-        </el-checkbox-button>
-        <el-checkbox-button round>
-          <img src="../assets/image/show/bilibili.png" alt="" />
-          <p>B站网红</p>
-        </el-checkbox-button>
-        <el-checkbox-button round>
-          <img src="../assets/image/show/kuaishou.png" alt="" />
-          <p>快手网红</p>
-        </el-checkbox-button>
-        <el-checkbox-button round>
-          <img src="../assets/image/show/taobao.png" alt="" />
-          <p>淘宝直播</p>
+        <el-checkbox-button
+          v-for="(item, index) in platoptions"
+          :key="index"
+          @click.native="platoptionsClick(index, item.id)"
+          :class="{ optionsActive: platoptionsIndex.includes(index) }"
+        >
+          <img
+            :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
+            alt=""
+          />
+          <p>{{ item.name }}网红</p>
         </el-checkbox-button>
       </el-row>
       <el-row class="el-row-two">
         <h5>分类：</h5>
-        <el-checkbox-button fill="">美妆达人</el-checkbox-button>
-        <el-checkbox-button type="primary">电商带货</el-checkbox-button>
-        <el-checkbox-button type="primary">汽车达人</el-checkbox-button>
-        <el-checkbox-button type="primary">网红打卡</el-checkbox-button>
-        <el-checkbox-button type="primary">美食餐饮</el-checkbox-button>
-        <el-checkbox-button type="primary">大快销品</el-checkbox-button>
-        <el-checkbox-button type="primary">服饰箱包</el-checkbox-button>
-        <el-checkbox-button type="primary">母婴亲子</el-checkbox-button>
-        <el-checkbox-button type="primary">游戏网络</el-checkbox-button>
-        <el-checkbox-button type="primary">食品达人</el-checkbox-button>
+        <el-checkbox-button
+          v-for="(item, index) in categoryoptions"
+          :key="index"
+          @click.native="categoryoptionsClick(item.id)"
+        >
+          <p>{{ item.title }}</p>
+        </el-checkbox-button>
       </el-row>
       <el-row class="el-row-three">
         <h5>预算：</h5>
@@ -134,12 +123,93 @@ export default {
       radio: '1',
       textarea: '',
       value: '',
+      platoptionsIndex: [],
+      categoryoptionsIndex:'',
+      plat_id: [],
+      category_id: '',
+      platoptions: [],
+      categoryoptions: [],
+      list: [],
+      searchParms: {
+        category_id: '',
+        area_id: '',
+        plat_id: '',
+        price_type_id: '',
+        sex: '',
+        tag: this.$route.query.search,
+        sort: '',
+        fans_type_id: '',
+        recommend: '',
+        page: 1
+      },
+      page: 1,
+      pageCount: '',
       placeholder:
         '请按照下列各式提供视频发布要求：\n①短视频简介：建议100-500字\n②标签/关键词：可不填\n③短视频链接：如果您提供的视频链接上游简介标签等信息，可不填'
     }
   },
   components: {
     Header
+  },
+  mounted() {
+    this.getFilterList()
+    this.queryKol()
+  },
+  methods: {
+    getFilterList() {
+      this.getPlatList()
+      this.getCategoryList()
+    },
+    queryKol() {
+      let queryString = []
+      for (const key in this.searchParms) {
+        if (this.searchParms[key]) {
+          queryString.push(`${key}=${this.searchParms[key]}`)
+        }
+      }
+      if (this.isExpandAll) {
+        window.queryString = queryString
+        queryString = queryString.map((item) => {
+          if (item.includes('page')) {
+            return `page=${this.page}`
+          }
+          return item
+        })
+      }
+      this.axios.get(`/kol/index?${queryString.join('&')}`).then((res) => {
+        console.log('kolList', res.data)
+        console.log('isExpandAll', this.isExpandAll)
+        if (this.isExpandAll) {
+          this.list = this.list.concat(res.data.items)
+        } else {
+          this.list = res.data.items
+          this.pageCount = res.data?._meta?.pageCount
+        }
+      })
+    },
+    async getPlatList() {
+      const { data } = await this.axios.get('/plat')
+      this.platoptions = data && data.items
+    },
+    async getCategoryList() {
+      const { data } = await this.axios.get('/kol-category')
+      this.categoryoptions = data && data.items
+    },
+    platoptionsClick(index, id) {
+      const idx = this.platoptionsIndex.indexOf(index)
+      if (idx !== -1) {
+        this.platoptionsIndex.splice(idx, 1)
+        this.plat_id.splice(idx, 1)
+      } else {
+        this.platoptionsIndex.push(index)
+        this.plat_id.push(id)
+      }
+      this.searchParms.plat_id = this.plat_id.join(',')
+    },
+    categoryoptionsClick(id) {
+      this.category_id = id
+      this.searchParms.category_id = this.category_id
+    }
   }
 }
 </script>
@@ -350,6 +420,9 @@ export default {
       }
     }
   }
+}
+.optionsActive {
+  background: #f1eeee !important;
 }
 // 选中按钮颜色
 /deep/ .el-checkbox-button.is-checked .el-checkbox-button__inner {
