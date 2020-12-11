@@ -7,7 +7,7 @@
         <el-button
           v-for="(item, index) in platoptions"
           :key="index"
-          @click.native.prevent="platoptionsClick(index, item.id)"
+          @click="platoptionsClick(index, item.id)"
           :class="{ optionsActive: platoptionsIndex.includes(index) }"
         >
           <img
@@ -22,7 +22,8 @@
         <el-button
           v-for="(item, index) in categoryoptions"
           :key="index"
-          @click.native.prevent="categoryoptionsClick(index, item.id)"
+          :class="{ optionsActive:searchParms.category_id===item.id }"
+          @click="categoryoptionsClick(item.id)"
         >
           <p>{{ item.title }}</p>
         </el-button>
@@ -32,7 +33,8 @@
         <el-button
           v-for="(item, index) in priceoptions"
           :key="index"
-          @click.native.prevent="priceoptionsClick(item.id)"
+          :class="{ optionsActive:searchParms.price_type_id===item.id }"
+          @click="priceoptionsClick(item.id)"
         >
           <p>{{ item.title }}</p>
         </el-button>
@@ -42,7 +44,8 @@
         <el-button
           v-for="(item, index) in fansoptions"
           :key="index"
-          @click.native.prevent="fansoptionsClick(item.id)"
+          :class="{ optionsActive:searchParms.fans_type_id===item.id }"
+          @click="fansoptionsClick(item.id)"
         >
           <p>{{ item.title }}</p>
         </el-button>
@@ -145,16 +148,11 @@ export default {
       list: [],
       searchParms: {
         category_id: '',
-        area_id: '',
         plat_id: '',
         price_type_id: '',
-        sex: '',
-        tag: this.$route.query.search,
-        sort: '',
+        tag: '',
         fans_type_id: '',
-        recommend: '',
         filter:1,
-        page: 1
       },
       page: 1,
       pageCount: '',
@@ -178,12 +176,12 @@ export default {
     },
     submit() {
       this.queryKol(this.searchParms)
-      // this.$router.push({
-      //   path:'/Filter',
-      //   query:{
-      //     search:this.textarea
-      //   }
-      // })
+      this.$router.push({
+        path:'/Filter',
+        query:{
+          search:this.searchParms.tag
+        }
+      })
     },
     queryKol() {
       let queryString = []
