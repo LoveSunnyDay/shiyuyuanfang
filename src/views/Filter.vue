@@ -27,11 +27,6 @@
         />
         <p>{{ item.name }}网红</p>
       </el-button>
-
-      <!-- <el-button round>
-        <img src="../assets/image/show/tongyi.png" alt="" />
-        <p>同一经济公司</p>
-      </el-button> -->
     </el-row>
     <el-select
       v-model="searchParms.category_id"
@@ -112,9 +107,6 @@
       <el-option label="升序" value="fan_count" />
       <el-option label="降序" value="-fan_count" />
     </el-select>
-    <!-- <el-button round>
-      <span class="select-btn">抖音购物车</span>
-    </el-button> -->
     <p class="filter-warn">
       根据所提供内容，推荐以下网红KOL为您做短视频/直播/种草等推广服务
     </p>
