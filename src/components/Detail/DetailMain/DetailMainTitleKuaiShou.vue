@@ -68,7 +68,7 @@
       </p>
       <p>
         <span>数据更新时间：</span
-        ><span>{{ (items.updated_at * 1000) | formatDate }}</span>
+        ><span>{{ items.updated_at | formatDate }}</span>
       </p>
     </div>
   </div>
@@ -93,8 +93,9 @@ export default {
   },
   filters: {
     formatDate(time) {
+      time = time * 1000
       var data = new Date(time)
-      return formatDate(data, 'yyyy-MM-dd')
+      return formatDate(data, 'yyyy-MM-dd hh:mm')
     }
   },
   // 方法集合

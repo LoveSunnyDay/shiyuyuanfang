@@ -95,7 +95,6 @@ export default {
   height: 72px;
   background: #232a34;
   display: flex;
-  float: left;
   justify-content: space-between;
   position: fixed;
   top: 0;
@@ -103,14 +102,12 @@ export default {
   z-index: 100;
   .header-left {
     display: flex;
-    float: left;
     line-height: 72px;
     margin-left: 32px;
     img {
-      width: 186px;
-      height: 64px;
-      // margin-top: 20px;
-      margin-top: 4px;
+      width: 166px;
+      height: 44px;
+      margin-top: 14px;
     }
     p:hover {
       color: #b9bab8;
@@ -168,7 +165,6 @@ export default {
   .nav-list {
     display: flex;
     li {
-      float: left;
       margin-right: 30px;
     }
     .nav-text {

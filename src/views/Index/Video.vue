@@ -4,7 +4,7 @@
       <img class="video-img" src="~assets/image/video-banner.png" />
     </div>
     <div class="video-nav">
-      <img src="../../assets/image/logo.png" alt="" />
+      <img src="../../assets/image/logo-black.png" alt="" />
       <ul>
         <!-- <li
           v-for="(classifys, index) in classify"
@@ -178,7 +178,7 @@ export default {
   .video-nav {
     width: 110px;
     img {
-      width: 106px;
+      width: 110px;
       height: 33px;
       margin-bottom: 12px;
     }
