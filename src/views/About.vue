@@ -112,9 +112,9 @@ export default {
     display: flex;
     justify-content: space-between;
     .logo {
-      margin: 16px 0 0 32px;
-      width: 106px;
-      height: 33px;
+      margin: 10px 0 0 32px;
+      width: 186px;
+      height: 64px;
       cursor: pointer;
     }
     .nav-list {

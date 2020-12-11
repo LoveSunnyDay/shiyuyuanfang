@@ -4,7 +4,7 @@
     <div class="editor-main">
       <el-row class="el-row-one">
         <h5>平台：</h5>
-        <el-checkbox-button
+        <el-button
           v-for="(item, index) in platoptions"
           :key="index"
           @click.native.prevent="platoptionsClick(index, item.id)"
@@ -15,35 +15,45 @@
             alt=""
           />
           <p>{{ item.name }}网红</p>
-        </el-checkbox-button>
+        </el-button>
       </el-row>
       <el-row class="el-row-two">
         <h5>分类：</h5>
-        <el-checkbox-button
+        <el-button
           v-for="(item, index) in categoryoptions"
           :key="index"
-          @click.native.prevent="categoryoptionsClick(item.id)"
+          @click.native.prevent="categoryoptionsClick(index, item.id)"
         >
           <p>{{ item.title }}</p>
-        </el-checkbox-button>
+        </el-button>
       </el-row>
       <el-row class="el-row-three">
         <h5>预算：</h5>
-        <el-checkbox-button 
-         v-for="(item, index) in priceoptions"
+        <el-button
+          v-for="(item, index) in priceoptions"
           :key="index"
           @click.native.prevent="priceoptionsClick(item.id)"
-        ><p>{{ item.title }}</p></el-checkbox-button>
+        >
+          <p>{{ item.title }}</p>
+        </el-button>
       </el-row>
       <el-row class="el-row-four">
         <h5>粉丝数：</h5>
-        <el-checkbox-button 
-         v-for="(item, index) in fansoptions"
+        <el-button
+          v-for="(item, index) in fansoptions"
           :key="index"
           @click.native.prevent="fansoptionsClick(item.id)"
-        ><p>{{ item.title }}</p></el-checkbox-button>
+        >
+          <p>{{ item.title }}</p>
+        </el-button>
       </el-row>
-      <el-input type="textarea" maxlength="100" show-word-limit :placeholder="placeholder" v-model="searchParms.tag">
+      <el-input
+        type="textarea"
+        maxlength="100"
+        show-word-limit
+        :placeholder="placeholder"
+        v-model="searchParms.tag"
+      >
       </el-input>
       <div class="editor-content">
         <p class="editor-title">
@@ -80,7 +90,7 @@
         </ul>
         <div class="editor-button" @click="submit">
           <!-- <button>下一步：按要求给我推荐网红</button> -->
-           <el-button >发布</el-button>
+          <el-button>发布</el-button>
         </div>
       </div>
     </div>
@@ -130,8 +140,8 @@ export default {
       plat_id: [],
       platoptions: [],
       categoryoptions: [],
-      priceoptions:[],
-      fansoptions:[],
+      priceoptions: [],
+      fansoptions: [],
       list: [],
       searchParms: {
         category_id: '',
@@ -148,7 +158,7 @@ export default {
       page: 1,
       pageCount: '',
       placeholder:
-        '请按照下列各式提供视频发布要求：\n①短视频简介：建议100-500字\n②标签/关键词：可不填\n③短视频链接：如果您提供的视频链接上游简介标签等信息，可不填'
+        '请按照下列各式提供视频发布要求：\n①短视频简介：建议50-100字\n②标签/关键词：可不填\n③短视频链接：如果您提供的视频链接上游简介标签等信息，可不填'
     }
   },
   components: {
@@ -165,7 +175,7 @@ export default {
       this.getPriceList()
       this.getFansList()
     },
-    submit(){
+    submit() {
       this.queryKol(this.searchParms)
       // this.$router.push({
       //   path:'/Filter',
@@ -244,6 +254,7 @@ export default {
  <style lang="less" scoped>
 .editor {
   margin-top: 138px;
+  overflow-x: hidden;
   .editor-main {
     margin: 0 auto;
     width: 1070px;
@@ -258,27 +269,66 @@ export default {
         color: #5e5e5e;
         margin-right: 18px;
       }
-      /deep/ .el-checkbox-button__inner {
-        min-height: 0px;
-        padding: 0;
-        border: none;
+      // // 按钮样式
+      // /deep/.el-button {
+      //   background: #ffffff;
+      //   margin-right: 10px;
+      //   border-radius: 20px;
+      //   height: 40px;
+      //   padding: 0 10px 0 30px;
+      //   position: relative;
+      //   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
+      //   border: 0;
+      //   span {
+      //     display: flex;
+      //     img {
+      //       width: 20px;
+      //       height: 20px;
+      //       position: absolute;
+      //       top: 8px;
+      //       left: 7px;
+      //     }
+      //     p {
+      //       font-size: 14px;
+      //       font-weight: bold;
+      //       color: #5e5e5e;
+      //       line-height: 40px;
+      //     }
+      //   }
+      // }
+
+      // // 经过背景色字体颜色
+      /deep/ .el-button:hover {
+        // color: #606266;
+        background-color: #f1eeee;
+      }
+      // // 选中背景颜色重置
+      // /deep/.el-button:focus {
+      //   background: #ffffff;
+      // }
+
+      /deep/ .el-button {
+        background: #ffffff;
         box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
         border-radius: 20px;
         display: flex;
-        margin-right: 20px;
+        margin-right: 10px;
         cursor: pointer;
         text-align: center;
+        padding: 0 10px 0 30px;
         img {
           float: left;
           width: 20px;
           height: 20px;
-          margin: 10px 4px 0 10px;
+          position: absolute;
+          width: 20px;
+          top: 10px;
+          left: 7px;
         }
         p {
           font-size: 14px;
           font-weight: bold;
           color: #5e5e5e;
-          margin-right: 16px;
           line-height: 40px;
         }
       }
@@ -289,24 +339,9 @@ export default {
       h5 {
         font-size: 14px;
         font-weight: bold;
-        line-height: 30px;
+        line-height: 40px;
         color: #5e5e5e;
         margin-right: 18px;
-      }
-      /deep/ .el-checkbox__inner {
-        background-color: #00a581;
-      }
-      /deep/ .el-checkbox-button__inner {
-        border: none;
-        min-width: 70px;
-        padding: 0 16px;
-        border-radius: 20px;
-        height: 30px;
-        line-height: 30px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
-        margin-right: 10px;
-        cursor: pointer;
-        text-align: center;
       }
     }
     .el-row-three {
@@ -315,24 +350,9 @@ export default {
       h5 {
         font-size: 14px;
         font-weight: bold;
-        line-height: 30px;
+        line-height: 40px;
         color: #5e5e5e;
         margin-right: 18px;
-      }
-      /deep/ .el-checkbox__inner {
-        background-color: #00a581;
-      }
-      /deep/ .el-checkbox-button__inner {
-        border: none;
-        min-width: 70px;
-        padding: 0 16px;
-        border-radius: 20px;
-        height: 30px;
-        line-height: 30px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
-        margin-right: 10px;
-        cursor: pointer;
-        text-align: center;
       }
     }
     .el-row-four {
@@ -341,24 +361,9 @@ export default {
       h5 {
         font-size: 14px;
         font-weight: bold;
-        line-height: 30px;
+        line-height: 40px;
         color: #5e5e5e;
         margin-right: 4px;
-      }
-      /deep/ .el-checkbox__inner {
-        background-color: #00a581;
-      }
-      /deep/ .el-checkbox-button__inner {
-        border: none;
-        min-width: 70px;
-        padding: 0 16px;
-        border-radius: 20px;
-        height: 30px;
-        line-height: 30px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
-        margin-right: 10px;
-        cursor: pointer;
-        text-align: center;
       }
     }
     .editor-content {
@@ -449,16 +454,7 @@ export default {
   }
 }
 .optionsActive {
-  background: #f1eeee !important;
-}
-// 选中按钮颜色
-/deep/ .el-checkbox-button.is-checked .el-checkbox-button__inner {
-  color: #ffffff;
-  background: #00a581;
-}
-// 经过按钮字体颜色
-/deep/ .el-checkbox-button__inner:hover {
-  color: #00a581;
+  background: #e8e8e8 !important;
 }
 
 //单选按钮
@@ -489,5 +485,26 @@ export default {
 }
 /deep/.el-textarea__inner:focus {
   border-color: #00a581;
+}
+
+// 清除选中和移动到按钮的默认字体颜色背景颜色
+/deep/ .el-button:hover {
+  color: #606266;
+  background-color: #f1eeee;
+}
+/deep/.el-button:focus {
+  background: #ffffff;
+  color: #606266;
+}
+
+// 按钮的默认样式
+/deep/.el-button {
+  margin-right: 10px;
+  border-radius: 20px;
+  height: 40px;
+  padding: 0 10px 0 10px;
+  position: relative;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.09);
+  border: 0;
 }
 </style>
