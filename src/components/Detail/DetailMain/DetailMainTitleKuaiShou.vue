@@ -1,15 +1,31 @@
 <template>
   <div class="detail-main-title">
     <div class="main-title-synopsis">
-      <img
+      <!-- <img
         src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1441836571,2166773131&fm=26&gp=0.jpg"
+        alt=""
+      /> -->
+      <img
+        :src="
+          items.avatar_base_url
+            ? items.avatar_base_url + '/' + items.avatar_path
+            : require('../../../assets/image/myCenter/icon.png')
+        "
         alt=""
       />
       <ul>
-        <li>一条小团团</li>
+        <!-- <li>一条小团团</li> -->
+        <li :title="items.nickname">{{ items.nickname }}</li>
         <li>
-          <img src="../../../assets/image/show/kuaishou.png" alt="" />
-          <p>快手平台</p>
+          <!-- <img src="../../../assets/image/show/kuaishou.png" alt="" />
+          <p>快手平台</p> -->
+          <img
+            :src="
+              items.plat.thumbnail_base_url + '/' + items.plat.thumbnail_path
+            "
+            alt=""
+          />
+          <p>{{ items.plat.name }}平台</p>
           <img src="../../../assets/image/detail/nv.png" alt="" />
         </li>
         <li>
@@ -30,29 +46,56 @@
           </p>
         </div>
         <div class="synopsis-jj-tag">
-          <span>垂类美妆</span>
+          <!-- <span>垂类美妆</span>
           <span>美食</span>
-          <span>餐饮</span>
+          <span>餐饮</span> -->
+          <p v-if="items.tags != ''">
+            <span v-for="(tag, key) in items.tags.split('、')" :key="key">
+              {{ tag }}
+            </span>
+          </p>
+          <p v-else>更新中~</p>
         </div>
       </div>
     </div>
     <div class="main-title-link">
       <p>
         <span>该网红主页</span>
-        <span>https://v.douyin.com/JJj79Xu/</span>
+        <a :href="items.home_url" target="_blank" v-if="items.home_url != ''">
+          {{ items.home_url }}
+        </a>
+        <span v-else>更新中~~~</span>
       </p>
-      <p>数据更新时间：2020-11-17 00:00</p>
+      <p>
+        <span>数据更新时间：</span
+        ><span>{{ (items.updated_at * 1000) | formatDate }}</span>
+      </p>
     </div>
   </div>
 </template>
 
 <script>
+import { formatDate } from '../../../plugins/filters'
 export default {
   // 引入组件
   components: {},
   data() {
     // 这里存放数据
     return {}
+  },
+  props: {
+    items: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
+  },
+  filters: {
+    formatDate(time) {
+      var data = new Date(time)
+      return formatDate(data, 'yyyy-MM-dd')
+    }
   },
   // 方法集合
   methods: {},
@@ -105,6 +148,11 @@ export default {
         font-weight: 800;
         line-height: 42px;
         color: #3d3d3d;
+        width: 150px;
+        height: 42px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       li:nth-child(2) {
         margin-top: 11px;
@@ -192,6 +240,7 @@ export default {
     p:nth-child(1) {
       width: 530px;
       color: #1a98d9;
+      display: flex;
       span:nth-child(1) {
         font-size: 19px;
         font-weight: bold;
@@ -200,6 +249,17 @@ export default {
         font-size: 14px;
         font-weight: 400;
         margin-left: 10px;
+      }
+      a {
+        color: #1a98d9;
+        font-size: 14px;
+        font-weight: 400;
+        margin-left: 10px;
+        display: block;
+        width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
     p:nth-child(2) {

@@ -60,7 +60,15 @@
             <p>￥{{ list.price }}</p>
           </li>
         </ul>
-        <button>找TA推广</button>
+        <!-- <button>找TA推广</button> -->
+        <!-- <button> -->
+          <router-link
+            :to="{ path: '/DetailKuaiShou/' + list._id }"
+            class="list-right-button"
+            target="_blank"
+            >找TA推广
+          </router-link>
+        <!-- </button> -->
       </div>
     </div>
     <div class="more" v-if="isLastPage">没有更多了</div>
@@ -274,7 +282,7 @@ export default {
         margin-left: 0;
       }
     }
-    button {
+    .list-right-button {
       width: 208px;
       height: 40px;
       background: #ff7519;
@@ -289,8 +297,9 @@ export default {
       position: absolute;
       bottom: 24px;
       right: 0;
+      text-align: center;
     }
-    button:hover {
+    .list-right-button:hover {
       transition: 0.5s;
       background-color: #e36713;
       color: #ffd7c2;

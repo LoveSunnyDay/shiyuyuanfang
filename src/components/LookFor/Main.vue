@@ -1,7 +1,6 @@
 <template>
   <div class="lookfor-main">
-    <div>
-    </div>
+    <div></div>
     <h1>{{ list.length > 0 && list.name }}</h1>
     <div
       class="lookfor-item"
@@ -84,11 +83,13 @@
             </p>
             <p v-else>更新中~~~</p>
           </div>
-          <!-- <div class="item-content-bottom-right">找TA推广</div> -->
+          <!-- <div class="item-content-bottom-right" @click="detailsClick">
+            找TA推广
+          </div> -->
           <router-link
-            to="/DetailKuaiShou"
-            tag="div"
+            :to="{ path: '/DetailKuaiShou/' + list._id }"
             class="item-content-bottom-right"
+            target="_blank"
             >找TA推广
           </router-link>
         </div>
@@ -141,6 +142,10 @@ export default {
         return 'Background10'
       }
     }
+    // detailsClick() {
+    //   // this.$router.push('/DetailKuaiShou/' + 111)
+    //   console.log(this.list[0]._id)
+    // }
   },
   created() {
     // 保存category_id
