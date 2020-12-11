@@ -1,7 +1,7 @@
 <template>
   <div class="channel-header">
     <router-link to="/Index">
-      <img src="~assets/image/logo.png" />
+      <img src="~assets/image/logo-black.png" />
     </router-link>
     <router-link to="/Index/Look" tag="p">网红达人</router-link>
     <router-link to="/Index/Show" tag="p">网红T台</router-link>
@@ -51,9 +51,9 @@ export default {
   line-height: 93px;
   padding-left: 32px;
   img {
-    width: 106px;
-    height: 33px;
-    margin-top: 30px;
+    width: 176px;
+    height: 54px;
+    margin-top: 20px;
   }
   p {
     font-size: 18px;

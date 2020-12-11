@@ -10,13 +10,13 @@
             <router-link to="/LoadFail" target="_blank">超火营销</router-link>
           </li>
           <li>
-            <router-link to="/LoadFail" target="_blank">帮助中心</router-link>
+            <router-link to="/HelpCenter" target="_blank">帮助中心</router-link>
           </li>
           <li>
             <router-link to="/about" target="_blank">关于超火</router-link>
           </li>
           <li>
-            <router-link to="/LoadFail" target="_blank">使用前必读</router-link>
+            <router-link to="/Required" target="_blank">使用前必读</router-link>
           </li>
           <li>
             <router-link to="/LoadFail" target="_blank">意见反馈</router-link>
@@ -24,12 +24,41 @@
         </ul>
         <p>官方联系方式：</p>
         <div class="footer-main-bottom">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <img src="../assets/image/footer/erweima.jpg" alt="" />
+          <!-- 新浪 -->
+          <span class="footer-xinlang"></span>
+          <img
+            src="../assets/image/footer/xinlang-ewm.png"
+            alt=""
+            class="footer-main-bottom-xinlang"
+          />
+          <!-- 快手 -->
+          <span class="footer-kuaishou"></span>
+          <img
+            src="../assets/image/footer/kuaishou-ewm.png"
+            alt=""
+            class="footer-main-bottom-kuaishou"
+          />
+          <!-- 抖音 -->
+          <span class="footer-douyin"></span>
+          <img
+            src="../assets/image/footer/douyin-ewm.png"
+            alt=""
+            class="footer-main-bottom-douyin"
+          />
+          <!-- 小红书 -->
+          <span class="footer-xiaohongshu"></span>
+          <img
+            src="../assets/image/footer/xiaohongshu-ewm.png"
+            alt=""
+            class="footer-main-bottom-xiaohongshu"
+          />
+          <!-- 微信 -->
+          <span class="footer-weixin"></span>
+          <img
+            src="../assets/image/footer/erweima.jpg"
+            alt=""
+            class="footer-main-bottom-weixin"
+          />
         </div>
       </div>
       <div class="footer-main-right">
@@ -111,46 +140,93 @@ export default {}
           margin-right: 24px;
           cursor: pointer;
         }
-        span:nth-child(1) {
-          background: url(../assets/image/footer/xinlang.png);
-        }
-        span:nth-child(2) {
-          background: url(../assets/image/footer/kuaishou.png);
-        }
-        span:nth-child(3) {
-          background: url(../assets/image/footer/douyin.png);
-        }
-        span:nth-child(4) {
-          background: url(../assets/image/footer/xiaohongshu.png);
-        }
-        span:nth-child(5) {
-          background: url(../assets/image/footer/weixin.png);
-        }
-        span:nth-child(1):hover {
-          background: url(../assets/image/footer/xinlang2.png);
-        }
-        span:nth-child(2):hover {
-          background: url(../assets/image/footer/kuaishou2.png);
-        }
-        span:nth-child(3):hover {
-          background: url(../assets/image/footer/douyin2.png);
-        }
-        span:nth-child(4):hover {
-          background: url(../assets/image/footer/xiaohongshu2.png);
-        }
-        span:nth-child(5):hover {
-          background: url(../assets/image/footer/weixin2.png);
-        }
-        span:nth-child(5):hover + img {
-          opacity: 1;
-        }
         img {
           width: 125px;
           height: 125px;
+        }
+        // 新浪
+        .footer-xinlang {
+          background: url(../assets/image/footer/xinlang.png);
+        }
+        .footer-xinlang:hover {
+          background: url(../assets/image/footer/xinlang2.png);
+        }
+        .footer-xinlang:hover + .footer-main-bottom-xinlang {
+          display: block;
+        }
+        .footer-main-bottom-xinlang {
+          position: absolute;
+          left: 38px;
+          bottom: -45px;
+          display: none;
+        }
+
+        //快手
+        .footer-kuaishou {
+          background: url(../assets/image/footer/kuaishou.png);
+        }
+        .footer-kuaishou:hover {
+          background: url(../assets/image/footer/kuaishou2.png);
+        }
+        .footer-kuaishou:hover + .footer-main-bottom-kuaishou {
+          display: block;
+        }
+        .footer-main-bottom-kuaishou {
+          position: absolute;
+          left: 96px;
+          bottom: -45px;
+          display: none;
+        }
+
+        //抖音
+        .footer-douyin {
+          background: url(../assets/image/footer/douyin.png);
+        }
+        .footer-douyin:hover {
+          background: url(../assets/image/footer/douyin2.png);
+        }
+        .footer-douyin:hover + .footer-main-bottom-douyin {
+          display: block;
+        }
+        .footer-main-bottom-douyin {
+          position: absolute;
+          left: 155px;
+          bottom: -45px;
+          display: none;
+        }
+
+        //小红书
+        .footer-xiaohongshu {
+          background: url(../assets/image/footer/xiaohongshu.png);
+        }
+        .footer-xiaohongshu:hover {
+          background: url(../assets/image/footer/xiaohongshu2.png);
+        }
+        .footer-xiaohongshu:hover + .footer-main-bottom-xiaohongshu {
+          display: block;
+        }
+        .footer-main-bottom-xiaohongshu {
+          position: absolute;
+          left: 214px;
+          bottom: -45px;
+          display: none;
+        }
+
+        //微信
+        .footer-weixin {
+          background: url(../assets/image/footer/weixin.png);
+        }
+        .footer-weixin:hover {
+          background: url(../assets/image/footer/weixin2.png);
+        }
+        .footer-weixin:hover + .footer-main-bottom-weixin {
+          display: block;
+        }
+        .footer-main-bottom-weixin {
           position: absolute;
           left: 270px;
           bottom: -45px;
-          opacity: 0;
+          display: none;
         }
       }
     }
