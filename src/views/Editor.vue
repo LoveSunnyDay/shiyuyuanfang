@@ -1,6 +1,6 @@
 <template>
   <div class="editor">
-    <Header></Header>
+    <Header @search="search"></Header>
     <div class="editor-main">
       <el-row class="el-row-one">
         <h5>平台：</h5>
@@ -143,6 +143,7 @@ export default {
         sort: '',
         fans_type_id: '',
         recommend: '',
+        filter:1,
         page: 1
       },
       page: 1,
@@ -182,7 +183,6 @@ export default {
         }
       }
       if (this.isExpandAll) {
-        window.queryString = queryString
         queryString = queryString.map((item) => {
           if (item.includes('page')) {
             return `page=${this.page}`
@@ -198,6 +198,16 @@ export default {
         } else {
           this.list = res.data.items
           this.pageCount = res.data?._meta?.pageCount
+        }
+      })
+    },
+    search(tag){
+      this.$router.push({
+        //核心语句
+        path: '/Filter', //跳转的路径
+        query: {
+          //路由传参时push和query搭配使用 ，作用时传递参数
+          search: tag
         }
       })
     },
