@@ -192,7 +192,6 @@ export default {
         }
       }
       if (this.isExpandAll) {
-        window.queryString = queryString
         queryString = queryString.map((item) => {
           if (item.includes('page')) {
             return `page=${this.page}`

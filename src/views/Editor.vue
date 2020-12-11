@@ -1,13 +1,13 @@
 <template>
   <div class="editor">
-    <Header></Header>
+    <Header @search="search"></Header>
     <div class="editor-main">
       <el-row class="el-row-one">
         <h5>平台：</h5>
         <el-button
           v-for="(item, index) in platoptions"
           :key="index"
-          @click.native.prevent="platoptionsClick(index, item.id)"
+          @click="platoptionsClick(index, item.id)"
           :class="{ optionsActive: platoptionsIndex.includes(index) }"
         >
           <img
@@ -22,7 +22,8 @@
         <el-button
           v-for="(item, index) in categoryoptions"
           :key="index"
-          @click.native.prevent="categoryoptionsClick(index, item.id)"
+          :class="{ optionsActive:searchParms.category_id===item.id }"
+          @click="categoryoptionsClick(item.id)"
         >
           <p>{{ item.title }}</p>
         </el-button>
@@ -32,7 +33,8 @@
         <el-button
           v-for="(item, index) in priceoptions"
           :key="index"
-          @click.native.prevent="priceoptionsClick(item.id)"
+          :class="{ optionsActive:searchParms.price_type_id===item.id }"
+          @click="priceoptionsClick(item.id)"
         >
           <p>{{ item.title }}</p>
         </el-button>
@@ -42,7 +44,8 @@
         <el-button
           v-for="(item, index) in fansoptions"
           :key="index"
-          @click.native.prevent="fansoptionsClick(item.id)"
+          :class="{ optionsActive:searchParms.fans_type_id===item.id }"
+          @click="fansoptionsClick(item.id)"
         >
           <p>{{ item.title }}</p>
         </el-button>
@@ -145,15 +148,11 @@ export default {
       list: [],
       searchParms: {
         category_id: '',
-        area_id: '',
         plat_id: '',
         price_type_id: '',
-        sex: '',
-        tag: this.$route.query.search,
-        sort: '',
+        tag: '',
         fans_type_id: '',
-        recommend: '',
-        page: 1
+        filter:1,
       },
       page: 1,
       pageCount: '',
@@ -177,12 +176,12 @@ export default {
     },
     submit() {
       this.queryKol(this.searchParms)
-      // this.$router.push({
-      //   path:'/Filter',
-      //   query:{
-      //     search:this.textarea
-      //   }
-      // })
+      this.$router.push({
+        path:'/Filter',
+        query:{
+          search:this.searchParms.tag
+        }
+      })
     },
     queryKol() {
       let queryString = []
@@ -192,7 +191,6 @@ export default {
         }
       }
       if (this.isExpandAll) {
-        window.queryString = queryString
         queryString = queryString.map((item) => {
           if (item.includes('page')) {
             return `page=${this.page}`
@@ -208,6 +206,16 @@ export default {
         } else {
           this.list = res.data.items
           this.pageCount = res.data?._meta?.pageCount
+        }
+      })
+    },
+    search(tag){
+      this.$router.push({
+        //核心语句
+        path: '/Filter', //跳转的路径
+        query: {
+          //路由传参时push和query搭配使用 ，作用时传递参数
+          search: tag
         }
       })
     },

@@ -71,13 +71,19 @@
         <!-- </button> -->
       </div>
     </div>
-    <div class="more" v-if="isLastPage">没有更多了</div>
-    <div class="more" v-else @click="expandMore">展开更多</div>
+    <ExpandMore
+      :isLastPage="isLastPage"
+      @expandMore="expandMore"
+    />
   </div>
 </template>
 
 <script>
+import ExpandMore from '@/components/ExpandMore'
 export default {
+  components:{
+    ExpandMore
+  },
   props: {
     list: {
       type: Array,
@@ -305,16 +311,5 @@ export default {
       color: #ffd7c2;
     }
   }
-}
-.more {
-  padding: 23px 0;
-  background: #f6f6f6;
-  font-size: 16px;
-  font-family: PingFang SC;
-  font-weight: 800;
-  text-align: center;
-  color: #808080;
-  margin: 70px 0;
-  cursor: pointer;
 }
 </style>
