@@ -3,7 +3,12 @@
     <div>
     </div>
     <h1>{{ list.length > 0 && list.name }}</h1>
-    <div class="lookfor-item" v-for="list in list" :key="list.id" :class="Background(list)">
+    <div
+      class="lookfor-item"
+      v-for="list in list"
+      :key="list.id"
+      :class="Background(list)"
+    >
       <div class="lookfor-item-left">
         <img
           :src="
@@ -22,13 +27,14 @@
           <div class="lookfor-item-content-top-left">
             <div class="content-top-suggest">
               <p>投放建议：</p>
-              <ul>
+              <ul v-if="list.tags != ''">
                 <!-- <li>垂类美妆</li>
                 <li>美食</li> -->
                 <li v-for="(item, key) in list.tags.split('、')" :key="key">
                   {{ item }}
                 </li>
               </ul>
+              <p v-else>更新中~~~</p>
               <!-- <span>{{ list.tags }}</span> -->
             </div>
             <div class="content-top-fans">
@@ -63,14 +69,20 @@
         <div class="lookfor-item-content-bottom">
           <div class="item-content-bottom-left">
             <span>
-              抖音链接：
-              <a :href="list.home_url" target="_blank">
+              网红链接：
+              <a
+                :href="list.home_url"
+                target="_blank"
+                v-if="list.home_url != ''"
+              >
                 {{ list.home_url }}
               </a>
+              <span v-else>更新中~~~</span>
             </span>
-            <p>
+            <p v-if="list.introduce != ''">
               {{ list.introduce }}
             </p>
+            <p v-else>更新中~~~</p>
           </div>
           <!-- <div class="item-content-bottom-right">找TA推广</div> -->
           <router-link
@@ -235,11 +247,9 @@ export default {
               display: flex;
               white-space: nowrap;
               word-break: break-all;
-              overflow-x: auto;
+              // overflow-x: auto;
               text-overflow: ellipsis;
               display: -webkit-box;
-              // -webkit-box-orient: vertical;
-              -webkit-line-clamp: 2;
               li {
                 font-size: 14px;
                 font-weight: 400;
@@ -327,6 +337,7 @@ export default {
             font-weight: 400;
             color: rgba(120, 120, 120, 0.6);
             display: block;
+            display: flex;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;

@@ -17,6 +17,8 @@ import Channel from '@/views/Channel/Channel'
 import ChannelMCN from '@/views/Channel/ChannelMCN'
 import VideoArticle from '@/views/Index/VideoArticle'
 import LoginJump from '@/views/LoginJump'
+import HelpCenter from '@/views/Footer/HelpCenter'
+import Required from '@/views/Footer/Required'
 
 import Pay from '@/views/Pay/Pay'
 import PayComplete from '@/views/Pay/PayComplete'
@@ -159,6 +161,14 @@ const routes = [
   {
     path: '/auth_redircect',
     component: LoginJump
+  },
+  {
+    path: '/HelpCenter',
+    component: HelpCenter
+  },
+  {
+    path: '/Required',
+    component: Required
   }
 ]
 

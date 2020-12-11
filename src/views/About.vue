@@ -2,7 +2,9 @@
   <div>
     <div class="header">
       <div class="top-nav">
-        <img src="../assets/image/logo.png" alt="" class="logo" />
+        <router-link to="/index">
+          <img src="../assets/image/logo.png" alt="" class="logo" />
+        </router-link>
         <ul class="nav-list">
           <li class="nav-text">KOC入驻</li>
           <li class="nav-text">MCN通道</li>
