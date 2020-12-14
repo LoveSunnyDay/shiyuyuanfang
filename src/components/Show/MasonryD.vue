@@ -33,49 +33,56 @@
         @mouseover="mouseOver(index)"
         @mouseleave="mouseLeave()"
       >
-        <img
-          :src="items.ad_base_url + '/' + items.ad_path"
-          alt=""
-          class="masonry-item-image"
-        />
+        <router-link
+          :to="{ path: '/DetailKuaiShou/' + items.kol.id }"
+          target="_blank"
+        >
+          <img
+            :src="items.ad_base_url + '/' + items.ad_path"
+            alt=""
+            class="masonry-item-image"
+          />
 
-        <!-- 遮罩层 -->
-        <!-- <div class="masonry-item-mask"></div> -->
+          <!-- 遮罩层 -->
+          <!-- <div class="masonry-item-mask"></div> -->
 
-        <p class="masonry-item-name">{{ items.kol.nickname }}</p>
-        <transition name="el-zoom-in-bottom">
-          <div class="item-text" v-show="seen && index == current">
-            <img
-              :src="
-                items.plat.thumbnail_base_url + '/' + items.plat.thumbnail_path
-              "
-              alt=""
-              class="item-text-icon"
-            />
-            <div class="item-text-main">
-              <div class="item-text-name">
-                <p>{{ items.kol.nickname }}</p>
-                <p>
-                  <span> 粉丝量 </span>
-                  <span>{{ items.kol.fan_count }}W</span>
-                </p>
-              </div>
-              <div class="item-text-tag">
-                <p v-if="items.kol.tags != ''">
-                  {{ items.kol.tags.replace('、', ' | ') }}
-                </p>
-                <p v-else>更新中~</p>
-                <p>
-                  <span>点赞量</span>
-                  <span v-if="items.interact_count != '0.00'">
-                    {{ items.interact_count }}W
-                  </span>
-                  <span v-else> - </span>
-                </p>
+          <p class="masonry-item-name">{{ items.kol.nickname }}</p>
+          <transition name="el-zoom-in-bottom">
+            <div class="item-text" v-show="seen && index == current">
+              <img
+                :src="
+                  items.plat.thumbnail_base_url +
+                  '/' +
+                  items.plat.thumbnail_path
+                "
+                alt=""
+                class="item-text-icon"
+              />
+              <div class="item-text-main">
+                <div class="item-text-name">
+                  <p>{{ items.kol.nickname }}</p>
+                  <p>
+                    <span> 粉丝量 </span>
+                    <span>{{ items.kol.fan_count }}W</span>
+                  </p>
+                </div>
+                <div class="item-text-tag">
+                  <p v-if="items.kol.tags != ''">
+                    {{ items.kol.tags.replace('、', ' | ') }}
+                  </p>
+                  <p v-else>更新中~</p>
+                  <p>
+                    <span>点赞量</span>
+                    <span v-if="items.interact_count != '0.00'">
+                      {{ items.interact_count }}W
+                    </span>
+                    <span v-else> - </span>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </transition>
+          </transition>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -403,5 +410,8 @@ export default {
       height: 410px;
     }
   }
+}
+a {
+  display: block;
 }
 </style>

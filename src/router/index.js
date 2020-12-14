@@ -135,7 +135,7 @@ const routes = [
     component: LoadFail
   },
   {
-    path: '/DetailKuaiShou',
+    path: '/DetailKuaiShou/:_id',
     component: DetailKuaiShou
   },
   {

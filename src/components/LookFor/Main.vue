@@ -1,7 +1,6 @@
 <template>
   <div class="lookfor-main">
-    <div>
-    </div>
+    <div></div>
     <h1>{{ list.length > 0 && list.name }}</h1>
     <div
       class="lookfor-item"
@@ -30,11 +29,14 @@
               <ul v-if="list.tags != ''">
                 <!-- <li>垂类美妆</li>
                 <li>美食</li> -->
-                <li v-for="(item, key) in list.tags.split('、')" :key="key">
+                <li
+                  v-for="(item, key) in list.tags.split('、').slice(0, 2)"
+                  :key="key"
+                >
                   {{ item }}
                 </li>
               </ul>
-              <p v-else>更新中~~~</p>
+              <p v-else>更新中~</p>
               <!-- <span>{{ list.tags }}</span> -->
             </div>
             <div class="content-top-fans">
@@ -69,26 +71,31 @@
         <div class="lookfor-item-content-bottom">
           <div class="item-content-bottom-left">
             <span>
-              网红链接：
               <a
                 :href="list.home_url"
                 target="_blank"
                 v-if="list.home_url != ''"
+                class="item-content-bottom-left-value"
               >
-                {{ list.home_url }}
+                TA的官方链接
               </a>
-              <span v-else>更新中~~~</span>
+              <a
+                href="javascript:;"
+                v-else
+                class="item-content-bottom-left-null"
+              >
+                TA的官方链接
+              </a>
             </span>
             <p v-if="list.introduce != ''">
               {{ list.introduce }}
             </p>
-            <p v-else>更新中~~~</p>
+            <p v-else>更新中~</p>
           </div>
-          <!-- <div class="item-content-bottom-right">找TA推广</div> -->
           <router-link
-            to="/DetailKuaiShou"
-            tag="div"
+            :to="{ path: '/DetailKuaiShou/' + list._id }"
             class="item-content-bottom-right"
+            target="_blank"
             >找TA推广
           </router-link>
         </div>
@@ -334,20 +341,26 @@ export default {
         .item-content-bottom-left {
           width: 523px;
           span {
-            font-weight: 400;
-            color: rgba(120, 120, 120, 0.6);
+            width: 92px;
+            height: 20px;
+            background: #ffffff;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);
+            border-radius: 2px;
+            text-align: center;
             display: block;
-            display: flex;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
             a {
+              font-size: 12px;
               font-weight: 400;
-              color: rgba(120, 120, 120, 0.6);
-              cursor: pointer;
+              line-height: 20px;
+              color: #4c525a;
+              transition: 0.3s;
             }
-            a:hover {
-              color: #0064f9;
+            .item-content-bottom-left-value:hover {
+              color: #cc4b42;
+            }
+            .item-content-bottom-left-null {
+              // pointer-events: none; // 禁用a标签跳转
+              cursor: not-allowed; // 鼠标变成禁止
             }
           }
           p {

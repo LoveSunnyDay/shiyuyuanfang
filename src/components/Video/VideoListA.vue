@@ -24,9 +24,7 @@
               <span>｜</span>
               <span>超火引擎</span>
             </div>
-            <i class="el-icon-time">{{
-              (articles.published_at * 1000) | formatDate
-            }}</i>
+            <i class="el-icon-time">{{ articles.published_at | formatDate }}</i>
           </div>
         </div>
       </router-link>
@@ -56,8 +54,9 @@ export default {
   },
   filters: {
     formatDate(time) {
+      time = time * 1000
       var data = new Date(time)
-      return formatDate(data, 'yyyy-MM-dd')
+      return formatDate(data, 'yyyy-MM-dd hh:mm')
     }
   },
   // 方法集合

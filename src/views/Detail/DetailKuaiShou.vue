@@ -3,7 +3,7 @@
     <Header></Header>
     <Shopping></Shopping>
     <div class="detail-main">
-      <DetailMainTitleKuaiShou></DetailMainTitleKuaiShou>
+      <DetailMainTitleKuaiShou :items="items"></DetailMainTitleKuaiShou>
       <div class="detail-main-data">
         <div class="main-data-left">
           <DetailMainItem></DetailMainItem>
@@ -66,7 +66,10 @@ export default {
   },
   data() {
     // 这里存放数据
-    return {}
+    return {
+      id: null,
+      items: {}
+    }
   },
   // 方法集合
   methods: {},
@@ -81,7 +84,14 @@ export default {
       .setAttribute('style', 'background-color:#F3F3F3')
   },
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    //保存_id
+    this.id = this.$route.params._id
+    //请求接口
+    this.axios.get('/kol/' + this.id).then((res) => {
+      this.items = res.data
+    })
+  },
   // 生命周期 - 挂载之前
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）

@@ -2,7 +2,7 @@
   <div class="article">
     <Header></Header>
     <h1>{{ items.title }}</h1>
-    <span>{{ (items.published_at * 1000) | formatDate }}</span>
+    <span>{{ items.published_at | formatDate }}</span>
     <p v-html="items.body"></p>
   </div>
 </template>
@@ -25,8 +25,9 @@ export default {
   },
   filters: {
     formatDate(time) {
+      time = time * 1000
       var data = new Date(time)
-      return formatDate(data, 'yyyy-MM-dd')
+      return formatDate(data, 'yyyy-MM-dd hh:mm')
     }
   },
   // 方法集合
