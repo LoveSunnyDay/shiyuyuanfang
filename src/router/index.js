@@ -32,7 +32,7 @@ import OpenInvoice from '@/views/MyCenter/OpenInvoice'
 import MyProfile from '@/views/MyCenter/MyProfile'
 import News from '@/views/MyCenter/News'
 import CompanyInformation from '@/views/MyCenter/CompanyInformation'
-import { getUrl, setCookie, getCookie } from '../utils'
+import { getUrl, setCookie } from '../utils'
 
 // const Index = () => import('../components/Index')
 Vue.use(VueRouter)

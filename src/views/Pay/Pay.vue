@@ -71,7 +71,7 @@
             alt=""
             class="pay-qr-sm-zfb"
           />
-          <p>
+          <p @click="goToPay">
             <img src="../../assets/image/pay-zfb.png" alt="" />
             使用支付宝扫码支付
           </p>
@@ -88,9 +88,35 @@
 
 <script>
 import Header from '@/components/Header.vue'
+import {getCookie,checkCookie} from '../../utils/index'
 export default {
   components: {
     Header
+  },
+  methods:{
+   async goToPay(){
+      let token=''
+      if(checkCookie('wx-token')){
+        token=getCookie('wx-token')?.replace(/\"/g, '')
+      }
+      if(checkCookie('phone-token')){
+        token=getCookie('phone-token')?.replace(/\"/g, '')
+      }
+      if(!token) return
+      const params = new FormData()
+      params.append('PaymentType', 1)
+      // 提交订单
+      const { success,data } = await this.axios({
+        method: 'post',
+        url:'/cart/one-step-pay/5?access-token=' +token,
+        data:params,
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
+      const div = document.createElement('div')
+      div.innerHTML = data?.body //此处form就是后台返回接收到的数据
+      document.body.appendChild(div)
+      // document.forms[0].submit()
+    }
   }
 }
 </script>

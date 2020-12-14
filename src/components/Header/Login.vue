@@ -101,7 +101,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 // import wxlogin from 'vue-wxlogin'
-import { getCookie, setCookie } from '../../utils'
+import { getCookie, setCookie,checkCookie } from '../../utils'
 import BindingPhone from './BindingPhone'
 export default {
   // 引入组件
@@ -125,16 +125,17 @@ export default {
     }
   },
   mounted(){ 
-    if(getCookie('avatar_url')!=="undefined"&&!!getCookie('avatar_url')){
+    
+    if(checkCookie('avatar_url')){
       this.avatar_url=JSON.parse(getCookie('avatar_url'))
     }
-    if(getCookie('phone-profile')!=="undefined"&&!!getCookie('phone-profile')){ 
+    if(checkCookie('phone-profile')){ 
       this.avatar_url=JSON.parse(getCookie('phone-profile')).avatar_base_url+"/"+JSON.parse(getCookie('phone-profile')).avatar_path
     }
-    if(getCookie('wx-token')!=="undefined"&&!!getCookie('wx-token')){
+    if(checkCookie('wx-token')){
       this.loginStatus=true
     }
-    if(getCookie('phone-token')!=="undefined"&&!!getCookie('phone-token')){
+    if(checkCookie('phone-token')){
       this.loginStatus=true
     }
   },
@@ -183,7 +184,7 @@ export default {
       console.log('data', data)
       this.openWin(data, '123', 1000, 1000)
       this.pollwxlogin = setInterval(() => {
-        if (getCookie('wx-token')) {
+        if (checkCookie('wx-token')) {
           clearInterval(this.pollwxlogin)
           // window.location.reload()
           // 判断用户是否已经绑定手机号

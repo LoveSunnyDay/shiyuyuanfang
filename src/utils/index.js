@@ -20,14 +20,16 @@ function getCookie(name) {
 	else
 	return null;
 }
-function deleteCookie(name){
-  var date=new Date();
-  date.setTime(date.getTime()-10000);
-  document.cookie=name+'=""; expire="+date.toGMTString()+"; path=/';
+function checkCookie(name){
+	if(getCookie(name) == null || getCookie(name)=="" || getCookie(name)=="null" || typeof(getCookie(name))=="undefined" || getCookie(name)==false || getCookie(name) == undefined){
+		return false;
+	}else{
+		return true;
+	}
 }
 export {
   getUrl,
   setCookie,
   getCookie,
-  deleteCookie
+  checkCookie
 }

@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { getCookie, deleteCookie, setCookie } from '../../utils/index'
+import { getCookie, setCookie } from '../../utils/index'
 export default {
   // 引入组件
   components: {},
