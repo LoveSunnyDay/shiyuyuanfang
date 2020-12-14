@@ -85,11 +85,16 @@
         </router-link>
       </li>
     </ul>
+    <ExpandMore></ExpandMore>
   </div>
 </template>
 
 <script>
+import ExpandMore from '@/components/ExpandMore'
 export default {
+  components:{
+    ExpandMore
+  },
   data() {
     return {
       seen: false,

@@ -10,7 +10,7 @@
       class="login-operation"
     >
       <img
-        :src="avatar_url|| require('../../assets/image/default-icon.png')"
+        :src="avatar_url || require('../../assets/image/default-icon.png')"
         class="login-icon"
       />
       <div class="login-out" v-show="seen" @click="logOut">退出登录</div>
@@ -30,6 +30,7 @@
           <p class="login-title">
             <i class="el-icon-mobile"></i>手机验证码登录
           </p>
+          <p class="login-tips">未注册手机验证通过后，将自动创建账户</p>
           <input
             type="text"
             placeholder="请输入手机号"
@@ -101,7 +102,7 @@
 <script>
 import { mapState, mapMutations } from 'vuex'
 // import wxlogin from 'vue-wxlogin'
-import { getCookie, setCookie,checkCookie } from '../../utils'
+import { getCookie, setCookie, checkCookie } from '../../utils'
 import BindingPhone from './BindingPhone'
 export default {
   // 引入组件
@@ -114,29 +115,31 @@ export default {
       dialogVisible: false,
       loginMode: true,
       showBindPhone: false,
-      loginStatus:false,
+      loginStatus: false,
       phoneNumber: '',
       verifyCode: '',
-      avatar_url:'',
+      avatar_url: '',
       isDisabled: false,
       count: 60,
       timer: null,
       seen: false
     }
   },
-  mounted(){ 
-    
-    if(checkCookie('avatar_url')){
-      this.avatar_url=JSON.parse(getCookie('avatar_url'))
+  mounted() {
+    if (checkCookie('avatar_url')) {
+      this.avatar_url = JSON.parse(getCookie('avatar_url'))
     }
-    if(checkCookie('phone-profile')){ 
-      this.avatar_url=JSON.parse(getCookie('phone-profile')).avatar_base_url+"/"+JSON.parse(getCookie('phone-profile')).avatar_path
+    if (checkCookie('phone-profile')) {
+      this.avatar_url =
+        JSON.parse(getCookie('phone-profile')).avatar_base_url +
+        '/' +
+        JSON.parse(getCookie('phone-profile')).avatar_path
     }
-    if(checkCookie('wx-token')){
-      this.loginStatus=true
+    if (checkCookie('wx-token')) {
+      this.loginStatus = true
     }
-    if(checkCookie('phone-token')){
-      this.loginStatus=true
+    if (checkCookie('phone-token')) {
+      this.loginStatus = true
     }
   },
   // 方法集合
@@ -178,9 +181,7 @@ export default {
       this.setShowLoginDiaolog(true)
     },
     async wxloginClick() {
-      const { data } = await this.axios.get(
-        '/auth/qr_url?authclient=wx'
-      )
+      const { data } = await this.axios.get('/auth/qr_url?authclient=wx')
       console.log('data', data)
       this.openWin(data, '123', 1000, 1000)
       this.pollwxlogin = setInterval(() => {
@@ -218,7 +219,7 @@ export default {
       }
 
       // 发送短信验证码
-      const { success,data } = await this.axios({
+      const { success, data } = await this.axios({
         method: 'post',
         url: '/tool/send_sms',
         data: params,
@@ -226,7 +227,7 @@ export default {
       })
 
       if (!success) {
-        this.$message.error(data?.message||"获取验证码失败！")
+        this.$message.error(data?.message || '获取验证码失败！')
         return false
       }
 
@@ -257,10 +258,10 @@ export default {
       })
 
       if (!success) {
-        this.$message.error(data?.message||"手机号码或者验证码错误。")
+        this.$message.error(data?.message || '手机号码或者验证码错误。')
         return
       }
-      console.log("data",JSON.parse(JSON.stringify(data)))
+      console.log('data', JSON.parse(JSON.stringify(data)))
       const { profile, token, user } = data || {}
       setCookie(
         'phone-token',
@@ -289,18 +290,18 @@ export default {
     mouseLeave() {
       this.seen = false
     },
-    logOut(){
+    logOut() {
       //退出登录，清除cookie
-      setCookie( 'phone-token','',window.location.hostname,-1)
-      setCookie( 'wx-token','',window.location.hostname,-1)
+      setCookie('phone-token', '', window.location.hostname, -1)
+      setCookie('wx-token', '', window.location.hostname, -1)
 
-      setCookie( 'user','',window.location.hostname,-1)
-      setCookie( 'phone-user','',window.location.hostname,-1)
+      setCookie('user', '', window.location.hostname, -1)
+      setCookie('phone-user', '', window.location.hostname, -1)
 
-      setCookie( 'profile','',window.location.hostname,-1)
-      setCookie( 'phone-profile','',window.location.hostname,-1)
+      setCookie('profile', '', window.location.hostname, -1)
+      setCookie('phone-profile', '', window.location.hostname, -1)
 
-      setCookie( 'avatar_url','',window.location.hostname,-1)
+      setCookie('avatar_url', '', window.location.hostname, -1)
       window.location.reload()
     }
   },
@@ -392,7 +393,14 @@ export default {
       font-size: 24px;
       font-weight: 500;
       color: #1a1a1a;
-      margin-top: 28px;
+      margin: 28px 0 12px;
+    }
+    .login-tisp {
+      height: 20px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: #8e8f8e;
     }
     .login-input-phone {
       width: 248px;
@@ -429,7 +437,7 @@ export default {
       font-weight: 600;
       border-radius: 19px;
       position: absolute;
-      top: 114px;
+      top: 140px;
       right: 87px;
       outline: none;
       cursor: pointer;
