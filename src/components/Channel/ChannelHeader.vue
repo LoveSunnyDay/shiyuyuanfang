@@ -51,9 +51,9 @@ export default {
   line-height: 93px;
   padding-left: 32px;
   img {
-    width: 176px;
-    height: 54px;
-    margin-top: 20px;
+    width: 190px;
+    height: 45px;
+    margin-top: 25px;
   }
   p {
     font-size: 18px;
