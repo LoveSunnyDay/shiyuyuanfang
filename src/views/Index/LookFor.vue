@@ -96,7 +96,7 @@ export default {
       }
     },
     async query() {
-      const data = await LookForHandel()
+      const data = await LookForHandel(this.$route.query.category_id)
       this.list = data.data.data.items
     },
     platoptionsClick(index, id) {
