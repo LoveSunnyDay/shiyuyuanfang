@@ -16,8 +16,15 @@
           </div>
           <div class="left-main-item">
             <div class="main-item-name">
+              <img
+                :src="
+                  list.plat.thumbnail_base_url + '/' + list.plat.thumbnail_path
+                "
+                alt=""
+              />
+              <p class="main-item-name-xian"></p>
               <p>{{ list.nickname }}</p>
-              <ul>
+              <ul v-if="list.tags != ''">
                 <li v-for="(item, key) in list.tags.split('、')" :key="key">
                   {{ item }}
                 </li>
@@ -27,10 +34,11 @@
                 <li>音乐</li>
                 <li>上海地区</li> -->
               </ul>
+              <p class="main-item-name-null" v-else>更新中</p>
             </div>
             <div class="main-item-case">
               <p>案例：</p>
-              <ul>
+              <ul v-if="list.cases != ''">
                 <li>{{ list.cases.replace('、', ' / ') }}</li>
                 <!-- <li>/</li>
                 <li>比亚迪</li>
@@ -39,15 +47,23 @@
                 <li>/</li>
                 <li>五菱</li> -->
               </ul>
+              <p v-else>更新中</p>
             </div>
-            <p class="main-item-text">
+            <p class="main-item-text" v-if="list.introduce != ''">
               {{ list.introduce }}
             </p>
-
+            <p class="main-item-text" v-else>更新中</p>
             <p class="main-item-url">
-              访问TA的链接：
-              <a :href="list.home_url" target="_blank">
-                {{ list.home_url }}
+              <a
+                :href="list.home_url"
+                target="_blank"
+                v-if="list.home_url != ''"
+                class="main-item-url-value"
+              >
+                TA的官方链接
+              </a>
+              <a href="javascript:;" v-else class="main-item-url-null">
+                TA的官方链接
               </a>
             </p>
           </div>
@@ -61,27 +77,22 @@
           </li>
         </ul>
         <!-- <button>找TA推广</button> -->
-        <!-- <button> -->
-          <router-link
-            :to="{ path: '/DetailKuaiShou/' + list._id }"
-            class="list-right-button"
-            target="_blank"
-            >找TA推广
-          </router-link>
-        <!-- </button> -->
+        <router-link
+          :to="{ path: '/DetailKuaiShou/' + list._id }"
+          class="list-right-button"
+          target="_blank"
+          >找TA推广
+        </router-link>
       </div>
     </div>
-    <ExpandMore
-      :isLastPage="isLastPage"
-      @expandMore="expandMore"
-    />
+    <ExpandMore :isLastPage="isLastPage" @expandMore="expandMore" />
   </div>
 </template>
 
 <script>
 import ExpandMore from '@/components/ExpandMore'
 export default {
-  components:{
+  components: {
     ExpandMore
   },
   props: {
@@ -149,18 +160,29 @@ export default {
         position: relative;
         .main-item-name {
           display: flex;
+          img {
+            width: 30px;
+            height: 30px;
+          }
+          .main-item-name-xian {
+            width: 2px;
+            background: #b9b9b9;
+            margin: 0 10px;
+          }
           p {
             font-size: 20px;
             font-weight: 800;
             color: #1a1a1a;
+            line-height: 30px;
           }
           ul {
             display: flex;
+            margin-top: 6px;
             li {
               font-size: 14px;
               font-weight: 500;
-              height: 24px;
-              line-height: 24px;
+              height: 20px;
+              line-height: 20px;
               border-radius: 18px;
               padding: 0 12px;
               margin-left: 10px;
@@ -189,6 +211,12 @@ export default {
               background-color: #fceeca;
               color: #d97f19;
             }
+          }
+          .main-item-name-null {
+            margin-left: 20px;
+            font-size: 14px;
+            line-height: 30px;
+            font-weight: 400;
           }
         }
         .main-item-case {
@@ -220,25 +248,28 @@ export default {
           margin-top: 14px;
         }
         .main-item-url {
-          font-size: 12px;
-          font-weight: 400;
-          color: #4c525a;
-          width: 449px;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
           position: absolute;
-          bottom: 10px;
+          bottom: 6px;
           left: 0;
+          width: 92px;
+          height: 20px;
+          background: #ffffff;
+          box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.16);
+          border-radius: 2px;
+          text-align: center;
           a {
             font-size: 12px;
             font-weight: 400;
+            line-height: 20px;
             color: #4c525a;
-            margin-top: 20px;
-            cursor: pointer;
+            transition: 0.3s;
           }
-          a:hover {
-            color: #0064f9;
+          .main-item-url-value:hover {
+            color: #cc4b42;
+          }
+          .main-item-url-null {
+            // pointer-events: none; // 禁用a标签跳转
+            cursor: not-allowed; // 鼠标变成禁止
           }
         }
       }

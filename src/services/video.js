@@ -6,9 +6,9 @@ export function ContentList() {
 }
 
 // 跳转kol分类详情页
-export function LookForHandel(category_id,plat_id) {
-  const plat_idString=plat_id?`&plat_id=${plat_id}`:''
-  const category_idString=category_id?`&category_id=${category_id}`:''
+export function LookForHandel(category_id, plat_id) {
+  const plat_idString = plat_id ? `&plat_id=${plat_id}` : ''
+  const category_idString = category_id ? `&category_id=${category_id}` : ''
   return axios.get(`https://api.hiifire.com/v1/kol?recommend=1${category_idString}${plat_idString}`)
 }
 
