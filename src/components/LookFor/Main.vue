@@ -29,7 +29,10 @@
               <ul v-if="list.tags != ''">
                 <!-- <li>垂类美妆</li>
                 <li>美食</li> -->
-                <li v-for="(item, key) in list.tags.split('、')" :key="key">
+                <li
+                  v-for="(item, key) in list.tags.split('、').slice(0, 2)"
+                  :key="key"
+                >
                   {{ item }}
                 </li>
               </ul>
