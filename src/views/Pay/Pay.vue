@@ -115,7 +115,7 @@ export default {
       const div = document.createElement('div')
       div.innerHTML = data?.body //此处form就是后台返回接收到的数据
       document.body.appendChild(div)
-      // document.forms[0].submit()
+      document.forms[0].submit()
     }
   }
 }
