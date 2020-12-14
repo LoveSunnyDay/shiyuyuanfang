@@ -105,8 +105,8 @@ export default {
     line-height: 72px;
     margin-left: 32px;
     img {
-      width: 166px;
-      height: 44px;
+      width: 190px;
+      height: 45px;
       margin-top: 14px;
     }
     p:hover {
