@@ -40,10 +40,12 @@
       <div class="synopsis-jj">
         <div class="synopsis-jj-text">
           <p>简介：</p>
-          <p>
+          <!-- <p>
             “美妆博主里最温柔的少女”温柔标专业知识，虏获800w+粉丝有
             众多大牌合作背景,有众多线下品牌活动经验。
-          </p>
+          </p> -->
+          <p v-if="items.introduce != ''">{{ items.introduce }}</p>
+          <p v-else>更新中~~~</p>
         </div>
         <div class="synopsis-jj-tag">
           <!-- <span>垂类美妆</span>
