@@ -85,25 +85,37 @@
         </router-link>
       </li>
     </ul>
+    <ExpandMore :isLastPage="isLastPage" @expandMore="expandMore"></ExpandMore>
   </div>
 </template>
 
 <script>
+import ExpandMore from '@/components/ExpandMore'
 export default {
+  components: {
+    ExpandMore
+  },
   data() {
     return {
       seen: false,
       item: [],
       current: 0,
-      dialogVisible: false
+      dialogVisible: false,
+      page: 1,
+      pageCount: '',
+      isLastPage: false
     }
   },
-  created() {
-    // 全部KOL分类列表
-    this.axios.get('/kol-plat?plat_id=4').then((res) => {
-      // console.log(res.data.items)
-      this.item = res.data.items
-    })
+  created() {},
+  // watch: {
+  //   handler() {
+  //     this.page = 1
+  //     this.isLastPage = false
+  //     this.queryKol()
+  //   }
+  // },
+  mounted() {
+    this.queryKol()
   },
   methods: {
     mouseOver(index) {
@@ -113,6 +125,24 @@ export default {
     mouseLeave(index) {
       this.seen = false
       this.current = null
+    },
+    queryKol() {
+      // 全部KOL分类列表
+      this.axios.get('/kol-plat?plat_id=4&page=' + this.page).then((res) => {
+        // this.item = res.data.items
+        this.pageCount = res.data._meta.pageCount
+        this.item = this.item.concat(res.data.items) //点击加载更多，不清空老数据，拼接老数据
+      })
+    },
+    expandMore() {
+      console.log('this.pageCount', this.pageCount)
+      console.log('this.page', this.page)
+      if (this.page < this.pageCount) {
+        this.page += 1
+        this.queryKol()
+      } else {
+        this.isLastPage = true
+      }
     }
   }
 }
@@ -408,6 +438,1166 @@ export default {
       height: auto;
       width: 265px;
       height: 410px;
+    }
+  }
+  .masonry-item:nth-child(21) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 380px;
+    }
+  }
+  .masonry-item:nth-child(22) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(23) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(24) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 400px;
+    }
+  }
+  .masonry-item:nth-child(25) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 340px;
+    }
+  }
+  .masonry-item:nth-child(26) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(27) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(28) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(29) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 320px;
+    }
+  }
+  .masonry-item:nth-child(30) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 380px;
+    }
+  }
+  .masonry-item:nth-child(31) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(32) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(33) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 340px;
+    }
+  }
+  .masonry-item:nth-child(34) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 370px;
+    }
+  }
+  .masonry-item:nth-child(35) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 400px;
+    }
+  }
+  .masonry-item:nth-child(36) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(37) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 340px;
+    }
+  }
+  .masonry-item:nth-child(38) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(39) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 380px;
+    }
+  }
+  .masonry-item:nth-child(40) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(41) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(42) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 400px;
+    }
+  }
+  .masonry-item:nth-child(43) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(44) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 370px;
+    }
+  }
+  .masonry-item:nth-child(45) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(46) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 320px;
+    }
+  }
+  .masonry-item:nth-child(47) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(48) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(49) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(50) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(51) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 370px;
+    }
+  }
+  .masonry-item:nth-child(52) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(53) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(54) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 320px;
+    }
+  }
+  .masonry-item:nth-child(55) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(56) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 370px;
+    }
+  }
+  .masonry-item:nth-child(57) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(58) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(59) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(60) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(61) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(62) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 380px;
+    }
+  }
+  .masonry-item:nth-child(63) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(64) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(65) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 400px;
+    }
+  }
+  .masonry-item:nth-child(66) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 340px;
+    }
+  }
+  .masonry-item:nth-child(67) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(68) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(69) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(70) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 320px;
+    }
+  }
+  .masonry-item:nth-child(71) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 380px;
+    }
+  }
+  .masonry-item:nth-child(72) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(73) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(74) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 340px;
+    }
+  }
+  .masonry-item:nth-child(75) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 370px;
+    }
+  }
+  .masonry-item:nth-child(76) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 400px;
+    }
+  }
+  .masonry-item:nth-child(77) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(78) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 340px;
+    }
+  }
+  .masonry-item:nth-child(79) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(80) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 380px;
+    }
+  }
+  .masonry-item:nth-child(81) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(82) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(83) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 400px;
+    }
+  }
+  .masonry-item:nth-child(84) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(85) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 370px;
+    }
+  }
+  .masonry-item:nth-child(86) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(87) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 320px;
+    }
+  }
+  .masonry-item:nth-child(88) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(89) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(90) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(91) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(92) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 370px;
+    }
+  }
+  .masonry-item:nth-child(93) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(94) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(95) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 320px;
+    }
+  }
+  .masonry-item:nth-child(96) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(97) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 370px;
+    }
+  }
+  .masonry-item:nth-child(98) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(99) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(100) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(101) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(102) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(103) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 380px;
+    }
+  }
+  .masonry-item:nth-child(104) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(105) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(106) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 400px;
+    }
+  }
+  .masonry-item:nth-child(107) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 340px;
+    }
+  }
+  .masonry-item:nth-child(108) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(109) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(110) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(111) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 320px;
+    }
+  }
+  .masonry-item:nth-child(112) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 380px;
+    }
+  }
+  .masonry-item:nth-child(113) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(114) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(115) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 340px;
+    }
+  }
+  .masonry-item:nth-child(116) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 370px;
+    }
+  }
+  .masonry-item:nth-child(117) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 400px;
+    }
+  }
+  .masonry-item:nth-child(118) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(119) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 340px;
+    }
+  }
+  .masonry-item:nth-child(120) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(121) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 380px;
+    }
+  }
+  .masonry-item:nth-child(122) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(123) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(124) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 400px;
+    }
+  }
+  .masonry-item:nth-child(125) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(126) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 370px;
+    }
+  }
+  .masonry-item:nth-child(127) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(128) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 320px;
+    }
+  }
+  .masonry-item:nth-child(129) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(130) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(131) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(132) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(133) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 370px;
+    }
+  }
+  .masonry-item:nth-child(134) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(135) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(136) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 320px;
+    }
+  }
+  .masonry-item:nth-child(137) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(138) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 370px;
+    }
+  }
+  .masonry-item:nth-child(139) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(140) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(141) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(142) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(143) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(144) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 380px;
+    }
+  }
+  .masonry-item:nth-child(145) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(146) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(147) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 400px;
+    }
+  }
+  .masonry-item:nth-child(148) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 340px;
+    }
+  }
+  .masonry-item:nth-child(149) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(150) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(151) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 360px;
+    }
+  }
+  .masonry-item:nth-child(152) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 320px;
+    }
+  }
+  .masonry-item:nth-child(153) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 380px;
+    }
+  }
+  .masonry-item:nth-child(154) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(155) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(156) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 340px;
+    }
+  }
+  .masonry-item:nth-child(157) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 370px;
+    }
+  }
+  .masonry-item:nth-child(158) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 400px;
+    }
+  }
+  .masonry-item:nth-child(159) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 390px;
+    }
+  }
+  .masonry-item:nth-child(160) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 340px;
+    }
+  }
+  .masonry-item:nth-child(161) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 330px;
+    }
+  }
+  .masonry-item:nth-child(162) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 380px;
+    }
+  }
+  .masonry-item:nth-child(163) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 410px;
+    }
+  }
+  .masonry-item:nth-child(164) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 350px;
+    }
+  }
+  .masonry-item:nth-child(165) {
+    img {
+      display: block;
+      height: auto;
+      width: 265px;
+      height: 400px;
     }
   }
 }

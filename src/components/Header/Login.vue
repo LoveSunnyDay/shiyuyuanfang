@@ -569,7 +569,7 @@ export default {
   font-weight: 600;
   border-radius: 19px;
   position: absolute;
-  top: 114px;
+  top: 140px;
   right: 87px;
   outline: none;
   cursor: pointer;

@@ -13,6 +13,7 @@
               <p class="login-title">
                 <i class="el-icon-mobile"></i>手机验证码登录
               </p>
+              <p class="login-tips">未注册手机验证通过后，将自动创建账户</p>
               <input
                 type="text"
                 placeholder="请输入手机号"
@@ -217,7 +218,14 @@ export default {
               font-size: 24px;
               font-weight: 500;
               color: #1a1a1a;
-              margin-top: 28px;
+              margin: 28px 0 12px;
+            }
+            .login-tips {
+              height: 20px;
+              font-size: 14px;
+              font-weight: 400;
+              line-height: 20px;
+              color: #8e8f8e;
             }
             .login-input-phone {
               width: 248px;
@@ -256,7 +264,7 @@ export default {
               font-weight: 600;
               border-radius: 19px;
               position: absolute;
-              top: 114px;
+              top: 146px;
               right: 87px;
               outline: none;
               cursor: pointer;

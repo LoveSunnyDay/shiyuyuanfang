@@ -17,26 +17,25 @@
         <i class="el-icon-close" @click="drawer = false"></i>
       </p>
       <div class="drawer-have">
-        <ul class="drawer-item" v-for="item in 5" :key="item">
+        <ul class="drawer-item" v-for="item in 10" :key="item">
           <li class="drawer-details">
             <i class="el-icon-circle-close"></i>
             <div class="drawer-box">
               <img
                 src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3570507390,331748755&fm=26&gp=0.jpg"
+                class="drawer-box-icon"
               />
               <ul>
-                <li>
+                <li class="drawer-box-name">
+                  <img src="../assets/image/show/douyin.png" alt="" />
+                  <p>|</p>
                   <span>[一条小团团]</span>
-                  <span>粉丝：45万</span>
+                  <span>粉丝:9999.99万</span>
                 </li>
-                <li>案例:奥迪/比亚迪/哈佛/五菱</li>
-                <li>
-                  <p>剧情</p>
-                  <p>搞笑</p>
-                  <p>颜值</p>
-                  <p>音乐</p>
+                <li class="drawer-box-case">
+                  案例：奥迪 / 比亚迪 / 哈佛 / 五菱
                 </li>
-                <li>
+                <li class="drawer-box-price">
                   <span>直播2小时</span>
                   <span>￥3600</span>
                 </li>
@@ -58,7 +57,9 @@
             </div>
           </div>
           <div class="drawer-btn">
-            <button @click="dialogVisible = true">联系客服</button>
+            <button @click="dialogVisible = true" class="drawer-btn-service">
+              联系客服
+            </button>
             <el-dialog
               title="联系超火引擎"
               :visible.sync="dialogVisible"
@@ -68,7 +69,9 @@
               <img src="~assets/image/service.png" alt="" />
             </el-dialog>
             <!-- <button>立即推广</button> -->
-            <router-link to="/pay" tag="button">立即推广</router-link>
+            <router-link to="/pay" tag="button" class="drawer-btn-promotion">
+              立即推广
+            </router-link>
           </div>
         </div>
       </div>
@@ -191,7 +194,6 @@ export default {
         height: 158px;
         border-bottom: 1px solid rgba(112, 112, 112, 0.2);
         .drawer-details:hover .el-icon-circle-close {
-          transition: 0.5s;
           opacity: 1;
         }
         .drawer-details {
@@ -201,38 +203,45 @@ export default {
             cursor: pointer;
             margin: 8px 0 10px 0;
             opacity: 0;
+            transition: 0.5s;
           }
           .drawer-box {
             display: flex;
-            img {
+            .drawer-box-icon {
               width: 50px;
-              height: 70px;
+              height: 50px;
               border-radius: 4px;
             }
             ul {
               margin-left: 8px;
+              width: 254px;
               li {
                 font-size: 14px;
                 color: #9f9f9f;
-                line-height: 22px;
+                line-height: 20px;
               }
-              li:nth-child(1) {
-                font-weight: bold;
+              .drawer-box-name {
+                font-weight: 900;
                 color: #232a34;
-              }
-              li:nth-child(3) {
                 display: flex;
+                margin-bottom: 10px;
+                img {
+                  width: 20px;
+                  height: 20px;
+                  vertical-align: middle;
+                }
                 p {
-                  width: 52px;
-                  height: 24px;
-                  background: #f4f4f4;
-                  border-radius: 18px;
-                  text-align: center;
-                  line-height: 24px;
-                  margin-right: 2px;
+                  margin: 0 8px;
+                }
+                span:nth-child(3) {
+                  // margin-right: 10px;
+                  width: 85px;
+                  overflow: hidden; //超出文本隐藏
+                  white-space: nowrap; //溢出不换行
+                  text-overflow: ellipsis; //溢出省略号显示
                 }
               }
-              li:nth-child(4) {
+              .drawer-box-price {
                 margin-top: 20px;
                 display: flex;
                 justify-content: flex-end;
@@ -310,7 +319,7 @@ export default {
       .drawer-btn {
         margin: 20px 0;
         text-align: center;
-        button:nth-child(1) {
+        .drawer-btn-service {
           width: 144px;
           height: 44px;
           border: 1px #f79220 solid;
@@ -322,8 +331,13 @@ export default {
           font-weight: bold;
           margin-right: 10px;
           cursor: pointer;
+          transition: 0.5s;
         }
-        button:nth-child(3) {
+        .drawer-btn-service:hover {
+          border: 1px solid #e88311;
+          color: #e88311;
+        }
+        .drawer-btn-promotion {
           width: 144px;
           height: 44px;
           border-radius: 4px;
@@ -334,6 +348,11 @@ export default {
           font-weight: bold;
           border: 0;
           cursor: pointer;
+          transition: 0.5s;
+        }
+        .drawer-btn-promotion:hover {
+          background: #e88311;
+          color: #fff4ec;
         }
         img {
           width: 200px;
