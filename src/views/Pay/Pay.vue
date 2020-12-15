@@ -14,24 +14,24 @@
           <p>服务类型</p>
           <p>操作</p>
         </div>
-        <ul class="content-item" v-for="item in 3" :key="item">
+        <ul class="content-item" v-for="item in cartList.products" :key="item.id">
           <li class="content-item-icon">
             <img
-              src="https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=117012763,3643643580&fm=26&gp=0.jpg"
+              :src="item.avatar||'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=117012763,3643643580&fm=26&gp=0.jpg'"
             />
             <ul class="content-main">
               <li class="main-name">
                 <img src="@/assets/image/show/douyin.png" class="main-icon" />
                 <p>|</p>
-                <p>[一条小团团]</p>
+                <p>{{item.nickname}}</p>
               </li>
-              <li>案例：奥迪 / 比亚迪 / 哈佛 / 五菱</li>
-              <li>粉丝：45万</li>
+              <li>案例：{{item.cases.replace(/、/g,' / ')}}</li>
+              <li>粉丝：{{item.fan_count}}万</li>
             </ul>
           </li>
-          <li class="content-item-price">￥3600.00元</li>
-          <li class="content-item-type">直播2小时</li>
-          <li class="content-item-del"><span>删除</span></li>
+          <li class="content-item-price">￥{{item.price}}元</li>
+          <li class="content-item-type">{{item.name}}</li>
+          <li class="content-item-del" @click="delProduct(item.order_item_id)"><span>删除</span></li>
         </ul>
         <div class="pay-order-price">
           <!-- <ul>
@@ -42,9 +42,9 @@
             </li>
             <li>商品总价：<span>￥1999元</span></li>
           </ul> -->
-          <p class="pay-order-price-gross">商品总量：2件</p>
-          <p class="pay-order-price-fee">平台服务费：0元</p>
-          <p class="pay-order-price-cost">应付金额：<span>3800</span>元</p>
+          <p class="pay-order-price-gross">商品总量：{{cartList.itemsCount}}件</p>
+          <!-- <p class="pay-order-price-fee">平台服务费：0元</p> -->
+          <p class="pay-order-price-cost">应付金额：<span>{{cartList.totalPrice}}</span>元</p>
           <p>
             <button @click="goToPay">支付宝支付</button>
           </p>
@@ -98,20 +98,34 @@
 <script>
 import Header from '@/components/Header.vue'
 import { getCookie, checkCookie } from '../../utils/index'
+import { mapMutations } from 'vuex'
 export default {
   components: {
     Header
   },
+  data() {
+    return {
+      token: '',
+      cartList:[]
+
+    }
+  },
+  mounted() {
+    if (checkCookie('wx-token')) {
+      this.token = getCookie('wx-token')?.replace(/\"/g, '')
+    }
+    if (checkCookie('phone-token')) {
+      this.token = getCookie('phone-token')?.replace(/\"/g, '')
+    }
+    this.getCartList()
+  },
   methods: {
+    ...mapMutations('login', ['setShowLoginDiaolog']),
     async goToPay() {
-      let token = ''
-      if (checkCookie('wx-token')) {
-        token = getCookie('wx-token')?.replace(/\"/g, '')
+      if (!this.token) {
+        this.setShowLoginDiaolog(true)
+        return
       }
-      if (checkCookie('phone-token')) {
-        token = getCookie('phone-token')?.replace(/\"/g, '')
-      }
-      if (!token) return
       const params = new FormData()
       params.append('PaymentType', 1)
       // 提交订单
@@ -125,6 +139,19 @@ export default {
       div.innerHTML = data?.body //此处form就是后台返回接收到的数据
       document.body.appendChild(div)
       document.forms[0].submit()
+    },
+   async getCartList() {
+      const {success,data} = await this.axios.get(`/cart?access-token=${this.token}`)
+      this.cartList=data
+      console.log("data",data)
+    },
+    async delProduct(id){
+      const {success,data}=await this.axios({url:`/cart/${id}?access-token=${this.token}`,method:'post'})
+      if(success){
+        this.getCartList()
+      }else{
+        this.$message.error(data?.message||"删除失败！")
+      }
     }
   }
 }
@@ -223,6 +250,9 @@ export default {
               font-size: 14px;
               color: #9f9f9f;
               line-height: 34px;
+              white-space: nowrap;
+              width: 300px;
+              overflow: auto;
             }
             li:nth-child(3) {
               font-size: 14px;
