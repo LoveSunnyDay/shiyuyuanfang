@@ -71,17 +71,22 @@
       </div>
       <div class="list-right">
         <ul>
-          <li v-for="list in list.products" :key="list.id">
+          <li
+            v-for="list in list.products"
+            :key="list.id"
+            :class="{ optionsActive: price_type_id === list._id }"
+            @click="priceoptionsClick(list._id)"
+          >
             <p>{{ list.name }}</p>
             <p>￥{{ list.price }}</p>
           </li>
         </ul>
         <!-- <button>找TA推广</button> -->
         <router-link
-          :to="{ path: '/DetailKuaiShou/' + list._id }"
+          :to="{ path: '/Pay/' + list._id }"
           class="list-right-button"
           target="_blank"
-          >找TA推广
+          ><p @click="addCart(price_type_id)">找TA推广</p>
         </router-link>
       </div>
     </div>
@@ -91,6 +96,8 @@
 
 <script>
 import ExpandMore from '@/components/ExpandMore'
+import { getCookie, checkCookie } from '../../utils/index'
+import { mapMutations } from 'vuex'
 export default {
   components: {
     ExpandMore
@@ -110,11 +117,39 @@ export default {
     }
   },
   data() {
-    return {}
+    return {
+      price_type_id: ''
+    }
   },
   methods: {
+    ...mapMutations('login', ['setShowLoginDiaolog']),
     expandMore() {
       this.$emit('expandMore')
+    },
+    priceoptionsClick(id) {
+      this.price_type_id = id
+    },
+    async addCart(id) {
+      let token = ''
+      if (checkCookie('wx-token')) {
+        token = getCookie('wx-token')?.replace(/\"/g, '')
+      }
+      if (checkCookie('phone-token')) {
+        token = getCookie('phone-token')?.replace(/\"/g, '')
+      }
+      if (!token) {
+        this.setShowLoginDiaolog(true)
+        return
+      }
+      const params = new FormData()
+      params.append('products[1][id]', id)
+      params.append('products[1][quantity]', 1)
+      const { success, data } = await this.axios({
+        method: 'post',
+        url: '/cart/add?access-token=' + token,
+        data: params,
+        headers: { 'Content-Type': 'multipart/form-data' }
+      })
     }
   },
   created() {}
@@ -340,6 +375,9 @@ export default {
       transition: 0.5s;
       background-color: #e36713;
       color: #ffd7c2;
+    }
+    .optionsActive {
+      background: #e8e8e8 !important;
     }
   }
 }
