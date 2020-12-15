@@ -70,7 +70,7 @@
         </div>
       </div>
       <div class="list-right">
-        <ul>
+        <ul class="shake">
           <li v-for="list in list.products" :key="list.id">
             <p>{{ list.name }}</p>
             <p>￥{{ list.price }}</p>
@@ -278,6 +278,7 @@ export default {
   .list-right {
     margin: 21px 40px 0 0;
     position: relative;
+   
     ul {
       width: 324px;
       display: flex;
@@ -318,6 +319,16 @@ export default {
       li:nth-child(4) {
         margin-left: 0;
       }
+    }
+    @keyframes shake { /* 水平抖动，核心代码 */
+      10%, 90% { transform: translate3d(-1px, 0, 0); }
+      20%, 80% { transform: translate3d(+2px, 0, 0); }
+      30%, 70% { transform: translate3d(-4px, 0, 0); }
+      40%, 60% { transform: translate3d(+4px, 0, 0); }
+      50% { transform: translate3d(-4px, 0, 0); }
+    }
+    .shake:hover {
+      animation: shake 800ms ease-in-out;
     }
     .list-right-button {
       width: 208px;
