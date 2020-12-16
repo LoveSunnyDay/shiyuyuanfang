@@ -70,11 +70,11 @@
         </div>
       </div>
       <div class="list-right">
-        <ul class="shake">
+        <ul :class="{shake:shake&&listId===list._id}">
           <li 
            v-for="list in list.products" 
            :key="list.id"
-           :class="{ optionsActive: price_type_id === list._id }"
+           :class="{ optionsActive: productId === list._id }"
             @click="priceoptionsClick(list._id)"
            >
             <p>{{ list.name }}</p>
@@ -82,12 +82,8 @@
           </li>
         </ul>
         <!-- <button>找TA推广</button> -->
-        <router-link
-          :to="{ path: '/Pay/' + list._id }"
-          class="list-right-button"
-          target="_blank"
-          ><p @click="addCart(price_type_id)">找TA推广</p>
-        </router-link>
+       <p class="list-right-button" @click="addCart(productId,list._id)">找TA推广</p>
+       
       </div>
     </div>
     <ExpandMore :isLastPage="isLastPage" @expandMore="expandMore" />
@@ -118,7 +114,9 @@ export default {
   },
   data() {
     return {
-      price_type_id: ''
+      productId: '',
+      shake:false,
+      listId:''
     }
   },
   methods: {
@@ -126,10 +124,18 @@ export default {
     expandMore() {
       this.$emit('expandMore')
     },
-    priceoptionsClick(id) {
-      this.price_type_id = id
+    priceoptionsClick(productId) {
+      this.productId = productId
     },
-    async addCart(id) {
+    async addCart(productId,listId) {
+      this.listId=listId
+      if(!this.productId){
+        this.shake=true
+        setTimeout(()=>{
+          this.shake=false
+        },500)
+        return
+      }
       let token = ''
       if (checkCookie('wx-token')) {
         token = getCookie('wx-token')?.replace(/\"/g, '')
@@ -142,7 +148,7 @@ export default {
         return
       }
       const params = new FormData()
-      params.append('products[1][id]', id)
+      params.append('products[1][id]', productId)
       params.append('products[1][quantity]', 1)
       const { success, data } = await this.axios({
         method: 'post',
@@ -361,7 +367,7 @@ export default {
       40%, 60% { transform: translate3d(+4px, 0, 0); }
       50% { transform: translate3d(-4px, 0, 0); }
     }
-    .shake:hover {
+    .shake {
       animation: shake 800ms ease-in-out;
     }
     .list-right-button {
