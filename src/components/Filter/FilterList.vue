@@ -156,6 +156,11 @@ export default {
         data: params,
         headers: { 'Content-Type': 'multipart/form-data' }
       })
+      if(success){
+        this.$router.push('/Pay')
+      }else{
+        this.$message.error(data?.message||"加入购物车失败！")
+      }
     }
   },
   created() {}
