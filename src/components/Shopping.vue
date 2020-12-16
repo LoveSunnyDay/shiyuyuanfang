@@ -3,7 +3,7 @@
     <div class="shopping-order" @click="drawer = true">
       <img src="../assets/image/shopping-cart.png" alt="" />
       <p>我的订单</p>
-      <span>3</span>
+      <span>{{ cartList.itemsCount }}</span>
     </div>
     <el-drawer
       :visible.sync="drawer"
@@ -17,27 +17,41 @@
         <i class="el-icon-close" @click="drawer = false"></i>
       </p>
       <div class="drawer-have">
-        <ul class="drawer-item" v-for="item in 10" :key="item">
+        <ul
+          class="drawer-item"
+          v-for="item in cartList.products"
+          :key="item.id"
+        >
           <li class="drawer-details">
-            <i class="el-icon-circle-close"></i>
+            <i class="el-icon-circle-close" @click="deleteProduct(item.order_item_id)"></i>
             <div class="drawer-box">
               <img
-                src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3570507390,331748755&fm=26&gp=0.jpg"
+                :src="
+                  item.avatar ||
+                  'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=117012763,3643643580&fm=26&gp=0.jpg'
+                "
                 class="drawer-box-icon"
               />
               <ul>
+                <!-- <li
+                  v-for="(item, index) in platoptions"
+                  :key="index"
+                  class="drawer-box-name"
+                >
+                  <img
+                    :src="item.thumbnail_base_url + '/' + item.thumbnail_path"
+                    alt=""
+                  /> -->
                 <li class="drawer-box-name">
                   <img src="../assets/image/show/douyin.png" alt="" />
                   <p>|</p>
-                  <span>[一条小团团]</span>
-                  <span>粉丝:9999.99万</span>
+                  <span>{{ item.nickname }}</span>
+                  <span>粉丝:{{ item.fan_count }}万</span>
                 </li>
-                <li class="drawer-box-case">
-                  案例：奥迪 / 比亚迪 / 哈佛 / 五菱
-                </li>
+                <li class="drawer-box-case">案例：{{ item.cases }}</li>
                 <li class="drawer-box-price">
-                  <span>直播2小时</span>
-                  <span>￥3600</span>
+                  <span>{{ item.name }}</span>
+                  <span>￥{{ item.price }}</span>
                 </li>
               </ul>
             </div>
@@ -45,15 +59,19 @@
         </ul>
         <div class="drawer-botton">
           <div class="drawer-all">
-            <p>共选<span>3</span>个网红</p>
-            <p>共计：<span>￥3600</span></p>
+            <p>
+              共选<span>{{ cartList.itemsCount }}</span
+              >个网红
+            </p>
+            <p>
+              共计：<span>￥{{ cartList.totalPrice }}</span>
+            </p>
           </div>
           <div class="drawer-money">
             <p class="drawer-money-title">费用明细：</p>
             <div>
-              <p>超火平台：<span>35000.00元</span></p>
-              <p>星图费：<span>35000.00元</span></p>
-              <p>超火平台：<span>35000.00元</span></p>
+              <p>网红服务购买费用：<span>{{ cartList.totalPrice }}元</span></p>
+              <p>平台手续费：<span>0.00元</span></p>
             </div>
           </div>
           <div class="drawer-btn">
@@ -88,6 +106,7 @@
 </template>
 
 <script>
+import { getCookie, checkCookie } from '../utils/index'
 export default {
   // 引入组件
   components: {},
@@ -96,11 +115,37 @@ export default {
     return {
       drawer: false,
       size: '354px',
-      dialogVisible: false
+      dialogVisible: false,
+      platoptions: [],
+      cartList: [],
+      token: ''
     }
   },
   // 方法集合
-  methods: {},
+  methods: {
+    async getCartList() {
+      const { success, data } = await this.axios.get(
+        `/cart?access-token=${this.token}`
+      )
+      this.cartList = data
+      console.log('cartlist', data)
+    },
+    async deleteProduct(id) {
+      const { success, data } = await this.axios({
+        url: `/cart/${id}?access-token=${this.token}`,
+        method: 'post'
+      })
+      if (success) {
+        this.getCartList()
+      } else {
+        this.$message.error(data?.message || '删除失败！')
+      }
+    },
+    async getPlatList() {
+      const { data } = await this.axios.get('/plat')
+      this.platoptions = data && data.items
+    }
+  },
   // 监听属性 类似于data概念
   computed: {},
   // 监控data中的数据变化
@@ -112,7 +157,16 @@ export default {
   // 生命周期 - 挂载之前
   beforeMount() {},
   // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
+  mounted() {
+    if (checkCookie('wx-token')) {
+      this.token = getCookie('wx-token')?.replace(/\"/g, '')
+    }
+    if (checkCookie('phone-token')) {
+      this.token = getCookie('phone-token')?.replace(/\"/g, '')
+    }
+    this.getCartList()
+    this.getPlatList()
+  },
   // 生命周期 - 更新之前
   beforeUpdate() {},
   // 生命周期 - 更新之后
