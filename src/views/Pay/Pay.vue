@@ -131,7 +131,7 @@ export default {
       // 提交订单
       const { success, data } = await this.axios({
         method: 'post',
-        url: '/cart/one-step-pay/5?access-token=' + token,
+        url: '/cart/one-step-pay/5?access-token=' + this.token,
         data: params,
         headers: { 'Content-Type': 'multipart/form-data' }
       })
